@@ -1,6 +1,9 @@
 # "Learn Braille" IOS application
 
 
+## Navigation
+
+- [CONTRIBUTING.md](https://github.com/braille-systems/learnbraille_ios/blob/main/CONTRIBUTING.md)
 
 ## Product description
 
