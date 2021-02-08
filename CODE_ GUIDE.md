@@ -52,14 +52,51 @@ Each guideline starts with one of these words:
 ## Style
 
 ### Identifiers
-* **DO** name types using UpperCamelCase.
-* **DO** name extensions using UpperCamelCase.
-* **DO** name libraries, packages, directories, and source files using lowercase_with_underscores.
-* **DO** name import prefixes using lowercase_with_underscores.
-* **DO** name other identifiers using lowerCamelCase.
-* **PREFER** using lowerCamelCase for constant names.
+* **DO** name types using `UpperCamelCase`.
+```class SliderMenu { ... }```
+* **DO** name extensions using `UpperCamelCase`.
+```extension MyFancyList<T> on List<T> { ... }```
+* **DO** name libraries, packages, directories, and source files using `lowercase_with_underscores`.
+```
+library peg_parser.source_scanner;
+import 'file_system.dart';
+```
+* **DO** name import prefixes using `lowercase_with_underscores`.
+```
+import 'package:angular_components/angular_components'
+    as angular_components;
+```
+* **DO** name other identifiers using `lowerCamelCase`.
+```
+var item;
+HttpRequest httpRequest;
+```
+* **PREFER** using `lowerCamelCase` for constant names.
+```
+const pi = 3.14;
+const defaultTimeout = 1000;
+```
 * **DO** capitalize acronyms and abbreviations longer than two letters like words.
-* **PREFER** using _, __, etc. for unused callback parameters.
+_**GOOD**_
+```
+class HttpConnection {}
+class DBIOPort {}
+class TVVcr {}
+class MrRogers {}
+```
+_**BAD**_
+```
+class HTTPConnection {}
+class DbIoPort {}
+class TvVcr {}
+class MRRogers {}
+```
+* **PREFER** using `_`, `__`, etc. for unused callback parameters.
+```
+futureOfVoid.then((_) {
+  print('Operation complete.');
+});
+```
 * **DON’T** use a leading underscore for identifiers that aren’t private.
 * **DON’T** use prefix letters.
 
