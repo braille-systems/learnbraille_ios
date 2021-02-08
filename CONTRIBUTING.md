@@ -1,5 +1,11 @@
 # Contributing
 
+## Code style
+
+There is a separate file with instructions on coding rules in this repository
+
+[CODE_GUIDE](https://github.com/braille-systems/learnbraille_ios/blob/main/CODE_GUIDE.md)
+
 ## Git Workflow
 
 Overall, these rules are a simplified version of the famous [successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
