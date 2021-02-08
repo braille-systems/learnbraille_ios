@@ -20,7 +20,7 @@ To contribute a new feature, create a new branch from `main`
 
 There are two allowed types of branches: `feature` and `fix`
 
-Branch type should be separated from name by a backslash, for example, `feature/new-panel` of `fix/blinking-screen`
+Branch type should be separated from name by a backslash, for example, `feature/new-panel` or `fix/blinking-screen`
 
 #### Feature
 
@@ -56,9 +56,31 @@ It's highly recommended to tag every release in `main` branch (mainly for CI rea
 
 ### Commit rules
 
-This repository supports integration with **Jira Dashboard** and it's highly recommended to use it
+When creating commits, follow simple rules:
 
-To *reference* a **JIRA** issue in your commit, just add issue key to it, for example, `BRAILLE-1 Very import cnahges`
+- Make commit messages short (less than 50 characters)
+
+- Make commits atomic, every commit should contain only one logical change
+
+- Use capital letter in the beginning of the line
+
+- Commit message should be able to comlete a sentence like `If applied, this commit will <your message>`
+
+- It's recommended to write down long text about your changes in **pull request** description, not in commit message
+
+- If you still need to make a long description to your commit message, use *additional description* provided by git GUI clients or use a separating line inside `-m` message, if you use git from your terminal
+
+Good commit example: `Fix blinking screen bug`
+
+### JIRA Integration
+
+This repository supports integration with **Jira Dashboard**
+
+It's required to use integration when creating *commits* and *pull requests*, though it's not necessary to use it with branches
+
+To *reference* a **JIRA** issue in your commit, just add issue key to it, for example, `BRAILLE-X Very import cnahges`
+
+The same rule applies to pull requests. Average PR title should look like: `BRAILLE-X (optional)<WIP>: Short message to describe overall changes`
 
 It's also possible to manipulate **JIRA** issues with *smart commits* and commands like `comment`, `time` and `transition`
 
