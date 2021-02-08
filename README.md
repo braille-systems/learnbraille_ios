@@ -4,6 +4,7 @@
 ## Navigation
 
 - [CONTRIBUTING.md](https://github.com/braille-systems/learnbraille_ios/blob/main/CONTRIBUTING.md)
+- [CODE_GUIDE.md](https://github.com/braille-systems/learnbraille_ios/blob/main/CODE_GUIDE.md)
 
 ## Product description
 
