@@ -70,7 +70,9 @@ When creating commits, follow simple rules:
 
 - If you still need to make a long description to your commit message, use *additional description* provided by git GUI clients or use a separating line inside `-m` message, if you use git from your terminal
 
-Good commit example: `Fix blinking screen bug`
+- Use **JIRA Integration** rules described in the section below
+
+Good commit example: `BRAILLE-X Fix blinking screen bug`
 
 ### JIRA Integration
 
@@ -78,7 +80,7 @@ This repository supports integration with **Jira Dashboard**
 
 It's required to use integration when creating *commits* and *pull requests*, though it's not necessary to use it with branches
 
-To *reference* a **JIRA** issue in your commit, just add issue key to it, for example, `BRAILLE-X Very import cnahges`
+To *reference* a **JIRA** issue in your commit, just add issue key to it, for example, `BRAILLE-X Add new button in main menu`
 
 The same rule applies to pull requests. Average PR title should look like: `BRAILLE-X (optional)<WIP>: Short message to describe overall changes`
 
