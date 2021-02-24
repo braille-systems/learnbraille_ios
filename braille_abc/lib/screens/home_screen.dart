@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tutorial/components/bottom_bar_widget.dart';
-import 'package:flutter_tutorial/components/menu_button_widget.dart';
-import 'package:flutter_tutorial/models/app_model.dart';
-import 'package:flutter_tutorial/models/menu_button.dart';
-import 'package:flutter_tutorial/shared/screen_params.dart';
+import 'package:braille_abc/components/bottom_bar_widget.dart';
+import 'package:braille_abc/components/menu_button_widget.dart';
+import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/models/menu_button.dart';
+import 'package:braille_abc/shared/screen_params.dart';
 
 
 

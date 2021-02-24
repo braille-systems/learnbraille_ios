@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tutorial/screens/home_screen.dart';
+import 'package:braille_abc/screens/home_screen.dart';
 
 class BrailleApp extends StatelessWidget {
   @override

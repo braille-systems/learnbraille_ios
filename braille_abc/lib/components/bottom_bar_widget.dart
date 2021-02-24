@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tutorial/models/menu_button.dart';
+import 'package:braille_abc/models/menu_button.dart';
 
 class BottomBar extends StatelessWidget {
   const BottomBar({

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tutorial/models/menu_button.dart';
-import 'package:flutter_tutorial/shared/screen_params.dart';
+import 'package:braille_abc/models/menu_button.dart';
+import 'package:braille_abc/shared/screen_params.dart';
 
 class MenuButtonWidget extends StatefulWidget {
   const MenuButtonWidget({
