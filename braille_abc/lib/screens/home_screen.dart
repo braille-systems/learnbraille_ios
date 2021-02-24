@@ -2,11 +2,6 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:braille_abc/screens/practice_screen.dart';
-import 'package:braille_abc/screens/settings_screen.dart';
-import 'package:braille_abc/screens/study_screen.dart';
-import 'package:braille_abc/screens/dictionary_screen.dart';
-
 import 'package:braille_abc/components/menu_button_widget.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/menu_button.dart';
@@ -20,13 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
-  List<Widget> _pages = [
-    MenuScreen(),
-    StudyScreen(),
-    PracticeScreen(),
-    DictionaryScreen(),
-    SettingsScreen(),
-  ];
+
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
@@ -46,7 +35,7 @@ class _HomeScreen extends State<HomeScreen> {
           ],
         ),
         tabBuilder: (BuildContext context, index) {
-          return _pages[index];
+          return AppModel.screens[index];
         });
 
   }
@@ -94,6 +83,7 @@ class MenuScreen extends StatelessWidget {
                     menuButton: MenuButton(
                         name: AppModel.menuButton[i].name,
                         icon: AppModel.menuButton[i].icon),
+                    screen: AppModel.screens[i+1],
                   ),
               ],
             ),

@@ -7,16 +7,17 @@ class MenuButtonWidget extends StatefulWidget {
   const MenuButtonWidget({
     Key key,
     @required this.menuButton,
+    @required this.screen,
   }) : super(key: key);
 
   final MenuButton menuButton;
+  final Widget screen;
 
   @override
   _MenuButtonWidget createState() => _MenuButtonWidget();
 }
 
 class _MenuButtonWidget extends State<MenuButtonWidget> {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -32,7 +33,13 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
       ),
       textColor: Colors.white,
       color: Colors.orange[300],
-      onPressed: () {},
+      onPressed: () {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => widget.screen,
+        ),
+      );
+    },
       padding: EdgeInsets.symmetric(vertical: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
