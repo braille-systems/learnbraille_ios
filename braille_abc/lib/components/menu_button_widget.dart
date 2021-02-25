@@ -34,9 +34,11 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
       textColor: Colors.white,
       color: Colors.orange[300],
       onPressed: () {
+        print(widget.screen);
       Navigator.of(context).push(
-        MaterialPageRoute(
+        CupertinoPageRoute(
           builder: (context) => widget.screen,
+
         ),
       );
     },
