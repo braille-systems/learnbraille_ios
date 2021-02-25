@@ -15,7 +15,7 @@ class AppModel {
     MenuButton(name: "Настройки", icon: CupertinoIcons.settings),
   ];
 
-  static List<Widget> screens = [
+  static final List<Widget> screens = [
     MenuScreen(),
     StudyScreen(),
     PracticeScreen(),
