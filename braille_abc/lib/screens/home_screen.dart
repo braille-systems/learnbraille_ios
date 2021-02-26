@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:braille_ios_app/components/bottom_bar_widget.dart';
-import 'package:braille_ios_app/components/menu_button_widget.dart';
-import 'package:braille_ios_app/models/app_model.dart';
-import 'package:braille_ios_app/models/menu_button.dart';
-import 'package:braille_ios_app/shared/screen_params.dart';
+import 'package:braille_abc/components/bottom_bar_widget.dart';
+import 'package:braille_abc/components/menu_button_widget.dart';
+import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/models/menu_button.dart';
+import 'package:braille_abc/shared/screen_params.dart';
 
 
 
