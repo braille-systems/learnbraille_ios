@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:braille_abc/models/app_model.dart';
 
 class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeWidget{
   const NavigationBar({
@@ -8,7 +7,6 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
   }) : super(key: key);
 
   final String title;
-  final double preferredSize_c = 20.0;
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +14,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
         padding: EdgeInsetsDirectional.only(start: 0),
         backgroundColor: CupertinoColors.extraLightBackgroundGray,
         leading: CupertinoNavigationBarBackButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => AppModel.screens[1],
-              ),
-            );
-          },
+          onPressed: () {},
         ),
         middle: Text(title,
           style: TextStyle(color: CupertinoColors.black, fontSize: 20),
@@ -41,7 +33,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
   // TODO: убрать это магическое число мб
   Size get preferredSize
   {
-    return new Size.fromHeight(preferredSize_c);
+    return new Size.fromHeight(20.0);
   }
 
   @override

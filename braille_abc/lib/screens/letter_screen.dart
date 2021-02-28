@@ -8,11 +8,12 @@ import 'package:braille_abc/components/letter_widget.dart';
 class LetterScreen extends StatefulWidget {
   const LetterScreen(
       {Key key,
+      @required this.str,
       @required this.titleSymbol,
       @required this.symbol})
       : super(key: key);
 
-  final String str = "Просмотр символа";
+  final String str;
   final String titleSymbol;
   final String symbol;
 

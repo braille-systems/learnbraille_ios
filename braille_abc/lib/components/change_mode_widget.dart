@@ -10,7 +10,6 @@ class ChangeModeWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: ScreenParams.width(40, context),
       transform: Matrix4.rotationZ(math.pi / 2),
       child: const CupertinoButton(
           child: Icon(
