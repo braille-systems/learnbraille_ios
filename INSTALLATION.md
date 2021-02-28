@@ -3,7 +3,7 @@
 ## Installing and running the application for ***users***
 
  At the moment, the product is not available for launch and transfer as an *.ipa file. Later you can download this application in the *AppStore*.
-
+ 
 
 ## Installing and running the application for ***the developer***
 
