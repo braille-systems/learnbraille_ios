@@ -2,7 +2,7 @@
 
 ## Installing and running the application for ***users***
 
- At the moment, the product is not available for launch and transfer as an *.ipa file. Later you can download this application in the *AppStore*.
+ At the moment, the product is not available for launch and transfer as an .ipa file. Later you can download this application in the *AppStore*.
 
 
 ## Installing and running the application for ***the developer***
@@ -32,7 +32,7 @@
 
 ## Building and release an IOS-app
 
- The assembly of the application into a file in the form of a *.ipa is done using the XCode environment on a macOS device or its emulator. To do this, follow these steps:
+ The assembly of the application into a file in the form of a .ipa is done using the XCode environment on a macOS device or its emulator. To do this, follow these steps:
 
 - Run the flutter file - *"Runner"*  in the XCode
 
