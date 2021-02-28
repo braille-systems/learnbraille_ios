@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 class Body extends StatefulWidget {
   final int index;
+
   Body(this.index);
 
   @override
@@ -17,6 +18,6 @@ class _BodyState extends State<Body> {
   }
 }
 
- class TabData{
-   static int current_index = 0;
+class TabData {
+  static int current_index = 0;
 }

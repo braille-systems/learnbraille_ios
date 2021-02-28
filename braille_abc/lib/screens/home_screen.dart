@@ -12,18 +12,18 @@ class HomeScreen extends StatefulWidget {
   @override
   _HomeScreen createState() => _HomeScreen();
   int currentIndex;
+
   setIndex(int index) {
     //_HomeScreen()._currentTabIndex = index;
     //_HomeScreen().setState(() {
-      _HomeScreen().setIndex(index);
-   // });
+    _HomeScreen().setIndex(index);
+    // });
     //print("Set index:");
     //print(index);
   }
 }
 
 class _HomeScreen extends State<HomeScreen> {
-
   CupertinoTabController _tabController;
 
   int _tabIndex = 0;
@@ -38,9 +38,8 @@ class _HomeScreen extends State<HomeScreen> {
     _tabIndex = _tabController.index + 1;
   }
 
-  setIndex(int index){
-
-    if(mounted) {
+  setIndex(int index) {
+    if (mounted) {
       setState(() {
         _tabIndex = index;
         print("Set index:");
@@ -67,12 +66,11 @@ class _HomeScreen extends State<HomeScreen> {
               label: AppModel.menuButton[i].name,
             ),
         ],
-
         currentIndex: TabData.current_index,
         onTap: (int) {
           setState(() {
             _tabIndex = int;
-            TabData.current_index=int;
+            TabData.current_index = int;
             print("New index:");
             print(AppModel.screens[int]);
             print(int);
@@ -80,8 +78,7 @@ class _HomeScreen extends State<HomeScreen> {
         },
       ),
       tabBuilder: (context, index) {
-        return CupertinoTabView(
-            builder: (context) {
+        return CupertinoTabView(builder: (context) {
           return CupertinoPageScaffold(
             child: Body(index),
           );
@@ -136,8 +133,8 @@ class MenuScreen extends StatelessWidget {
                       menuButton: MenuButton(
                           name: AppModel.menuButton[i].name,
                           icon: AppModel.menuButton[i].icon),
-                          index: i+1,
-                          homeScreen: HomeScreen(),
+                      index: i + 1,
+                      homeScreen: HomeScreen(),
                     ),
                 ],
               ),

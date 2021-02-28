@@ -1,3 +1,1 @@
-
-abstract class Styles {
-}
+abstract class Styles {}

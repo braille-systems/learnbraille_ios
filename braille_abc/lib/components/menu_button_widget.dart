@@ -10,7 +10,8 @@ class MenuButtonWidget extends StatefulWidget {
   const MenuButtonWidget({
     Key key,
     @required this.menuButton,
-    @required this.index, this.homeScreen,
+    @required this.index,
+    this.homeScreen,
   }) : super(key: key);
 
   final MenuButton menuButton;
@@ -37,16 +38,14 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
       textColor: Colors.white,
       color: Colors.orange[300],
       onPressed: () {
-        TabData.current_index=widget.index;
+        TabData.current_index = widget.index;
         widget.homeScreen.setIndex(widget.index);
-      Navigator.of(context).push(
-
-        CupertinoPageRoute(
-          builder: (context) => Body(widget.index),
-
-        ),
-      );
-    },
+        Navigator.of(context).push(
+          CupertinoPageRoute(
+            builder: (context) => Body(widget.index),
+          ),
+        );
+      },
       padding: EdgeInsets.symmetric(vertical: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
