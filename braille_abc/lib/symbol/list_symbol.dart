@@ -5,8 +5,7 @@ class Image_Symbol{
   final String char;
   Image_Symbol({List<int> d, this.char}){
     for(int i = 0; i < d.length; i++){
-      if(i == d[i] - 1)
-        data[i] = true;
+      data[d[i] - 1] = true;
     }
   }
 }
@@ -19,10 +18,13 @@ List<Image_Symbol> list_Symbols = <Image_Symbol>[
 
 class Search{
   static Element(String char){
+    if(char == null)
+      return <bool>[false, false, false, false, false, false];
     for(int i = 0; i < list_Symbols.length; i++){
       if(list_Symbols[i].char.compareTo(char) == 0){
         return list_Symbols[i].data;
       }
     }
+    return <bool>[false, false, false, false, false, false];
   }
 }
