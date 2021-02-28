@@ -7,6 +7,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
   }) : super(key: key);
 
   final String title;
+  final double preferredSize_c = 20.0;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
   // TODO: убрать это магическое число мб
   Size get preferredSize
   {
-    return new Size.fromHeight(20.0);
+    return new Size.fromHeight(preferredSize_c);
   }
 
   @override
