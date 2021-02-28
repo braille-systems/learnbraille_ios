@@ -14,12 +14,7 @@ class HomeScreen extends StatefulWidget {
   int currentIndex;
 
   setIndex(int index) {
-    //_HomeScreen()._currentTabIndex = index;
-    //_HomeScreen().setState(() {
     _HomeScreen().setIndex(index);
-    // });
-    //print("Set index:");
-    //print(index);
   }
 }
 
@@ -66,11 +61,11 @@ class _HomeScreen extends State<HomeScreen> {
               label: AppModel.menuButton[i].name,
             ),
         ],
-        currentIndex: TabData.current_index,
+        currentIndex: TabData.currentIndex,
         onTap: (int) {
           setState(() {
             _tabIndex = int;
-            TabData.current_index = int;
+            TabData.currentIndex = int;
             print("New index:");
             print(AppModel.screens[int]);
             print(int);

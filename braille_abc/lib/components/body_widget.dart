@@ -1,5 +1,4 @@
 import 'package:braille_abc/models/app_model.dart';
-import 'package:braille_abc/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 class Body extends StatefulWidget {
@@ -19,5 +18,5 @@ class _BodyState extends State<Body> {
 }
 
 class TabData {
-  static int current_index = 0;
+  static int currentIndex = 0;
 }

@@ -1,4 +1,3 @@
-import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +37,7 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
       textColor: Colors.white,
       color: Colors.orange[300],
       onPressed: () {
-        TabData.current_index = widget.index;
+        TabData.currentIndex = widget.index;
         widget.homeScreen.setIndex(widget.index);
         Navigator.of(context).push(
           CupertinoPageRoute(
