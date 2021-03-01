@@ -1,6 +1,7 @@
-import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
+
+import 'bottom_bar_widget.dart';
 
 class StudyItem extends StatelessWidget {
   const StudyItem({
@@ -29,6 +30,7 @@ class StudyItem extends StatelessWidget {
         disabledColor: CupertinoColors.white,
         child: Text(str, style: TextStyle(color: CupertinoColors.black)),
         onPressed: () {
+          scakey.currentState.displayTapBar(false);
           Navigator.of(context).push(
             CupertinoPageRoute(
               builder: (context) => LetterScreen(

@@ -1,4 +1,3 @@
-import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:math' as math;
 class ChangeModeWidget extends StatelessWidget

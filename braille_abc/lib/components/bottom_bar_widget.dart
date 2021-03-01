@@ -14,6 +14,7 @@ class Bottom extends StatefulWidget {
 class _BottomState extends State<Bottom> {
   final myKey = new GlobalKey<_BottomState>();
   int _selectedIndex = 0;
+  bool _disableTapBar = false;
   final CupertinoTabController _controller = CupertinoTabController();
 
   void onItemTapped(int index) {
@@ -21,6 +22,13 @@ class _BottomState extends State<Bottom> {
       _selectedIndex = index;
       _controller.index = index;
       print(_selectedIndex);
+    });
+  }
+
+  void displayTapBar(bool isDisplayed) {
+    setState(() {
+      _disableTapBar = !isDisplayed;
+      print(_disableTapBar);
     });
   }
 
@@ -40,22 +48,24 @@ class _BottomState extends State<Bottom> {
     return CupertinoTabScaffold(
       controller: _controller,
       key: myKey,
-      tabBar: CupertinoTabBar(
-        onTap: onItemTapped,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            backgroundColor: CupertinoColors.lightBackgroundGray,
-            icon: Icon(CupertinoIcons.bars),
-            label: 'Меню',
-          ),
-          for (int i = 0; i < AppModel.menuButton.length; i++)
-            BottomNavigationBarItem(
-              backgroundColor: CupertinoColors.lightBackgroundGray,
-              icon: Icon(AppModel.menuButton[i].icon),
-              label: AppModel.menuButton[i].name,
+      tabBar: _disableTapBar
+          ? InvisibleCupertinoTabBar()
+          : CupertinoTabBar(
+              onTap: onItemTapped,
+              items: <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  backgroundColor: CupertinoColors.lightBackgroundGray,
+                  icon: Icon(CupertinoIcons.bars),
+                  label: 'Меню',
+                ),
+                for (int i = 0; i < AppModel.menuButton.length; i++)
+                  BottomNavigationBarItem(
+                    backgroundColor: CupertinoColors.lightBackgroundGray,
+                    icon: Icon(AppModel.menuButton[i].icon),
+                    label: AppModel.menuButton[i].name,
+                  ),
+              ],
             ),
-        ],
-      ),
       tabBuilder: (context, index) {
         return CupertinoTabView(builder: (context) {
           return CupertinoPageScaffold(
@@ -65,4 +75,36 @@ class _BottomState extends State<Bottom> {
       },
     );
   }
+}
+
+class InvisibleCupertinoTabBar extends CupertinoTabBar {
+  static const dummyIcon = Icon(IconData(0x0020));
+
+  InvisibleCupertinoTabBar()
+      : super(
+          items: [
+            BottomNavigationBarItem(icon: dummyIcon),
+            BottomNavigationBarItem(icon: dummyIcon),
+          ],
+        );
+
+  @override
+  Size get preferredSize => const Size.square(0);
+
+  @override
+  Widget build(BuildContext context) => SizedBox();
+
+  @override
+  InvisibleCupertinoTabBar copyWith({
+    Key key,
+    List<BottomNavigationBarItem> items,
+    Color backgroundColor,
+    Color activeColor,
+    Color inactiveColor,
+    double iconSize,
+    Border border,
+    int currentIndex,
+    ValueChanged<int> onTap,
+  }) =>
+      InvisibleCupertinoTabBar();
 }

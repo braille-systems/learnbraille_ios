@@ -7,8 +7,6 @@ import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/menu_button.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 
-
-
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreen createState() => _HomeScreen();
