@@ -1,15 +1,15 @@
 import 'package:braille_abc/components/change_mode_widget.dart';
+import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/components/letter_widget.dart';
 
+
 class LetterScreen extends StatefulWidget {
   const LetterScreen(
-      {Key key,
-      @required this.titleSymbol,
-      @required this.symbol})
+      {Key key, @required this.titleSymbol, @required this.symbol})
       : super(key: key);
 
   final String str = "Просмотр символа";
@@ -24,7 +24,10 @@ class _LetterScreenState extends State<LetterScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: NavigationBar(title: widget.str),
+      navigationBar: NavigationBar(
+        title: widget.str,
+        previousPage: AppModel.screens[1],
+      ),
       child: Column(
         children: [
           SizedBox(
