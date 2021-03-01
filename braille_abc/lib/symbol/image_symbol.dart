@@ -1,35 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'list_symbol.dart';
-
-void main() => runApp(CupertinoApp(
-  home: Symbol(dir: TextDirection.ltr, char: null, tap: true, Width: 200, Height: 350, location_y: 0.7)
-),);
-
-class Point{
-  Color p = CupertinoColors.white;
-  Color onP = CupertinoColors.black;
-  bool press = false;
-  String data;
-  int num;
-  Point(this.data, this.num);
-}
+import 'struct_symbol.dart';
+import 'list_symbols.dart';
 
 class Symbol extends StatefulWidget{
   double Width;//ширина
   double Height ;//высота
   double location_y;//принимает знаения от -1 до 1, и меняет координату по y: -1 - в самом верху, 1 - нижняя часть виджета соприкасается с нижней частью экрана
-  List<bool> bl;//отвчает за символ, который будет печататься, если же символ печататься не должен, писать null
+  String char;//отвчает за символ, который будет печататься, если же символ печататься не должен, писать null
   final bool tap;//реакция на нажатие
   TextDirection dir = TextDirection.ltr;//направление печати цифр
 
-  Symbol({Key key, this.dir, String char, this.tap, this.Width, this.Height, this.location_y}): super(key: key){
-    bl = Search.Element(char);
+  Symbol({Key key, this.dir, this.char, this.tap, this.Width, this.Height, this.location_y}): super(key: key){
   }
 
   @override
-  _SymbolState createState() => _SymbolState(this.dir, this.bl, this.tap, this.Width, this.Height, this.location_y);
+  _SymbolState createState() => _SymbolState(this.dir, this.char, this.tap, this.Width, this.Height, this.location_y);
 }
 
 class _SymbolState extends State<Symbol>{
@@ -38,18 +25,10 @@ class _SymbolState extends State<Symbol>{
   double location_y = 0.7;
   TextDirection dir = TextDirection.ltr;
   final bool tap;
-  List<Point> points = <Point>[Point('1', 1), Point('4', 4), Point('2', 2), Point('5', 5), Point('3', 3), Point('6', 6)];
+  Struct_Symbol symbol;
 
-  _SymbolState(this.dir, List<bool> bl, this.tap, this.Width, this.Height, this.location_y){
-    for(int i = 0; i < bl.length; i++){
-      for(int j = 0; j < points.length; j++){
-        if((j + 1 == points[i].num) && (bl[j])) {
-          points[i].press = true;
-          points[i].p = CupertinoColors.black;
-          points[i].onP = CupertinoColors.white;
-        }
-      }
-    }
+  _SymbolState(this.dir, String char, this.tap, this.Width, this.Height, this.location_y){
+    symbol = Search.Element(char);
   }
 
   @override
@@ -73,7 +52,7 @@ class _SymbolState extends State<Symbol>{
                 textDirection: dir,
                 spacing: 30,
                 runSpacing: 0,
-                children: points
+                children: symbol.data
                     .map((item) =>
                     ElevatedButton(
                       onPressed: () {
