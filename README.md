@@ -1,4 +1,4 @@
-# "Learn Braille" IOS application
+﻿# "Learn Braille" IOS application
 
 
 
@@ -34,9 +34,14 @@ This application is aimed at *persons with late-onset blindness*, *visually impa
 
 The topic is relevant, since the Android application is currently in demand, and iPhone owners do not have the opportunity to use it. Thus, we expand the possibilities of using the application for different types of devices
 
+## Installation
+
+You can find installation instructions for users and developers [here](https://github.com/braille-systems/learnbraille_ios/blob/main/INSTALLATION.md)
+
 ## Contributing
 
  You can find information on how to contribute [here](https://github.com/braille-systems/learnbraille_ios/blob/main/CONTRIBUTING.md)
+
 
 ## Development team
 

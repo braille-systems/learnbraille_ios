@@ -1,6 +1,5 @@
-import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:braille_abc/components/study_item_widget.dart';
 
 class DictionaryScreen extends StatelessWidget {
   @override
@@ -9,15 +8,11 @@ class DictionaryScreen extends StatelessWidget {
       navigationBar: CupertinoNavigationBar(
         leading: CupertinoNavigationBarBackButton(
           onPressed: () {
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => AppModel.screens[0],
-              ),
-            );
+            scakey.currentState.onItemTapped(0);
           },
         ),
         middle: Text(
-          "Словарь",
+          "Обучение",
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         trailing: Icon(CupertinoIcons.question_circle),

@@ -20,6 +20,7 @@ class Symbol extends StatefulWidget{
 
   @override
   _SymbolState createState() => _SymbolState(dir: dir, char: char, tap: tap, Width: Width, Height: Height, location_y: location_y, location_x: location_x);
+
 }
 
 class _SymbolState extends State<Symbol>{
@@ -32,6 +33,7 @@ class _SymbolState extends State<Symbol>{
   Struct_Symbol symbol;
 
   _SymbolState({this.dir, String char, this.tap, this.Width, this.Height, this.location_y, this.location_x}){
+
     symbol = Search.Element(char);
   }
 

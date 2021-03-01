@@ -1,4 +1,5 @@
 import 'package:braille_abc/components/change_mode_widget.dart';
+import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,12 +45,15 @@ class _LetterScreenState extends State<LetterScreen> {
     }
 
     return CupertinoPageScaffold(
-      navigationBar: NavigationBar(title: widget.str),
+      navigationBar: NavigationBar(
+        title: widget.str,
+        previousPage: AppModel.screens[1],
+      ),
       child: Column(
         children: [
           SizedBox(
             height: ScreenParams.height(5, context),
-          ),
+           ),
           Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -102,6 +106,7 @@ class _LetterScreenState extends State<LetterScreen> {
                       )
                   )
               ),
+
             ],
           )
         ],

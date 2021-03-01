@@ -1,6 +1,5 @@
-import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
-
 class PracticeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -8,11 +7,7 @@ class PracticeScreen extends StatelessWidget {
       navigationBar: CupertinoNavigationBar(
         leading: CupertinoNavigationBarBackButton(
           onPressed: () {
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => AppModel.screens[0],
-              ),
-            );
+            scakey.currentState.onItemTapped(0);
           },
         ),
         middle: Text(
