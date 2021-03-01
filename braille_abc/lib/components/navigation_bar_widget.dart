@@ -1,6 +1,5 @@
 import 'dart:async';
 
-
 import 'package:flutter/cupertino.dart';
 
 import 'bottom_bar_widget.dart';
@@ -43,7 +42,6 @@ class NavigationBar extends StatelessWidget
         onPressed: () {},
       ),
     );
-
   }
 
   @override
@@ -59,5 +57,4 @@ class NavigationBar extends StatelessWidget
   bool shouldFullyObstruct(BuildContext context) {
     return true;
   }
-
 }
