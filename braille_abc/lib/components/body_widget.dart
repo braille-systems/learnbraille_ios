@@ -17,6 +17,3 @@ class _BodyState extends State<Body> {
   }
 }
 
-class TabData {
-  static int currentIndex = 0;
-}
