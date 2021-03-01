@@ -3,44 +3,47 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'struct_symbol.dart';
 import 'list_symbols.dart';
-import 'package:braille_abc/screens/letter_screen.dart';
 
 class Symbol extends StatefulWidget{
   double Width;//ширина
   double Height ;//высота
   double location_y;//принимает знаения от -1 до 1, и меняет координату по y: -1 - в самом верху, 1 - нижняя часть виджета соприкасается с нижней частью экрана
-  double location_x;//тоже самое, но для x
   String char;//отвчает за символ, который будет печататься, если же символ печататься не должен, писать null
   final bool tap;//реакция на нажатие
-  TextDirection Function() dir;//принимает на вход функцию, которая возвращает вид вывода
+  TextDirection dir = TextDirection.ltr;//направление печати цифр
 
-  Symbol({Key key, this.dir, this.char, this.tap, this.Width, this.Height, this.location_y, this.location_x}): super(key: key){
-    createState();
+  Symbol({Key key, this.dir, this.char, this.tap, this.Width, this.Height, this.location_y}): super(key: key){
   }
 
   @override
-  _SymbolState createState() => _SymbolState(dir: dir, char: char, tap: tap, Width: Width, Height: Height, location_y: location_y, location_x: location_x);
+  _SymbolState createState() => _SymbolState(this.dir, this.char, this.tap, this.Width, this.Height, this.location_y);
 }
 
 class _SymbolState extends State<Symbol>{
   double Width = 250;//ширина
   double Height = 400;//высота
   double location_y = 0.7;
-  double location_x = 0.0;
-  TextDirection Function() dir;
+  TextDirection dir = TextDirection.ltr;
   final bool tap;
   Struct_Symbol symbol;
 
-  _SymbolState({this.dir, String char, this.tap, this.Width, this.Height, this.location_y, this.location_x}){
+  _SymbolState(this.dir, String char, this.tap, this.Width, this.Height, this.location_y){
     symbol = Search.Element(char);
+  }
+
+  void Exchange(){
+    if(dir == TextDirection.ltr)
+      dir = TextDirection.rtl;
+    else
+      dir = TextDirection.ltr;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment(location_x, location_y),
+      alignment: Alignment(0, location_y),
       child: Stack(
-        textDirection: dir(),
+        textDirection: dir,
         children: <Widget>[
           Container(
               height: Height,
@@ -53,7 +56,7 @@ class _SymbolState extends State<Symbol>{
               child: Wrap(
                 alignment: WrapAlignment.center,
                 runAlignment: WrapAlignment.center,
-                textDirection: dir(),
+                textDirection: dir,
                 spacing: 30,
                 runSpacing: 0,
                 children: symbol.data
