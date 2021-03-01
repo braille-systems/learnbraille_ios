@@ -43,10 +43,12 @@ class NavigationBar extends StatelessWidget
         onPressed: () {},
       ),
     );
+
   }
 
   @override
   // TODO: убрать это магическое число мб
+
   Size get preferredSize {
     return new Size.fromHeight(20.0);
   }
@@ -57,4 +59,5 @@ class NavigationBar extends StatelessWidget
   bool shouldFullyObstruct(BuildContext context) {
     return true;
   }
+
 }

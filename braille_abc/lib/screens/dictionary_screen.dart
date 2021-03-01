@@ -1,7 +1,6 @@
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 
-
 class DictionaryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -13,13 +12,21 @@ class DictionaryScreen extends StatelessWidget {
           },
         ),
         middle: Text(
-          "Словарь",
+          "Обучение",
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         trailing: Icon(CupertinoIcons.question_circle),
       ),
       child: SafeArea(
-        child: Center(child: Text('Dictionary')),
+        child:
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              StudyItem(str: "А: точки 1"),
+              StudyItem(str: "Б: точки 1, 2"),
+              StudyItem(str: "В: точки 2, 4, 5, 6"),
+            ],
+          )
       ),
     );
   }
