@@ -34,11 +34,10 @@ class MenuScreen extends StatelessWidget {
     return CupertinoPageScaffold(
       child: SafeArea(
         minimum: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        //padding: const EdgeInsets.symmetric(horizontal: 20,),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: ScreenParams.height(6, context)),
+            SizedBox(height: ScreenParams.height(4, context)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -58,9 +57,9 @@ class MenuScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: ScreenParams.height(5, context)),
+            SizedBox(height: ScreenParams.height(4, context)),
             Container(
-              height: ScreenParams.heightIOS14(65, context),
+              height: ScreenParams.heightIOS14(70, context),
               child: GridView.count(
                 physics: new NeverScrollableScrollPhysics(),
                 childAspectRatio: (50 / 65),
