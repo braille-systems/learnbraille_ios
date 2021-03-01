@@ -42,9 +42,6 @@ You can find installation instructions for users and developers [here](https://g
 
  You can find information on how to contribute [here](https://github.com/braille-systems/learnbraille_ios/blob/main/CONTRIBUTING.md)
 
-## Release notes
-
- You can find information about the changes in each release [here](https://github.com/braille-systems/learnbraille_ios/blob/main/RELEASES.md)
 
 ## Development team
 
