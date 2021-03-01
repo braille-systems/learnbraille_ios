@@ -59,27 +59,28 @@ class _LetterScreenState extends State<LetterScreen> {
                   symbol: widget.symbol,
                 ),
               ]),
-          // SizedBox(
-          //   height: ScreenParams.height(15, context),
-          // ),
+          SizedBox(
+            height: ScreenParams.height(5, context),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.alphabetic,
-            // crossAxisAlignment: CrossAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.baseline,
+            // textBaseline: TextBaseline.alphabetic,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // SizedBox(
-              //   height: ScreenParams.height(10, context),
-              //   width: ScreenParams.width(25, context),
-              // ),
+              SizedBox(
+                height: ScreenParams.height(10, context),
+                width: ScreenParams.width(25, context),
+              ),
               Symbol(dir: Mode, char: widget.symbol, tap: false, Width: 200, Height: 350, location_y: 0.5, location_x: 0.0),
               SizedBox(
                 height: ScreenParams.height(10, context),
-                width: ScreenParams.width(10, context),
+                width: ScreenParams.width(25, context),
               ),
 
               // change_mode_widget(черная кнопка) я пока вынес сюда
               Container(
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, ScreenParams.height(15, context)),
                   width: ScreenParams.width(40, context),
                   transform: Matrix4.rotationZ(math.pi / 2),
                   child: CupertinoButton(
