@@ -1,5 +1,4 @@
 import 'package:braille_abc/components/bottom_bar_widget.dart';
-import 'package:braille_abc/components/study_item_widget.dart';
 import 'package:flutter/cupertino.dart';
 
 class StudyScreen extends StatelessWidget {
@@ -19,7 +18,8 @@ class StudyScreen extends StatelessWidget {
         trailing: Icon(CupertinoIcons.question_circle),
       ),
       child: SafeArea(
-          child: Center(child: Text('Study')),),
+        child: Center(child: Text('Study')),
+      ),
     );
   }
 }

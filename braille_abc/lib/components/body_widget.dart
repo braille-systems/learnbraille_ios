@@ -16,5 +16,3 @@ class _BodyState extends State<Body> {
     return AppModel.screens[widget.index];
   }
 }
-
-

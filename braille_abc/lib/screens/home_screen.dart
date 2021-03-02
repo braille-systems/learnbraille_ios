@@ -7,16 +7,12 @@ import 'package:braille_abc/components/menu_button_widget.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/menu_button.dart';
 import 'package:braille_abc/shared/screen_params.dart';
-import 'package:braille_abc/components/body_widget.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreen createState() => _HomeScreen();
   int currentIndex;
-
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreen createState() => _HomeScreen();
 }
 
 class _HomeScreen extends State<HomeScreen> {
@@ -29,7 +25,6 @@ class _HomeScreen extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       child: Bottom(key: scakey),
-
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:math' as math;
 
+// ignore: must_be_immutable
 class ChangeModeWidget extends StatelessWidget {
   ChangeModeWidget({
     Key key,
@@ -31,8 +32,7 @@ class ChangeModeWidget extends StatelessWidget {
         onPressed: () {
           if (dir == TextDirection.ltr)
             dir = TextDirection.rtl;
-          else if (dir == TextDirection.rtl)
-            dir =TextDirection.rtl;
+          else if (dir == TextDirection.rtl) dir = TextDirection.rtl;
         },
       ),
     );

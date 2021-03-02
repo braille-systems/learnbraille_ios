@@ -85,6 +85,9 @@ class InvisibleCupertinoTabBar extends CupertinoTabBar {
           items: [
             BottomNavigationBarItem(icon: dummyIcon),
             BottomNavigationBarItem(icon: dummyIcon),
+            BottomNavigationBarItem(icon: dummyIcon),
+            BottomNavigationBarItem(icon: dummyIcon),
+            BottomNavigationBarItem(icon: dummyIcon),
           ],
         );
 
