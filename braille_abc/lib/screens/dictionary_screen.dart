@@ -34,10 +34,6 @@ class MyExpanableCardViewFlutter extends StatefulWidget {
 
 class _MyExpanableCardViewFlutterState
     extends State<MyExpanableCardViewFlutter> {
-  //controller for TextField
-  final username_controller = TextEditingController();
-  final password_controller = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -50,51 +46,95 @@ class _MyExpanableCardViewFlutterState
               height: 65,
             ),
             ExpansionTile(
-              leading: Icon(CupertinoIcons.textformat),
-              title: Text("Русский алфавит"),
+              leading: Icon(
+                CupertinoIcons.textformat,
+                size: 35,
+                color: Colors.orangeAccent,
+              ),
+              title: Text(
+                "Русский алфавит",
+                style: TextStyle(fontSize: 23),
+              ),
               children: <Widget>[
-                SafeArea(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        StudyItem(str: "А: точки 1"),
-                        StudyItem(str: "Б: точки 1, 2"),
-                        StudyItem(str: "В: точки 2, 4, 5, 6"),
-                      ],
-                    )),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    StudyItem(str: "А: точки 1"),
+                    StudyItem(str: "Б: точки 1, 2"),
+                    StudyItem(str: "В: точки 2, 4, 5, 6"),
+                  ],
+                ),
               ],
             ),
+            Divider(color: CupertinoColors.secondaryLabel),
             ExpansionTile(
-              leading: Icon(CupertinoIcons.number),
-              title: Text("Английский алфавит"),
-              children: <Widget>[
-                Text("................................................"),
-              ],
-            ),
-            ExpansionTile(
-              leading: Icon(CupertinoIcons.textformat),
-              title: Text("Цифры"),
-              children: <Widget>[
-
-              ],
-            ),
-            ExpansionTile(
-              leading: Icon(CupertinoIcons.textformat),
-              title: Text("Знаки препинания"),
-              children: <Widget>[
-                Text("................................................"),
-              ],
-            ),
-            ExpansionTile(
-              leading: Icon(CupertinoIcons.textformat),
-              title: Text("Арифметические знаки"),
+              leading: Icon(
+                CupertinoIcons.textformat_abc,
+                size: 35,
+                color: Colors.orangeAccent,
+              ),
+              title: Text(
+                "Английский алфавит",
+                style: TextStyle(fontSize: 23),
+              ),
               children: <Widget>[
                 Text("................................................"),
               ],
             ),
+            Divider(color: CupertinoColors.secondaryLabel),
             ExpansionTile(
-              leading: Icon(CupertinoIcons.textformat),
-              title: Text("Признаки"),
+              leading: Icon(
+                CupertinoIcons.number,
+                size: 35,
+                color: Colors.orangeAccent,
+              ),
+              title: Text(
+                "Цифры",
+                style: TextStyle(fontSize: 23),
+              ),
+              children: <Widget>[],
+            ),
+            Divider(color: CupertinoColors.secondaryLabel),
+            ExpansionTile(
+              leading: Icon(
+                CupertinoIcons.exclamationmark,
+                size: 35,
+                color: Colors.orangeAccent,
+              ),
+              title: Text(
+                "Знаки препинания",
+                style: TextStyle(fontSize: 23),
+              ),
+              children: <Widget>[
+                Text("................................................"),
+              ],
+            ),
+            Divider(color: CupertinoColors.secondaryLabel),
+            ExpansionTile(
+              leading: Icon(
+                CupertinoIcons.plus_slash_minus,
+                size: 35,
+                color: Colors.orangeAccent,
+              ),
+              title: Text(
+                "Арифметические знаки",
+                style: TextStyle(fontSize: 23),
+              ),
+              children: <Widget>[
+                Text("................................................"),
+              ],
+            ),
+            Divider(color: CupertinoColors.secondaryLabel),
+            ExpansionTile(
+              leading: Icon(
+                CupertinoIcons.square_grid_2x2,
+                size: 35,
+                color: Colors.orangeAccent,
+              ),
+              title: Text(
+                "Признаки",
+                style: TextStyle(fontSize: 23),
+              ),
               children: <Widget>[
                 Text("................................................"),
               ],
@@ -105,5 +145,3 @@ class _MyExpanableCardViewFlutterState
     );
   }
 }
-
-
