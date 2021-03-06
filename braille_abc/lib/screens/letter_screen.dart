@@ -45,7 +45,9 @@ class _LetterScreenState extends State<LetterScreen> {
         title: widget.str,
         previousPage: DictionaryScreen(),
       ),
-      child: Column(
+      child:
+          Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
             height: ScreenParams.height(5, context),
@@ -63,40 +65,34 @@ class _LetterScreenState extends State<LetterScreen> {
             height: ScreenParams.height(5, context),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            // crossAxisAlignment: CrossAxisAlignment.baseline,
-            // textBaseline: TextBaseline.alphabetic,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
               SizedBox(
-                height: ScreenParams.height(10, context),
-                width: ScreenParams.width(25, context),
+                height: ScreenParams.width(40, context),
+                width: ScreenParams.height(8, context),
               ),
-              Symbol(
-                  dir: mode,
-                  char: widget.symbol,
-                  tap: false,
-                  width: 200,
-                  height: 350,
-                  locationY: 0.5,
-                  locationX: 0.0),
-              SizedBox(
-                height: ScreenParams.height(10, context),
-                width: ScreenParams.width(25, context),
-              ),
-
-              // change_mode_widget(черная кнопка) я пока вынес сюда
               Container(
-                  padding: EdgeInsets.fromLTRB(
-                      0, 0, 0, ScreenParams.height(15, context)),
-                  width: ScreenParams.width(40, context),
-                  transform: Matrix4.rotationZ(math.pi / 2),
+                child: Symbol(
+                    dir: mode,
+                    char: widget.symbol,
+                    tap: false,
+                    width: 200,
+                    height: 350,
+                    locationY: 0,
+                    locationX: 0),
+              ),
+              Container(
+                  height: ScreenParams.width(40, context),
+                  width: ScreenParams.height(8, context),
                   child: CupertinoButton(
-                      child: Icon(
-                        CupertinoIcons.arrow_up_arrow_down,
-                        color: CupertinoColors.white,
-                        size: 35,
-                        semanticLabel: "Изменить режим",
+                      child: Row(
+                        children: [
+                          Icon(
+                            CupertinoIcons.arrow_up_arrow_down,
+                            color: CupertinoColors.white,
+                            semanticLabel: "Изменить режим",
+                          ),
+                        ],
                       ),
                       disabledColor: CupertinoColors.black,
                       color: CupertinoColors.black,

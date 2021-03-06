@@ -13,7 +13,7 @@ class LetterWidget extends StatelessWidget {
     return CupertinoButton(
         padding: const EdgeInsets.symmetric(vertical: 0),
         child: Container(
-          width: ScreenParams.width(70, context),
+          width: ScreenParams.width(70 , context),
           height: ScreenParams.height(30, context),
           decoration: BoxDecoration(
             color: CupertinoColors.white,
@@ -23,23 +23,28 @@ class LetterWidget extends StatelessWidget {
           child: Center(
               child: Column(
             children: [
-              SizedBox(
-                height: ScreenParams.height(3, context),
+              Flexible(
+                  flex: 3,
+                  child: Center(
+                      child: Text(
+                        title,
+                        style: const TextStyle(
+                            fontSize: 30.0,
+                            color: CupertinoColors.black,
+                            fontWeight: FontWeight.bold),
+                      )
+                  ),
               ),
-              Text(
-                title,
-                style: const TextStyle(
-                    fontSize: 30.0,
-                    color: CupertinoColors.black,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                symbol,
-                style: const TextStyle(
-                    fontSize: 110,
-                    color: CupertinoColors.black,
-                    fontWeight: FontWeight.bold),
-              ),
+              Flexible(
+                  flex: 7,
+                  child: Text(
+                    symbol,
+                    style: const TextStyle(
+                        fontSize: 100,
+                        color: CupertinoColors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+              )
             ],
           )),
         ),
