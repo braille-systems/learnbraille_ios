@@ -6,7 +6,6 @@ jobs:
   lint:
     name: Run flutter analyze
     runs-on: ubuntu-latest
-    working-directory: ./braille_abc
 
     steps:
       - uses: actions/checkout@v2
@@ -15,12 +14,13 @@ jobs:
           channel: 'stable'
 
       - run: flutter pub get
+        working-directory: ./braille_abc
       - run: flutter analyze
+        working-directory: ./braille_abc
 
   build_ios:
     name: Build with Flutter for IOS
-    runs_on: macos-latest
-    working-directory: ./braille_abc
+    runs-on: macos-latest
     needs: [lint]
 
     steps:
@@ -30,4 +30,6 @@ jobs:
           channel: 'stable'
 
       - run: flutter pub get
+        working-directory: ./braille_abc
       - run: flutter build ios --no-codesign
+        working-directory: ./braille_abc
