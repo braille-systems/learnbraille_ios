@@ -1,0 +1,39 @@
+name: CI
+
+working-directory: ./braille_abc
+
+jobs:
+  lint:
+    name: Run flutter analyze
+    runs-on: ubuntu-latest
+    on: [push, pull_request]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+
+      - run: flutter pub get
+      - run: flutter analyze
+
+  build_ios:
+    name: Build with Flutter for IOS
+    runs_on: macos-latest
+    needs: [lint]
+    on: 
+      push:
+        branches:
+          - main
+      pull_request:
+        branches:
+          - main    
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+
+      - run: flutter pub get
+      - run: flutter build ios --no-codesign
