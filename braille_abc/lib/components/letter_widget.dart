@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/shared/screen_params.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class LetterWidget extends StatelessWidget {
   const LetterWidget({Key key, @required this.title, @required this.symbol})
@@ -26,24 +27,27 @@ class LetterWidget extends StatelessWidget {
               Flexible(
                   flex: 3,
                   child: Center(
-                      child: Text(
+                      child: AutoSizeText(
                         title,
                         style: const TextStyle(
                             fontSize: 30.0,
                             color: CupertinoColors.black,
                             fontWeight: FontWeight.bold),
+                        maxLines: 1,
                       )
+
                   ),
               ),
               Flexible(
                   flex: 7,
-                  child: Text(
+                  child: AutoSizeText(
                     symbol,
                     style: const TextStyle(
                         fontSize: 100,
                         color: CupertinoColors.black,
                         fontWeight: FontWeight.bold),
-                  ),
+                    maxLines: 1,
+                  )
               )
             ],
           )),

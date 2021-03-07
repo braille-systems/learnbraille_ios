@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/components/letter_widget.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
-import 'dart:math' as math;
 
 class LetterScreen extends StatefulWidget {
   LetterScreen({Key key, @required this.titleSymbol, @required this.symbol})
