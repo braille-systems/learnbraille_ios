@@ -44,8 +44,7 @@ class _LetterScreenState extends State<LetterScreen> {
         title: widget.str,
         previousPage: DictionaryScreen(),
       ),
-      child:
-          Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
@@ -70,16 +69,16 @@ class _LetterScreenState extends State<LetterScreen> {
                 height: ScreenParams.width(40, context),
                 width: ScreenParams.height(8, context),
               ),
-              Container(
-                child: Symbol(
-                    dir: mode,
-                    char: widget.symbol,
-                    tap: false,
-                    width: 200,
-                    height: 350,
-                    locationY: 0,
-                    locationX: 0),
-              ),
+              Symbol(
+                  dir: mode,
+                  char: widget.symbol,
+                  tap: false,
+                  width: 200,
+                  height: 350,
+                  locationY: 0,
+                  locationX: 0),
+
+              // change_mode_widget
               Container(
                   height: ScreenParams.width(40, context),
                   width: ScreenParams.height(8, context),
