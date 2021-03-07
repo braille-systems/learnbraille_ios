@@ -25,7 +25,7 @@ class LetterWidget extends StatelessWidget {
               child: Column(
             children: [
               Flexible(
-                  flex: 3,
+                  flex: 1,
                   child: Center(
                       child: AutoSizeText(
                         title,
@@ -39,11 +39,11 @@ class LetterWidget extends StatelessWidget {
                   ),
               ),
               Flexible(
-                  flex: 7,
+                  flex: 2,
                   child: AutoSizeText(
                     symbol,
                     style: const TextStyle(
-                        fontSize: 100,
+                        fontSize: 110,
                         color: CupertinoColors.black,
                         fontWeight: FontWeight.bold),
                     maxLines: 1,
