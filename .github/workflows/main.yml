@@ -21,7 +21,7 @@ jobs:
   build_ios:
     name: Build with Flutter for IOS
     runs-on: macos-latest
-    needs: [lint]
+    #needs: [lint]
 
     steps:
       - uses: actions/checkout@v2
