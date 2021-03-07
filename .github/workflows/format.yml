@@ -1,10 +1,6 @@
 name: format
 
-on:
-  push:
-    branches: [ BRAILLE-134_* ]
-  pull_request:
-    branches: [ BRAILLE-134_* ]
+on: [push]
 
 jobs:
   build:
