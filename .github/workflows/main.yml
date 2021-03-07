@@ -1,12 +1,12 @@
 name: CI
 
 on: [push, pull_request]
-working-directory: ./braille_abc
 
 jobs:
   lint:
     name: Run flutter analyze
     runs-on: ubuntu-latest
+    working-directory: ./braille_abc
 
     steps:
       - uses: actions/checkout@v2
@@ -20,6 +20,7 @@ jobs:
   build_ios:
     name: Build with Flutter for IOS
     runs_on: macos-latest
+    working-directory: ./braille_abc
     needs: [lint]
 
     steps:
