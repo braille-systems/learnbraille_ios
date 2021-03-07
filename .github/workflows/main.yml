@@ -54,19 +54,3 @@ jobs:
         working-directory: ./braille_abc
       - run: flutter build apk
         working-directory: ./braille_abc
-
-
-  build_web:
-    name: Build with Flutter for Web
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: 'stable'
-
-      - run: flutter pub get
-        working-directory: ./braille_abc
-      - run: flutter build web
-        working-directory: ./braille_abc
