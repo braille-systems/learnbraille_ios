@@ -74,9 +74,7 @@ class _LetterScreenState extends State<LetterScreen> {
                   char: widget.symbol,
                   tap: false,
                   width: 200,
-                  height: 350,
-                  locationY: 0,
-                  locationX: 0),
+                  height: 350),
 
               // change_mode_widget
               Container(
