@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/shared/screen_params.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class LetterWidget extends StatelessWidget {
   const LetterWidget({Key key, @required this.title, @required this.symbol})
@@ -13,7 +14,7 @@ class LetterWidget extends StatelessWidget {
     return CupertinoButton(
         padding: const EdgeInsets.symmetric(vertical: 0),
         child: Container(
-          width: ScreenParams.width(70, context),
+          width: ScreenParams.width(70 , context),
           height: ScreenParams.height(30, context),
           decoration: BoxDecoration(
             color: CupertinoColors.white,
@@ -23,23 +24,31 @@ class LetterWidget extends StatelessWidget {
           child: Center(
               child: Column(
             children: [
-              SizedBox(
-                height: ScreenParams.height(3, context),
+              Flexible(
+                  flex: 1,
+                  child: Center(
+                      child: AutoSizeText(
+                        title,
+                        style: const TextStyle(
+                            fontSize: 30.0,
+                            color: CupertinoColors.black,
+                            fontWeight: FontWeight.bold),
+                        maxLines: 1,
+                      )
+
+                  ),
               ),
-              Text(
-                title,
-                style: const TextStyle(
-                    fontSize: 30.0,
-                    color: CupertinoColors.black,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                symbol,
-                style: const TextStyle(
-                    fontSize: 110,
-                    color: CupertinoColors.black,
-                    fontWeight: FontWeight.bold),
-              ),
+              Flexible(
+                  flex: 2,
+                  child: AutoSizeText(
+                    symbol,
+                    style: const TextStyle(
+                        fontSize: 110,
+                        color: CupertinoColors.black,
+                        fontWeight: FontWeight.bold),
+                    maxLines: 1,
+                  )
+              )
             ],
           )),
         ),

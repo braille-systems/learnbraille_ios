@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/components/letter_widget.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
-import 'dart:math' as math;
 
 class LetterScreen extends StatefulWidget {
   LetterScreen({Key key, @required this.titleSymbol, @required this.symbol})
@@ -46,6 +45,7 @@ class _LetterScreenState extends State<LetterScreen> {
         previousPage: DictionaryScreen(),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
             height: ScreenParams.height(5, context),
@@ -63,14 +63,11 @@ class _LetterScreenState extends State<LetterScreen> {
             height: ScreenParams.height(5, context),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            // crossAxisAlignment: CrossAxisAlignment.baseline,
-            // textBaseline: TextBaseline.alphabetic,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
               SizedBox(
-                height: ScreenParams.height(10, context),
-                width: ScreenParams.width(25, context),
+                height: ScreenParams.width(40, context),
+                width: ScreenParams.height(8, context),
               ),
               Symbol(
                   dir: mode,
@@ -78,25 +75,25 @@ class _LetterScreenState extends State<LetterScreen> {
                   tap: false,
                   width: 200,
                   height: 350,
-                  locationY: 0.5,
-                  locationX: 0.0),
-              SizedBox(
-                height: ScreenParams.height(10, context),
-                width: ScreenParams.width(25, context),
-              ),
+                  locationY: 0,
+                  locationX: 0),
 
-              // change_mode_widget(черная кнопка) я пока вынес сюда
+              // change_mode_widget
               Container(
-                  padding: EdgeInsets.fromLTRB(
-                      0, 0, 0, ScreenParams.height(15, context)),
-                  width: ScreenParams.width(40, context),
-                  transform: Matrix4.rotationZ(math.pi / 2),
+                  height: ScreenParams.width(40, context),
+                  width: ScreenParams.height(8, context),
                   child: CupertinoButton(
-                      child: Icon(
-                        CupertinoIcons.arrow_up_arrow_down,
-                        color: CupertinoColors.white,
-                        size: 35,
-                        semanticLabel: "Изменить режим",
+                      padding: EdgeInsets.symmetric(
+                          vertical: 0,
+                          horizontal: ScreenParams.height(2, context)),
+                      child: Row(
+                        children: [
+                          Icon(
+                            CupertinoIcons.arrow_right_arrow_left,
+                            color: CupertinoColors.white,
+                            semanticLabel: "Изменить режим",
+                          ),
+                        ],
                       ),
                       disabledColor: CupertinoColors.black,
                       color: CupertinoColors.black,
