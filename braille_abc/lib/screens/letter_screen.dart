@@ -83,10 +83,11 @@ class _LetterScreenState extends State<LetterScreen> {
                   height: ScreenParams.width(40, context),
                   width: ScreenParams.height(8, context),
                   child: CupertinoButton(
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
                       child: Row(
                         children: [
                           Icon(
-                            CupertinoIcons.arrow_up_arrow_down,
+                            CupertinoIcons.arrow_right_arrow_left,
                             color: CupertinoColors.white,
                             semanticLabel: "Изменить режим",
                           ),
