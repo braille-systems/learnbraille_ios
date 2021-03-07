@@ -83,7 +83,9 @@ class _LetterScreenState extends State<LetterScreen> {
                   height: ScreenParams.width(40, context),
                   width: ScreenParams.height(8, context),
                   child: CupertinoButton(
-                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 0,
+                          horizontal: ScreenParams.height(2, context)),
                       child: Row(
                         children: [
                           Icon(
