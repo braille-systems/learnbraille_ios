@@ -47,6 +47,8 @@ jobs:
         with:
           channel: 'stable'
       - uses: actions/setup-java@v1
+        with:
+          java-version: '11.x'
         
       - run: flutter pub get
         working-directory: ./braille_abc
