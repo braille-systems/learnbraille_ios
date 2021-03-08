@@ -43,6 +43,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          lfs: true 
       - uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
@@ -50,6 +52,7 @@ jobs:
         with:
           java-version: '11.x'
         
+      - run: git lfs pull
       - run: flutter pub get
         working-directory: ./braille_abc
       - run: flutter build -v apk --no-tree-shake-icons
