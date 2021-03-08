@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   lint:
-    name: Run flutter analyze & format
+    name: Run flutter analyze
     runs-on: ubuntu-latest
 
     steps:
@@ -16,8 +16,6 @@ jobs:
       - run: flutter pub get
         working-directory: ./braille_abc
       - run: flutter analyze
-        working-directory: ./braille_abc
-      - run: flutter format
         working-directory: ./braille_abc
 
 
