@@ -45,10 +45,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           lfs: true 
-      - uses: actions/upload-artifact@v1
-        with:
-          name: build-apk
-          path: build/app/outputs/apk/release/app-release.apk
       - uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
@@ -61,3 +57,8 @@ jobs:
         working-directory: ./braille_abc
       - run: flutter build -v apk --no-tree-shake-icons
         working-directory: ./braille_abc
+      
+      - uses: actions/upload-artifact@v1
+        with:
+          name: build-apk
+          path: build/app/outputs/apk/release/app-release.apk
