@@ -6,6 +6,8 @@ import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/components/letter_widget.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
 
+import '../style.dart';
+
 class LetterScreen extends StatefulWidget {
   LetterScreen({Key key, @required this.titleSymbol, @required this.symbol})
       : super(key: key);
@@ -65,9 +67,31 @@ class _LetterScreenState extends State<LetterScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              SizedBox(
-                height: ScreenParams.width(40, context),
-                width: ScreenParams.height(8, context),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: CupertinoColors.black,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  textStyle: TextStyle(
+                    color: CupertinoColors.white,
+                    shadows: <Shadow>[
+                      Styles.buildButtonShadow(),
+                    ],
+                  ),
+                  padding: EdgeInsets.symmetric(
+                      vertical: ScreenParams.width(25, context)),
+                ),
+                onPressed: () => setState(() {
+                  if (this._dir == TextDirection.ltr)
+                    this._dir = TextDirection.rtl;
+                  else if (this._dir == TextDirection.rtl)
+                    this._dir = TextDirection.ltr;
+                }),
+                child: Icon(
+                  CupertinoIcons.arrow_right_arrow_left,
+                  color: CupertinoColors.white,
+                  semanticLabel: "Изменить режим",
+                ),
               ),
               Symbol(
                   dir: mode,
@@ -75,32 +99,11 @@ class _LetterScreenState extends State<LetterScreen> {
                   tap: false,
                   width: 200,
                   height: 350),
-
+              SizedBox(
+                height: ScreenParams.width(60, context),
+                width: ScreenParams.height(8, context),
+              ),
               // change_mode_widget
-              Container(
-                  height: ScreenParams.width(40, context),
-                  width: ScreenParams.height(8, context),
-                  child: CupertinoButton(
-                      padding: EdgeInsets.symmetric(
-                          vertical: 0,
-                          horizontal: ScreenParams.height(2, context)),
-                      child: Row(
-                        children: [
-                          Icon(
-                            CupertinoIcons.arrow_right_arrow_left,
-                            color: CupertinoColors.white,
-                            semanticLabel: "Изменить режим",
-                          ),
-                        ],
-                      ),
-                      disabledColor: CupertinoColors.black,
-                      color: CupertinoColors.black,
-                      onPressed: () => setState(() {
-                            if (this._dir == TextDirection.ltr)
-                              this._dir = TextDirection.rtl;
-                            else if (this._dir == TextDirection.rtl)
-                              this._dir = TextDirection.ltr;
-                          }))),
             ],
           )
         ],
