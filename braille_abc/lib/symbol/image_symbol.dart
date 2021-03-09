@@ -3,48 +3,50 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'struct_symbol.dart';
 import 'list_symbols.dart';
-import 'package:braille_abc/screens/letter_screen.dart';
 
+// ignore: must_be_immutable
 class Symbol extends StatefulWidget{
-  double Width;//ширина
-  double Height ;//высота
-  double location_y;//принимает знаения от -1 до 1, и меняет координату по y: -1 - в самом верху, 1 - нижняя часть виджета соприкасается с нижней частью экрана
-  double location_x;//тоже самое, но для x
+  double width;//ширина
+  double height ;//высота
+  double locationY;//принимает знаения от -1 до 1, и меняет координату по y: -1 - в самом верху, 1 - нижняя часть виджета соприкасается с нижней частью экрана
+  double locationX;//тоже самое, но для x
   String char;//отвчает за символ, который будет печататься, если же символ печататься не должен, писать null
   final bool tap;//реакция на нажатие
   TextDirection Function() dir;//принимает на вход функцию, которая возвращает вид вывода
 
-  Symbol({Key key, this.dir, this.char, this.tap, this.Width, this.Height, this.location_y, this.location_x}): super(key: key){
+  Symbol({Key key, this.dir, this.char, this.tap, this.width, this.height, this.locationY, this.locationX}): super(key: key){
     createState();
   }
 
   @override
-  _SymbolState createState() => _SymbolState(dir: dir, char: char, tap: tap, Width: Width, Height: Height, location_y: location_y, location_x: location_x);
+  _SymbolState createState() => _SymbolState(dir: dir, char: char, tap: tap, width: width, height: height, locationY: locationY, locationX: locationX);
+
 }
 
 class _SymbolState extends State<Symbol>{
-  double Width = 250;//ширина
-  double Height = 400;//высота
-  double location_y = 0.7;
-  double location_x = 0.0;
+  double width = 250;//ширина
+  double height = 400;//высота
+  double locationY = 0.7;
+  double locationX = 0.0;
   TextDirection Function() dir;
   final bool tap;
-  Struct_Symbol symbol;
+  StructSymbol symbol;
 
-  _SymbolState({this.dir, String char, this.tap, this.Width, this.Height, this.location_y, this.location_x}){
-    symbol = Search.Element(char);
+  _SymbolState({this.dir, String char, this.tap, this.width, this.height, this.locationY, this.locationX}){
+
+    symbol = Search.element(char);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment(location_x, location_y),
+      alignment: Alignment(locationX, locationY),
       child: Stack(
         textDirection: dir(),
         children: <Widget>[
           Container(
-              height: Height,
-              width: Width,
+              height: height,
+              width: width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 color: Colors.orange[300],
@@ -81,7 +83,7 @@ class _SymbolState extends State<Symbol>{
                         side: BorderSide(width: 10, color: CupertinoColors.black),
                         padding: EdgeInsets.all(20),
                       ),
-                      child: Text(item.data, textDirection: TextDirection.ltr, style: TextStyle(fontSize: 0.3 * Width)),
+                      child: Text(item.data, textDirection: TextDirection.ltr, style: TextStyle(fontSize: 0.3 * width)),
                     ))
                     .toList(),
               )

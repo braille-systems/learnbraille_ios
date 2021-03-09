@@ -1,5 +1,7 @@
-import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/components/bottom_bar_widget.dart';
+import 'package:braille_abc/components/expandable_list_widget.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class DictionaryScreen extends StatelessWidget {
   @override
@@ -8,11 +10,7 @@ class DictionaryScreen extends StatelessWidget {
       navigationBar: CupertinoNavigationBar(
         leading: CupertinoNavigationBarBackButton(
           onPressed: () {
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => AppModel.screens[0],
-              ),
-            );
+            scakey.currentState.onItemTapped(0);
           },
         ),
         middle: Text(
@@ -21,9 +19,9 @@ class DictionaryScreen extends StatelessWidget {
         ),
         trailing: Icon(CupertinoIcons.question_circle),
       ),
-      child: SafeArea(
-        child: Center(child: Text('Dictionary')),
-      ),
+      child: SingleChildScrollView(
+          child:
+              MyExpandableList()), //Wrapped into SingleChildScrollView because when click on TextField  keyboard will open and you may get error on screen "bottom overflowed by pixels flutter"
     );
   }
 }

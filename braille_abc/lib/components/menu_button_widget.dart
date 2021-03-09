@@ -3,7 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:braille_abc/models/menu_button.dart';
 import 'package:braille_abc/shared/screen_params.dart';
-import 'package:braille_abc/components/body_widget.dart';
+
+import 'bottom_bar_widget.dart';
 
 class MenuButtonWidget extends StatefulWidget {
   const MenuButtonWidget({
@@ -37,13 +38,7 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
       textColor: Colors.white,
       color: Colors.orange[300],
       onPressed: () {
-        TabData.currentIndex = widget.index;
-        widget.homeScreen.setIndex(widget.index);
-        Navigator.of(context).push(
-          CupertinoPageRoute(
-            builder: (context) => Body(widget.index),
-          ),
-        );
+        scakey.currentState.onItemTapped(widget.index);
       },
       padding: EdgeInsets.symmetric(vertical: 20),
       child: Column(
