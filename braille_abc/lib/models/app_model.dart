@@ -41,10 +41,6 @@ class AppModel {
       ),
     ),
     SectionModel(
-        name: "Английский алфавит",
-        icon: CupertinoIcons.textformat_abc,
-        expandedList: Text("+")),
-    SectionModel(
         name: "Цифры",
         icon: CupertinoIcons.textformat_123,
         expandedList: Text("+")),
