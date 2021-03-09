@@ -31,16 +31,19 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25.0),
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.orange[300],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25.0),
+          ),
+
+        textStyle: TextStyle(color:  Colors.white),
+        padding: EdgeInsets.symmetric(vertical: 20),
       ),
-      textColor: Colors.white,
-      color: Colors.orange[300],
       onPressed: () {
         scakey.currentState.onItemTapped(widget.index);
       },
-      padding: EdgeInsets.symmetric(vertical: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
