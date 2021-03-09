@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-import 'image_symbol.dart';
-import 'list_symbols.dart';
 
 class Point{
   Color p = CupertinoColors.white;
@@ -13,10 +11,10 @@ class Point{
   Point(this.data, this.num);
 }
 
-class Struct_Symbol{
+class StructSymbol{
   List<Point> data = <Point>[Point('1', 1), Point('4', 4), Point('2', 2), Point('5', 5), Point('3', 3), Point('6', 6)];
   String char;
-  Struct_Symbol({List<bool> list, this.char}){
+  StructSymbol({List<bool> list, this.char}){
     for(int i = 0; i < list.length; i++){
       for(int j = 0; j < data.length; j++) {
         if(data[j].num == i + 1) {

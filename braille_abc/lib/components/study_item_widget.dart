@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
-
 import 'bottom_bar_widget.dart';
 
 class StudyItem extends StatelessWidget {
