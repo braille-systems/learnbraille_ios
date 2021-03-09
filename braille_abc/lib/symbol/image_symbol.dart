@@ -37,7 +37,7 @@ class _SymbolState extends State<Symbol> {
   StructSymbol symbol;
 
   _SymbolState({this.dir, String char, this.tap, this.width, this.height}) {
-    symbol = Search.Element(char);
+    symbol = Search.element(char);
   }
 
   @override
