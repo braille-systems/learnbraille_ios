@@ -7,6 +7,7 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 
 import 'bottom_bar_widget.dart';
+import 'package:braille_abc/style.dart';
 
 class MenuButtonWidget extends StatefulWidget {
   const MenuButtonWidget({
@@ -42,11 +43,8 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
         textStyle: TextStyle(
           color: Colors.white,
           shadows: <Shadow>[
-            Shadow(
-              offset: Offset(3.0, 3.0),
-              blurRadius: 3.0,
-              color: CupertinoColors.separator,
-            ),
+            Styles.buildButtonShadow(),
+
           ],
         ),
         padding: EdgeInsets.symmetric(vertical: 20),
@@ -72,15 +70,14 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
             color: Colors.white,
             size: 100,
             shadows: <Shadow>[
-              Shadow(
-                offset: Offset(3.0, 3.0),
-                blurRadius: 4.0,
-                color: CupertinoColors.separator,
-              ),
+              Styles.buildButtonShadow(),
+
             ],
           ),
         ],
       ),
     );
   }
+
+
 }
