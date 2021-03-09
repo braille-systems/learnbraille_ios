@@ -1,4 +1,3 @@
-import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/section_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
