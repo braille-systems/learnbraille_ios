@@ -2,6 +2,8 @@ import 'package:braille_abc/components/expandable_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:xml/src/xml/nodes/element.dart';
 
+
+
 class Section {
    dynamic description;
    dynamic sectionHelp;
@@ -19,4 +21,10 @@ class TextHelpItem {
 
 class ExpandableHelpItem{
   MyExpandableList expandableHelp;
+}
+
+class Contact {
+  String name, email;
+  int age;
+  Contact(this.name, this.email, this.age);
 }
