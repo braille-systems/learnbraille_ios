@@ -5,12 +5,19 @@ import 'package:braille_abc/screens/home_screen.dart';
 import 'package:braille_abc/screens/practice_screen.dart';
 import 'package:braille_abc/screens/settings_screen.dart';
 import 'package:braille_abc/screens/study_screen.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:braille_abc/symbol/list_symbols.dart';
+
 
 import 'menu_button.dart';
 import 'section_model.dart';
 
 class AppModel {
+
+  final Alphabet alph = Alphabet();
+  List<StructSymbol> rusalph;
+
   static final List<MenuButton> menuButton = [
     MenuButton(name: "Обучение", icon: CupertinoIcons.book),
     MenuButton(name: "Практика", icon: CupertinoIcons.circle_grid_3x3_fill),
@@ -28,13 +35,18 @@ class AppModel {
 
   // TODO: вынести все символы в свои списки - виджеты и передавать в expandedList в более удобном виде
   static final List<SectionModel> sections = [
+
     SectionModel(
       name: "Русский алфавит",
       icon: CupertinoIcons.textformat,
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          StudyItem(str: "А: точки 1"),
+          //List<StructSymbol> list = alph.listOfSymbols("Русский алфавит");
+          for(int i = 0; i < rusalph.length; i++){
+            StudyItem(str: rusalph[i].toString());
+          }
+          /*StudyItem(str: "А: точки 1"),
           StudyItem(str: "Б: точки 1, 2"),
           StudyItem(str: "В: точки 2, 4, 5, 6"),
           StudyItem(str: "Г: точки 1, 2, 4, 5"),
@@ -66,7 +78,7 @@ class AppModel {
           StudyItem(str: "Ь: точки 2, 3, 4, 5, 6"),
           StudyItem(str: "Э: точки 2, 4, 6"),
           StudyItem(str: "Ю: точки 1, 2, 5, 6"),
-          StudyItem(str: "Я: точки 1, 2, 4, 6"),
+          StudyItem(str: "Я: точки 1, 2, 4, 6"),*/
         ],
       ),
     ),

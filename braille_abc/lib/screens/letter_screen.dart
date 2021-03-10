@@ -96,6 +96,7 @@ class _LetterScreenState extends State<LetterScreen> {
               Symbol(
                   dir: mode,
                   char: widget.symbol,
+                  keymap: widget.titleSymbol,
                   tap: false,
                   width: 200,
                   height: 350),
