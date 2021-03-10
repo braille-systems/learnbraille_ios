@@ -43,12 +43,12 @@ jobs:
         working-directory: ./braille_abc
       - run: flutter build ios --no-codesign --no-tree-shake-icons
         working-directory: ./braille_abc
-        
+
       - run: ls braille_abc/build
-      - run: ls braille_abc/build/app
-      - run: ls braille_abc/build/app/outputs
-      - run: ls braille_abc/build/app/outputs/ipa
-      - run: ls braille_abc/build/app/outputs/ipa/release
+      - run: ls braille_abc/build/ios
+      - run: ls braille_abc/build/ios/outputs
+      - run: ls braille_abc/build/ios/outputs/ipa
+      - run: ls braille_abc/build/ios/outputs/ipa/release
 
       - uses: actions/upload-artifact@v1
         with:
