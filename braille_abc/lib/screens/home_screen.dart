@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'dart:ui';
-
+import 'package:xml/xml.dart';
+import 'package:open_file/open_file.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,9 @@ import 'package:braille_abc/components/menu_button_widget.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/menu_button.dart';
 import 'package:braille_abc/shared/screen_params.dart';
+
+
+import 'dart:async';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
@@ -16,10 +21,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
+  var _openResult = 'Unknown';
+
+  Future<void> openFile() async {
+    print("lol1");
+    final filePath = './data/Help.xml';
+    final result = await OpenFile.open(filePath);
+
+    setState(() {
+      _openResult = "type=${result.type}  message=${result.message}";
+    });
+    print("lol");
+    print(result.message);
+
+  }
+
   @override
   void initState() {
     super.initState();
+    openFile();
   }
+
+
+  // ignore: missing_return
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +54,7 @@ class _HomeScreen extends State<HomeScreen> {
 }
 
 class MenuScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -54,7 +79,13 @@ class MenuScreen extends StatelessWidget {
                     CupertinoIcons.question_circle,
                     size: ScreenParams.height(5, context),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    final file = new File('./data/Help.xml');
+                    dynamic document = file.readAsString().then((value) {
+                      XmlDocument.parse(value);
+                    });
+                    print(document);
+                  },
                 ),
               ],
             ),
