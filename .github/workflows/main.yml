@@ -44,9 +44,7 @@ jobs:
       - run: flutter build ios --no-codesign --no-tree-shake-icons
         working-directory: ./braille_abc
 
-      - run: ls braille_abc/build/ios/Release-iphoneos
-      - run: ls braille_abc/build/ios/Runner.build
-      - run: ls braille_abc/build/ios/iphoneos
+      - run: ls braille_abc/build/ios/Runner.build/Release-iphoneos
 
       - uses: actions/upload-artifact@v1
         with:
