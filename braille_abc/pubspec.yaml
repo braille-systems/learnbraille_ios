@@ -31,6 +31,7 @@ dependencies:
   open_file: ^3.1.0
   auto_size_text: ^2.1.0
   path_provider: ^2.0.1
+  flutter_html: ^0.8.2
 
   xml: ^5.0.2
 
@@ -51,7 +52,7 @@ flutter:
 
     # To add assets to your application, add an assets section, like this:
   assets:
-    - data/contacts.xml
+    - data/Help.xml
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

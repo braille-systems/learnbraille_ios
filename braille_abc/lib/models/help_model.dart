@@ -1,14 +1,14 @@
-import 'package:braille_abc/components/expandable_list_widget.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:xml/src/xml/nodes/element.dart';
+import 'dart:collection';
 
+import 'package:braille_abc/components/expandable_list_widget.dart';
 
 
 class Section {
-   dynamic description;
+   String name;
+   String description;
    dynamic sectionHelp;
 
-  Section(this.description, this.sectionHelp);
+  Section(this.name, this.description, this.sectionHelp);
 }
 
 class HelpModel {

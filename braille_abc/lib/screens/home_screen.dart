@@ -1,9 +1,10 @@
-import 'dart:io';
+
+import 'dart:collection';
+import 'dart:collection';
 import 'dart:ui';
 import 'package:braille_abc/models/help_model.dart';
 import 'package:braille_abc/screens/test_screen.dart';
 import 'package:xml/xml.dart';
-import 'package:open_file/open_file.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,13 +16,36 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:xml/xml.dart' as xml;
 import 'dart:async';
 
+
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreen createState() => _HomeScreen();
   int currentIndex;
 
-  static Future<List<Contact>> getContactsFromXML(BuildContext context) async {
+  static Future<List<Section>> getHelpFromXML(BuildContext context) async {
+    print("lol");
+    String xmlString = await DefaultAssetBundle.of(context).loadString("data/Help.xml");
+    // ignore: deprecated_member_use
+    var raw = xml.parse(xmlString);
+    var elements = raw.findAllElements("section");
+    var listEl = elements.map((element) {
+      print(element.getAttribute("name")); // name of the section
+      AppModel.helpSection[element.getAttribute("name")] = Section(
+        element.getAttribute("name"),
+        element.findElements("description").first.text,
+        element.findElements("button").first.text,
+      );
+      return Section(
+        element.getAttribute("name"),
+        element.findElements("description").first.text,
+        element.findElements("button").first.text,
+      );
+    }).toList();
+    return listEl;
+  }
+
+ /* static Future<List<Contact>> HashMap(BuildContext context) async {
     String xmlString =
     await DefaultAssetBundle.of(context).loadString("data/contacts.xml");
     var raw = xml.parse(xmlString);
@@ -34,12 +58,14 @@ class HomeScreen extends StatefulWidget {
           int.parse(element.findElements("age").first.text));
     }).toList();
     return listEl;
-  }
+  }*/
+
 }
 
 class _HomeScreen extends State<HomeScreen> {
   @override
   void initState() {
+    HomeScreen.getHelpFromXML(context);
     super.initState();
   }
 
