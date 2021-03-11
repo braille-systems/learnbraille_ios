@@ -1,16 +1,18 @@
-import 'package:braille_abc/components/study_item_widget.dart';
 import 'package:braille_abc/models/section_model.dart';
 import 'package:braille_abc/screens/dictionary_screen.dart';
 import 'package:braille_abc/screens/home_screen.dart';
 import 'package:braille_abc/screens/practice_screen.dart';
 import 'package:braille_abc/screens/settings_screen.dart';
 import 'package:braille_abc/screens/study_screen.dart';
+import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'menu_button.dart';
 import 'section_model.dart';
 
 class AppModel {
+  static final Alphabet _alphabet = Alphabet();
+
   static final List<MenuButton> menuButton = [
     MenuButton(name: "Обучение", icon: CupertinoIcons.book),
     MenuButton(name: "Практика", icon: CupertinoIcons.circle_grid_3x3_fill),
@@ -26,18 +28,13 @@ class AppModel {
     SettingsScreen(),
   ];
 
-  // TODO: вынести все символы в свои списки - виджеты и передавать в expandedList в более удобном виде
   static final List<SectionModel> sections = [
     SectionModel(
       name: "Русский алфавит",
       icon: CupertinoIcons.textformat,
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          StudyItem(str: "А: точки 1"),
-          StudyItem(str: "Б: точки 1, 2"),
-          StudyItem(str: "В: точки 2, 4, 5, 6"),
-        ],
+        children: _alphabet.listOfStudyItems("Русский алфавит"),
       ),
     ),
     SectionModel(
@@ -45,13 +42,21 @@ class AppModel {
         icon: CupertinoIcons.textformat_123,
         expandedList: Text("+")),
     SectionModel(
-        name: "Знаки препинания",
-        icon: CupertinoIcons.exclamationmark,
-        expandedList: Text("+")),
+      name: "Знаки препинания",
+      icon: CupertinoIcons.exclamationmark,
+      expandedList: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _alphabet.listOfStudyItems("Знаки препинания"),
+      ),
+    ),
     SectionModel(
-        name: "Арифметические знаки",
-        icon: CupertinoIcons.plus_slash_minus,
-        expandedList: Text("+")),
+      name: "Арифметические знаки",
+      icon: CupertinoIcons.plus_slash_minus,
+      expandedList: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _alphabet.listOfStudyItems("Арифметические знаки"),
+      ),
+    ),
     SectionModel(
         name: "Признаки",
         icon: CupertinoIcons.square_grid_2x2,

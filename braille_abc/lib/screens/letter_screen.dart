@@ -98,7 +98,8 @@ class _LetterScreenState extends State<LetterScreen> {
                   char: widget.symbol,
                   tap: false,
                   width: 200,
-                  height: 350),
+                  height: 350,
+                  keymap: widget.titleSymbol),
               SizedBox(
                 height: ScreenParams.width(60, context),
                 width: ScreenParams.height(8, context),
