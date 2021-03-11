@@ -52,7 +52,10 @@ class AppModel {
     SectionModel(
       name: "Арифметические знаки",
       icon: CupertinoIcons.plus_slash_minus,
-      expandedList: Text("+")
+      expandedList: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _alphabet.listOfStudyItems("Арифметические знаки"),
+      ),
     ),
     SectionModel(
         name: "Признаки",

@@ -58,6 +58,33 @@ class SymbolsFactory {
           return punctuationMarks;
         }
         break;
+
+      case "Арифметические знаки":
+        {
+          List<StructSymbol> arithmeticSigns = <StructSymbol>[
+            ArithmeticSymbol(
+                list: Search.imageSymbol(d: <int>[2, 3, 5]), char: "Знак Плюс"),
+            ArithmeticSymbol(
+                list: Search.imageSymbol(d: <int>[3, 6]), char: "Знак Минус"),
+            ArithmeticSymbol(
+                list: Search.imageSymbol(d: <int>[3]),
+                char: "Знак умножения точкой"),
+            ArithmeticSymbol(
+                list: Search.imageSymbol(d: <int>[2, 3, 6]),
+                char: "Знак умножения крестом"),
+            ArithmeticSymbol(
+                list: Search.imageSymbol(d: <int>[3, 5, 6]),
+                char: "Знак деления (углом)"),
+            ArithmeticSymbol(
+                list: Search.imageSymbol(d: <int>[2, 5, 6]),
+                char: "Знак деления (двумя точками)"),
+            ArithmeticSymbol(
+                list: Search.imageSymbol(d: <int>[2, 3, 5, 6]),
+                char: "Знак равества"),
+          ];
+          return arithmeticSigns;
+        }
+        break;
     }
     return null;
   }
@@ -69,6 +96,7 @@ class Alphabet {
       final List<String> tokens = <String>[
         "Русский алфавит",
         "Знаки препинания",
+        "Арифметические знаки"
       ];
       SymbolsFactory factory = SymbolsFactory();
       _alphabet = Map();
