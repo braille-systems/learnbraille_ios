@@ -28,3 +28,10 @@ class Contact {
   int age;
   Contact(this.name, this.email, this.age);
 }
+
+class NeContact extends Contact{
+  String name, email;
+  int age;
+
+  NeContact(String name, String email, int age) : super(name, email, age);
+}

@@ -26,12 +26,14 @@ class HomeScreen extends StatefulWidget {
     await DefaultAssetBundle.of(context).loadString("data/contacts.xml");
     var raw = xml.parse(xmlString);
     var elements = raw.findAllElements("contact");
-    return elements.map((element) {
+
+    var listEl = elements.map((element) {
       return Contact(
           element.findElements("name").first.text,
           element.findElements("email").first.text,
           int.parse(element.findElements("age").first.text));
     }).toList();
+    return listEl;
   }
 }
 
