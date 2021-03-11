@@ -6,18 +6,29 @@ import 'list_symbols.dart';
 
 // ignore: must_be_immutable
 class Symbol extends StatefulWidget {
-  double width; //ширина
-  double height; //высота
-  String
-      char; //отвчает за символ, который будет печататься, если же символ печататься не должен, писать null
-  bool tap; //реакция на нажатие
-  TextDirection Function()
-      dir; //принимает на вход функцию, которая возвращает вид вывода
+  //ширина
+  double width;
+
+  //высота
+  double height;
+
+  //отвечает за символ, который будет печататься, если же символ печататься не должен, писать null
+  String char;
+
+  //ключ, по которому из map берётся список для поиска
+  String keymap;
+
+  //реакция на нажатие
+  bool tap;
+
+  //принимает на вход функцию, которая возвращает вид вывода
+  TextDirection Function() dir;
 
   Symbol(
       {Key key,
       @required this.dir,
       @required this.char,
+      @required this.keymap,
       @required this.tap,
       @required this.width,
       @required this.height})
@@ -26,47 +37,40 @@ class Symbol extends StatefulWidget {
   }
 
   @override
-  _SymbolState createState() => _SymbolState(
-      dir: dir, char: char, tap: tap, width: width, height: height);
+  _SymbolState createState() => _SymbolState(char: char, keymap: keymap);
 }
 
 class _SymbolState extends State<Symbol> {
-  double width = 250; //ширина
-  double height = 400; //высота
-  TextDirection Function() dir;
-  final bool tap;
   StructSymbol symbol;
 
-  _SymbolState({this.dir, String char, this.tap, this.width, this.height}) {
-    symbol = Search.Element(char);
+  _SymbolState({String char, String keymap}) {
+    symbol = Search.element(char, keymap);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Stack(
-        textDirection: dir(),
+        textDirection: widget.dir(),
         children: <Widget>[
           Container(
-              height: height,
-              width: width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Colors.orange[300],
-              ),
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                runAlignment: WrapAlignment.center,
-                textDirection: dir(),
-                spacing: 30,
-                runSpacing: 0,
-                children: symbol.data
-                    .map((item) => Semantics(
-                    label: "Точка" + item.data,
-                    button: false,
-                    child: ElevatedButton(
+            height: widget.height,
+            width: widget.width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.orange[300],
+            ),
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              runAlignment: WrapAlignment.center,
+              textDirection: widget.dir(),
+              spacing: 30,
+              runSpacing: 0,
+              children: symbol.data
+                  .map(
+                    (item) => ElevatedButton(
                       onPressed: () {
-                        if (this.tap) {
+                        if (widget.tap) {
                           setState(() {
                             if (item.p == CupertinoColors.white)
                               item.p = CupertinoColors.black;
@@ -84,18 +88,18 @@ class _SymbolState extends State<Symbol> {
                         primary: item.p,
                         onPrimary: item.onP,
                         shape: CircleBorder(),
-                        side: BorderSide(
-                            width: 10, color: CupertinoColors.black),
+                        side:
+                            BorderSide(width: 10, color: CupertinoColors.black),
                         padding: EdgeInsets.all(20),
                       ),
                       child: Text(item.data,
                           textDirection: TextDirection.ltr,
-                          style: TextStyle(fontSize: 0.3 * width)),
-                    )
-                )
-                    )
-                    .toList(),
-              )),
+                          style: TextStyle(fontSize: 0.3 * widget.width)),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
         ],
       ),
     );
