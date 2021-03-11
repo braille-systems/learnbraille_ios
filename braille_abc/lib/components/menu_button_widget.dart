@@ -34,49 +34,53 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: Colors.orange[300],
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25.0),
-        ),
-        textStyle: TextStyle(
-          color: Colors.white,
-          shadows: <Shadow>[
-            Styles.buildButtonShadow(),
-
-          ],
-        ),
-        padding: EdgeInsets.symmetric(vertical: 20),
-      ),
-      onPressed: () {
-        scakey.currentState.onItemTapped(widget.index);
-      },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          AutoSizeText(
-            widget.menuButton.name,
-            style: TextStyle(
-              fontSize: 30,
-            ),
-            maxLines: 1,
+    return Semantics(
+      label: widget.menuButton.name,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Colors.orange[300],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25.0),
           ),
-          SizedBox(
-            height: ScreenParams.height(4, context),
-          ),
-          DecoratedIcon(
-            widget.menuButton.icon,
+          textStyle: TextStyle(
             color: Colors.white,
-            size: 100,
             shadows: <Shadow>[
               Styles.buildButtonShadow(),
 
             ],
           ),
-        ],
+          padding: EdgeInsets.symmetric(vertical: 20),
+        ),
+        onPressed: () {
+          scakey.currentState.onItemTapped(widget.index);
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            AutoSizeText(
+              widget.menuButton.name,
+              style: TextStyle(
+                fontSize: 30,
+              ),
+              maxLines: 1,
+            ),
+            SizedBox(
+              height: ScreenParams.height(4, context),
+            ),
+            DecoratedIcon(
+              widget.menuButton.icon,
+              color: Colors.white,
+              size: 100,
+              shadows: <Shadow>[
+                Styles.buildButtonShadow(),
+
+              ],
+            ),
+          ],
+        ),
       ),
     );
+
   }
 
 

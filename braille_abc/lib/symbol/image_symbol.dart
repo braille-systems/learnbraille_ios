@@ -4,14 +4,15 @@ import 'package:flutter/widgets.dart';
 import 'struct_symbol.dart';
 import 'list_symbols.dart';
 
-
 // ignore: must_be_immutable
 class Symbol extends StatefulWidget {
   double width; //ширина
   double height; //высота
-  String char; //отвчает за символ, который будет печататься, если же символ печататься не должен, писать null
+  String
+      char; //отвчает за символ, который будет печататься, если же символ печататься не должен, писать null
   bool tap; //реакция на нажатие
-  TextDirection Function() dir; //принимает на вход функцию, которая возвращает вид вывода
+  TextDirection Function()
+      dir; //принимает на вход функцию, которая возвращает вид вывода
 
   Symbol(
       {Key key,
@@ -60,34 +61,39 @@ class _SymbolState extends State<Symbol> {
                 spacing: 30,
                 runSpacing: 0,
                 children: symbol.data
-                    .map((item) => ElevatedButton(
-                          onPressed: () {
-                            if (this.tap) {
-                              setState(() {
-                                if (item.p == CupertinoColors.white)
-                                  item.p = CupertinoColors.black;
-                                else
-                                  item.p = CupertinoColors.white;
-                                if (item.onP == CupertinoColors.black)
-                                  item.onP = CupertinoColors.white;
-                                else
-                                  item.onP = CupertinoColors.black;
-                                item.press = !(item.press);
-                              });
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: item.p,
-                            onPrimary: item.onP,
-                            shape: CircleBorder(),
-                            side: BorderSide(
-                                width: 10, color: CupertinoColors.black),
-                            padding: EdgeInsets.all(20),
-                          ),
-                          child: Text(item.data,
-                              textDirection: TextDirection.ltr,
-                              style: TextStyle(fontSize: 0.3 * width)),
-                        ))
+                    .map((item) => Semantics(
+                    label: "Точка" + item.data,
+                    button: false,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (this.tap) {
+                          setState(() {
+                            if (item.p == CupertinoColors.white)
+                              item.p = CupertinoColors.black;
+                            else
+                              item.p = CupertinoColors.white;
+                            if (item.onP == CupertinoColors.black)
+                              item.onP = CupertinoColors.white;
+                            else
+                              item.onP = CupertinoColors.black;
+                            item.press = !(item.press);
+                          });
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: item.p,
+                        onPrimary: item.onP,
+                        shape: CircleBorder(),
+                        side: BorderSide(
+                            width: 10, color: CupertinoColors.black),
+                        padding: EdgeInsets.all(20),
+                      ),
+                      child: Text(item.data,
+                          textDirection: TextDirection.ltr,
+                          style: TextStyle(fontSize: 0.3 * width)),
+                    )
+                )
+                    )
                     .toList(),
               )),
         ],

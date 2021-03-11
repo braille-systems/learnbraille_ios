@@ -49,13 +49,17 @@ class MenuScreen extends StatelessWidget {
                       fontSize: 55,
                       fontWeight: FontWeight.bold),
                 ),
-                CupertinoButton(
-                  child: Icon(
-                    CupertinoIcons.question_circle,
-                    size: ScreenParams.height(5, context),
+                Semantics(
+                  label: "Справка",
+                  child: CupertinoButton(
+                    child: Icon(
+                      CupertinoIcons.question_circle,
+                      size: ScreenParams.height(5, context),
+                    ),
+                    onPressed: () {},
                   ),
-                  onPressed: () {},
-                ),
+                )
+
               ],
             ),
             SizedBox(height: ScreenParams.height(4, context)),

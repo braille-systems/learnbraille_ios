@@ -20,15 +20,18 @@ class NavigationBar extends StatelessWidget
     return CupertinoNavigationBar(
       padding: EdgeInsetsDirectional.only(start: 0),
       backgroundColor: CupertinoColors.extraLightBackgroundGray,
-      leading: CupertinoNavigationBarBackButton(
-        onPressed: () {
-          Timer(Duration(milliseconds: 50), () {
-            scakey.currentState.displayTapBar(true);
-          });
-          print(previousPage);
-          Navigator.push(
-              context, CupertinoPageRoute(builder: (context) => previousPage));
-        },
+      leading: Semantics(
+        label: "Назад",
+        child: CupertinoNavigationBarBackButton(
+          onPressed: () {
+            Timer(Duration(milliseconds: 50), () {
+              scakey.currentState.displayTapBar(true);
+            });
+            print(previousPage);
+            Navigator.push(context,
+                CupertinoPageRoute(builder: (context) => previousPage));
+          },
+        ),
       ),
       middle: Text(
         title,
@@ -38,7 +41,8 @@ class NavigationBar extends StatelessWidget
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
         ),
-        child: Icon(CupertinoIcons.question_circle, size: 35),
+        child: Icon(CupertinoIcons.question_circle,
+            size: 35, semanticLabel: "Cправка"),
         onPressed: () {},
       ),
     );
