@@ -6,8 +6,10 @@ class StudyItem extends StatelessWidget {
   const StudyItem({
     Key key,
     @required this.str,
+    @required this.titleSymbol,
   }) : super(key: key);
 
+  final String titleSymbol;
   final String str;
 
   // final String russianAlphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
@@ -34,8 +36,8 @@ class StudyItem extends StatelessWidget {
             CupertinoPageRoute(
               builder: (context) => LetterScreen(
                   // TODO: заменить эту строку на выбор заголовка
-                  titleSymbol: "Русский алфавит",
-                  symbol: str[0]),
+                  titleSymbol: titleSymbol,
+                  symbol: parse()),
             ),
           );
         },
@@ -45,12 +47,9 @@ class StudyItem extends StatelessWidget {
   }
 
 // TODO: мб в бущуем написать парсер для строк
-// String parse()
-// {
-//   List<String> lstOfItems = str.split(":");
-//
-//
-//
-// }
+  String parse()  {
+    List<String> lstOfItems = str.split(":");
+    return lstOfItems[0];
+  }
 
 }
