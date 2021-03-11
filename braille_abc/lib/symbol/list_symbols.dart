@@ -18,6 +18,46 @@ class SymbolsFactory {
           return russian;
         }
         break;
+      case "Знаки препинания":
+        {
+          List<StructSymbol> punctuationMarks = <StructSymbol>[
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[2]), char: "Запятая"),
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[3, 6]), char: "Дефис"),
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[2, 5, 6]), char: "Точка"),
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[2, 3, 5]),
+                char: "Восклицательный знак"),
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[2, 6]),
+                char: "Вопросительный знак"),
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[2, 3, 6]),
+                char: "Открывающая кавычка"),
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[3, 5, 6]),
+                char: "Закрывающая кавычка"),
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[1, 2, 6]),
+                char: "Левая литеральная скобка"),
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[3, 4, 5]),
+                char: "Правая литеральная скобка"),
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[3, 5]), char: "Звёздочка"),
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[2, 5]), char: "Двоеточие"),
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[2, 3]),
+                char: "Точка с запятой"),
+            PunctuationSymbol(
+                list: Search.imageSymbol(d: <int>[4]), char: "Ударение"),
+          ];
+          return punctuationMarks;
+        }
+        break;
     }
     return null;
   }
@@ -28,6 +68,7 @@ class Alphabet {
     if (_alphabet == null) {
       final List<String> tokens = <String>[
         "Русский алфавит",
+        "Знаки препинания",
       ];
       SymbolsFactory factory = SymbolsFactory();
       _alphabet = Map();

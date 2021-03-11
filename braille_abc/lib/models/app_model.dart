@@ -44,7 +44,10 @@ class AppModel {
     SectionModel(
       name: "Знаки препинания",
       icon: CupertinoIcons.exclamationmark,
-      expandedList: Text("+")
+      expandedList: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _alphabet.listOfStudyItems("Знаки препинания"),
+      ),
     ),
     SectionModel(
       name: "Арифметические знаки",
