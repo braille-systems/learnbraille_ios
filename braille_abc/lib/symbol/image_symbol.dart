@@ -24,14 +24,13 @@ class Symbol extends StatefulWidget {
   //принимает на вход функцию, которая возвращает вид вывода
   TextDirection Function() dir;
 
-  Symbol(
-      {Key key,
-      @required this.dir,
-      @required this.char,
-      @required this.keymap,
-      @required this.tap,
-      @required this.width,
-      @required this.height})
+  Symbol({Key key,
+    @required this.dir,
+    @required this.char,
+    @required this.keymap,
+    @required this.tap,
+    @required this.width,
+    @required this.height})
       : super(key: key) {
     createState();
   }
@@ -68,35 +67,44 @@ class _SymbolState extends State<Symbol> {
               runSpacing: 0,
               children: symbol.data
                   .map(
-                    (item) => ElevatedButton(
-                      onPressed: () {
-                        if (widget.tap) {
-                          setState(() {
-                            if (item.p == CupertinoColors.white)
-                              item.p = CupertinoColors.black;
-                            else
-                              item.p = CupertinoColors.white;
-                            if (item.onP == CupertinoColors.black)
-                              item.onP = CupertinoColors.white;
-                            else
-                              item.onP = CupertinoColors.black;
-                            item.press = !(item.press);
-                          });
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: item.p,
-                        onPrimary: item.onP,
-                        shape: CircleBorder(),
-                        side:
+                      (item) =>
+                      Semantics(
+                        label: "Точка" + item.data +
+                            (item.p == CupertinoColors.white
+                                ? "не закрашена"
+                                : "закрашена"),
+                        button: false,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (widget.tap) {
+                              setState(() {
+                                if (item.p == CupertinoColors.white)
+                                  item.p = CupertinoColors.black;
+                                else
+                                  item.p = CupertinoColors.white;
+                                if (item.onP == CupertinoColors.black)
+                                  item.onP = CupertinoColors.white;
+                                else
+                                  item.onP = CupertinoColors.black;
+                                item.press = !(item.press);
+                              });
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: item.p,
+                            onPrimary: item.onP,
+                            shape: CircleBorder(),
+                            side:
                             BorderSide(width: 10, color: CupertinoColors.black),
-                        padding: EdgeInsets.all(20),
-                      ),
-                      child: Text(item.data,
-                          textDirection: TextDirection.ltr,
-                          style: TextStyle(fontSize: 0.3 * widget.width)),
-                    ),
-                  )
+                            padding: EdgeInsets.all(20),
+                          ),
+                          child: Text(item.data,
+                              textDirection: TextDirection.ltr,
+                              style: TextStyle(fontSize: 0.3 * widget.width)),
+                        ),
+                      )
+
+              )
                   .toList(),
             ),
           ),

@@ -12,7 +12,6 @@ import 'section_model.dart';
 
 class AppModel {
   static final Alphabet _alphabet = Alphabet();
-
   static final List<MenuButton> menuButton = [
     MenuButton(name: "Обучение", icon: CupertinoIcons.book),
     MenuButton(name: "Практика", icon: CupertinoIcons.circle_grid_3x3_fill),
@@ -28,6 +27,7 @@ class AppModel {
     SettingsScreen(),
   ];
 
+  // TODO: вынести все символы в свои списки - виджеты и передавать в expandedList в более удобном виде
   static final List<SectionModel> sections = [
     SectionModel(
       name: "Русский алфавит",
@@ -42,12 +42,12 @@ class AppModel {
         icon: CupertinoIcons.textformat_123,
         expandedList: Text("+")),
     SectionModel(
-      name: "Знаки препинания",
-      icon: CupertinoIcons.exclamationmark,
-      expandedList: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: _alphabet.listOfStudyItems("Знаки препинания"),
-      ),
+        name: "Знаки препинания",
+        icon: CupertinoIcons.exclamationmark,
+        expandedList: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: _alphabet.listOfStudyItems("Знаки препинания"),
+        ),
     ),
     SectionModel(
       name: "Арифметические знаки",

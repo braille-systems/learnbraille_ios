@@ -46,8 +46,7 @@ class StudyItem extends StatelessWidget {
     //
   }
 
-// TODO: мб в бущуем написать парсер для строк
-  String parse()  {
+String parse()  {
     List<String> lstOfItems = str.split(":");
     return lstOfItems[0];
   }

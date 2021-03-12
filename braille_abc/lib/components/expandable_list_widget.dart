@@ -31,11 +31,15 @@ class _MyExpandableListState extends State<MyExpandableList> {
               height: ScreenParams.heightIOS14(14, context),
             ),
             for (int i = 0; i < widget.model.length; i++)
-              ExpansionSection(
-                sectionIcon:widget.model[i].icon,
-                sectionName: widget.model[i].name,
-                child: widget.model[i].expandedList,
-              ),
+              Semantics(
+                label: widget.model[i].name + " выпадающий список",
+                button: false,
+                child: ExpansionSection(
+                  sectionIcon:widget.model[i].icon,
+                  sectionName: widget.model[i].name,
+                  child: widget.model[i].expandedList,
+                ),
+              )
           ],
         ),
       ),
