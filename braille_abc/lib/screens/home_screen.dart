@@ -31,9 +31,15 @@ class HomeScreen extends StatefulWidget {
     var elements = raw.findAllElements("section");
     var listEl = elements.map((element) {
       print(element.getAttribute("name")); // name of the section
+      var des = element.findElements("description").first.nodes;
+      String fullDescription = "";
+      for(var i in des){
+        fullDescription += i.toString();
+      }
+      print(fullDescription);
       AppModel.helpSection[element.getAttribute("name")] = Section(
         element.getAttribute("name"),
-        element.findElements("description").first.text,
+        fullDescription,
         element.findElements("button").first.text,
       );
       return Section(
