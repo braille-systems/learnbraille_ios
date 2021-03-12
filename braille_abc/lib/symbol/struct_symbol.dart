@@ -12,7 +12,7 @@ class Point {
 }
 
 abstract class StructSymbol {
-  List<Point> data = <Point>[Point('1', 1), Point('4', 4), Point('2', 2), Point('5', 5), Point('3', 3), Point('6', 6)];
+  List<Point> data = <Point>[Point('1', 1), Point('2', 2), Point('3', 3), Point('4', 4), Point('5', 5), Point('6', 6)];
   String char;
 
   StructSymbol({List<bool> list, this.char}) {
@@ -30,13 +30,12 @@ abstract class StructSymbol {
   }
 
   String stringPoints() {
-    String str = char + ": ";
-    for(var point in data) {
-      if(point.press) {
-        str += point.data + ', ';
-      }
+    StringBuffer str = new StringBuffer(char + ": ");
+    for(var d in data){
+      if(d.press)
+        str.write(d.data + ", ");
     }
-    return str.substring(0, str.length - 2);
+    return str.toString().substring(0, str.length - 2);
   }
 
   String ofGroup();

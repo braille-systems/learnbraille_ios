@@ -94,12 +94,12 @@ class _LetterScreenState extends State<LetterScreen> {
                 ),
               ),
               Symbol(
-                  dir: mode,
+                  textDir: mode,
                   char: widget.symbol,
-                  tap: false,
+                  isTapped: false,
                   width: 200,
                   height: 350,
-                  keymap: widget.titleSymbol),
+                  dictSection: widget.titleSymbol),
               SizedBox(
                 height: ScreenParams.width(60, context),
                 width: ScreenParams.height(8, context),
