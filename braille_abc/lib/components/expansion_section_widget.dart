@@ -10,8 +10,8 @@ class ExpansionSection extends StatefulWidget {
     this.color = CupertinoColors.white,
   }) : super(key: key);
 
-  IconData sectionIcon;
-  Color color;
+  final IconData sectionIcon;
+  final Color color;
   final String sectionName;
   final Widget child;
 

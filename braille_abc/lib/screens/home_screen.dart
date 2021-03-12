@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/help_model.dart';
 import 'package:braille_abc/screens/help_screen.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
@@ -60,7 +61,9 @@ class MenuScreen extends StatelessWidget {
                     scakey.currentState.displayTapBar(false);
                     Navigator.of(context).push(
                       CupertinoPageRoute(
-                        builder: (context) => HelpScreen(),
+                        builder: (context) => HelpScreen(
+                          helpWidget: MainMenuHelp(),
+                        ),
                       ),
                     );
                   },
