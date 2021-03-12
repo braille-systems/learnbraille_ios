@@ -65,3 +65,30 @@ class GeneralHelp extends StatelessWidget {
     );
   }
 }
+
+class DictionaryHelp extends StatelessWidget {
+  const DictionaryHelp({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      Html(
+        data: HelpModel.helpSection['Алфавит'].description,
+        defaultTextStyle: TextStyle(fontSize: 17),
+      ),
+      for (int i = 0;
+      i < HelpModel.helpSection['Алфавит'].content.length;
+      i++)
+        ExpansionSection(
+          sectionIcon: CupertinoIcons.textformat,
+          sectionName: HelpModel.helpSection['Алфавит'].content[i].name,
+          child: Html(
+              data:
+              HelpModel.helpSection['Алфавит'].content[i].description,
+              defaultTextStyle: TextStyle(fontSize: 17)),
+        )
+    ]);
+  }
+}

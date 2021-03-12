@@ -1,7 +1,10 @@
 import 'package:braille_abc/components/bottom_bar_widget.dart';
+import 'package:braille_abc/components/expansion_section_widget.dart';
 import 'package:braille_abc/components/help_widgets.dart';
+import 'package:braille_abc/models/help_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class HelpScreen extends StatelessWidget {
   const HelpScreen({
@@ -31,7 +34,7 @@ class HelpScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
             child: Column(children: [
-              helpWidget,
+             helpWidget,
               GeneralHelp(),
             ]),
           ),
@@ -40,3 +43,5 @@ class HelpScreen extends StatelessWidget {
     );
   }
 }
+
+
