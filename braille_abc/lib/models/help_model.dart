@@ -1,37 +1,54 @@
-import 'dart:collection';
-
-import 'package:braille_abc/components/expandable_list_widget.dart';
-
+import 'package:flutter/cupertino.dart';
+import 'package:xml/xml.dart';
 
 class Section {
-   String name;
-   String description;
-   List<Section> sectionHelp;
+  String name;
+  String description;
+  List<Section> content;
 
-   Section(this.name, this.description, this.sectionHelp);
+  Section(this.name, this.description, this.content);
 }
 
 class HelpModel {
-  static Map appHelp;
-}
+  static Map<String, Section> helpSection = Map();
 
-class TextHelpItem {
-  List<String> text;
-}
+  static fillHelpModel(BuildContext context) async {
+    String xmlString =
+        await DefaultAssetBundle.of(context).loadString("data/Help.xml");
+    var xml = XmlDocument.parse(xmlString);
+    _parseXmlSection("general_button", xml);
+    _parseXmlSection("section", xml);
+  }
 
-class ExpandableHelpItem{
-  MyExpandableList expandableHelp;
-}
+  static _parseXmlSection(String sectionName, XmlDocument xml) {
+    var sections = xml.findAllElements(sectionName);
+    for (var el in sections) {
+      helpSection[el.getAttribute('name')] = _getSection(el);
+    }
+  }
 
-class Contact {
-  String name, email;
-  int age;
-  Contact(this.name, this.email, this.age);
-}
+  static List<Section> _parseButtonSection(Iterable<XmlElement> buttonSection) {
+    List<Section> buttonSections = [];
+    for (var el in buttonSection) {
+      buttonSections.add(_getSection(el));
+    }
+    return buttonSections;
+  }
 
-class NeContact extends Contact{
-  String name, email;
-  int age;
+  static _getSection(XmlElement el) {
+    return Section(
+      el.getAttribute('name'),
+      _getHtmlDescription(el.findElements("text").first.nodes),
+      _parseButtonSection(el.findAllElements("button")),
+    );
+  }
 
-  NeContact(String name, String email, int age) : super(name, email, age);
+  static String _getHtmlDescription(Iterable<XmlNode> textNodes) {
+    String htmlDescription = "";
+    for (var el in textNodes) {
+      htmlDescription += el.toString();
+    }
+    var str = htmlDescription.replaceAll("  ", "");
+    return str;
+  }
 }

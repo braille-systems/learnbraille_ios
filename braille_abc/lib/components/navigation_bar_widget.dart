@@ -25,7 +25,6 @@ class NavigationBar extends StatelessWidget
           Timer(Duration(milliseconds: 50), () {
             scakey.currentState.displayTapBar(true);
           });
-          print(previousPage);
           Navigator.push(
               context, CupertinoPageRoute(builder: (context) => previousPage));
         },

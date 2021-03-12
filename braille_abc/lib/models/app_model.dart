@@ -1,4 +1,3 @@
-import 'package:braille_abc/models/help_model.dart';
 import 'package:braille_abc/models/section_model.dart';
 import 'package:braille_abc/screens/dictionary_screen.dart';
 import 'package:braille_abc/screens/home_screen.dart';
@@ -13,8 +12,6 @@ import 'section_model.dart';
 
 class AppModel {
   static final Alphabet _alphabet = Alphabet();
-
-  static Map<String,Section> helpSection = Map();
 
   static final List<MenuButton> menuButton = [
     MenuButton(name: "Обучение", icon: CupertinoIcons.book),

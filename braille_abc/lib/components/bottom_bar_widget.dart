@@ -13,22 +13,18 @@ class Bottom extends StatefulWidget {
 
 class _BottomState extends State<Bottom> {
   final myKey = new GlobalKey<_BottomState>();
-  int _selectedIndex = 0;
   bool _disableTapBar = false;
   final CupertinoTabController _controller = CupertinoTabController();
 
   void onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
       _controller.index = index;
-      print(_selectedIndex);
     });
   }
 
   void displayTapBar(bool isDisplayed) {
     setState(() {
       _disableTapBar = !isDisplayed;
-      print(_disableTapBar);
     });
   }
 
