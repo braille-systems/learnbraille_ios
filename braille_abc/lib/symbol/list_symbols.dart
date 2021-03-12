@@ -174,7 +174,7 @@ class Alphabet {
     for (var symbol in los) {
       if (symbol.char != null) {
         lsi.add(StudyItem(
-            str: symbol.stringPoints(), titleSymbol: symbol.ofGroup()));
+            symbolData: symbol.stringPoints(), titleSymbol: symbol.ofGroup()));
       }
     }
     return lsi;

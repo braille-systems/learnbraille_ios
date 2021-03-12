@@ -5,12 +5,12 @@ import 'bottom_bar_widget.dart';
 class StudyItem extends StatelessWidget {
   const StudyItem({
     Key key,
-    @required this.str,
+    @required this.symbolData,
     @required this.titleSymbol,
   }) : super(key: key);
 
   final String titleSymbol;
-  final String str;
+  final String symbolData;
 
   // final String russianAlphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
 
@@ -29,7 +29,7 @@ class StudyItem extends StatelessWidget {
       child: CupertinoButton(
         color: CupertinoColors.white,
         disabledColor: CupertinoColors.white,
-        child: Text(str, style: TextStyle(color: CupertinoColors.black)),
+        child: Text(symbolData, style: TextStyle(color: CupertinoColors.black)),
         onPressed: () {
           scakey.currentState.displayTapBar(false);
           Navigator.of(context).push(
@@ -37,7 +37,7 @@ class StudyItem extends StatelessWidget {
               builder: (context) => LetterScreen(
                   // TODO: заменить эту строку на выбор заголовка
                   titleSymbol: titleSymbol,
-                  symbol: parse()),
+                  symbol: getSymbol()),
             ),
           );
         },
@@ -47,8 +47,8 @@ class StudyItem extends StatelessWidget {
   }
 
 // TODO: мб в бущуем написать парсер для строк
-  String parse()  {
-    List<String> lstOfItems = str.split(":");
+  String getSymbol()  {
+    List<String> lstOfItems = symbolData.split(":");
     return lstOfItems[0];
   }
 
