@@ -32,6 +32,7 @@ class HelpModel {
     for (var el in buttonSection) {
       buttonSections.add(_getSection(el));
     }
+    print(buttonSections);
     return buttonSections;
   }
 
