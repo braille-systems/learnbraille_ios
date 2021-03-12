@@ -9,7 +9,6 @@ import 'package:flutter_html/flutter_html.dart';
 class TestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print(AppModel.helpSection['Главное меню'].description);
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         leading: CupertinoNavigationBarBackButton(
@@ -26,27 +25,37 @@ class TestScreen extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
             body: Column(children: [
-              Html(data: AppModel.helpSection['Главное меню'].description),
-              //Html(data:"<p>Вы находитесь в разделе <b>главного меню</b> приложения по обучению шрифту Брайля.</p><p>Дополнительную информацию по разделу или по использованию приложения в целом можно узнать, выбрав соответсвующий пункт из меню ниже.</p>"),
-              Expanded(
-                child: FutureBuilder(
-                  future: HomeScreen.getHelpFromXML(context),
-                  builder: (context, data) {
-                    if (data.hasData) {
-                      List<Section> contacts = data.data;
-                      return ListView.builder(
-                          itemCount: 1,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Html(data: contacts[index].description, defaultTextStyle: TextStyle(fontSize: 20),),);
-                          });
-                    } else {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  }),
-              )
+          Html(
+            data: AppModel.helpSection['Главное меню'].sectionHelp[0].description,
+            defaultTextStyle: TextStyle(
+              fontSize: 20,
+            ),
+            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+          ),
+          //Html(data:"<p>Вы находитесь в разделе <b>главного меню</b> приложения по обучению шрифту Брайля.</p><p>Дополнительную информацию по разделу или по использованию приложения в целом можно узнать, выбрав соответсвующий пункт из меню ниже.</p>"),
+         /* Expanded(
+            child: FutureBuilder(
+                future: HomeScreen.getHelpFromXML(context),
+                builder: (context, data) {
+                  if (data.hasData) {
+                    List<Section> contacts = data.data;
+                    return ListView.builder(
+                        itemCount: 1,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Html(
+                              data: contacts[index].description,
+                              defaultTextStyle: TextStyle(fontSize: 20),
+                            ),
+                          );
+                        });
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                }),
+          )*/
         ])),
       ),
     );

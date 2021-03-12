@@ -1,6 +1,7 @@
-
 import 'dart:collection';
 import 'dart:collection';
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:ui';
 import 'package:braille_abc/models/help_model.dart';
 import 'package:braille_abc/screens/test_screen.dart';
@@ -16,55 +17,92 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:xml/xml.dart' as xml;
 import 'dart:async';
 
-
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreen createState() => _HomeScreen();
   int currentIndex;
 
+
+  static String getHtml(Iterable<XmlNode> nodes){
+    String result = "";
+    for (var node in nodes) {
+      result += node.toString();
+    }
+    print("description");
+    print(result);
+    return result;
+  }
+
+
+  static parseSect(XmlElement el){
+    print(el.getAttribute('name'));
+    return Section(
+      el.getAttribute('name'),
+      getHtml(el.findElements("text").first.nodes),
+      parseButtonSections(el.findAllElements("button")),
+    );
+  }
+
+  static parseButtonSections(Iterable<XmlElement> raw){
+    print("parseButton");
+    for(var el in raw){
+      parseSect(el);
+    }
+  }
+
+  static parseXml(String name, XmlDocument raw) {
+    var sections = raw.findAllElements("section");
+    print("parseSection");
+    for (var el in sections) {
+      AppModel.helpSection[el.getAttribute('name')] = parseSect(el);
+    }
+  }
+
+
+
+  // ignore: missing_return
   static Future<List<Section>> getHelpFromXML(BuildContext context) async {
-    print("lol");
     String xmlString = await DefaultAssetBundle.of(context).loadString("data/Help.xml");
     // ignore: deprecated_member_use
     var raw = xml.parse(xmlString);
-    var elements = raw.findAllElements("section");
-    var listEl = elements.map((element) {
+    parseXml("section", raw);
+    /*var sections = raw.findAllElements("section");
+    var listEl = sections.map((element) {
       print(element.getAttribute("name")); // name of the section
       var des = element.findElements("description").first.nodes;
       String fullDescription = "";
-      for(var i in des){
+      for (var i in des) {
         fullDescription += i.toString();
       }
-      print(fullDescription);
+      var button = element.findAllElements("button");
+      var buttonText;
+      var buttonName;
+      for (var el in button){
+        buttonText = el.findElements("text").toString();
+        buttonName = el.getAttribute("name");
+      }
+      var buttonList = button.map((butEl) {
+        var text = butEl.findElements("text").first.nodes;
+        String fullText = "";
+        for (var t in text) {
+          fullText += t.toString();
+        }
+      });
+      String fullButton = "";
+      for (var i in button) {
+        fullButton += i.toString();
+      }
+      List<Section> s = [Section(buttonName, buttonText, null)];
       AppModel.helpSection[element.getAttribute("name")] = Section(
         element.getAttribute("name"),
         fullDescription,
-        element.findElements("button").first.text,
-      );
-      return Section(
-        element.getAttribute("name"),
-        element.findElements("description").first.text,
-        element.findElements("button").first.text,
+        s,
       );
     }).toList();
-    return listEl;
+    print(AppModel.helpSection['Главное меню'].sectionHelp[0].description);*/
+    //return listEl;
   }
-
- /* static Future<List<Contact>> HashMap(BuildContext context) async {
-    String xmlString =
-    await DefaultAssetBundle.of(context).loadString("data/contacts.xml");
-    var raw = xml.parse(xmlString);
-    var elements = raw.findAllElements("contact");
-
-    var listEl = elements.map((element) {
-      return Contact(
-          element.findElements("name").first.text,
-          element.findElements("email").first.text,
-          int.parse(element.findElements("age").first.text));
-    }).toList();
-    return listEl;
-  }*/
 
 }
 
@@ -74,8 +112,6 @@ class _HomeScreen extends State<HomeScreen> {
     HomeScreen.getHelpFromXML(context);
     super.initState();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +150,8 @@ class MenuScreen extends StatelessWidget {
                     scakey.currentState.displayTapBar(false);
                     Navigator.of(context).push(
                       CupertinoPageRoute(
-                        builder: (context) => TestScreen(),                      ),
+                        builder: (context) => TestScreen(),
+                      ),
                     );
                   },
                 ),

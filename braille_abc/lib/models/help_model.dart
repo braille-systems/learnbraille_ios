@@ -6,9 +6,9 @@ import 'package:braille_abc/components/expandable_list_widget.dart';
 class Section {
    String name;
    String description;
-   dynamic sectionHelp;
+   List<Section> sectionHelp;
 
-  Section(this.name, this.description, this.sectionHelp);
+   Section(this.name, this.description, this.sectionHelp);
 }
 
 class HelpModel {
