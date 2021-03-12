@@ -185,9 +185,6 @@ class Alphabet {
 
 class Search {
   static StructSymbol element(String ch, String keymap) {
-    /*if (ch == null) {
-      return null;
-    }*/
     assert(ch != null);
     Alphabet alphabet = Alphabet();
     List<StructSymbol> list = alphabet.listOfSymbols(keymap);
@@ -200,10 +197,10 @@ class Search {
     return null;
   }
 
-  static List<bool> imageSymbol({List<int> d}) {
-    List<bool> data = <bool>[false, false, false, false, false, false];
+  static List<Dot> imageSymbol({List<int> d}) {
+    List<Dot> data = <Dot>[Dot(1, false), Dot(2, false), Dot(3, false), Dot(4, false), Dot(5, false), Dot(6, false)];
     for (int i = 0; i < d.length; i++) {
-      data[d[i] - 1] = true;
+      data[d[i] - 1].isPressed();
     }
     return data;
   }

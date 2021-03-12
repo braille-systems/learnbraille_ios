@@ -2,31 +2,48 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
-class Point {
+class Dot {
   Color p = CupertinoColors.white;
   Color onP = CupertinoColors.black;
   bool press = false;
   String data;
   int num;
-  Point(this.data, this.num);
+  Dot(this.num, bool isPress){
+    data = num.toString();
+    if(isPress)
+      this.isPressed();
+  }
+
+  void isPressed(){
+    press = !press;
+    if(p == CupertinoColors.white)
+      p = CupertinoColors.black;
+    else
+      p = CupertinoColors.white;
+    if(onP == CupertinoColors.white)
+      onP = CupertinoColors.black;
+    else
+      onP = CupertinoColors.white;
+  }
 }
 
 abstract class StructSymbol {
-  List<Point> data = <Point>[Point('1', 1), Point('2', 2), Point('3', 3), Point('4', 4), Point('5', 5), Point('6', 6)];
-  String char;
+  final List<Dot> data = <Dot>[Dot(1, false), Dot(2, false), Dot(3, false), Dot(4, false), Dot(5, false), Dot(6, false)];
+  final String char;
 
-  StructSymbol({List<bool> list, this.char}) {
-    for(int i = 0; i < list.length; i++){
-      for(int j = 0; j < data.length; j++) {
-        if(data[j].num == i + 1) {
-          data[j].press = list[i];
-          if (data[j].press) {
-            data[j].p = CupertinoColors.black;
-            data[j].onP = CupertinoColors.white;
-          }
-        }
-      }
+  StructSymbol({List<Dot> inputData, this.char = " "}){
+    if(inputData.isNotEmpty){
+     if(inputData.length == data.length){
+       for(int i = 0; i < data.length; i++){
+         if(inputData[i].press)
+           data[inputData[i].num - 1].isPressed();
+       }
+     }
     }
+  }
+
+  List<Dot> set(){
+    return data;
   }
 
   String stringPoints() {
@@ -45,7 +62,7 @@ abstract class StructSymbol {
 class RussianSymbol extends StructSymbol {
   static final String groupName = "Русский алфавит";
 
-  RussianSymbol({List<bool> list, String char}) : super(list: list, char: char);
+  RussianSymbol({List<Dot> list, String char}) : super(inputData: list, char: char);
 
   String ofGroup() {
     return groupName;
@@ -55,7 +72,7 @@ class RussianSymbol extends StructSymbol {
 class PunctuationSymbol extends StructSymbol {
   static final String groupName = "Знаки препинания";
 
-  PunctuationSymbol({List<bool> list, String char}) : super (list: list, char: char);
+  PunctuationSymbol({List<Dot> list, String char}) : super (inputData: list, char: char);
 
   String ofGroup() {
     return groupName;
@@ -65,7 +82,7 @@ class PunctuationSymbol extends StructSymbol {
 class ArithmeticSymbol extends StructSymbol {
   static final String groupName = "Арифметические знаки";
 
-  ArithmeticSymbol({List<bool> list, String char}) : super (list: list, char: char);
+  ArithmeticSymbol({List<Dot> list, String char}) : super (inputData: list, char: char);
 
   String ofGroup() {
     return groupName;
