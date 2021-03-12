@@ -92,3 +92,61 @@ class DictionaryHelp extends StatelessWidget {
     ]);
   }
 }
+
+class LetterViewHelp extends StatelessWidget {
+  const LetterViewHelp({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Html(
+          data: HelpModel.helpSection['Просмотр символа'].description,
+          defaultTextStyle: TextStyle(fontSize: 17),
+        ),
+        for (int i = 0;
+        i <
+            HelpModel
+                .helpSection['Просмотр символа'].content.length;
+        i++)
+          ExpansionSection(
+            color: Colors.orangeAccent,
+            sectionIcon: CupertinoIcons.circle_grid_3x3_fill,
+            sectionName: HelpModel
+                .helpSection['Просмотр символа'].content[i].name,
+            child: Column(
+              children: [
+                Html(
+                  data: HelpModel.helpSection['Просмотр символа']
+                      .content[i].description,
+                  defaultTextStyle: TextStyle(fontSize: 17),
+                ),
+                for (int j = 0;
+                j <
+                    HelpModel.helpSection['Просмотр символа']
+                        .content[i].content.length;
+                j++)
+                  ExpansionSection(
+                    sectionIcon: CupertinoIcons.circle,
+                    sectionName: HelpModel
+                        .helpSection['Просмотр символа']
+                        .content[i]
+                        .content[j]
+                        .name,
+                    child: Html(
+                        data: HelpModel
+                            .helpSection['Просмотр символа']
+                            .content[i]
+                            .content[i]
+                            .description,
+                        defaultTextStyle: TextStyle(fontSize: 17)),
+                  )
+              ],
+            ),
+          ),
+      ],
+    );
+  }
+}

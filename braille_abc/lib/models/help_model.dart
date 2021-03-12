@@ -27,12 +27,12 @@ class HelpModel {
     }
   }
 
-  static List<Section> _parseButtonSection(Iterable<XmlElement> buttonSection) {
+  static List<Section> _parseButtonSection(Iterable<XmlNode> buttonSection) {
     List<Section> buttonSections = [];
     for (var el in buttonSection) {
+      print(el.toString());
       buttonSections.add(_getSection(el));
     }
-    print(buttonSections);
     return buttonSections;
   }
 
@@ -40,7 +40,7 @@ class HelpModel {
     return Section(
       el.getAttribute('name'),
       _getHtmlDescription(el.findElements("text").first.nodes),
-      _parseButtonSection(el.findAllElements("button")),
+      _parseButtonSection(el.findElements("button")),
     );
   }
 

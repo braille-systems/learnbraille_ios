@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:braille_abc/screens/help_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'bottom_bar_widget.dart';
@@ -10,10 +11,12 @@ class NavigationBar extends StatelessWidget
     Key key,
     @required this.title,
     @required this.previousPage,
+    @required this.helpPage,
   }) : super(key: key);
 
   final String title;
   final Widget previousPage;
+  final Widget helpPage;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,13 @@ class NavigationBar extends StatelessWidget
           horizontal: 20,
         ),
         child: Icon(CupertinoIcons.question_circle, size: 35),
-        onPressed: () {},
+        onPressed: () {
+          Timer(Duration(milliseconds: 10), () {
+            scakey.currentState.displayTapBar(false);
+          });
+          Navigator.push(
+              context, CupertinoPageRoute(builder: (context) => HelpScreen(helpWidget: helpPage)));
+        },
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/screens/dictionary_screen.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,6 +43,7 @@ class _LetterScreenState extends State<LetterScreen> {
       navigationBar: NavigationBar(
         title: widget.str,
         previousPage: DictionaryScreen(),
+        helpPage: LetterViewHelp(),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
