@@ -42,7 +42,7 @@ class NavigationBar extends StatelessWidget
           horizontal: 20,
         ),
         child: Icon(CupertinoIcons.question_circle,
-            size: 35, semanticLabel: "Cправка"),
+            size: 35, semanticLabel: "Справка"),
         onPressed: () {},
       ),
     );

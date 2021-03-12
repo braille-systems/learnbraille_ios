@@ -24,13 +24,14 @@ class Symbol extends StatefulWidget {
   //принимает на вход функцию, которая возвращает вид вывода
   TextDirection Function() dir;
 
-  Symbol({Key key,
-    @required this.dir,
-    @required this.char,
-    @required this.keymap,
-    @required this.tap,
-    @required this.width,
-    @required this.height})
+  Symbol(
+      {Key key,
+      @required this.dir,
+      @required this.char,
+      @required this.keymap,
+      @required this.tap,
+      @required this.width,
+      @required this.height})
       : super(key: key) {
     createState();
   }
@@ -66,13 +67,10 @@ class _SymbolState extends State<Symbol> {
               spacing: 30,
               runSpacing: 0,
               children: symbol.data
-                  .map(
-                      (item) =>
-                      Semantics(
-                        label: "Точка" + item.data +
-                            (item.p == CupertinoColors.white
-                                ? "не закрашена"
-                                : "закрашена"),
+                  .map((item) => Semantics(
+                        label: "Точка" +
+                            item.data +
+                            (item.press ? "закрашена" : "не закрашена"),
                         button: false,
                         child: ElevatedButton(
                           onPressed: () {
@@ -94,17 +92,15 @@ class _SymbolState extends State<Symbol> {
                             primary: item.p,
                             onPrimary: item.onP,
                             shape: CircleBorder(),
-                            side:
-                            BorderSide(width: 10, color: CupertinoColors.black),
+                            side: BorderSide(
+                                width: 10, color: CupertinoColors.black),
                             padding: EdgeInsets.all(20),
                           ),
                           child: Text(item.data,
                               textDirection: TextDirection.ltr,
                               style: TextStyle(fontSize: 0.3 * widget.width)),
                         ),
-                      )
-
-              )
+                      ))
                   .toList(),
             ),
           ),
