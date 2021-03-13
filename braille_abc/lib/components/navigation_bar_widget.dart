@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/help_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'bottom_bar_widget.dart';
@@ -11,20 +12,15 @@ class NavigationBar extends StatelessWidget
     @required this.previousPage,
     @required this.helpPage,
     this.currentPage,
-    this.showHelp = true,
-    this.isNavigationScreen = false,
-    this.isBottomBarDisplayed = true,
-    this.isCurrentBottomBarDisplayed = true,
   }) : super(key: key);
 
   final String title;
   final Widget previousPage;
   final Widget helpPage;
   final Widget currentPage;
-  final bool showHelp;
-  final bool isNavigationScreen;
-  final bool isBottomBarDisplayed;
-  final bool isCurrentBottomBarDisplayed;
+
+  bool displayBottomBar(Widget screen) =>
+      AppModel.screens.toString().contains(screen.toString());
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +28,11 @@ class NavigationBar extends StatelessWidget
       backgroundColor: CupertinoColors.extraLightBackgroundGray,
       leading: CupertinoNavigationBarBackButton(
         onPressed: () {
-          if (isNavigationScreen) {
+          if (displayBottomBar(currentPage)) {
             scakey.currentState.onItemTapped(0);
           } else {
-            print(isBottomBarDisplayed);
-            if (isBottomBarDisplayed) {
-              print("displayed");
-              Timer(Duration(milliseconds: 50), () {
+            if (displayBottomBar(previousPage)) {
+              Timer(Duration(milliseconds: 10), () {
                 scakey.currentState.displayTapBar(true);
               });
             }
@@ -54,7 +48,7 @@ class NavigationBar extends StatelessWidget
             fontSize: 25,
             fontWeight: FontWeight.bold),
       ),
-      trailing: this.showHelp == true
+      trailing: this.helpPage != null
           ? CupertinoButton(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20,
@@ -70,7 +64,6 @@ class NavigationBar extends StatelessWidget
                         builder: (context) => HelpScreen(
                               helpWidget: helpPage,
                               previousPage: currentPage,
-                              isBottomBarDisplayed: isCurrentBottomBarDisplayed,
                             )));
               },
             )

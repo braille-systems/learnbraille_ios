@@ -50,8 +50,6 @@ class _LetterScreenState extends State<LetterScreen> {
           titleSymbol: widget.titleSymbol,
           symbol: widget.symbol,
         ),
-        isBottomBarDisplayed: true,
-        isCurrentBottomBarDisplayed: false,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

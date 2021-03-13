@@ -15,8 +15,6 @@ class DictionaryScreen extends StatelessWidget {
         currentPage: DictionaryScreen(),
         helpPage: DictionaryHelp(),
         title: "Словарь",
-        isNavigationScreen: true,
-        isBottomBarDisplayed: true,
       ),
       child: SingleChildScrollView(
           child: MyExpandableList(

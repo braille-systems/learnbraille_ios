@@ -21,9 +21,7 @@ class HelpScreen extends StatelessWidget {
       navigationBar: NavigationBar(
         previousPage: previousPage,
         title: "Справка",
-        showHelp: false,
         helpPage: null,
-        isBottomBarDisplayed: isBottomBarDisplayed,
       ),
       child: SafeArea(
         child: Scaffold(

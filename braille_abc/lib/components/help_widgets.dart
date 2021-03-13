@@ -27,7 +27,7 @@ class MainMenuHelp extends StatelessWidget {
           child: Html(
               data:
                   HelpModel.helpSection['Главное меню'].content[i].description,
-              defaultTextStyle: TextStyle(fontSize: 17)),
+              defaultTextStyle: TextStyle(fontSize: 19)),
         )
     ]);
   }
@@ -50,7 +50,7 @@ class GeneralHelp extends StatelessWidget {
         children: [
           Html(
             data: HelpModel.helpSection['Общая справка'].description,
-            defaultTextStyle: TextStyle(fontSize: 17),
+            defaultTextStyle: TextStyle(fontSize: 19),
           ),
           for (int i = 0;
               i < HelpModel.helpSection['Общая справка'].content.length;
@@ -62,7 +62,7 @@ class GeneralHelp extends StatelessWidget {
               child: Html(
                   data: HelpModel
                       .helpSection['Общая справка'].content[i].description,
-                  defaultTextStyle: TextStyle(fontSize: 17)),
+                  defaultTextStyle: TextStyle(fontSize: 19)),
             )
         ],
       ),
@@ -82,7 +82,7 @@ class DictionaryHelp extends StatelessWidget {
     return Column(children: [
       Html(
         data: HelpModel.helpSection['Алфавит'].description,
-        defaultTextStyle: TextStyle(fontSize: 17),
+        defaultTextStyle: TextStyle(fontSize: 19),
       ),
       for (int i = 0; i < HelpModel.helpSection['Алфавит'].content.length; i++)
         ExpansionSection(
@@ -90,7 +90,7 @@ class DictionaryHelp extends StatelessWidget {
           sectionName: HelpModel.helpSection['Алфавит'].content[i].name,
           child: Html(
               data: HelpModel.helpSection['Алфавит'].content[i].description,
-              defaultTextStyle: TextStyle(fontSize: 17)),
+              defaultTextStyle: TextStyle(fontSize: 19)),
         )
     ]);
   }
@@ -109,7 +109,7 @@ class LetterViewHelp extends StatelessWidget {
       children: [
         Html(
           data: HelpModel.helpSection['Просмотр символа'].description,
-          defaultTextStyle: TextStyle(fontSize: 17),
+          defaultTextStyle: TextStyle(fontSize: 19),
         ),
         for (int i = 0;
             i < HelpModel.helpSection['Просмотр символа'].content.length;
@@ -124,7 +124,7 @@ class LetterViewHelp extends StatelessWidget {
                 Html(
                   data: HelpModel
                       .helpSection['Просмотр символа'].content[i].description,
-                  defaultTextStyle: TextStyle(fontSize: 17),
+                  defaultTextStyle: TextStyle(fontSize: 19),
                 ),
                 for (int j = 0;
                     j <
@@ -138,7 +138,7 @@ class LetterViewHelp extends StatelessWidget {
                     child: Html(
                         data: HelpModel.helpSection['Просмотр символа']
                             .content[i].content[i].description,
-                        defaultTextStyle: TextStyle(fontSize: 17)),
+                        defaultTextStyle: TextStyle(fontSize: 19)),
                   )
               ],
             ),
