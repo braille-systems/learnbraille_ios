@@ -12,7 +12,6 @@ import 'section_model.dart';
 
 class AppModel {
   static final Alphabet _alphabet = Alphabet();
-
   static final List<MenuButton> menuButton = [
     MenuButton(name: "Обучение", icon: CupertinoIcons.book),
     MenuButton(name: "Практика", icon: CupertinoIcons.circle_grid_3x3_fill),

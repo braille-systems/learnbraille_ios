@@ -1,20 +1,19 @@
-import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
-import 'package:braille_abc/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HelpScreen extends StatelessWidget {
-  final bool isBottomBarDisplayed = false;
   const HelpScreen({
     Key key,
     @required this.helpWidget,
     @required this.previousPage,
+    @required this.isBottomBarDisplayed,
   }) : super(key: key);
 
   final Widget helpWidget;
   final Widget previousPage;
+  final bool isBottomBarDisplayed;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,9 @@ class HelpScreen extends StatelessWidget {
       navigationBar: NavigationBar(
         previousPage: previousPage,
         title: "Справка",
-        showHelp: false, helpPage: null,
+        showHelp: false,
+        helpPage: null,
+        isBottomBarDisplayed: isBottomBarDisplayed,
       ),
       child: SafeArea(
         child: Scaffold(
@@ -30,7 +31,9 @@ class HelpScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Column(children: [
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               helpWidget,
               GeneralHelp(),
             ]),

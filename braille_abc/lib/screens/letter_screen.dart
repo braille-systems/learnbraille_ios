@@ -10,7 +10,8 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 import '../style.dart';
 
 class LetterScreen extends StatefulWidget {
-  final bool isBottomBarDisplayed = false;
+  static bool isBottomBarDisplayed = false;
+
   LetterScreen({Key key, @required this.titleSymbol, @required this.symbol})
       : super(key: key);
 
@@ -45,8 +46,12 @@ class _LetterScreenState extends State<LetterScreen> {
         title: widget.str,
         previousPage: DictionaryScreen(),
         helpPage: LetterViewHelp(),
-        currentPage: LetterScreen(titleSymbol: widget.titleSymbol,symbol: widget.symbol,),
+        currentPage: LetterScreen(
+          titleSymbol: widget.titleSymbol,
+          symbol: widget.symbol,
+        ),
         isBottomBarDisplayed: true,
+        isCurrentBottomBarDisplayed: false,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

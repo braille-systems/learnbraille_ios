@@ -12,7 +12,8 @@ import 'package:braille_abc/shared/screen_params.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
-  final bool isBottomBarDisplayed = true;
+  static bool isBottomBarDisplayed = true;
+
   @override
   _HomeScreen createState() => _HomeScreen();
   int currentIndex;
@@ -63,7 +64,9 @@ class MenuScreen extends StatelessWidget {
                     Navigator.of(context).push(
                       CupertinoPageRoute(
                         builder: (context) => HelpScreen(
-                          helpWidget: MainMenuHelp(), previousPage: HomeScreen(),
+                          helpWidget: MainMenuHelp(),
+                          previousPage: HomeScreen(),
+                          isBottomBarDisplayed: true,
                         ),
                       ),
                     );

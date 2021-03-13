@@ -5,6 +5,8 @@ import 'package:flutter_html/flutter_html.dart';
 import 'expansion_section_widget.dart';
 
 class MainMenuHelp extends StatelessWidget {
+  static bool isNavigationDisplayed = true;
+
   const MainMenuHelp({
     Key key,
   }) : super(key: key);
@@ -32,6 +34,8 @@ class MainMenuHelp extends StatelessWidget {
 }
 
 class GeneralHelp extends StatelessWidget {
+  static bool isNavigationDisplayed = true;
+
   const GeneralHelp({
     Key key,
   }) : super(key: key);
@@ -67,6 +71,8 @@ class GeneralHelp extends StatelessWidget {
 }
 
 class DictionaryHelp extends StatelessWidget {
+  static bool isNavigationDisplayed = true;
+
   const DictionaryHelp({
     Key key,
   }) : super(key: key);
@@ -78,15 +84,12 @@ class DictionaryHelp extends StatelessWidget {
         data: HelpModel.helpSection['Алфавит'].description,
         defaultTextStyle: TextStyle(fontSize: 17),
       ),
-      for (int i = 0;
-      i < HelpModel.helpSection['Алфавит'].content.length;
-      i++)
+      for (int i = 0; i < HelpModel.helpSection['Алфавит'].content.length; i++)
         ExpansionSection(
           sectionIcon: CupertinoIcons.textformat,
           sectionName: HelpModel.helpSection['Алфавит'].content[i].name,
           child: Html(
-              data:
-              HelpModel.helpSection['Алфавит'].content[i].description,
+              data: HelpModel.helpSection['Алфавит'].content[i].description,
               defaultTextStyle: TextStyle(fontSize: 17)),
         )
     ]);
@@ -94,6 +97,8 @@ class DictionaryHelp extends StatelessWidget {
 }
 
 class LetterViewHelp extends StatelessWidget {
+  static bool isNavigationDisplayed = true;
+
   const LetterViewHelp({
     Key key,
   }) : super(key: key);
@@ -107,40 +112,32 @@ class LetterViewHelp extends StatelessWidget {
           defaultTextStyle: TextStyle(fontSize: 17),
         ),
         for (int i = 0;
-        i <
-            HelpModel
-                .helpSection['Просмотр символа'].content.length;
-        i++)
+            i < HelpModel.helpSection['Просмотр символа'].content.length;
+            i++)
           ExpansionSection(
             color: Colors.orangeAccent,
             sectionIcon: CupertinoIcons.circle_grid_3x3_fill,
-            sectionName: HelpModel
-                .helpSection['Просмотр символа'].content[i].name,
+            sectionName:
+                HelpModel.helpSection['Просмотр символа'].content[i].name,
             child: Column(
               children: [
                 Html(
-                  data: HelpModel.helpSection['Просмотр символа']
-                      .content[i].description,
+                  data: HelpModel
+                      .helpSection['Просмотр символа'].content[i].description,
                   defaultTextStyle: TextStyle(fontSize: 17),
                 ),
                 for (int j = 0;
-                j <
-                    HelpModel.helpSection['Просмотр символа']
-                        .content[i].content.length;
-                j++)
+                    j <
+                        HelpModel.helpSection['Просмотр символа'].content[i]
+                            .content.length;
+                    j++)
                   ExpansionSection(
                     sectionIcon: CupertinoIcons.circle,
-                    sectionName: HelpModel
-                        .helpSection['Просмотр символа']
-                        .content[i]
-                        .content[j]
-                        .name,
+                    sectionName: HelpModel.helpSection['Просмотр символа']
+                        .content[i].content[j].name,
                     child: Html(
-                        data: HelpModel
-                            .helpSection['Просмотр символа']
-                            .content[i]
-                            .content[i]
-                            .description,
+                        data: HelpModel.helpSection['Просмотр символа']
+                            .content[i].content[i].description,
                         defaultTextStyle: TextStyle(fontSize: 17)),
                   )
               ],

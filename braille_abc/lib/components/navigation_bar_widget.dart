@@ -1,9 +1,6 @@
 import 'dart:async';
-
 import 'package:braille_abc/screens/help_screen.dart';
-import 'package:braille_abc/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'bottom_bar_widget.dart';
 
 class NavigationBar extends StatelessWidget
@@ -16,7 +13,8 @@ class NavigationBar extends StatelessWidget
     this.currentPage,
     this.showHelp = true,
     this.isNavigationScreen = false,
-    this.isBottomBarDisplayed = false,
+    this.isBottomBarDisplayed = true,
+    this.isCurrentBottomBarDisplayed = true,
   }) : super(key: key);
 
   final String title;
@@ -26,12 +24,10 @@ class NavigationBar extends StatelessWidget
   final bool showHelp;
   final bool isNavigationScreen;
   final bool isBottomBarDisplayed;
-
-
+  final bool isCurrentBottomBarDisplayed;
 
   @override
   Widget build(BuildContext context) {
-
     return CupertinoNavigationBar(
       backgroundColor: CupertinoColors.extraLightBackgroundGray,
       leading: CupertinoNavigationBarBackButton(
@@ -39,7 +35,9 @@ class NavigationBar extends StatelessWidget
           if (isNavigationScreen) {
             scakey.currentState.onItemTapped(0);
           } else {
+            print(isBottomBarDisplayed);
             if (isBottomBarDisplayed) {
+              print("displayed");
               Timer(Duration(milliseconds: 50), () {
                 scakey.currentState.displayTapBar(true);
               });
@@ -72,6 +70,7 @@ class NavigationBar extends StatelessWidget
                         builder: (context) => HelpScreen(
                               helpWidget: helpPage,
                               previousPage: currentPage,
+                              isBottomBarDisplayed: isCurrentBottomBarDisplayed,
                             )));
               },
             )
