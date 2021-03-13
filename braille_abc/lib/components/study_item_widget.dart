@@ -32,7 +32,6 @@ class StudyItem extends StatelessWidget {
           Navigator.of(context).push(
             CupertinoPageRoute(
               builder: (context) => LetterScreen(
-                  // TODO: заменить эту строку на выбор заголовка
                   titleSymbol: titleSymbol,
                   symbol: getSymbol()),
             ),
@@ -42,7 +41,7 @@ class StudyItem extends StatelessWidget {
     );
   }
 
-// TODO: мб в бущуем написать парсер для строк
+// TODO: make a parser
   String getSymbol()  {
     List<String> lstOfItems = symbolData.split(":");
     return lstOfItems[0];
