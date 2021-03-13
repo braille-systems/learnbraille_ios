@@ -47,7 +47,7 @@ abstract class StructSymbol {
   }
 
   String stringPoints() {
-    StringBuffer str = new StringBuffer(char + ": ");
+    StringBuffer str = new StringBuffer(char + ": точки ");
     for(var d in data){
       if(d.press)
         str.write(d.data + ", ");

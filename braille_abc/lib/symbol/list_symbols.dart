@@ -103,7 +103,7 @@ class SymbolsFactory {
         {
           List<StructSymbol> signs = <StructSymbol>[
             Signs(list: Search.imageSymbol(d: <int>[3, 4, 5, 6]), char: "Цифровой знак"),
-            Signs(list: Search.imageSymbol(d: <int>[4, 5, 6]), char: "Признак рекурсивного шрифта"),
+            Signs(list: Search.imageSymbol(d: <int>[4, 5, 6]), char: "Признак курсивного шрифта"),
             Signs(list: Search.imageSymbol(d: <int>[1, 2, 4, 5, 6]), char: "Признак жирного шрифта"),
             Signs(list: Search.imageSymbol(d: <int>[4, 5]), char: "Признак большой русской буквы"),
             Signs(list: Search.imageSymbol(d: <int>[6]), char: "Признак малой латинской буквы"),
