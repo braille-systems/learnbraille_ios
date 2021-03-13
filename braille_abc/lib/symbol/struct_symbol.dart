@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
@@ -27,6 +28,7 @@ class Dot {
   }
 }
 
+@immutable
 abstract class StructSymbol {
   final List<Dot> data = <Dot>[Dot(1, false), Dot(2, false), Dot(3, false), Dot(4, false), Dot(5, false), Dot(6, false)];
   final String char;
