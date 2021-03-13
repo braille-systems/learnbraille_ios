@@ -82,6 +82,36 @@ class SymbolsFactory {
           return arithmeticSigns;
         }
         break;
+      case "Цифры":
+        {
+          List<StructSymbol> numbers = <StructSymbol>[
+            Numbers(list: Search.imageSymbol(d: <int>[1]), char: "1"),
+            Numbers(list: Search.imageSymbol(d: <int>[1, 2]), char: "2"),
+            Numbers(list: Search.imageSymbol(d: <int>[1, 4]), char: "3"),
+            Numbers(list: Search.imageSymbol(d: <int>[1, 4, 5]), char: "4"),
+            Numbers(list: Search.imageSymbol(d: <int>[1, 5]), char: "5"),
+            Numbers(list: Search.imageSymbol(d: <int>[1, 2, 4]), char: "6"),
+            Numbers(list: Search.imageSymbol(d: <int>[1, 2, 4, 5]), char: "7"),
+            Numbers(list: Search.imageSymbol(d: <int>[1, 2, 5]), char: "8"),
+            Numbers(list: Search.imageSymbol(d: <int>[2, 4]), char: "9"),
+            Numbers(list: Search.imageSymbol(d: <int>[2, 4, 5]), char: "0"),
+          ];
+          return numbers;
+        }
+        break;
+      case "Признаки":
+        {
+          List<StructSymbol> signs = <StructSymbol>[
+            Signs(list: Search.imageSymbol(d: <int>[3, 4, 5, 6]), char: "Цифровой знак"),
+            Signs(list: Search.imageSymbol(d: <int>[4, 5, 6]), char: "Признак рекурсивного шрифта"),
+            Signs(list: Search.imageSymbol(d: <int>[1, 2, 4, 5, 6]), char: "Признак жирного шрифта"),
+            Signs(list: Search.imageSymbol(d: <int>[4, 5]), char: "Признак большой русской буквы"),
+            Signs(list: Search.imageSymbol(d: <int>[6]), char: "Признак малой латинской буквы"),
+            Signs(list: Search.imageSymbol(d: <int>[4, 6]), char: "Признак большой латинской буквы"),
+          ];
+          return signs;
+        }
+        break;
     }
     return null;
   }
@@ -93,7 +123,9 @@ class Alphabet {
       final List<String> tokens = <String>[
         "Русский алфавит",
         "Знаки препинания",
-        "Арифметические знаки"
+        "Арифметические знаки",
+        "Цифры",
+        "Признаки",
       ];
       SymbolsFactory factory = SymbolsFactory();
       _alphabet = Map();

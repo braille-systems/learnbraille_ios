@@ -38,9 +38,13 @@ class AppModel {
       ),
     ),
     SectionModel(
-        name: "Цифры",
-        icon: CupertinoIcons.textformat_123,
-        expandedList: Text("+")),
+      name: "Цифры",
+      icon: CupertinoIcons.textformat_123,
+      expandedList: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _alphabet.listOfStudyItems("Цифры"),
+      ),
+    ),
     SectionModel(
       name: "Знаки препинания",
       icon: CupertinoIcons.exclamationmark,
@@ -60,6 +64,10 @@ class AppModel {
     SectionModel(
         name: "Признаки",
         icon: CupertinoIcons.square_grid_2x2,
-        expandedList: Text("+")),
+      expandedList: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _alphabet.listOfStudyItems("Признаки"),
+      ),
+    ),
   ];
 }

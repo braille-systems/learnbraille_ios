@@ -88,3 +88,23 @@ class ArithmeticSymbol extends StructSymbol {
     return groupName;
   }
 }
+
+class Numbers extends StructSymbol{
+  static final String groupName = "Цифры";
+
+  Numbers({List<Dot> list, String char}) : super (inputData: list, char: char);
+
+  String ofGroup() {
+    return groupName;
+  }
+}
+
+class Signs extends StructSymbol{
+  static final String groupName = "Признаки";
+
+  Signs({List<Dot> list, String char}) : super (inputData: list, char: char);
+
+  String ofGroup() {
+    return groupName;
+  }
+}
