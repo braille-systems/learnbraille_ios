@@ -30,7 +30,6 @@ class HelpModel {
   static List<Section> _parseButtonSection(Iterable<XmlNode> buttonSection) {
     List<Section> buttonSections = [];
     for (var el in buttonSection) {
-      print(el.toString());
       buttonSections.add(_getSection(el));
     }
     return buttonSections;

@@ -2,6 +2,7 @@ import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 
 class StudyScreen extends StatelessWidget {
+  final bool isBottomBarDisplayed = true;
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(

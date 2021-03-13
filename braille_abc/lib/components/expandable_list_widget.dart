@@ -28,7 +28,7 @@ class _MyExpandableListState extends State<MyExpandableList> {
           children: <Widget>[
             SizedBox(
               width: 0,
-              height: ScreenParams.heightIOS14(14, context),
+              height: ScreenParams.heightIOS14(5, context),
             ),
             for (int i = 0; i < widget.model.length; i++)
               ExpansionSection(
