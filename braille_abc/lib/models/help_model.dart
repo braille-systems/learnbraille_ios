@@ -14,7 +14,7 @@ class HelpModel {
 
   static fillHelpModel(BuildContext context) async {
     String xmlString =
-        await DefaultAssetBundle.of(context).loadString("data/Help.xml");
+        await DefaultAssetBundle.of(context).loadString("data/help.xml");
     var xml = XmlDocument.parse(xmlString);
     _parseXmlSection("general_button", xml);
     _parseXmlSection("section", xml);
