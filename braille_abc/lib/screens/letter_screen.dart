@@ -26,7 +26,6 @@ class _LetterScreenState extends State<LetterScreen> {
   @override
   void initState() {
     super.initState();
-    print("InitState");
   }
 
   TextDirection mode() {
@@ -35,8 +34,6 @@ class _LetterScreenState extends State<LetterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("Build");
-
     TextDirection mode() {
       return _dir;
     }

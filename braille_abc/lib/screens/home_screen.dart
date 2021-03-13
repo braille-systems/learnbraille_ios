@@ -1,5 +1,6 @@
 import 'dart:ui';
-
+import 'package:braille_abc/models/help_model.dart';
+import 'package:braille_abc/screens/help_screen.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreen extends State<HomeScreen> {
   @override
   void initState() {
+    HelpModel.fillHelpModel(context);
     super.initState();
   }
 
@@ -54,7 +56,14 @@ class MenuScreen extends StatelessWidget {
                     CupertinoIcons.question_circle,
                     size: ScreenParams.height(5, context),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    scakey.currentState.displayTapBar(false);
+                    Navigator.of(context).push(
+                      CupertinoPageRoute(
+                        builder: (context) => HelpScreen(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
