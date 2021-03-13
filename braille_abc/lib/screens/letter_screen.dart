@@ -10,8 +10,7 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 import '../style.dart';
 
 class LetterScreen extends StatefulWidget {
-  LetterScreen({Key key, @required this.titleSymbol, @required this.symbol})
-      : super(key: key);
+  LetterScreen({Key key, @required this.titleSymbol, @required this.symbol}) : super(key: key);
 
   final String str = "Просмотр символа";
   final String titleSymbol;
@@ -55,15 +54,12 @@ class _LetterScreenState extends State<LetterScreen> {
           SizedBox(
             height: ScreenParams.height(5, context),
           ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                LetterWidget(
-                  title: widget.titleSymbol,
-                  symbol: widget.symbol,
-                ),
-              ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
+            LetterWidget(
+              title: widget.titleSymbol,
+              symbol: widget.symbol,
+            ),
+          ]),
           SizedBox(
             height: ScreenParams.height(5, context),
           ),
@@ -73,22 +69,19 @@ class _LetterScreenState extends State<LetterScreen> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: CupertinoColors.black,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   textStyle: TextStyle(
                     color: CupertinoColors.white,
                     shadows: <Shadow>[
                       Styles.buildButtonShadow(),
                     ],
                   ),
-                  padding: EdgeInsets.symmetric(
-                      vertical: ScreenParams.width(25, context)),
+                  padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
                 ),
                 onPressed: () => setState(() {
                   if (this._dir == TextDirection.ltr)
                     this._dir = TextDirection.rtl;
-                  else if (this._dir == TextDirection.rtl)
-                    this._dir = TextDirection.ltr;
+                  else if (this._dir == TextDirection.rtl) this._dir = TextDirection.ltr;
                 }),
                 child: Icon(
                   CupertinoIcons.arrow_right_arrow_left,
@@ -96,13 +89,7 @@ class _LetterScreenState extends State<LetterScreen> {
                   semanticLabel: "Изменить режим",
                 ),
               ),
-              Symbol(
-                  dir: mode,
-                  char: widget.symbol,
-                  tap: false,
-                  width: 200,
-                  height: 350,
-                  keymap: widget.titleSymbol),
+              Symbol(dir: mode, char: widget.symbol, tap: false, width: 200, height: 350, keymap: widget.titleSymbol),
               SizedBox(
                 height: ScreenParams.width(60, context),
                 width: ScreenParams.height(8, context),

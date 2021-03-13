@@ -88,13 +88,11 @@ class _SymbolState extends State<Symbol> {
                         primary: item.p,
                         onPrimary: item.onP,
                         shape: CircleBorder(),
-                        side:
-                            BorderSide(width: 10, color: CupertinoColors.black),
+                        side: BorderSide(width: 10, color: CupertinoColors.black),
                         padding: EdgeInsets.all(20),
                       ),
                       child: Text(item.data,
-                          textDirection: TextDirection.ltr,
-                          style: TextStyle(fontSize: 0.3 * widget.width)),
+                          textDirection: TextDirection.ltr, style: TextStyle(fontSize: 0.3 * widget.width)),
                     ),
                   )
                   .toList(),

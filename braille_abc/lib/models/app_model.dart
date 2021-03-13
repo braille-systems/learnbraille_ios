@@ -36,10 +36,7 @@ class AppModel {
         children: _alphabet.listOfStudyItems("Русский алфавит"),
       ),
     ),
-    SectionModel(
-        name: "Цифры",
-        icon: CupertinoIcons.textformat_123,
-        expandedList: Text("+")),
+    SectionModel(name: "Цифры", icon: CupertinoIcons.textformat_123, expandedList: Text("+")),
     SectionModel(
       name: "Знаки препинания",
       icon: CupertinoIcons.exclamationmark,
@@ -56,9 +53,6 @@ class AppModel {
         children: _alphabet.listOfStudyItems("Арифметические знаки"),
       ),
     ),
-    SectionModel(
-        name: "Признаки",
-        icon: CupertinoIcons.square_grid_2x2,
-        expandedList: Text("+")),
+    SectionModel(name: "Признаки", icon: CupertinoIcons.square_grid_2x2, expandedList: Text("+")),
   ];
 }

@@ -4,8 +4,7 @@ import 'package:braille_abc/screens/help_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'bottom_bar_widget.dart';
 
-class NavigationBar extends StatelessWidget
-    implements ObstructingPreferredSizeWidget {
+class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeWidget {
   const NavigationBar({
     Key key,
     @required this.title,
@@ -19,8 +18,7 @@ class NavigationBar extends StatelessWidget
   final Widget helpPage;
   final Widget currentPage;
 
-  bool displayBottomBar(Widget screen) =>
-      AppModel.screens.toString().contains(screen.toString());
+  bool displayBottomBar(Widget screen) => AppModel.screens.toString().contains(screen.toString());
 
   @override
   Widget build(BuildContext context) {
@@ -36,20 +34,15 @@ class NavigationBar extends StatelessWidget
                 scakey.currentState.displayTapBar(true);
               });
             }
-            Navigator.push(context,
-                CupertinoPageRoute(builder: (context) => previousPage));
+            Navigator.push(context, CupertinoPageRoute(builder: (context) => previousPage));
           }
         },
       ),
       middle: Text(
         title,
-        style: TextStyle(
-            color: CupertinoColors.black,
-            fontSize: 25,
-            fontWeight: FontWeight.bold),
+        style: TextStyle(color: CupertinoColors.black, fontSize: 25, fontWeight: FontWeight.bold),
       ),
-      trailing: this.helpPage != null
-          ? CupertinoButton(
+      trailing: this.helpPage != null ? CupertinoButton(
               padding: const EdgeInsets.symmetric(
                 horizontal: 10,
               ),

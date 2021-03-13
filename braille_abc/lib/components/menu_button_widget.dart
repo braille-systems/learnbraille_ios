@@ -44,7 +44,6 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
           color: Colors.white,
           shadows: <Shadow>[
             Styles.buildButtonShadow(),
-
           ],
         ),
         padding: EdgeInsets.symmetric(vertical: 20),
@@ -71,13 +70,10 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
             size: 100,
             shadows: <Shadow>[
               Styles.buildButtonShadow(),
-
             ],
           ),
         ],
       ),
     );
   }
-
-
 }

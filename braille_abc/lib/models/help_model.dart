@@ -13,8 +13,7 @@ class HelpModel {
   static Map<String, Section> helpSection = Map();
 
   static fillHelpModel(BuildContext context) async {
-    String xmlString =
-        await DefaultAssetBundle.of(context).loadString("data/help.xml");
+    String xmlString = await DefaultAssetBundle.of(context).loadString("data/help.xml");
     var xml = XmlDocument.parse(xmlString);
     _parseXmlSection("general_button", xml);
     _parseXmlSection("section", xml);

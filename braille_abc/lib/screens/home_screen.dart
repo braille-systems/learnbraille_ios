@@ -47,10 +47,7 @@ class MenuScreen extends StatelessWidget {
               children: [
                 Text(
                   "Меню",
-                  style: TextStyle(
-                      color: CupertinoColors.black,
-                      fontSize: 55,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(color: CupertinoColors.black, fontSize: 55, fontWeight: FontWeight.bold),
                 ),
                 CupertinoButton(
                   child: Icon(
@@ -83,9 +80,7 @@ class MenuScreen extends StatelessWidget {
                 children: <Widget>[
                   for (int i = 0; i < AppModel.menuButton.length; i++)
                     MenuButtonWidget(
-                      menuButton: MenuButton(
-                          name: AppModel.menuButton[i].name,
-                          icon: AppModel.menuButton[i].icon),
+                      menuButton: MenuButton(name: AppModel.menuButton[i].name, icon: AppModel.menuButton[i].icon),
                       index: i + 1,
                       homeScreen: HomeScreen(),
                     ),

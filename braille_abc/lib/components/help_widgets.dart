@@ -16,15 +16,12 @@ class MainMenuHelp extends StatelessWidget {
         data: HelpModel.helpSection['Главное меню'].description,
         defaultTextStyle: TextStyle(fontSize: 17),
       ),
-      for (int i = 0;
-          i < HelpModel.helpSection['Главное меню'].content.length;
-          i++)
+      for (int i = 0; i < HelpModel.helpSection['Главное меню'].content.length; i++)
         ExpansionSection(
           sectionIcon: CupertinoIcons.bars,
           sectionName: HelpModel.helpSection['Главное меню'].content[i].name,
           child: Html(
-              data:
-                  HelpModel.helpSection['Главное меню'].content[i].description,
+              data: HelpModel.helpSection['Главное меню'].content[i].description,
               defaultTextStyle: TextStyle(fontSize: 19)),
         )
     ]);
@@ -32,7 +29,6 @@ class MainMenuHelp extends StatelessWidget {
 }
 
 class GeneralHelp extends StatelessWidget {
-
   const GeneralHelp({
     Key key,
   }) : super(key: key);
@@ -50,16 +46,12 @@ class GeneralHelp extends StatelessWidget {
             data: HelpModel.helpSection['Общая справка'].description,
             defaultTextStyle: TextStyle(fontSize: 19),
           ),
-          for (int i = 0;
-              i < HelpModel.helpSection['Общая справка'].content.length;
-              i++)
+          for (int i = 0; i < HelpModel.helpSection['Общая справка'].content.length; i++)
             ExpansionSection(
               sectionIcon: subIcon[i],
-              sectionName:
-                  HelpModel.helpSection['Общая справка'].content[i].name,
+              sectionName: HelpModel.helpSection['Общая справка'].content[i].name,
               child: Html(
-                  data: HelpModel
-                      .helpSection['Общая справка'].content[i].description,
+                  data: HelpModel.helpSection['Общая справка'].content[i].description,
                   defaultTextStyle: TextStyle(fontSize: 19)),
             )
         ],
@@ -85,8 +77,7 @@ class DictionaryHelp extends StatelessWidget {
           sectionIcon: CupertinoIcons.textformat,
           sectionName: HelpModel.helpSection['Алфавит'].content[i].name,
           child: Html(
-              data: HelpModel.helpSection['Алфавит'].content[i].description,
-              defaultTextStyle: TextStyle(fontSize: 19)),
+              data: HelpModel.helpSection['Алфавит'].content[i].description, defaultTextStyle: TextStyle(fontSize: 19)),
         )
     ]);
   }
@@ -99,40 +90,32 @@ class LetterViewHelp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<IconData> subIcon = [CupertinoIcons.arrow_right_arrow_left, ];
+    List<IconData> subIcon = [
+      CupertinoIcons.arrow_right_arrow_left,
+    ];
     return Column(
       children: [
         Html(
           data: HelpModel.helpSection['Просмотр символа'].description,
           defaultTextStyle: TextStyle(fontSize: 19),
         ),
-        for (int i = 0;
-            i < HelpModel.helpSection['Просмотр символа'].content.length;
-            i++)
+        for (int i = 0; i < HelpModel.helpSection['Просмотр символа'].content.length; i++)
           ExpansionSection(
             color: Colors.orangeAccent,
             sectionIcon: CupertinoIcons.circle_grid_3x3_fill,
-            sectionName:
-                HelpModel.helpSection['Просмотр символа'].content[i].name,
+            sectionName: HelpModel.helpSection['Просмотр символа'].content[i].name,
             child: Column(
               children: [
                 Html(
-                  data: HelpModel
-                      .helpSection['Просмотр символа'].content[i].description,
+                  data: HelpModel.helpSection['Просмотр символа'].content[i].description,
                   defaultTextStyle: TextStyle(fontSize: 19),
                 ),
-                for (int j = 0;
-                    j <
-                        HelpModel.helpSection['Просмотр символа'].content[i]
-                            .content.length;
-                    j++)
+                for (int j = 0; j < HelpModel.helpSection['Просмотр символа'].content[i].content.length; j++)
                   ExpansionSection(
                     sectionIcon: subIcon[j],
-                    sectionName: HelpModel.helpSection['Просмотр символа']
-                        .content[i].content[j].name,
+                    sectionName: HelpModel.helpSection['Просмотр символа'].content[i].content[j].name,
                     child: Html(
-                        data: HelpModel.helpSection['Просмотр символа']
-                            .content[i].content[i].description,
+                        data: HelpModel.helpSection['Просмотр символа'].content[i].content[i].description,
                         defaultTextStyle: TextStyle(fontSize: 19)),
                   )
               ],
