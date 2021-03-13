@@ -12,11 +12,15 @@ class NavigationBar extends StatelessWidget
     @required this.title,
     @required this.previousPage,
     @required this.helpPage,
+    this.showHelp =  true,
+    this.isNavigationScreen = false,
   }) : super(key: key);
 
   final String title;
   final Widget previousPage;
   final Widget helpPage;
+  final bool showHelp;
+  final bool isNavigationScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -25,30 +29,38 @@ class NavigationBar extends StatelessWidget
       backgroundColor: CupertinoColors.extraLightBackgroundGray,
       leading: CupertinoNavigationBarBackButton(
         onPressed: () {
-          Timer(Duration(milliseconds: 50), () {
-            scakey.currentState.displayTapBar(true);
-          });
-          Navigator.push(
-              context, CupertinoPageRoute(builder: (context) => previousPage));
+          if (isNavigationScreen) {
+            scakey.currentState.onItemTapped(0);
+          } else {
+            Timer(Duration(milliseconds: 50), () {
+              scakey.currentState.displayTapBar(true);
+            });
+            Navigator.push(
+                context,
+                CupertinoPageRoute(builder: (context) => previousPage));
+          }
         },
       ),
       middle: Text(
         title,
         style: TextStyle(color: CupertinoColors.black, fontSize: 20),
       ),
-      trailing: CupertinoButton(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-        ),
-        child: Icon(CupertinoIcons.question_circle, size: 35),
-        onPressed: () {
-          Timer(Duration(milliseconds: 10), () {
-            scakey.currentState.displayTapBar(false);
-          });
-          Navigator.push(
-              context, CupertinoPageRoute(builder: (context) => HelpScreen(helpWidget: helpPage)));
-        },
-      ),
+      trailing: this.showHelp == true?
+         CupertinoButton(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
+          child: Icon(CupertinoIcons.question_circle, size: 35),
+          onPressed: () {
+            Timer(Duration(milliseconds: 10), () {
+              scakey.currentState.displayTapBar(false);
+            });
+            Navigator.push(
+                context, CupertinoPageRoute(
+                builder: (context) => HelpScreen(helpWidget: helpPage)));
+          },
+        ):null
+        ,
     );
   }
 
