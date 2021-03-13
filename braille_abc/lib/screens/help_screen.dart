@@ -8,12 +8,10 @@ class HelpScreen extends StatelessWidget {
     Key key,
     @required this.helpWidget,
     @required this.previousPage,
-    @required this.isBottomBarDisplayed,
   }) : super(key: key);
 
   final Widget helpWidget;
   final Widget previousPage;
-  final bool isBottomBarDisplayed;
 
   @override
   Widget build(BuildContext context) {

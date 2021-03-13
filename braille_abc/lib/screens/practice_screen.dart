@@ -2,8 +2,6 @@ import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 
 class PracticeScreen extends StatelessWidget {
-  static bool isBottomBarDisplayed = true;
-
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(

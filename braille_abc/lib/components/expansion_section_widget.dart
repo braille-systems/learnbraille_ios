@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ExpansionSection extends StatefulWidget {
   ExpansionSection({
     Key key,
-    this.sectionIcon =  CupertinoIcons.add,
+    this.sectionIcon = CupertinoIcons.add,
     this.sectionName,
     this.child,
     this.color = CupertinoColors.white,
@@ -21,16 +21,14 @@ class ExpansionSection extends StatefulWidget {
 
 class _ExpansionSection extends State<ExpansionSection> {
   Color myColor = Colors.white;
+
   @override
   Widget build(BuildContext context) {
-    //if(widget.color == CupertinoColors.white)
-      //iconColor= Colors.orangeAccent;
     return Container(
       margin: EdgeInsets.symmetric(vertical: 2),
-        decoration: new BoxDecoration(
-            color: Colors.orangeAccent, //new Color.fromRGBO(255, 0, 0, 0.0),
-            borderRadius: new BorderRadius.circular(10)
-        ),
+      decoration: new BoxDecoration(
+          color: Colors.orangeAccent, //new Color.fromRGBO(255, 0, 0, 0.0),
+          borderRadius: new BorderRadius.circular(10)),
       child: ExpansionTile(
         onExpansionChanged: (expanded) {
           setState(() {
@@ -48,8 +46,7 @@ class _ExpansionSection extends State<ExpansionSection> {
         ),
         title: Text(
           widget.sectionName,
-          style: TextStyle(fontSize: 23,color:myColor),
-
+          style: TextStyle(fontSize: 23, color: myColor),
         ),
         children: <Widget>[widget.child],
         backgroundColor: CupertinoColors.tertiarySystemBackground,

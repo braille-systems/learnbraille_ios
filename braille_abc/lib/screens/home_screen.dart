@@ -12,8 +12,6 @@ import 'package:braille_abc/shared/screen_params.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
-  static bool isBottomBarDisplayed = true;
-
   @override
   _HomeScreen createState() => _HomeScreen();
   int currentIndex;
@@ -66,7 +64,6 @@ class MenuScreen extends StatelessWidget {
                         builder: (context) => HelpScreen(
                           helpWidget: MainMenuHelp(),
                           previousPage: HomeScreen(),
-                          isBottomBarDisplayed: true,
                         ),
                       ),
                     );

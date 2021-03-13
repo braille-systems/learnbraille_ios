@@ -10,8 +10,6 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 import '../style.dart';
 
 class LetterScreen extends StatefulWidget {
-  static bool isBottomBarDisplayed = false;
-
   LetterScreen({Key key, @required this.titleSymbol, @required this.symbol})
       : super(key: key);
 

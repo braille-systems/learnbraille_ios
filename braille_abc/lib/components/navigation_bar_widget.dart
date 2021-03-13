@@ -51,7 +51,7 @@ class NavigationBar extends StatelessWidget
       trailing: this.helpPage != null
           ? CupertinoButton(
               padding: const EdgeInsets.symmetric(
-                horizontal: 20,
+                horizontal: 10,
               ),
               child: Icon(CupertinoIcons.question_circle, size: 35),
               onPressed: () {

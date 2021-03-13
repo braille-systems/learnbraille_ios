@@ -5,8 +5,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'expansion_section_widget.dart';
 
 class MainMenuHelp extends StatelessWidget {
-  static bool isNavigationDisplayed = true;
-
   const MainMenuHelp({
     Key key,
   }) : super(key: key);
@@ -34,7 +32,6 @@ class MainMenuHelp extends StatelessWidget {
 }
 
 class GeneralHelp extends StatelessWidget {
-  static bool isNavigationDisplayed = true;
 
   const GeneralHelp({
     Key key,
@@ -42,6 +39,7 @@ class GeneralHelp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<IconData> subIcon = [CupertinoIcons.back, CupertinoIcons.question_circle];
     return ExpansionSection(
       color: Colors.orangeAccent,
       sectionIcon: CupertinoIcons.info,
@@ -56,7 +54,7 @@ class GeneralHelp extends StatelessWidget {
               i < HelpModel.helpSection['Общая справка'].content.length;
               i++)
             ExpansionSection(
-              sectionIcon: CupertinoIcons.circle,
+              sectionIcon: subIcon[i],
               sectionName:
                   HelpModel.helpSection['Общая справка'].content[i].name,
               child: Html(
@@ -71,8 +69,6 @@ class GeneralHelp extends StatelessWidget {
 }
 
 class DictionaryHelp extends StatelessWidget {
-  static bool isNavigationDisplayed = true;
-
   const DictionaryHelp({
     Key key,
   }) : super(key: key);
@@ -97,14 +93,13 @@ class DictionaryHelp extends StatelessWidget {
 }
 
 class LetterViewHelp extends StatelessWidget {
-  static bool isNavigationDisplayed = true;
-
   const LetterViewHelp({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<IconData> subIcon = [CupertinoIcons.arrow_right_arrow_left, ];
     return Column(
       children: [
         Html(
@@ -132,7 +127,7 @@ class LetterViewHelp extends StatelessWidget {
                             .content.length;
                     j++)
                   ExpansionSection(
-                    sectionIcon: CupertinoIcons.circle,
+                    sectionIcon: subIcon[j],
                     sectionName: HelpModel.helpSection['Просмотр символа']
                         .content[i].content[j].name,
                     child: Html(
