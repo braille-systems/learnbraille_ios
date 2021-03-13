@@ -56,7 +56,6 @@ class _SymbolState extends State<Symbol> {
               spacing: 0,
               direction: Axis.vertical,
               runSpacing: 30,
-              //verticalDirection: VerticalDirection.up,
               children: symbol.data
                   .map(
                     (item) => ElevatedButton(

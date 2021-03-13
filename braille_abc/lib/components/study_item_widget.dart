@@ -12,8 +12,6 @@ class StudyItem extends StatelessWidget {
   final String titleSymbol;
   final String symbolData;
 
-  // final String russianAlphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +22,6 @@ class StudyItem extends StatelessWidget {
               bottom:
                   BorderSide(color: CupertinoColors.inactiveGray, width: 0.5)),
           shape: BoxShape.rectangle
-          // shape: BoxShape.circle,
           ),
       child: CupertinoButton(
         color: CupertinoColors.white,
@@ -43,7 +40,6 @@ class StudyItem extends StatelessWidget {
         },
       ),
     );
-    //
   }
 
 // TODO: мб в бущуем написать парсер для строк
