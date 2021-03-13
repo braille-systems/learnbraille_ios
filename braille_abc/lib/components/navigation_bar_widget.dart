@@ -27,8 +27,11 @@ class NavigationBar extends StatelessWidget
   final bool isNavigationScreen;
   final bool isBottomBarDisplayed;
 
+
+
   @override
   Widget build(BuildContext context) {
+
     return CupertinoNavigationBar(
       backgroundColor: CupertinoColors.extraLightBackgroundGray,
       leading: CupertinoNavigationBarBackButton(
