@@ -50,7 +50,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
               padding: const EdgeInsets.symmetric(
                 horizontal: 10,
               ),
-              child: Icon(CupertinoIcons.question_circle, size: 35),
+              child: Icon(CupertinoIcons.question_circle, semanticLabel: "Справка", size: 35),
               onPressed: () {
                 Timer(Duration(milliseconds: 10), () {
                   scakey.currentState.displayTapBar(false);

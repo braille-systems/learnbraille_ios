@@ -49,25 +49,23 @@ class MenuScreen extends StatelessWidget {
                   "Меню",
                   style: TextStyle(color: CupertinoColors.black, fontSize: 55, fontWeight: FontWeight.bold),
                 ),
-                Semantics(
-                  label: "Справка",
-                  child: CupertinoButton(
-                    child: Icon(
-                      CupertinoIcons.question_circle,
-                      size: ScreenParams.height(5, context),
-                    ),
-                    onPressed: () {
-                      scakey.currentState.displayTapBar(false);
-                      Navigator.of(context).push(
-                        CupertinoPageRoute(
-                          builder: (context) => HelpScreen(
-                            helpWidget: MainMenuHelp(),
-                            previousPage: HomeScreen(),
-                          ),
-                        ),
-                      );
-                    },
+                CupertinoButton(
+                  child: Icon(
+                    CupertinoIcons.question_circle,
+                    semanticLabel: "Справка",
+                    size: ScreenParams.height(5, context),
                   ),
+                  onPressed: () {
+                    scakey.currentState.displayTapBar(false);
+                    Navigator.of(context).push(
+                      CupertinoPageRoute(
+                        builder: (context) => HelpScreen(
+                          helpWidget: MainMenuHelp(),
+                          previousPage: HomeScreen(),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
