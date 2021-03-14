@@ -8,6 +8,7 @@ class Point {
   bool press = false;
   String data;
   int num;
+
   Point(this.data, this.num);
 }
 
@@ -16,9 +17,9 @@ abstract class StructSymbol {
   String char;
 
   StructSymbol({List<bool> list, this.char}) {
-    for(int i = 0; i < list.length; i++){
-      for(int j = 0; j < data.length; j++) {
-        if(data[j].num == i + 1) {
+    for (int i = 0; i < list.length; i++) {
+      for (int j = 0; j < data.length; j++) {
+        if (data[j].num == i + 1) {
           data[j].press = list[i];
           if (data[j].press) {
             data[j].p = CupertinoColors.black;
@@ -31,8 +32,8 @@ abstract class StructSymbol {
 
   String stringPoints() {
     String str = char + ": ";
-    for(var point in data) {
-      if(point.press) {
+    for (var point in data) {
+      if (point.press) {
         str += point.data + ', ';
       }
     }
@@ -40,7 +41,6 @@ abstract class StructSymbol {
   }
 
   String ofGroup();
-
 }
 
 class RussianSymbol extends StructSymbol {
@@ -56,7 +56,7 @@ class RussianSymbol extends StructSymbol {
 class PunctuationSymbol extends StructSymbol {
   static final String groupName = "Знаки препинания";
 
-  PunctuationSymbol({List<bool> list, String char}) : super (list: list, char: char);
+  PunctuationSymbol({List<bool> list, String char}) : super(list: list, char: char);
 
   String ofGroup() {
     return groupName;
@@ -66,7 +66,7 @@ class PunctuationSymbol extends StructSymbol {
 class ArithmeticSymbol extends StructSymbol {
   static final String groupName = "Арифметические знаки";
 
-  ArithmeticSymbol({List<bool> list, String char}) : super (list: list, char: char);
+  ArithmeticSymbol({List<bool> list, String char}) : super(list: list, char: char);
 
   String ofGroup() {
     return groupName;

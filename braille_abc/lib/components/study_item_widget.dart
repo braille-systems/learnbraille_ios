@@ -20,10 +20,7 @@ class StudyItem extends StatelessWidget {
       alignment: Alignment.topLeft,
       width: double.infinity,
       decoration: BoxDecoration(
-          border: Border(
-              bottom:
-                  BorderSide(color: CupertinoColors.inactiveGray, width: 0.5)),
-          shape: BoxShape.rectangle
+          border: Border(bottom: BorderSide(color: CupertinoColors.inactiveGray, width: 0.5)), shape: BoxShape.rectangle
           // shape: BoxShape.circle,
           ),
       child: CupertinoButton(
@@ -46,9 +43,9 @@ class StudyItem extends StatelessWidget {
     //
   }
 
-String parse()  {
+// TODO: мб в бущуем написать парсер для строк
+  String parse() {
     List<String> lstOfItems = str.split(":");
     return lstOfItems[0];
   }
-
 }

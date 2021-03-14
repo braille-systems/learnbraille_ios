@@ -1,3 +1,4 @@
+import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/screens/dictionary_screen.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,8 +10,7 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 import '../style.dart';
 
 class LetterScreen extends StatefulWidget {
-  LetterScreen({Key key, @required this.titleSymbol, @required this.symbol})
-      : super(key: key);
+  LetterScreen({Key key, @required this.titleSymbol, @required this.symbol}) : super(key: key);
 
   final String str = "Просмотр символа";
   final String titleSymbol;
@@ -26,7 +26,6 @@ class _LetterScreenState extends State<LetterScreen> {
   @override
   void initState() {
     super.initState();
-    print("InitState");
   }
 
   TextDirection mode() {
@@ -35,8 +34,6 @@ class _LetterScreenState extends State<LetterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("Build");
-
     TextDirection mode() {
       return _dir;
     }
@@ -45,6 +42,11 @@ class _LetterScreenState extends State<LetterScreen> {
       navigationBar: NavigationBar(
         title: widget.str,
         previousPage: DictionaryScreen(),
+        helpPage: LetterViewHelp(),
+        currentPage: LetterScreen(
+          titleSymbol: widget.titleSymbol,
+          symbol: widget.symbol,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,22 +76,19 @@ class _LetterScreenState extends State<LetterScreen> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: CupertinoColors.black,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   textStyle: TextStyle(
                     color: CupertinoColors.white,
                     shadows: <Shadow>[
                       Styles.buildButtonShadow(),
                     ],
                   ),
-                  padding: EdgeInsets.symmetric(
-                      vertical: ScreenParams.width(25, context)),
+                  padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
                 ),
                 onPressed: () => setState(() {
                   if (this._dir == TextDirection.ltr)
                     this._dir = TextDirection.rtl;
-                  else if (this._dir == TextDirection.rtl)
-                    this._dir = TextDirection.ltr;
+                  else if (this._dir == TextDirection.rtl) this._dir = TextDirection.ltr;
                 }),
                 child: Icon(
                   CupertinoIcons.arrow_right_arrow_left,
@@ -97,13 +96,7 @@ class _LetterScreenState extends State<LetterScreen> {
                   semanticLabel: "Изменить режим",
                 ),
               ),
-              Symbol(
-                  dir: mode,
-                  char: widget.symbol,
-                  tap: false,
-                  width: 200,
-                  height: 350,
-                  keymap: widget.titleSymbol),
+              Symbol(dir: mode, char: widget.symbol, tap: false, width: 200, height: 350, keymap: widget.titleSymbol),
               SizedBox(
                 height: ScreenParams.width(60, context),
                 width: ScreenParams.height(8, context),
