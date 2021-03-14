@@ -27,24 +27,26 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
       leading: Semantics(
         label: "Назад",
         child: CupertinoNavigationBarBackButton(
-        onPressed: () {
-          if (displayBottomBar(currentPage)) {
-            scakey.currentState.onItemTapped(0);
-          } else {
-            if (displayBottomBar(previousPage)) {
-              Timer(Duration(milliseconds: 10), () {
-                scakey.currentState.displayTapBar(true);
-              });
+          onPressed: () {
+            if (displayBottomBar(currentPage)) {
+              scakey.currentState.onItemTapped(0);
+            } else {
+              if (displayBottomBar(previousPage)) {
+                Timer(Duration(milliseconds: 10), () {
+                  scakey.currentState.displayTapBar(true);
+                });
+              }
+              Navigator.push(context, CupertinoPageRoute(builder: (context) => previousPage));
             }
-            Navigator.push(context, CupertinoPageRoute(builder: (context) => previousPage));
-          }
-        },
+          },
+        ),
       ),
       middle: Text(
         title,
         style: TextStyle(color: CupertinoColors.black, fontSize: 25, fontWeight: FontWeight.bold),
       ),
-      trailing: this.helpPage != null ? CupertinoButton(
+      trailing: this.helpPage != null
+          ? CupertinoButton(
               padding: const EdgeInsets.symmetric(
                 horizontal: 10,
               ),

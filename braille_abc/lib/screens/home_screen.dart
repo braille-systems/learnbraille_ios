@@ -56,17 +56,18 @@ class MenuScreen extends StatelessWidget {
                       CupertinoIcons.question_circle,
                       size: ScreenParams.height(5, context),
                     ),
-                  onPressed: () {
-                    scakey.currentState.displayTapBar(false);
-                    Navigator.of(context).push(
-                      CupertinoPageRoute(
-                        builder: (context) => HelpScreen(
-                          helpWidget: MainMenuHelp(),
-                          previousPage: HomeScreen(),
+                    onPressed: () {
+                      scakey.currentState.displayTapBar(false);
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) => HelpScreen(
+                            helpWidget: MainMenuHelp(),
+                            previousPage: HomeScreen(),
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
