@@ -32,7 +32,7 @@ class DotImage {
 abstract class Symbol {
   final List<DotImage> dots;
   final String char;
-  Symbol({this.dots, this.char});
+  const Symbol({this.dots, this.char});
 
   List<DotImage> set(){
     return dots;
@@ -47,6 +47,10 @@ abstract class Symbol {
     return str.toString().substring(0, str.length - 2);
   }
 
+  String getChar(){
+    return char;
+  }
+
   String ofGroup();
 
 }
@@ -54,7 +58,7 @@ abstract class Symbol {
 class RussianSymbol extends Symbol {
   static final String groupName = "Русский алфавит";
 
-  RussianSymbol({String char, List<DotImage> list}) : super(dots: list, char: char);
+  const RussianSymbol({String char, List<DotImage> list}) : super(dots: list, char: char);
 
   String ofGroup() {
     return groupName;
@@ -64,7 +68,7 @@ class RussianSymbol extends Symbol {
 class PunctuationSymbol extends Symbol {
   static final String groupName = "Знаки препинания";
 
-  PunctuationSymbol({String char, List<DotImage> list}) : super (dots: list, char: char);
+  const PunctuationSymbol({String char, List<DotImage> list}) : super (dots: list, char: char);
 
   String ofGroup() {
     return groupName;
@@ -74,7 +78,7 @@ class PunctuationSymbol extends Symbol {
 class ArithmeticSymbol extends Symbol {
   static final String groupName = "Арифметические знаки";
 
-  ArithmeticSymbol({String char, List<DotImage> list}) : super (dots: list, char: char);
+  const ArithmeticSymbol({String char, List<DotImage> list}) : super (dots: list, char: char);
 
   String ofGroup() {
     return groupName;
@@ -84,7 +88,7 @@ class ArithmeticSymbol extends Symbol {
 class Number extends Symbol{
   static final String groupName = "Цифры";
 
-  Number({String char, List<DotImage> list}) : super (dots: list, char: char);
+  const Number({String char, List<DotImage> list}) : super (dots: list, char: char);
 
   String ofGroup() {
     return groupName;
@@ -94,7 +98,7 @@ class Number extends Symbol{
 class Sign extends Symbol{
   static final String groupName = "Признаки";
 
-  Sign({List<DotImage> list, String char}) : super (dots: list, char: char);
+  const Sign({List<DotImage> list, String char}) : super (dots: list, char: char);
 
   String ofGroup() {
     return groupName;

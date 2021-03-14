@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
 import 'bottom_bar_widget.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
 
 class StudyItem extends StatelessWidget {
   const StudyItem({
     Key key,
-    @required this.symbolData,
+    @required this.symbol,
     @required this.titleSymbol,
   }) : super(key: key);
 
   final String titleSymbol;
-  final String symbolData;
+  final Symbol symbol;
 
   @override
   Widget build(BuildContext context) {
@@ -24,24 +25,18 @@ class StudyItem extends StatelessWidget {
       child: CupertinoButton(
         color: CupertinoColors.white,
         disabledColor: CupertinoColors.white,
-        child: Text(symbolData, style: TextStyle(color: CupertinoColors.black)),
+        child: Text(symbol.dotsToString(), style: TextStyle(color: CupertinoColors.black)),
         onPressed: () {
           scakey.currentState.displayTapBar(false);
           Navigator.of(context).push(
             CupertinoPageRoute(
               builder: (context) => LetterScreen(
                   titleSymbol: titleSymbol,
-                  symbol: parse()),
+                  symbol: symbol.getChar()),
             ),
           );
         },
       ),
     );
-  }
-
-// TODO: make a parser
-  String parse() {
-    List<String> lstOfItems = symbolData.split(":");
-    return lstOfItems[0];
   }
 }
