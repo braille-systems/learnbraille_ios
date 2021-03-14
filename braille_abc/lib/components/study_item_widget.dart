@@ -18,10 +18,8 @@ class StudyItem extends StatelessWidget {
       alignment: Alignment.topLeft,
       width: double.infinity,
       decoration: BoxDecoration(
-          border: Border(
-              bottom:
-                  BorderSide(color: CupertinoColors.inactiveGray, width: 0.5)),
-          shape: BoxShape.rectangle
+          border: Border(bottom: BorderSide(color: CupertinoColors.inactiveGray, width: 0.5)), shape: BoxShape.rectangle
+          // shape: BoxShape.circle,
           ),
       child: CupertinoButton(
         color: CupertinoColors.white,
@@ -33,7 +31,7 @@ class StudyItem extends StatelessWidget {
             CupertinoPageRoute(
               builder: (context) => LetterScreen(
                   titleSymbol: titleSymbol,
-                  symbol: getSymbol()),
+                  symbol: parse()),
             ),
           );
         },
@@ -42,9 +40,8 @@ class StudyItem extends StatelessWidget {
   }
 
 // TODO: make a parser
-  String getSymbol()  {
+  String parse() {
     List<String> lstOfItems = symbolData.split(":");
     return lstOfItems[0];
   }
-
 }

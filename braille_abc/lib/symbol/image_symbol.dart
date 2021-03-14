@@ -5,7 +5,7 @@ import 'struct_symbol.dart';
 import 'list_symbols.dart';
 
 
-class Symbol extends StatefulWidget {
+class SymbolWidget extends StatefulWidget {
   final double width;
   final double height;
   final String char;
@@ -13,7 +13,7 @@ class Symbol extends StatefulWidget {
   final bool isTapped;
   final TextDirection Function() textDir;
 
-  Symbol(
+  SymbolWidget(
       {Key key,
         @required this.textDir,
         @required this.char,
@@ -29,8 +29,8 @@ class Symbol extends StatefulWidget {
   _SymbolState createState() => _SymbolState(char: char, dictSection: dictSection);
 }
 
-class _SymbolState extends State<Symbol> {
-  StructSymbol symbol;
+class _SymbolState extends State<SymbolWidget> {
+  Symbol symbol;
 
   _SymbolState({String char, String dictSection}) {
     symbol = Search.element(char, dictSection);
@@ -56,7 +56,7 @@ class _SymbolState extends State<Symbol> {
               spacing: 0,
               direction: Axis.vertical,
               runSpacing: 30,
-              children: symbol.data
+              children: symbol.dots
                   .map(
                     (item) => ElevatedButton(
                   onPressed: () {
@@ -82,7 +82,7 @@ class _SymbolState extends State<Symbol> {
                     BorderSide(width: 10, color: CupertinoColors.black),
                     padding: EdgeInsets.all(20),
                   ),
-                  child: Text(item.data,
+                  child: Text(item.outputData,
                       textDirection: TextDirection.ltr,
                       style: TextStyle(fontSize: 0.3 * widget.width)),
                 ),

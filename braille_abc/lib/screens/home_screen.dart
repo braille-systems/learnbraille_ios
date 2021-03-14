@@ -1,5 +1,7 @@
 import 'dart:ui';
-
+import 'package:braille_abc/components/help_widgets.dart';
+import 'package:braille_abc/models/help_model.dart';
+import 'package:braille_abc/screens/help_screen.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreen extends State<HomeScreen> {
   @override
   void initState() {
+    HelpModel.fillHelpModel(context);
     super.initState();
   }
 
@@ -44,17 +47,24 @@ class MenuScreen extends StatelessWidget {
               children: [
                 Text(
                   "Меню",
-                  style: TextStyle(
-                      color: CupertinoColors.black,
-                      fontSize: 55,
-                      fontWeight: FontWeight.bold),
+                  style: TextStyle(color: CupertinoColors.black, fontSize: 55, fontWeight: FontWeight.bold),
                 ),
                 CupertinoButton(
                   child: Icon(
                     CupertinoIcons.question_circle,
                     size: ScreenParams.height(5, context),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    scakey.currentState.displayTapBar(false);
+                    Navigator.of(context).push(
+                      CupertinoPageRoute(
+                        builder: (context) => HelpScreen(
+                          helpWidget: MainMenuHelp(),
+                          previousPage: HomeScreen(),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -70,9 +80,7 @@ class MenuScreen extends StatelessWidget {
                 children: <Widget>[
                   for (int i = 0; i < AppModel.menuButton.length; i++)
                     MenuButtonWidget(
-                      menuButton: MenuButton(
-                          name: AppModel.menuButton[i].name,
-                          icon: AppModel.menuButton[i].icon),
+                      menuButton: MenuButton(name: AppModel.menuButton[i].name, icon: AppModel.menuButton[i].icon),
                       index: i + 1,
                       homeScreen: HomeScreen(),
                     ),
