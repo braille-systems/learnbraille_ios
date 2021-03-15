@@ -27,7 +27,6 @@ class AppModel {
     SettingsScreen(),
   ];
 
-  // TODO: вынести все символы в свои списки - виджеты и передавать в expandedList в более удобном виде
   static final List<SectionModel> sections = [
     SectionModel(
       name: "Русский алфавит",
