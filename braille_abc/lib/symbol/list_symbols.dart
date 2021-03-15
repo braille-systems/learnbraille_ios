@@ -107,7 +107,7 @@ class Search {
     return null;
   }
 
-  // ignore: non_constant_identifier_names
+
   static List<bool> imageSymbol({List<int> d}) {
     List<bool> data = <bool>[false, false, false, false, false, false];
     for (int i = 0; i < d.length; i++) {
