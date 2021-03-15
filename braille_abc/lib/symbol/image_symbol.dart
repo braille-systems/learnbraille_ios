@@ -53,12 +53,12 @@ class _SymbolState extends State<SymbolWidget> {
               alignment: WrapAlignment.center,
               runAlignment: WrapAlignment.center,
               textDirection: widget.textDir(),
-              spacing: 30,
+              spacing: 0,
               direction: Axis.vertical,
-              runSpacing: 0,
+              runSpacing: 30,
               children: symbol.dots
                   .map((item) => Semantics(
-                        label: "Точка" + item.data + (item.press ? "закрашена" : "не закрашена"),
+                        label: "Точка" + item.outputData + (item.press ? "закрашена" : "не закрашена"),
                         button: false,
                         child: ElevatedButton(
                           onPressed: () {
