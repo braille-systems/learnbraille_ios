@@ -36,7 +36,7 @@ The topic is relevant, since the Android application is currently in demand, and
 
 ## Installation
 
-You can find installation instructions for users and developers [here](https://github.com/braille-systems/learnbraille_ios/blob/main/INSTALLATION.md)
+You can find installation instructions for users and developers and information about system requirements and limitations [here](https://github.com/braille-systems/learnbraille_ios/blob/main/INSTALLATION.md)
 
 ## Contributing
 
