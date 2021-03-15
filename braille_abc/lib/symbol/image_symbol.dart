@@ -67,41 +67,30 @@ class _SymbolState extends State<Symbol> {
               spacing: 30,
               runSpacing: 0,
               children: symbol.data
-                  .map(
-                    (item) => Semantics(
-                      label: "Точка" +
-                          item.data +
-                          (item.press ? "закрашена" : "не закрашена"),
-                      button: false,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (widget.tap) {
-                            setState(() {
-                              if (item.p == CupertinoColors.white)
-                                item.p = CupertinoColors.black;
-                              else
-                                item.p = CupertinoColors.white;
-                              if (item.onP == CupertinoColors.black)
-                                item.onP = CupertinoColors.white;
-                              else
-                                item.onP = CupertinoColors.black;
-                              item.press = !(item.press);
-                            });
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: item.p,
-                          onPrimary: item.onP,
-                          shape: CircleBorder(),
-                          side: BorderSide(width: 10, color: CupertinoColors.black),
-                          padding: EdgeInsets.all(20),
+                  .map((item) => Semantics(
+                        label: "Точка" + item.data + (item.press ? "закрашена" : "не закрашена"),
+                        button: false,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (widget.tap) {
+                              setState(() {
+                                item.p = (item.press ? CupertinoColors.black : CupertinoColors.white);
+                                item.onP = (item.press ? CupertinoColors.white : CupertinoColors.black);
+                                item.press = !item.press;
+                              });
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: item.p,
+                            onPrimary: item.onP,
+                            shape: CircleBorder(),
+                            side: BorderSide(width: 10, color: CupertinoColors.black),
+                            padding: EdgeInsets.all(20),
+                          ),
+                          child: Text(item.data,
+                              textDirection: TextDirection.ltr, style: TextStyle(fontSize: 0.3 * widget.width)),
                         ),
-                        child: Text(item.data,
-                            textDirection: TextDirection.ltr, style: TextStyle(fontSize: 0.3 * widget.width)),
-                      ),
-                    )
-
-                  )
+                      ))
                   .toList(),
             ),
           ),
