@@ -42,12 +42,12 @@ class AppModel {
     ),
     ),
     SectionModel(
-      name: "Знаки препинания",
-      icon: CupertinoIcons.exclamationmark,
-      expandedList: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: _alphabet.listOfStudyItems("Знаки препинания"),
-      ),
+        name: "Знаки препинания",
+        icon: CupertinoIcons.exclamationmark,
+        expandedList: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: _alphabet.listOfStudyItems("Знаки препинания"),
+        ),
     ),
     SectionModel(
       name: "Арифметические знаки",

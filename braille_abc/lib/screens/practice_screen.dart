@@ -6,11 +6,14 @@ class PracticeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        leading: CupertinoNavigationBarBackButton(
-          onPressed: () {
-            scakey.currentState.onItemTapped(0);
-          },
-        ),
+        leading: Semantics(
+            label: "Назад",
+            button: true,
+            child: CupertinoNavigationBarBackButton(
+              onPressed: () {
+                scakey.currentState.onItemTapped(0);
+              },
+            )),
         middle: Text(
           "Практика",
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
