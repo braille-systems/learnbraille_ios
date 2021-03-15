@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+//Class converts the percentage size to pixels based on the current screen size
 class ScreenParams {
   static width(double percent, BuildContext context) {
     return MediaQuery.of(context).size.width * (percent / 100);
