@@ -15,7 +15,7 @@ class MainMenuHelp extends StatelessWidget {
     return Column(children: [
       Html(
         data: HelpModel.helpSection['Главное меню'].description,
-        defaultTextStyle: TextStyle(fontSize: 19),
+        defaultTextStyle: Styles.helpTextStyle(),
       ),
       for (int i = 0; i < HelpModel.helpSection['Главное меню'].content.length; i++)
         ExpansionSection(
@@ -23,7 +23,7 @@ class MainMenuHelp extends StatelessWidget {
           sectionName: HelpModel.helpSection['Главное меню'].content[i].name,
           child: Html(
               data: HelpModel.helpSection['Главное меню'].content[i].description,
-              defaultTextStyle: TextStyle(fontSize: 19)),
+              defaultTextStyle:Styles.helpTextStyle()),
         )
     ]);
   }
