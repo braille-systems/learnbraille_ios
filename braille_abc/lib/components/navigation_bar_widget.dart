@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/help_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,29 +25,34 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
   Widget build(BuildContext context) {
     return CupertinoNavigationBar(
       backgroundColor: CupertinoColors.extraLightBackgroundGray,
-      leading: CupertinoNavigationBarBackButton(
-        onPressed: () {
-          if (displayBottomBar(currentPage)) {
-            scakey.currentState.onItemTapped(0);
-          } else {
-            if (displayBottomBar(previousPage)) {
-              Timer(Duration(milliseconds: 10), () {
-                scakey.currentState.displayTapBar(true);
-              });
+      leading: Semantics(
+        label: "Назад",
+        child: CupertinoNavigationBarBackButton(
+          onPressed: () {
+            if (displayBottomBar(currentPage)) {
+              scakey.currentState.onItemTapped(0);
+            } else {
+              if (displayBottomBar(previousPage)) {
+                Timer(Duration(milliseconds: 10), () {
+                  scakey.currentState.displayTapBar(true);
+                });
+              }
+              Navigator.push(context, CupertinoPageRoute(builder: (context) => previousPage));
             }
-            Navigator.push(context, CupertinoPageRoute(builder: (context) => previousPage));
-          }
-        },
+          },
+        ),
       ),
-      middle: Text(
+      middle:
+      AutoSizeText(
         title,
         style: TextStyle(color: CupertinoColors.black, fontSize: 25, fontWeight: FontWeight.bold),
       ),
-      trailing: this.helpPage != null ? CupertinoButton(
+      trailing: this.helpPage != null
+          ? CupertinoButton(
               padding: const EdgeInsets.symmetric(
                 horizontal: 10,
               ),
-              child: Icon(CupertinoIcons.question_circle, size: 35),
+              child: Icon(CupertinoIcons.question_circle, semanticLabel: "Справка", size: 35),
               onPressed: () {
                 Timer(Duration(milliseconds: 10), () {
                   scakey.currentState.displayTapBar(false);

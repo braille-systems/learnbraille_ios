@@ -52,6 +52,7 @@ class MenuScreen extends StatelessWidget {
                 CupertinoButton(
                   child: Icon(
                     CupertinoIcons.question_circle,
+                    semanticLabel: "Справка",
                     size: ScreenParams.height(5, context),
                   ),
                   onPressed: () {
@@ -60,7 +61,7 @@ class MenuScreen extends StatelessWidget {
                       CupertinoPageRoute(
                         builder: (context) => HelpScreen(
                           helpWidget: MainMenuHelp(),
-                          previousPage: HomeScreen(),
+                          previousPage: MenuScreen(),
                         ),
                       ),
                     );
@@ -70,10 +71,10 @@ class MenuScreen extends StatelessWidget {
             ),
             SizedBox(height: ScreenParams.height(4, context)),
             Container(
-              height: ScreenParams.heightIOS14(70, context),
+              height: ScreenParams.heightIOS14(80, context),
               child: GridView.count(
                 physics: new NeverScrollableScrollPhysics(),
-                childAspectRatio: (50 / 65),
+                childAspectRatio: (4.0 / 5.0),
                 mainAxisSpacing: ScreenParams.height(3, context),
                 crossAxisSpacing: ScreenParams.height(2, context),
                 crossAxisCount: 2,

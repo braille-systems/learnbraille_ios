@@ -1,72 +1,105 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
-class Point {
+class DotImage {
   Color p = CupertinoColors.white;
   Color onP = CupertinoColors.black;
   bool press = false;
-  String data;
+  String outputData;
   int num;
-
-  Point(this.data, this.num);
-}
-
-abstract class StructSymbol {
-  List<Point> data = <Point>[Point('1', 1), Point('4', 4), Point('2', 2), Point('5', 5), Point('3', 3), Point('6', 6)];
-  String char;
-
-  StructSymbol({List<bool> list, this.char}) {
-    for (int i = 0; i < list.length; i++) {
-      for (int j = 0; j < data.length; j++) {
-        if (data[j].num == i + 1) {
-          data[j].press = list[i];
-          if (data[j].press) {
-            data[j].p = CupertinoColors.black;
-            data[j].onP = CupertinoColors.white;
-          }
-        }
-      }
-    }
+  DotImage(this.num, bool isPress){
+    outputData = num.toString();
+    if(isPress)
+      this.setIsPressed(true);
   }
 
-  String stringPoints() {
-    String str = char + ": ";
-    for (var point in data) {
-      if (point.press) {
-        str += point.data + ', ';
-      }
+  void setIsPressed(bool state){
+    press = state;
+    if(press){
+      p = CupertinoColors.black;
+      onP = CupertinoColors.white;
     }
-    return str.substring(0, str.length - 2);
+    else{
+      p = CupertinoColors.black;
+      onP = CupertinoColors.white;
+    }
+  }
+}
+
+@immutable
+abstract class Symbol {
+  final List<DotImage> dots;
+  final String char;
+  const Symbol({this.dots, this.char});
+
+  List<DotImage> set(){
+    return dots;
+  }
+
+  String dotsToString() {
+    StringBuffer str = new StringBuffer(char + ": точки ");
+    for(var d in dots){
+      if(d.press)
+        str.write(d.outputData + ", ");
+    }
+    // (str.length - 2) is used to remove the last punctuation from output
+    return str.toString().substring(0, str.length - 2);
+  }
+
+  String getChar(){
+    return char;
   }
 
   String ofGroup();
+
 }
 
-class RussianSymbol extends StructSymbol {
+class RussianSymbol extends Symbol {
   static final String groupName = "Русский алфавит";
 
-  RussianSymbol({List<bool> list, String char}) : super(list: list, char: char);
+  const RussianSymbol({String char, List<DotImage> list}) : super(dots: list, char: char);
 
   String ofGroup() {
     return groupName;
   }
 }
 
-class PunctuationSymbol extends StructSymbol {
+class PunctuationSymbol extends Symbol {
   static final String groupName = "Знаки препинания";
 
-  PunctuationSymbol({List<bool> list, String char}) : super(list: list, char: char);
+  const PunctuationSymbol({String char, List<DotImage> list}) : super (dots: list, char: char);
 
   String ofGroup() {
     return groupName;
   }
 }
 
-class ArithmeticSymbol extends StructSymbol {
+class ArithmeticSymbol extends Symbol {
   static final String groupName = "Арифметические знаки";
 
-  ArithmeticSymbol({List<bool> list, String char}) : super(list: list, char: char);
+  const ArithmeticSymbol({String char, List<DotImage> list}) : super (dots: list, char: char);
+
+  String ofGroup() {
+    return groupName;
+  }
+}
+
+class Number extends Symbol{
+  static final String groupName = "Цифры";
+
+  const Number({String char, List<DotImage> list}) : super (dots: list, char: char);
+
+  String ofGroup() {
+    return groupName;
+  }
+}
+
+class Sign extends Symbol{
+  static final String groupName = "Признаки";
+
+  const Sign({List<DotImage> list, String char}) : super (dots: list, char: char);
 
   String ofGroup() {
     return groupName;

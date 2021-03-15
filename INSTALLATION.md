@@ -6,6 +6,7 @@
 
  Also, correct display and use of the app on tablets is not guaranteed and depends on the support of their compatibility with Flutter-apps.
 
+
 ## System requirements and limitations
 
  For correct operation of the application on ***IPhone*** the following is required:
