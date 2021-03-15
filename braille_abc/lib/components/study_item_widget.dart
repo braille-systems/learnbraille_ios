@@ -1,18 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
 import 'bottom_bar_widget.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
 
 class StudyItem extends StatelessWidget {
   const StudyItem({
     Key key,
-    @required this.str,
+    @required this.symbol,
     @required this.titleSymbol,
   }) : super(key: key);
 
   final String titleSymbol;
-  final String str;
-
-  // final String russianAlphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+  final Symbol symbol;
 
   @override
   Widget build(BuildContext context) {
@@ -26,26 +25,18 @@ class StudyItem extends StatelessWidget {
       child: CupertinoButton(
         color: CupertinoColors.white,
         disabledColor: CupertinoColors.white,
-        child: Text(str, style: TextStyle(color: CupertinoColors.black)),
+        child: Text(symbol.dotsToString(), style: TextStyle(color: CupertinoColors.black)),
         onPressed: () {
           scakey.currentState.displayTapBar(false);
           Navigator.of(context).push(
             CupertinoPageRoute(
               builder: (context) => LetterScreen(
-                  // TODO: заменить эту строку на выбор заголовка
                   titleSymbol: titleSymbol,
-                  symbol: parse()),
+                  symbol: symbol.getChar()),
             ),
           );
         },
       ),
     );
-    //
-  }
-
-// TODO: мб в бущуем написать парсер для строк
-  String parse() {
-    List<String> lstOfItems = str.split(":");
-    return lstOfItems[0];
   }
 }

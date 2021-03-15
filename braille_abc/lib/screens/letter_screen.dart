@@ -96,7 +96,7 @@ class _LetterScreenState extends State<LetterScreen> {
                   semanticLabel: "Изменить режим",
                 ),
               ),
-              Symbol(dir: mode, char: widget.symbol, tap: false, width: 200, height: 350, keymap: widget.titleSymbol),
+              SymbolWidget(textDir: mode, char: widget.symbol, isTapped: false, width: 200, height: 350, dictSection: widget.titleSymbol),
               SizedBox(
                 height: ScreenParams.width(60, context),
                 width: ScreenParams.height(8, context),

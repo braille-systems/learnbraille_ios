@@ -4,54 +4,43 @@ import 'package:flutter/widgets.dart';
 import 'struct_symbol.dart';
 import 'list_symbols.dart';
 
-// ignore: must_be_immutable
-class Symbol extends StatefulWidget {
-  //ширина
-  double width;
 
-  //высота
-  double height;
+class SymbolWidget extends StatefulWidget {
+  final double width;
+  final double height;
+  final String char;
+  final String dictSection;
+  final bool isTapped;
+  final TextDirection Function() textDir;
 
-  //отвечает за символ, который будет печататься, если же символ печататься не должен, писать null
-  String char;
-
-  //ключ, по которому из map берётся список для поиска
-  String keymap;
-
-  //реакция на нажатие
-  bool tap;
-
-  //принимает на вход функцию, которая возвращает вид вывода
-  TextDirection Function() dir;
-
-  Symbol(
+  SymbolWidget(
       {Key key,
-      @required this.dir,
-      @required this.char,
-      @required this.keymap,
-      @required this.tap,
-      @required this.width,
-      @required this.height})
+        @required this.textDir,
+        @required this.char,
+        @required this.dictSection,
+        @required this.isTapped,
+        @required this.width,
+        @required this.height})
       : super(key: key) {
     createState();
   }
 
   @override
-  _SymbolState createState() => _SymbolState(char: char, keymap: keymap);
+  _SymbolState createState() => _SymbolState(char: char, dictSection: dictSection);
 }
 
-class _SymbolState extends State<Symbol> {
-  StructSymbol symbol;
+class _SymbolState extends State<SymbolWidget> {
+  Symbol symbol;
 
-  _SymbolState({String char, String keymap}) {
-    symbol = Search.element(char, keymap);
+  _SymbolState({String char, String dictSection}) {
+    symbol = Search.element(char, dictSection);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Stack(
-        textDirection: widget.dir(),
+        textDirection: widget.textDir(),
         children: <Widget>[
           Container(
             height: widget.height,
@@ -63,16 +52,17 @@ class _SymbolState extends State<Symbol> {
             child: Wrap(
               alignment: WrapAlignment.center,
               runAlignment: WrapAlignment.center,
-              textDirection: widget.dir(),
+              textDirection: widget.textDir(),
               spacing: 30,
+              direction: Axis.vertical,
               runSpacing: 0,
-              children: symbol.data
+              children: symbol.dots
                   .map((item) => Semantics(
                         label: "Точка" + item.data + (item.press ? "закрашена" : "не закрашена"),
                         button: false,
                         child: ElevatedButton(
                           onPressed: () {
-                            if (widget.tap) {
+                            if (widget.isTapped) {
                               setState(() {
                                 item.p = (item.press ? CupertinoColors.black : CupertinoColors.white);
                                 item.onP = (item.press ? CupertinoColors.white : CupertinoColors.black);
@@ -87,11 +77,11 @@ class _SymbolState extends State<Symbol> {
                             side: BorderSide(width: 10, color: CupertinoColors.black),
                             padding: EdgeInsets.all(20),
                           ),
-                          child: Text(item.data,
+                          child: Text(item.outputData,
                               textDirection: TextDirection.ltr, style: TextStyle(fontSize: 0.3 * widget.width)),
                         ),
                       ))
-                  .toList(),
+                  .toList(growable: false),
             ),
           ),
         ],
