@@ -57,36 +57,30 @@ class _SymbolState extends State<SymbolWidget> {
               direction: Axis.vertical,
               runSpacing: 30,
               children: symbol.dots
-                  .map(
-                    (item) => ElevatedButton(
-                  onPressed: () {
-                    if (widget.isTapped) {
-                      setState(() {
-                        if (item.p == CupertinoColors.white)
-                          item.p = CupertinoColors.black;
-                        else
-                          item.p = CupertinoColors.white;
-                        if (item.onP == CupertinoColors.black)
-                          item.onP = CupertinoColors.white;
-                        else
-                          item.onP = CupertinoColors.black;
-                        item.press = !(item.press);
-                      });
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: item.p,
-                    onPrimary: item.onP,
-                    shape: CircleBorder(),
-                    side:
-                    BorderSide(width: 10, color: CupertinoColors.black),
-                    padding: EdgeInsets.all(20),
-                  ),
-                  child: Text(item.outputData,
-                      textDirection: TextDirection.ltr,
-                      style: TextStyle(fontSize: 0.3 * widget.width)),
-                ),
-              )
+                  .map((item) => Semantics(
+                        label: "Точка" + item.outputData + (item.press ? "закрашена" : "не закрашена"),
+                        button: false,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (widget.isTapped) {
+                              setState(() {
+                                item.p = (item.press ? CupertinoColors.black : CupertinoColors.white);
+                                item.onP = (item.press ? CupertinoColors.white : CupertinoColors.black);
+                                item.press = !item.press;
+                              });
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: item.p,
+                            onPrimary: item.onP,
+                            shape: CircleBorder(),
+                            side: BorderSide(width: 10, color: CupertinoColors.black),
+                            padding: EdgeInsets.all(20),
+                          ),
+                          child: Text(item.outputData,
+                              textDirection: TextDirection.ltr, style: TextStyle(fontSize: 0.3 * widget.width)),
+                        ),
+                      ))
                   .toList(growable: false),
             ),
           ),

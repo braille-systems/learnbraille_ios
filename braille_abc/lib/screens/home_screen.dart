@@ -52,6 +52,7 @@ class MenuScreen extends StatelessWidget {
                 CupertinoButton(
                   child: Icon(
                     CupertinoIcons.question_circle,
+                    semanticLabel: "Справка",
                     size: ScreenParams.height(5, context),
                   ),
                   onPressed: () {

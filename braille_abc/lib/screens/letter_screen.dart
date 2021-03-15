@@ -54,12 +54,19 @@ class _LetterScreenState extends State<LetterScreen> {
           SizedBox(
             height: ScreenParams.height(5, context),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
-            LetterWidget(
-              title: widget.titleSymbol,
-              symbol: widget.symbol,
-            ),
-          ]),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Semantics(
+                  button: false,
+                  child: LetterWidget(
+                    title: widget.titleSymbol,
+                    symbol: widget.symbol,
+                  ),
+                )
+
+              ]),
           SizedBox(
             height: ScreenParams.height(5, context),
           ),
