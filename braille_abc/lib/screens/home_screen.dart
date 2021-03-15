@@ -60,7 +60,7 @@ class MenuScreen extends StatelessWidget {
                       CupertinoPageRoute(
                         builder: (context) => HelpScreen(
                           helpWidget: MainMenuHelp(),
-                          previousPage: HomeScreen(),
+                          previousPage: MenuScreen(),
                         ),
                       ),
                     );
