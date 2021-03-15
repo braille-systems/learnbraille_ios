@@ -2,7 +2,7 @@
 
 ## Target platform
 
- This application is designed to run on IPhones with IOS. In addition, the application can be used on phones with Android OS, but the display style of the app interface may differ from the usual, because the elements for creating the interface of this application have a IOS-style. Also, correct display and use of the app on tablets is not guaranteed and depends on the support of their compatibility with Flutter-apps.
+ This application is designed to run on IPhones with IOS. In addition, the application can be used on phones with Android OS, but the display style of the app interface may differ from the usual, because the elements for creating the interface of this application designed with IOS-style. Also, correct display and use of the app on tablets is not guaranteed and depends on the support of their compatibility with Flutter-apps.
 
 ## System requirements and limitations
 
