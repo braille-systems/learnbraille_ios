@@ -2,27 +2,29 @@
 
 ## Target platform
 
- This application is designed to run on IPhones with IOS. In addition, the application can be used on phones with Android OS.  But the display style of the app interface may differ from the usual, because the elements for creating the interface of this application designed with IOS-style. Also, correct display and use of the app on tablets is not guaranteed and depends on the support of their compatibility with Flutter-apps.
+ This application is designed to run on IPhones with IOS. In addition, the application can be used on phones with Android OS.  But the display style of the app interface may differ from the usual, because the elements for creating the interface of this application were designed with IOS-style.
+
+ Also, correct display and use of the app on tablets is not guaranteed and depends on the support of their compatibility with Flutter-apps.
 
 ## System requirements and limitations
 
- For correct operation of applications on the ***IPhone*** you need:
+ For correct operation of the application on ***IPhone*** the following is required:
 
 - IOS version 8.0 or higher
 
 - IPhone 4s or newer
 
- At the moment, all elements of the application are displayed correctly for IPhones with a 4.7-inch display (1334x750 pixels, for example IPhone 6). App should be scaled without troubles to any higher resolution parameters. This information will be updated later.
+ At the moment, all elements of the application are displayed correctly on IPhone with a 4.7-inch display (1334x750 pixels, for example IPhone 6). App should be scaled without troubles to any higher resolution parameters. This information will be updated later.
 
- For correct operation of applications on the ***Android*** you need:
+ For correct operation of the application on ***Android*** the following is required:
 
-- Android SDK version 16 or higher (but it's recommended to use version over 19)
+- Android SDK version 16 or higher (but it's recommended to use version 19 and over)
 
 - Android OS version 4.1 or newer
 
  To build an application for IOS, you must have ***XCode*** version 9.0 or higher.
 
- To develop the application, a version of the ***Flutter*** from the stable channel is used. Current information of Flutter compatibility with mobile devices is published [here](https://flutter.dev/docs/development/tools/sdk/release-notes/supported-platforms).
+ To develop the application, a version of the ***Flutter*** from the stable channel is used. Current information about Flutter compatibility with mobile devices is published [here](https://flutter.dev/docs/development/tools/sdk/release-notes/supported-platforms).
 
 
 # Installation and running
