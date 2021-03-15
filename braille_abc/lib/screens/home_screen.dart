@@ -74,7 +74,7 @@ class MenuScreen extends StatelessWidget {
               height: ScreenParams.heightIOS14(80, context),
               child: GridView.count(
                 physics: new NeverScrollableScrollPhysics(),
-                childAspectRatio: (40 / 50),
+                childAspectRatio: (4.0 / 5.0),
                 mainAxisSpacing: ScreenParams.height(3, context),
                 crossAxisSpacing: ScreenParams.height(2, context),
                 crossAxisCount: 2,
