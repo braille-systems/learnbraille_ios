@@ -44,6 +44,7 @@ abstract class Symbol {
       if(d.press)
         str.write(d.outputData + ", ");
     }
+    // (str.length - 2) is used to remove the last punctuation from output
     return str.toString().substring(0, str.length - 2);
   }
 
