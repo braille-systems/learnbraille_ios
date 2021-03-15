@@ -2,6 +2,7 @@ import 'package:braille_abc/models/help_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import '../style.dart';
 import 'expansion_section_widget.dart';
 
 class MainMenuHelp extends StatelessWidget {
@@ -14,7 +15,7 @@ class MainMenuHelp extends StatelessWidget {
     return Column(children: [
       Html(
         data: HelpModel.helpSection['Главное меню'].description,
-        defaultTextStyle: TextStyle(fontSize: 17),
+        defaultTextStyle: TextStyle(fontSize: 19),
       ),
       for (int i = 0; i < HelpModel.helpSection['Главное меню'].content.length; i++)
         ExpansionSection(
@@ -44,7 +45,7 @@ class GeneralHelp extends StatelessWidget {
         children: [
           Html(
             data: HelpModel.helpSection['Общая справка'].description,
-            defaultTextStyle: TextStyle(fontSize: 19),
+            defaultTextStyle: Styles.helpTextStyle(),
           ),
           for (int i = 0; i < HelpModel.helpSection['Общая справка'].content.length; i++)
             ExpansionSection(
@@ -52,7 +53,7 @@ class GeneralHelp extends StatelessWidget {
               sectionName: HelpModel.helpSection['Общая справка'].content[i].name,
               child: Html(
                   data: HelpModel.helpSection['Общая справка'].content[i].description,
-                  defaultTextStyle: TextStyle(fontSize: 19)),
+                  defaultTextStyle:Styles.helpTextStyle()),
             )
         ],
       ),
@@ -70,14 +71,14 @@ class DictionaryHelp extends StatelessWidget {
     return Column(children: [
       Html(
         data: HelpModel.helpSection['Алфавит'].description,
-        defaultTextStyle: TextStyle(fontSize: 19),
+        defaultTextStyle: Styles.helpTextStyle(),
       ),
       for (int i = 0; i < HelpModel.helpSection['Алфавит'].content.length; i++)
         ExpansionSection(
           sectionIcon: CupertinoIcons.textformat,
           sectionName: HelpModel.helpSection['Алфавит'].content[i].name,
           child: Html(
-              data: HelpModel.helpSection['Алфавит'].content[i].description, defaultTextStyle: TextStyle(fontSize: 19)),
+              data: HelpModel.helpSection['Алфавит'].content[i].description, defaultTextStyle: Styles.helpTextStyle()),
         )
     ]);
   }
@@ -97,7 +98,7 @@ class LetterViewHelp extends StatelessWidget {
       children: [
         Html(
           data: HelpModel.helpSection['Просмотр символа'].description,
-          defaultTextStyle: TextStyle(fontSize: 19),
+          defaultTextStyle: Styles.helpTextStyle(),
         ),
         for (int i = 0; i < HelpModel.helpSection['Просмотр символа'].content.length; i++)
           ExpansionSection(
@@ -108,7 +109,7 @@ class LetterViewHelp extends StatelessWidget {
               children: [
                 Html(
                   data: HelpModel.helpSection['Просмотр символа'].content[i].description,
-                  defaultTextStyle: TextStyle(fontSize: 19),
+                  defaultTextStyle: Styles.helpTextStyle(),
                 ),
                 for (int j = 0; j < HelpModel.helpSection['Просмотр символа'].content[i].content.length; j++)
                   ExpansionSection(
@@ -116,7 +117,7 @@ class LetterViewHelp extends StatelessWidget {
                     sectionName: HelpModel.helpSection['Просмотр символа'].content[i].content[j].name,
                     child: Html(
                         data: HelpModel.helpSection['Просмотр символа'].content[i].content[i].description,
-                        defaultTextStyle: TextStyle(fontSize: 19)),
+                        defaultTextStyle: Styles.helpTextStyle()),
                   )
               ],
             ),
