@@ -171,7 +171,14 @@ class Search {
   }
 
   static List<DotImage> imageSymbol({List<int> d}) {
-    List<DotImage> data = <DotImage>[DotImage(1, false), DotImage(2, false), DotImage(3, false), DotImage(4, false), DotImage(5, false), DotImage(6, false)];
+    List<DotImage> data = <DotImage>[
+      DotImage(1, false),
+      DotImage(2, false),
+      DotImage(3, false),
+      DotImage(4, false),
+      DotImage(5, false),
+      DotImage(6, false)
+    ];
     for (int i = 0; i < d.length; i++) {
       data[d[i] - 1].setIsPressed(true);
     }

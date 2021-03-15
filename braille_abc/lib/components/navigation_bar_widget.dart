@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/help_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,7 +42,8 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
           },
         ),
       ),
-      middle: Text(
+      middle:
+      AutoSizeText(
         title,
         style: TextStyle(color: CupertinoColors.black, fontSize: 25, fontWeight: FontWeight.bold),
       ),

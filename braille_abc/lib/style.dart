@@ -8,4 +8,8 @@ abstract class Styles {
       color: CupertinoColors.separator,
     );
   }
+
+  static TextStyle helpTextStyle(){
+    return TextStyle(fontSize: 19);
+  }
 }
