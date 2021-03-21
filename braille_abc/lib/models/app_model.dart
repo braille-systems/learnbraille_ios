@@ -1,6 +1,8 @@
 import 'package:braille_abc/components/help_widgets.dart';
+import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/models/section_model.dart';
 import 'package:braille_abc/screens/dictionary_screen.dart';
+import 'package:braille_abc/screens/help_screen.dart';
 import 'package:braille_abc/screens/home_screen.dart';
 import 'package:braille_abc/screens/practice_screen.dart';
 import 'package:braille_abc/screens/settings_screen.dart';
@@ -21,18 +23,29 @@ class AppModel {
   ];
 
   static final Map<String, Widget> navigationScreens = {
-    "MenuScreen": MenuScreen(),
-    "StudyScreen": StudyScreen(),
-    "PracticeScreen": PracticeScreen(),
-    "DictionaryScreen": DictionaryScreen(
-        hasNavigationBar: true, previousPage: navigationScreens['MainMenu'], helpPage: helpScreens['DictionaryHelp']),
-    "SettingsScreen": SettingsScreen(),
-  };
+    "MenuScreen": MenuScreen(
+      previousPage: null,
+      helpPage: HelpScreen(
+        currentHelp: MainMenuHelp(),
+        previousPage: MenuScreen(),
+      ),
+    ),
 
-  static final Map<String, Widget> helpScreens = {
-    "DictionaryHelp": DictionaryHelp(),
-    "LetterViewHelp": LetterViewHelp(),
-    "MainMenuHelp": MainMenuHelp(),
+    "StudyScreen": StudyScreen(),
+
+    "PracticeScreen": PracticeScreen(),
+
+    "DictionaryScreen": DictionaryScreen(
+        previousPage: navigationScreens['MainMenu'],
+        helpPage: HelpScreen(
+          currentHelp: DictionaryHelp(),
+          previousPage: DictionaryScreen(),
+        )),
+
+    "SettingsScreen": SettingsScreen(
+      previousPage: navigationScreens['MainMenu'],
+      helpPage: null,
+    ),
   };
 
   static final List<SectionModel> sections = [

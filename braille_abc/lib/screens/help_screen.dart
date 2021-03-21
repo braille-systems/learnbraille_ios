@@ -1,16 +1,16 @@
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
+import 'package:braille_abc/models/screen_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HelpScreen extends StatelessWidget {
+class HelpScreen extends Screen {
   const HelpScreen({
     Key key,
-    @required this.helpWidget,
-    @required this.previousPage,
-  }) : super(key: key);
-
-  final Widget helpWidget;
+    this.previousPage,
+    this.currentHelp,
+  }) : super(key: key, hasNavigationBar: false, helpPage: null, previousPage: previousPage);
+  final Widget currentHelp;
   final Widget previousPage;
 
   @override
@@ -29,7 +29,7 @@ class HelpScreen extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
-            helpWidget,
+            currentHelp,
             GeneralHelp(),
           ]),
         ),

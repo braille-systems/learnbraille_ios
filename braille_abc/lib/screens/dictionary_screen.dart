@@ -7,19 +7,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
-class DictionaryScreen extends Screen {
+class DictionaryScreen extends NavigationScreen {
   const DictionaryScreen({
     Key key,
-    bool hasNavigationBar,
     Widget helpPage,
     Widget previousPage,
-    Widget nextPage,
   }) : super(
-            key: key,
-            hasNavigationBar: hasNavigationBar,
-            helpPage: helpPage,
-            previousPage: previousPage,
-            nextPage: nextPage);
+          key: key,
+          helpPage: helpPage,
+          previousPage: previousPage,
+        );
 
   @override
   Widget build(BuildContext context) {

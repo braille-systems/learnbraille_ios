@@ -1,7 +1,17 @@
 import 'package:braille_abc/components/bottom_bar_widget.dart';
+import 'package:braille_abc/models/screen_model.dart';
 import 'package:flutter/cupertino.dart';
 
-class PracticeScreen extends StatelessWidget {
+class PracticeScreen extends NavigationScreen {
+  const PracticeScreen({
+    Key key,
+    Widget helpPage,
+    Widget previousPage,
+  }) : super(
+    key: key,
+    helpPage: helpPage,
+    previousPage: previousPage,
+  );
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
