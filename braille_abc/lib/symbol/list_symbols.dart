@@ -1,6 +1,5 @@
 import 'package:braille_abc/components/study_item_widget.dart';
 import 'package:braille_abc/models/enums_model.dart';
-import 'package:braille_abc/models/section_model.dart';
 import 'struct_symbol.dart';
 
 class SymbolsFactory {
