@@ -69,7 +69,7 @@ class MenuScreen extends NavigationScreen {
                     scakey.currentState.displayTapBar(false);
                     Navigator.of(context).push(
                       CupertinoPageRoute(
-                        builder: (context) => helpPage
+                        builder: (context) => HelpScreen(currentHelp: helpPage,previousPage: this,)
                       ),
                     );
                   },

@@ -1,3 +1,5 @@
+import 'package:braille_abc/components/help_widgets.dart';
+import 'package:braille_abc/screens/help_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
 import 'bottom_bar_widget.dart';
@@ -30,9 +32,12 @@ class StudyItem extends StatelessWidget {
           scakey.currentState.displayTapBar(false);
           Navigator.of(context).push(
             CupertinoPageRoute(
-              builder: (context) => LetterScreen(
-                  titleSymbol: titleSymbol,
-                  symbol: symbol.getChar()),
+              builder: (context) => LetterViewScreen(
+                titleSymbol: titleSymbol,
+                symbol: symbol.getChar(),
+                previousPage: DictionaryHelp(),
+                helpPage:  LetterViewHelp(),
+              ),
             ),
           );
         },

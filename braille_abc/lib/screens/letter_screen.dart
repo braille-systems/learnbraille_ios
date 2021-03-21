@@ -10,6 +10,35 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 
 import '../style.dart';
 
+class LetterViewScreen extends SectionScreen {
+
+  final String titleSymbol;
+  final String symbol;
+
+  const LetterViewScreen({
+    Key key,
+    Widget helpPage,
+    Widget previousPage,
+    @required this.titleSymbol,
+    @required this.symbol
+  }) : super(
+    key: key,
+    helpPage: helpPage,
+    previousPage: previousPage,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+      navigationBar: NavigationBar(
+        currentPage: this,
+        title: "Просмотр символа",
+      ),
+      child: LetterScreen(titleSymbol: titleSymbol, symbol: symbol,)
+    );
+  }
+}
+
 class LetterScreen extends StatefulWidget {
   LetterScreen({Key key, @required this.titleSymbol, @required this.symbol}) : super(key: key);
 
@@ -40,15 +69,6 @@ class _LetterScreenState extends State<LetterScreen> {
     }
 
     return CupertinoPageScaffold(
-      /*navigationBar: NavigationBar(
-        title: widget.str,
-        previousPage: DictionaryScreen(),
-        helpPage: LetterViewHelp(),
-        currentPage: LetterScreen(
-          titleSymbol: widget.titleSymbol,
-          symbol: widget.symbol,
-        ),
-      ),*/
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

@@ -23,11 +23,9 @@ class AppModel {
   ];
 
   static final Widget menuScreen = MenuScreen(
-      previousPage: null,
-      helpPage: HelpScreen(
-        currentHelp: MainMenuHelp(),
-        previousPage: MenuScreen(),
-      ));
+    previousPage: null,
+    helpPage: MainMenuHelp(),
+  );
 
   static final Widget studyScreen = StudyScreen(
     previousPage: menuScreen,
@@ -37,11 +35,9 @@ class AppModel {
   static final Widget practiceScreen = PracticeScreen(previousPage: menuScreen, helpPage: null);
 
   static final Widget dictionaryScreen = DictionaryScreen(
-      previousPage: menuScreen,
-      helpPage: HelpScreen(
-        currentHelp: DictionaryHelp(),
-        previousPage: DictionaryScreen(),
-      ));
+    previousPage: menuScreen,
+    helpPage: DictionaryHelp(),
+  );
 
   static final Widget settingsScreen = SettingsScreen(previousPage: menuScreen, helpPage: null);
 
@@ -54,7 +50,11 @@ class AppModel {
   };
 
   static final List<Widget> navigationScreensList = [
-    menuScreen, studyScreen, practiceScreen, dictionaryScreen, settingsScreen
+    menuScreen,
+    studyScreen,
+    practiceScreen,
+    dictionaryScreen,
+    settingsScreen
   ];
 
   static final List<SectionModel> sections = [

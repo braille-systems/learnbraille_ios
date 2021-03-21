@@ -39,8 +39,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
           },
         ),
       ),
-      middle:
-      AutoSizeText(
+      middle: AutoSizeText(
         title,
         style: TextStyle(color: CupertinoColors.black, fontSize: 25, fontWeight: FontWeight.bold),
       ),
@@ -57,7 +56,8 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
                 Navigator.push(
                     context,
                     CupertinoPageRoute(
-                        builder: (context) => currentPage.helpPage));
+                        builder: (context) =>
+                            HelpScreen(currentHelp: currentPage.helpPage, previousPage: currentPage)));
               },
             )
           : null,
