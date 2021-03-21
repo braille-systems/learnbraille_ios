@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:braille_abc/components/help_widgets.dart';
+import 'package:braille_abc/models/enums_model.dart';
 import 'package:braille_abc/models/help_model.dart';
 import 'package:braille_abc/screens/help_screen.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
@@ -33,6 +34,7 @@ class _HomeScreen extends State<HomeScreen> {
 }
 
 class MenuScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -46,13 +48,13 @@ class MenuScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Меню",
+                  StringOfScreensMap[ScreenType.Home],
                   style: TextStyle(color: CupertinoColors.black, fontSize: 55, fontWeight: FontWeight.bold),
                 ),
                 CupertinoButton(
                   child: Icon(
                     CupertinoIcons.question_circle,
-                    semanticLabel: "Справка",
+                    semanticLabel: StringOfScreensMap[ScreenType.Help],
                     size: ScreenParams.height(5, context),
                   ),
                   onPressed: () {

@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/enums_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
 import 'bottom_bar_widget.dart';
@@ -7,10 +8,10 @@ class StudyItem extends StatelessWidget {
   const StudyItem({
     Key key,
     @required this.symbol,
-    @required this.titleSymbol,
+    @required this.sectionName,
   }) : super(key: key);
 
-  final String titleSymbol;
+  final SectionType sectionName;
   final Symbol symbol;
 
   @override
@@ -31,7 +32,7 @@ class StudyItem extends StatelessWidget {
           Navigator.of(context).push(
             CupertinoPageRoute(
               builder: (context) => LetterScreen(
-                  titleSymbol: titleSymbol,
+                  sectionName: sectionName,
                   symbol: symbol.getChar()),
             ),
           );

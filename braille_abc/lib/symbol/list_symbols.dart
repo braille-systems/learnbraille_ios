@@ -1,13 +1,14 @@
 import 'package:braille_abc/components/study_item_widget.dart';
+import 'package:braille_abc/models/enums_model.dart';
+import 'package:braille_abc/models/section_model.dart';
 import 'struct_symbol.dart';
-
 
 class SymbolsFactory {
   SymbolsFactory();
 
-  List<Symbol> createSymbolsGroup(final String groupName) {
+  List<Symbol> createSymbolsGroup(final SectionType groupName) {
     switch (groupName) {
-      case "Русский алфавит":
+      case SectionType.RussianSymbols:
         {
           List<Symbol> russian = <Symbol>[
             RussianSymbol(list: Search.imageSymbol(d: <int>[1]), char: "А"),
@@ -47,7 +48,7 @@ class SymbolsFactory {
           return russian;
         }
         break;
-      case "Знаки препинания":
+      case SectionType.PunctuationSymbols:
         {
           List<Symbol> punctuationMarks = <Symbol>[
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[2]), char: "Запятая"),
@@ -68,7 +69,7 @@ class SymbolsFactory {
         }
         break;
 
-      case "Арифметические знаки":
+      case SectionType.ArithmeticSymbols:
         {
           List<Symbol> arithmeticSigns = <Symbol>[
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5]), char: "Знак Плюс"),
@@ -82,7 +83,7 @@ class SymbolsFactory {
           return arithmeticSigns;
         }
         break;
-      case "Цифры":
+      case SectionType.Numbers:
         {
           List<Symbol> numbers = <Symbol>[
             Number(list: Search.imageSymbol(d: <int>[1]), char: "1"),
@@ -99,7 +100,7 @@ class SymbolsFactory {
           return numbers;
         }
         break;
-      case "Признаки":
+      case SectionType.Signs:
         {
           List<Symbol> signs = <Symbol>[
             Sign(list: Search.imageSymbol(d: <int>[3, 4, 5, 6]), char: "Цифровой знак"),
@@ -118,47 +119,46 @@ class SymbolsFactory {
 }
 
 class Alphabet {
+  static Map<SectionType, List<Symbol>> _alphabet;
+
   Alphabet() {
     if (_alphabet == null) {
-      final List<String> tokens = <String>[
-        "Русский алфавит",
-        "Знаки препинания",
-        "Арифметические знаки",
-        "Цифры",
-        "Признаки",
-      ];
+      // final List<String> tokens = <String>[
+      //   "Русский алфавит",
+      //   "Знаки препинания",
+      //   "Арифметические знаки",
+      //   "Цифры",
+      //   "Признаки",
+      // ];
       SymbolsFactory factory = SymbolsFactory();
       _alphabet = Map();
-      for (var token in tokens) {
+      for (var token in StringOfSectionsMap.keys) {
         _alphabet[token] = factory.createSymbolsGroup(token);
       }
     }
   }
 
-  List<Symbol> listOfSymbols(String key) {
+  List<Symbol> listOfSymbols(SectionType key) {
     if (_alphabet.containsKey(key)) {
       return _alphabet[key];
     }
     return null;
   }
 
-  List<StudyItem> listOfStudyItems(String key) {
+  List<StudyItem> listOfStudyItems(SectionType key) {
     List<StudyItem> lsi = [];
     List<Symbol> los = listOfSymbols(key);
     for (var symbol in los) {
       if (symbol.char != null) {
-        lsi.add(StudyItem(
-            symbol: symbol, titleSymbol: symbol.ofGroup()));
+        lsi.add(StudyItem(symbol: symbol, sectionName: key));
       }
     }
     return lsi;
   }
-
-  static Map<String, List<Symbol>> _alphabet;
 }
 
 class Search {
-  static Symbol element(String ch, String keymap) {
+  static Symbol element(String ch, SectionType keymap) {
     Alphabet alphabet = Alphabet();
     List<Symbol> list = alphabet.listOfSymbols(keymap);
 

@@ -5,6 +5,7 @@ import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:braille_abc/models/enums_model.dart';
 
 class DictionaryScreen extends StatelessWidget {
   @override
@@ -14,7 +15,7 @@ class DictionaryScreen extends StatelessWidget {
         previousPage: HomeScreen(),
         currentPage: DictionaryScreen(),
         helpPage: DictionaryHelp(),
-        title: "Словарь",
+        title: StringOfScreensMap[ScreenType.Dictionary],
       ),
       child: SingleChildScrollView(
           child: MyExpandableList(

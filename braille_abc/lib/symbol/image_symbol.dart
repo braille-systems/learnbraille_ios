@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/enums_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,7 +10,7 @@ class SymbolWidget extends StatefulWidget {
   final double width;
   final double height;
   final String char;
-  final String dictSection;
+  final SectionType dictSection;
   final bool isTapped;
   final TextDirection Function() textDir;
 
@@ -32,7 +33,7 @@ class SymbolWidget extends StatefulWidget {
 class _SymbolState extends State<SymbolWidget> {
   Symbol symbol;
 
-  _SymbolState({String char, String dictSection}) {
+  _SymbolState({String char, SectionType dictSection}) {
     symbol = Search.element(char, dictSection);
   }
 

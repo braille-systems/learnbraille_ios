@@ -1,5 +1,6 @@
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:braille_abc/models/enums_model.dart';
 
 class PracticeScreen extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class PracticeScreen extends StatelessWidget {
               },
             )),
         middle: Text(
-          "Практика",
+          StringOfScreensMap[ScreenType.Practice],
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
         trailing: Icon(CupertinoIcons.question_circle),

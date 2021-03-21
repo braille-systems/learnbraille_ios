@@ -4,6 +4,7 @@ import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/help_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'bottom_bar_widget.dart';
+import 'package:braille_abc/models/enums_model.dart';
 
 class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeWidget {
   const NavigationBar({
@@ -26,7 +27,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
     return CupertinoNavigationBar(
       backgroundColor: CupertinoColors.extraLightBackgroundGray,
       leading: Semantics(
-        label: "Назад",
+        label: StringOfSemanticsMap[SemanticsType.Back],
         child: CupertinoNavigationBarBackButton(
           onPressed: () {
             if (displayBottomBar(currentPage)) {
@@ -52,7 +53,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
               padding: const EdgeInsets.symmetric(
                 horizontal: 10,
               ),
-              child: Icon(CupertinoIcons.question_circle, semanticLabel: "Справка", size: 35),
+              child: Icon(CupertinoIcons.question_circle, semanticLabel: StringOfScreensMap[ScreenType.Help], size: 35),
               onPressed: () {
                 Timer(Duration(milliseconds: 10), () {
                   scakey.currentState.displayTapBar(false);
@@ -71,8 +72,6 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
   }
 
   @override
-  // TODO: убрать это магическое число мб
-
   Size get preferredSize {
     return new Size.fromHeight(20.0);
   }

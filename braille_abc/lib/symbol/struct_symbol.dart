@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/enums_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -52,56 +53,56 @@ abstract class Symbol {
     return char;
   }
 
-  String ofGroup();
+  // String ofGroup();
 
 }
 
 class RussianSymbol extends Symbol {
-  static final String groupName = "Русский алфавит";
+  static final SectionType groupName = SectionType.RussianSymbols;
 
   const RussianSymbol({String char, List<DotImage> list}) : super(dots: list, char: char);
 
-  String ofGroup() {
-    return groupName;
-  }
+  // String ofGroup() {
+  //   return groupName;
+  // }
 }
 
 class PunctuationSymbol extends Symbol {
-  static final String groupName = "Знаки препинания";
+  static final SectionType groupName = SectionType.PunctuationSymbols;
 
   const PunctuationSymbol({String char, List<DotImage> list}) : super (dots: list, char: char);
 
-  String ofGroup() {
-    return groupName;
-  }
+  // String ofGroup() {
+  //   return groupName;
+  // }
 }
 
 class ArithmeticSymbol extends Symbol {
-  static final String groupName = "Арифметические знаки";
+  static final SectionType groupName = SectionType.ArithmeticSymbols;
 
   const ArithmeticSymbol({String char, List<DotImage> list}) : super (dots: list, char: char);
 
-  String ofGroup() {
-    return groupName;
-  }
+  // String ofGroup() {
+  //   return groupName;
+  // }
 }
 
 class Number extends Symbol{
-  static final String groupName = "Цифры";
+  static final SectionType groupName = SectionType.Numbers;
 
   const Number({String char, List<DotImage> list}) : super (dots: list, char: char);
 
-  String ofGroup() {
-    return groupName;
-  }
+  // String ofGroup() {
+  //   return groupName;
+  // }
 }
 
 class Sign extends Symbol{
-  static final String groupName = "Признаки";
+  static final SectionType groupName = SectionType.Signs;
 
   const Sign({List<DotImage> list, String char}) : super (dots: list, char: char);
 
-  String ofGroup() {
-    return groupName;
-  }
+  // String ofGroup() {
+  //   return groupName;
+  // }
 }

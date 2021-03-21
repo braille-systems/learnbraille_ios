@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/enums_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -9,7 +10,7 @@ class LetterWidget extends StatelessWidget {
     @required this.symbol
   }) : super(key: key);
 
-  final String title;
+  final SectionType title;
   final String symbol;
 
   @override
@@ -31,7 +32,7 @@ class LetterWidget extends StatelessWidget {
                 flex: 1,
                 child: Center(
                     child: AutoSizeText(
-                  title,
+                  StringOfSectionsMap[title],
                   style: const TextStyle(fontSize: 30.0, color: CupertinoColors.black, fontWeight: FontWeight.bold),
                   maxLines: 1,
                 )),
