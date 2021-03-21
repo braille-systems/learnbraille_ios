@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import '../style.dart';
 import 'expansion_section_widget.dart';
-
-class MainMenuHelp extends StatelessWidget {
+import 'package:braille_abc/models/screen_model.dart';
+class MainMenuHelp extends Screen {
   const MainMenuHelp({
     Key key,
   }) : super(key: key);
@@ -29,7 +29,7 @@ class MainMenuHelp extends StatelessWidget {
   }
 }
 
-class GeneralHelp extends StatelessWidget {
+class GeneralHelp extends Screen {
   const GeneralHelp({
     Key key,
   }) : super(key: key);
@@ -61,7 +61,7 @@ class GeneralHelp extends StatelessWidget {
   }
 }
 
-class DictionaryHelp extends StatelessWidget {
+class DictionaryHelp extends Screen {
   const DictionaryHelp({
     Key key,
   }) : super(key: key);
@@ -84,7 +84,7 @@ class DictionaryHelp extends StatelessWidget {
   }
 }
 
-class LetterViewHelp extends StatelessWidget {
+class LetterViewHelp extends Screen {
   const LetterViewHelp({
     Key key,
   }) : super(key: key);

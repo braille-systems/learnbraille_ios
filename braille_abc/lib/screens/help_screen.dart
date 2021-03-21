@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class HelpScreen extends Screen {
   const HelpScreen({
     Key key,
-    previousPage,
+    Screen previousPage,
     this.currentHelp,
   }) : super(key: key, hasNavigationBar: false, helpPage: null, previousPage: previousPage);
 

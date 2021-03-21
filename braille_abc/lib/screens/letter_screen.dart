@@ -17,8 +17,8 @@ class LetterViewScreen extends SectionScreen {
 
   const LetterViewScreen({
     Key key,
-    Widget helpPage,
-    Widget previousPage,
+    Screen helpPage,
+    Screen previousPage,
     @required this.titleSymbol,
     @required this.symbol
   }) : super(
