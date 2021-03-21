@@ -22,9 +22,7 @@ class DictionaryScreen extends NavigationScreen {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: NavigationBar(
-        previousPage: HomeScreen(),
-        currentPage: DictionaryScreen(),
-        helpPage: DictionaryHelp(),
+        currentPage: this,
         title: "Словарь",
       ),
       child: SingleChildScrollView(

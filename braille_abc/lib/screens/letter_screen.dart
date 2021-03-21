@@ -40,7 +40,7 @@ class _LetterScreenState extends State<LetterScreen> {
     }
 
     return CupertinoPageScaffold(
-      navigationBar: NavigationBar(
+      /*navigationBar: NavigationBar(
         title: widget.str,
         previousPage: DictionaryScreen(),
         helpPage: LetterViewHelp(),
@@ -48,7 +48,7 @@ class _LetterScreenState extends State<LetterScreen> {
           titleSymbol: widget.titleSymbol,
           symbol: widget.symbol,
         ),
-      ),
+      ),*/
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

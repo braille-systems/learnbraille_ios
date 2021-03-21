@@ -22,31 +22,40 @@ class AppModel {
     MenuButton(name: "Настройки", icon: CupertinoIcons.settings),
   ];
 
-  static final Map<String, Widget> navigationScreens = {
-    "MenuScreen": MenuScreen(
+  static final Widget menuScreen = MenuScreen(
       previousPage: null,
       helpPage: HelpScreen(
         currentHelp: MainMenuHelp(),
         previousPage: MenuScreen(),
-      ),
-    ),
+      ));
 
-    "StudyScreen": StudyScreen(),
+  static final Widget studyScreen = StudyScreen(
+    previousPage: menuScreen,
+    helpPage: null,
+  );
 
-    "PracticeScreen": PracticeScreen(),
+  static final Widget practiceScreen = PracticeScreen(previousPage: menuScreen, helpPage: null);
 
-    "DictionaryScreen": DictionaryScreen(
-        previousPage: navigationScreens['MainMenu'],
-        helpPage: HelpScreen(
-          currentHelp: DictionaryHelp(),
-          previousPage: DictionaryScreen(),
-        )),
+  static final Widget dictionaryScreen = DictionaryScreen(
+      previousPage: menuScreen,
+      helpPage: HelpScreen(
+        currentHelp: DictionaryHelp(),
+        previousPage: DictionaryScreen(),
+      ));
 
-    "SettingsScreen": SettingsScreen(
-      previousPage: navigationScreens['MainMenu'],
-      helpPage: null,
-    ),
+  static final Widget settingsScreen = SettingsScreen(previousPage: menuScreen, helpPage: null);
+
+  static final Map<String, Widget> navigationScreens = {
+    "MainMenu": menuScreen,
+    "StudyScreen": studyScreen,
+    "PracticeScreen": practiceScreen,
+    "DictionaryScreen": dictionaryScreen,
+    "SettingsScreen": settingsScreen
   };
+
+  static final List<Widget> navigationScreensList = [
+    menuScreen, studyScreen, practiceScreen, dictionaryScreen, settingsScreen
+  ];
 
   static final List<SectionModel> sections = [
     SectionModel(

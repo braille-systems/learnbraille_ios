@@ -7,19 +7,18 @@ import 'package:flutter/material.dart';
 class HelpScreen extends Screen {
   const HelpScreen({
     Key key,
-    this.previousPage,
+    previousPage,
     this.currentHelp,
   }) : super(key: key, hasNavigationBar: false, helpPage: null, previousPage: previousPage);
+
   final Widget currentHelp;
-  final Widget previousPage;
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: NavigationBar(
-        previousPage: previousPage,
+        currentPage: this,
         title: "Справка",
-        helpPage: null,
       ),
       child: SafeArea(
           child: Scaffold(
