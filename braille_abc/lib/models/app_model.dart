@@ -1,3 +1,4 @@
+import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/section_model.dart';
 import 'package:braille_abc/screens/dictionary_screen.dart';
 import 'package:braille_abc/screens/home_screen.dart';
@@ -19,13 +20,20 @@ class AppModel {
     MenuButton(name: "Настройки", icon: CupertinoIcons.settings),
   ];
 
-  static final List<Widget> screens = [
-    MenuScreen(),
-    StudyScreen(),
-    PracticeScreen(),
-    DictionaryScreen(),
-    SettingsScreen(),
-  ];
+  static final Map<String, Widget> navigationScreens = {
+    "MenuScreen": MenuScreen(),
+    "StudyScreen": StudyScreen(),
+    "PracticeScreen": PracticeScreen(),
+    "DictionaryScreen": DictionaryScreen(
+        hasNavigationBar: true, previousPage: navigationScreens['MainMenu'], helpPage: helpScreens['DictionaryHelp']),
+    "SettingsScreen": SettingsScreen(),
+  };
+
+  static final Map<String, Widget> helpScreens = {
+    "DictionaryHelp": DictionaryHelp(),
+    "LetterViewHelp": LetterViewHelp(),
+    "MainMenuHelp": MainMenuHelp(),
+  };
 
   static final List<SectionModel> sections = [
     SectionModel(
@@ -36,18 +44,21 @@ class AppModel {
         children: _alphabet.listOfStudyItems("Русский алфавит"),
       ),
     ),
-    SectionModel(name: "Цифры", icon: CupertinoIcons.textformat_123, expandedList: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: _alphabet.listOfStudyItems("Цифры"),
-    ),
+    SectionModel(
+      name: "Цифры",
+      icon: CupertinoIcons.textformat_123,
+      expandedList: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _alphabet.listOfStudyItems("Цифры"),
+      ),
     ),
     SectionModel(
-        name: "Знаки препинания",
-        icon: CupertinoIcons.exclamationmark,
-        expandedList: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: _alphabet.listOfStudyItems("Знаки препинания"),
-        ),
+      name: "Знаки препинания",
+      icon: CupertinoIcons.exclamationmark,
+      expandedList: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _alphabet.listOfStudyItems("Знаки препинания"),
+      ),
     ),
     SectionModel(
       name: "Арифметические знаки",
@@ -57,10 +68,13 @@ class AppModel {
         children: _alphabet.listOfStudyItems("Арифметические знаки"),
       ),
     ),
-    SectionModel(name: "Признаки", icon: CupertinoIcons.square_grid_2x2, expandedList: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: _alphabet.listOfStudyItems("Признаки"),
-    ),
+    SectionModel(
+      name: "Признаки",
+      icon: CupertinoIcons.square_grid_2x2,
+      expandedList: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: _alphabet.listOfStudyItems("Признаки"),
+      ),
     ),
   ];
 }

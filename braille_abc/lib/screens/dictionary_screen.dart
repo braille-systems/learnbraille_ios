@@ -5,8 +5,22 @@ import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:braille_abc/models/screen_model.dart';
 
-class DictionaryScreen extends StatelessWidget {
+class DictionaryScreen extends Screen {
+  const DictionaryScreen({
+    Key key,
+    bool hasNavigationBar,
+    Widget helpPage,
+    Widget previousPage,
+    Widget nextPage,
+  }) : super(
+            key: key,
+            hasNavigationBar: hasNavigationBar,
+            helpPage: helpPage,
+            previousPage: previousPage,
+            nextPage: nextPage);
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(

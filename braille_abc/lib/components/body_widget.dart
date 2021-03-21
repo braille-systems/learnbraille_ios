@@ -13,6 +13,6 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
-    return AppModel.screens[widget.index];
+    return AppModel.navigationScreens[widget.index];
   }
 }

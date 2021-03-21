@@ -19,7 +19,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
   final Widget helpPage;
   final Widget currentPage;
 
-  bool displayBottomBar(Widget screen) => AppModel.screens.toString().contains(screen.toString());
+  bool displayBottomBar(Widget screen) => AppModel.navigationScreens.toString().contains(screen.toString());
 
   @override
   Widget build(BuildContext context) {
