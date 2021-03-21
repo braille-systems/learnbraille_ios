@@ -1,8 +1,6 @@
 import 'package:braille_abc/components/help_widgets.dart';
-import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/models/section_model.dart';
 import 'package:braille_abc/screens/dictionary_screen.dart';
-import 'package:braille_abc/screens/help_screen.dart';
 import 'package:braille_abc/screens/home_screen.dart';
 import 'package:braille_abc/screens/practice_screen.dart';
 import 'package:braille_abc/screens/settings_screen.dart';
@@ -13,8 +11,11 @@ import 'package:flutter/cupertino.dart';
 import 'menu_button.dart';
 import 'section_model.dart';
 
+enum navigation { MainMenu, StudyScreen, PracticeScreen, DictionaryScreen, SettingsScreen }
+
 class AppModel {
   static final Alphabet _alphabet = Alphabet();
+
   static final List<MenuButton> menuButton = [
     MenuButton(name: "Обучение", icon: CupertinoIcons.book),
     MenuButton(name: "Практика", icon: CupertinoIcons.circle_grid_3x3_fill),
@@ -22,40 +23,38 @@ class AppModel {
     MenuButton(name: "Настройки", icon: CupertinoIcons.settings),
   ];
 
-  static final Widget menuScreen = MenuScreen(
+  static final Widget _menuScreen = MenuScreen(
     previousPage: null,
     helpPage: MainMenuHelp(),
   );
 
-  static final Widget studyScreen = StudyScreen(
-    previousPage: menuScreen,
+  static final Widget _studyScreen = StudyScreen(
+    previousPage: _menuScreen,
     helpPage: null,
   );
 
-  static final Widget practiceScreen = PracticeScreen(previousPage: menuScreen, helpPage: null);
+  static final Widget _practiceScreen = PracticeScreen(
+      previousPage: _menuScreen,
+      helpPage: null
+  );
 
-  static final Widget dictionaryScreen = DictionaryScreen(
-    previousPage: menuScreen,
+  static final Widget _dictionaryScreen = DictionaryScreen(
+    previousPage: _menuScreen,
     helpPage: DictionaryHelp(),
   );
 
-  static final Widget settingsScreen = SettingsScreen(previousPage: menuScreen, helpPage: null);
+  static final Widget _settingsScreen = SettingsScreen(
+      previousPage: _menuScreen,
+      helpPage: null
+  );
 
-  static final Map<String, Widget> navigationScreens = {
-    "MainMenu": menuScreen,
-    "StudyScreen": studyScreen,
-    "PracticeScreen": practiceScreen,
-    "DictionaryScreen": dictionaryScreen,
-    "SettingsScreen": settingsScreen
+  static final Map<navigation, Widget> navigationScreens = {
+    navigation.MainMenu: _menuScreen,
+    navigation.StudyScreen: _studyScreen,
+    navigation.PracticeScreen: _practiceScreen,
+    navigation.DictionaryScreen: _dictionaryScreen,
+    navigation.SettingsScreen: _settingsScreen
   };
-
-  static final List<Widget> navigationScreensList = [
-    menuScreen,
-    studyScreen,
-    practiceScreen,
-    dictionaryScreen,
-    settingsScreen
-  ];
 
   static final List<SectionModel> sections = [
     SectionModel(

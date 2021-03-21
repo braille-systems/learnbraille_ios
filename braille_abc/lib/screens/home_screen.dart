@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/help_model.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/screens/help_screen.dart';
@@ -38,11 +37,8 @@ class MenuScreen extends NavigationScreen {
     Key key,
     Widget helpPage,
     Widget previousPage,
-  }) : super(
-    key: key,
-    helpPage: helpPage,
-    previousPage: previousPage,
-  );
+  }) : super(key: key, helpPage: helpPage, previousPage: previousPage);
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -69,8 +65,10 @@ class MenuScreen extends NavigationScreen {
                     scakey.currentState.displayTapBar(false);
                     Navigator.of(context).push(
                       CupertinoPageRoute(
-                        builder: (context) => HelpScreen(currentHelp: helpPage,previousPage: this,)
-                      ),
+                          builder: (context) => HelpScreen(
+                                currentHelp: helpPage,
+                                previousPage: this,
+                              )),
                     );
                   },
                 ),

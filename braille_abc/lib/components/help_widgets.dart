@@ -5,6 +5,7 @@ import 'package:flutter_html/flutter_html.dart';
 import '../style.dart';
 import 'expansion_section_widget.dart';
 import 'package:braille_abc/models/screen_model.dart';
+
 class MainMenuHelp extends Screen {
   const MainMenuHelp({
     Key key,
@@ -23,7 +24,7 @@ class MainMenuHelp extends Screen {
           sectionName: HelpModel.helpSection['Главное меню'].content[i].name,
           child: Html(
               data: HelpModel.helpSection['Главное меню'].content[i].description,
-              defaultTextStyle:Styles.helpTextStyle()),
+              defaultTextStyle: Styles.helpTextStyle()),
         )
     ]);
   }
@@ -53,7 +54,7 @@ class GeneralHelp extends Screen {
               sectionName: HelpModel.helpSection['Общая справка'].content[i].name,
               child: Html(
                   data: HelpModel.helpSection['Общая справка'].content[i].description,
-                  defaultTextStyle:Styles.helpTextStyle()),
+                  defaultTextStyle: Styles.helpTextStyle()),
             )
         ],
       ),

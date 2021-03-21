@@ -21,18 +21,19 @@ class HelpScreen extends Screen {
         title: "Справка",
       ),
       child: SafeArea(
-          child: Scaffold(
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: Column(children: [
-            SizedBox(
-              height: 5,
-            ),
-            currentHelp,
-            GeneralHelp(),
-          ]),
+        child: Scaffold(
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            child: Column(children: [
+              SizedBox(
+                height: 5,
+              ),
+              currentHelp,
+              GeneralHelp(),
+            ]),
+          ),
         ),
-      )),
+      ),
     );
   }
 }

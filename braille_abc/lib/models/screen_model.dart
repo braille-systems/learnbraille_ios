@@ -19,16 +19,13 @@ abstract class NavigationScreen extends Screen {
     Key key,
     Screen helpPage,
     Screen previousPage,
-  }) :  super(key: key, hasNavigationBar: true, helpPage: helpPage, previousPage: previousPage);
-
+  }) : super(key: key, hasNavigationBar: true, helpPage: helpPage, previousPage: previousPage);
 }
-
 
 abstract class SectionScreen extends Screen {
   const SectionScreen({
     Key key,
     Screen helpPage,
     Screen previousPage,
-  }) :  super(key: key, hasNavigationBar: false, helpPage: helpPage, previousPage: previousPage);
-
+  }) : super(key: key, hasNavigationBar: false, helpPage: helpPage, previousPage: previousPage);
 }
