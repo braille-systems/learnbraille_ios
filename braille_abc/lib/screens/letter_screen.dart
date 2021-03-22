@@ -1,6 +1,7 @@
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/enums_model.dart';
 import 'package:braille_abc/screens/dictionary_screen.dart';
+import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,17 +11,38 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 
 import '../style.dart';
 
-class LetterScreen extends StatefulWidget {
-  LetterScreen({Key key, @required this.sectionName, @required this.symbol}) : super(key: key);
+class LetterScreen extends SectionScreen {
+  final String titleSymbol;
+  final String symbol;
+
+  const LetterScreen({Key key, Screen helpPage, Screen previousPage, @required this.titleSymbol, @required this.symbol})
+      : super(key: key, helpPage: helpPage, previousPage: previousPage);
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+        navigationBar: NavigationBar(
+          currentPage: this,
+          title: "Просмотр символа",
+        ),
+        child: LetterView(
+          titleSymbol: titleSymbol,
+          symbol: symbol,
+        ));
+  }
+}
+
+class LetterView extends StatefulWidget {
+  LetterView({Key key, @required this.titleSymbol, @required this.symbol}) : super(key: key);
 
   final SectionType sectionName;
   final String symbol;
 
   @override
-  _LetterScreenState createState() => _LetterScreenState();
+  _LetterViewState createState() => _LetterViewState();
 }
 
-class _LetterScreenState extends State<LetterScreen> {
+class _LetterViewState extends State<LetterView> {
   TextDirection _dir = TextDirection.ltr;
 
   @override
