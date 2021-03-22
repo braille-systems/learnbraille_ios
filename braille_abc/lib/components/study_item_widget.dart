@@ -35,7 +35,7 @@ class StudyItem extends StatelessWidget {
               builder: (context) => LetterScreen(
                 titleSymbol: titleSymbol,
                 symbol: symbol.getChar(),
-                previousPage: AppModel.navigationScreens['DictionaryScreen'],
+                previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
                 helpPage:  LetterViewHelp(),
               ),
             ),
