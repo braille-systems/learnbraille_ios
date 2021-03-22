@@ -10,7 +10,7 @@ There is a separate file with instructions on coding rules in this repository
 
 Overall, these rules are a simplified version of the famous [successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
 
-Tag versioning is following classis [semantic versioning](https://semver.org/)
+Tag versioning is following classis [semantic versioning](https://semver.org/) with a clause that MINOR version may be missed and in that case it's meant to be 0. In example, v1.2 == v1.2.0
 
 **Jira** integration is supported with [this project](https://braillesystem.atlassian.net/browse/BRAILLE)
 
@@ -26,7 +26,13 @@ To contribute a new feature, create a new branch from `main`
 
 There are two allowed types of branches: `feature` and `fix`
 
-Branch type should be separated from name by a backslash, for example, `feature/new-panel` or `fix/blinking-screen`
+Branch type should be separated from name by a backslash and words in branch name should be separated by `-`, for example, `feature/new-panel` or `fix/blinking-screen`
+
+There are two ways of naming a branch: using **Jira** integration and without it
+
+Without integration, branch name should follow a pattern `<branch-type>/<branch-name>`, like 2 examples above
+
+Naming using integration will be described below in **JIRA Integration** section
 
 #### Feature
 
@@ -89,6 +95,8 @@ It's required to use integration when creating *commits* and *pull requests*, th
 To *reference* a **JIRA** issue in your commit, just add issue key to it, for example, `BRAILLE-X Add new button in main menu`
 
 The same rule applies to pull requests. Average PR title should look like: `BRAILLE-X (optional)<WIP>: Short message to describe overall changes`
+
+Naming a branch with integration in mind, it must follow a pattern `<branch-type>/<jira-issue-key>-<branch-name>`, for example, `feature/BRAILLE-X-new-panel`
 
 It's also possible to manipulate **JIRA** issues with *smart commits* and commands like `comment`, `time` and `transition`
 
