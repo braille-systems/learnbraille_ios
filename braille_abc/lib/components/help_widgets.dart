@@ -127,3 +127,46 @@ class LetterViewHelp extends Screen {
     );
   }
 }
+
+class PracticeHelp extends Screen {
+  const PracticeHelp({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<IconData> subIcon = [
+      CupertinoIcons.arrow_right_arrow_left,
+    ];
+    return Column(
+      children: [
+        Html(
+          data: HelpModel.helpSection['Разделы практики'].description,
+          defaultTextStyle: Styles.helpTextStyle(),
+        ),
+        for (int i = 0; i < HelpModel.helpSection['Разделы практики'].content.length; i++)
+          ExpansionSection(
+            color: Colors.orangeAccent,
+            sectionIcon: CupertinoIcons.circle_grid_3x3_fill,
+            sectionName: HelpModel.helpSection['Разделы практики'].content[i].name,
+            child: Column(
+              children: [
+                Html(
+                  data: HelpModel.helpSection['Разделы практики'].content[i].description,
+                  defaultTextStyle: Styles.helpTextStyle(),
+                ),
+                for (int j = 0; j < HelpModel.helpSection['Разделы практики'].content[i].content.length; j++)
+                  ExpansionSection(
+                    sectionIcon: subIcon[j],
+                    sectionName: HelpModel.helpSection['Разделы практики'].content[i].content[j].name,
+                    child: Html(
+                        data: HelpModel.helpSection['Разделы практики'].content[i].content[i].description,
+                        defaultTextStyle: Styles.helpTextStyle()),
+                  )
+              ],
+            ),
+          ),
+      ],
+    );
+  }
+}
