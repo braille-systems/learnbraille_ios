@@ -9,8 +9,6 @@ import 'package:braille_abc/style.dart';
 
 import '../models/menu_button.dart';
 
-List<String> pool = [];
-
 class ContinueButtonWidget extends StatefulWidget {
   @override
   State<ContinueButtonWidget> createState() => _ContinueButtonWidget();
@@ -76,10 +74,8 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
         checkBox = val;
         if (checkBox) {
           Practice.addSymbolGroup(widget.practiceButton.name);
-          //pool.add(widget.practiceButton.name);
         } else {
           Practice.removeSymbolGroup(widget.practiceButton.name);
-          //pool.remove(widget.practiceButton.name);
         }
       },
     );

@@ -4,10 +4,9 @@ import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
-
 import '../models/menu_button.dart';
 
-//TODO: Replace this class to other. Mb remove static.
+//TODO: Replace this class to other module. Mb remove static.
 class Practice {
   static List<String> _pool = [];
 
