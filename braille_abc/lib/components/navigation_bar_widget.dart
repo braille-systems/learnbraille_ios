@@ -4,6 +4,7 @@ import 'package:braille_abc/screens/help_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'bottom_bar_widget.dart';
 import 'package:braille_abc/models/enums_model.dart';
+import 'package:braille_abc/models/screen_model.dart';
 
 class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeWidget {
   const NavigationBar({

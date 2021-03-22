@@ -1,6 +1,4 @@
-import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/enums_model.dart';
-import 'package:braille_abc/screens/dictionary_screen.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,10 +10,10 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 import '../style.dart';
 
 class LetterScreen extends SectionScreen {
-  final String titleSymbol;
+  final SectionType sectionName;
   final String symbol;
 
-  const LetterScreen({Key key, Screen helpPage, Screen previousPage, @required this.titleSymbol, @required this.symbol})
+  const LetterScreen({Key key, Screen helpPage, Screen previousPage, @required this.sectionName, @required this.symbol})
       : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override
@@ -26,15 +24,16 @@ class LetterScreen extends SectionScreen {
           title: "Просмотр символа",
         ),
         child: LetterView(
-          titleSymbol: titleSymbol,
+          sectionName: sectionName,
           symbol: symbol,
         ));
   }
 }
 
 class LetterView extends StatefulWidget {
-  LetterView({Key key, @required this.titleSymbol, @required this.symbol}) : super(key: key);
+  LetterView({Key key, @required this.sectionName, @required this.symbol}) : super(key: key);
 
+  final String str = "Просмотр символа";
   final SectionType sectionName;
   final String symbol;
 
@@ -61,15 +60,6 @@ class _LetterViewState extends State<LetterView> {
     }
 
     return CupertinoPageScaffold(
-      navigationBar: NavigationBar(
-        title: StringOfScreensMap[ScreenType.Letter],
-        previousPage: DictionaryScreen(),
-        helpPage: LetterViewHelp(),
-        currentPage: LetterScreen(
-          sectionName: widget.sectionName,
-          symbol: widget.symbol,
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -111,7 +101,7 @@ class _LetterViewState extends State<LetterView> {
                 child: Icon(
                   CupertinoIcons.arrow_right_arrow_left,
                   color: CupertinoColors.white,
-                  semanticLabel: StringOfSemanticsMap[SemanticsType.ChangeMode],
+                  semanticLabel: "Изменить режим",
                 ),
               ),
               SymbolWidget(
