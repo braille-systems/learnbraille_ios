@@ -24,6 +24,14 @@ class AppModel {
     MenuButton(name: ScreenType.Settings, icon: CupertinoIcons.settings),
   ];
 
+  static final List<MenuButton> practiceButtons = [
+    MenuButton(name: "Русский алфавит", icon: CupertinoIcons.textformat),
+    MenuButton(name: "Цифры", icon: CupertinoIcons.textformat_123),
+    MenuButton(name: "Знаки препинания", icon: CupertinoIcons.exclamationmark),
+    MenuButton(name: "Арифметические знаки", icon: CupertinoIcons.plus_slash_minus),
+    MenuButton(name: "Признаки", icon: CupertinoIcons.square_grid_2x2),
+  ];
+
   static final Widget _menuScreen = MenuScreen(
     previousPage: null,
     helpPage: MainMenuHelp(),
