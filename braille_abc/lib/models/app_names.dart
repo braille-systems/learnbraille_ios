@@ -63,6 +63,7 @@ enum XmlItemType
   GeneralHelp,
   Alphabet,
   SymbolView,
+  PracticeSections
 }
 
 class XmlNames
@@ -73,6 +74,7 @@ class XmlNames
     XmlItemType.GeneralHelp : "Общая справка",
     XmlItemType.MainMenu : "Главное меню",
     XmlItemType.SymbolView : "Просмотр символа",
+    XmlItemType.PracticeSections : "Разделы практики",
   };
 
   static String getName(XmlItemType type)
