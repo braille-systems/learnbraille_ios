@@ -88,6 +88,7 @@ enum SemanticsType
   Dot,
   Painted,
   NotPainted,
+  Continue,
 }
 
 class SemanticNames
@@ -98,8 +99,8 @@ class SemanticNames
     SemanticsType.Back : "Назад",
     SemanticsType.Dot: "Точка",
     SemanticsType.Painted : "закрашена",
-    SemanticsType.NotPainted : "не закрашена"
-
+    SemanticsType.NotPainted : "не закрашена",
+    SemanticsType.Continue : "Продолжить",
   };
 
   static String getName(SemanticsType type)

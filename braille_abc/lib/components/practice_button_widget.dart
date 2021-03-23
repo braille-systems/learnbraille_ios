@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:braille_abc/shared/screen_params.dart';
@@ -18,7 +19,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: "Продолжить",
+      label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.orange[300],
@@ -30,7 +31,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             AutoSizeText(
-              "Продолжить",
+              SemanticNames.getName(SemanticsType.Continue),
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300, color: CupertinoColors.black),
             ),
             SizedBox(
