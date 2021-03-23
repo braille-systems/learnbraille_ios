@@ -1,7 +1,6 @@
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/section_model.dart';
 import 'package:braille_abc/screens/dictionary_screen.dart';
-import 'package:braille_abc/screens/help_screen.dart';
 import 'package:braille_abc/screens/home_screen.dart';
 import 'package:braille_abc/screens/practice_screen.dart';
 import 'package:braille_abc/screens/settings_screen.dart';
