@@ -18,18 +18,18 @@ class AppModel {
   static final Alphabet _alphabet = Alphabet();
 
   static final List<MenuButton> menuButton = [
-    MenuButton(name: ScreenType.Study, icon: CupertinoIcons.book),
-    MenuButton(name: ScreenType.Practice, icon: CupertinoIcons.circle_grid_3x3_fill),
-    MenuButton(name: ScreenType.Dictionary, icon: CupertinoIcons.textformat),
-    MenuButton(name: ScreenType.Settings, icon: CupertinoIcons.settings),
+    MenuButton(name: ScreenNames.getName(ScreenType.Study), icon: CupertinoIcons.book),
+    MenuButton(name: ScreenNames.getName(ScreenType.Practice), icon: CupertinoIcons.circle_grid_3x3_fill),
+    MenuButton(name: ScreenNames.getName(ScreenType.Dictionary), icon: CupertinoIcons.textformat),
+    MenuButton(name: ScreenNames.getName(ScreenType.Settings), icon: CupertinoIcons.settings),
   ];
 
   static final List<MenuButton> practiceButtons = [
-    MenuButton(name: "Русский алфавит", icon: CupertinoIcons.textformat),
-    MenuButton(name: "Цифры", icon: CupertinoIcons.textformat_123),
-    MenuButton(name: "Знаки препинания", icon: CupertinoIcons.exclamationmark),
-    MenuButton(name: "Арифметические знаки", icon: CupertinoIcons.plus_slash_minus),
-    MenuButton(name: "Признаки", icon: CupertinoIcons.square_grid_2x2),
+    MenuButton(name: SectionNames.getName(SectionType.RussianSymbols), icon: CupertinoIcons.textformat),
+    MenuButton(name: SectionNames.getName(SectionType.Numbers), icon: CupertinoIcons.textformat_123),
+    MenuButton(name: SectionNames.getName(SectionType.PunctuationSymbols), icon: CupertinoIcons.exclamationmark),
+    MenuButton(name: SectionNames.getName(SectionType.ArithmeticSymbols), icon: CupertinoIcons.plus_slash_minus),
+    MenuButton(name: SectionNames.getName(SectionType.Signs), icon: CupertinoIcons.square_grid_2x2),
   ];
 
   static final Widget _menuScreen = MenuScreen(

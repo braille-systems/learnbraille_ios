@@ -59,7 +59,7 @@ class _BottomState extends State<Bottom> {
                   BottomNavigationBarItem(
                     backgroundColor: CupertinoColors.lightBackgroundGray,
                     icon: Icon(AppModel.menuButton[i].icon),
-                    label: ScreenNames.getName(AppModel.menuButton[i].name),
+                    label: AppModel.menuButton[i].name,
                   ),
               ],
             ),

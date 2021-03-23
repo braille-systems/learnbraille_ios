@@ -36,7 +36,7 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: ScreenNames.getName(widget.menuButton.name),
+      label: widget.menuButton.name,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.orange[300],
@@ -58,7 +58,7 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AutoSizeText(
-              ScreenNames.getName(widget.menuButton.name),
+              widget.menuButton.name,
               style: TextStyle(
                 fontSize: 30,
               ),
