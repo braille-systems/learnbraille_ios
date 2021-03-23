@@ -1,5 +1,6 @@
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/components/body_widget.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/cupertino.dart';
 
 final scakey = new GlobalKey<_BottomState>();
@@ -52,13 +53,13 @@ class _BottomState extends State<Bottom> {
                 BottomNavigationBarItem(
                   backgroundColor: CupertinoColors.lightBackgroundGray,
                   icon: Icon(CupertinoIcons.bars),
-                  label: 'Меню',
+                  label: ScreenNames.getName(ScreenType.Home),
                 ),
                 for (int i = 0; i < AppModel.menuButton.length; i++)
                   BottomNavigationBarItem(
                     backgroundColor: CupertinoColors.lightBackgroundGray,
                     icon: Icon(AppModel.menuButton[i].icon),
-                    label: AppModel.menuButton[i].name,
+                    label: ScreenNames.getName(AppModel.menuButton[i].name),
                   ),
               ],
             ),

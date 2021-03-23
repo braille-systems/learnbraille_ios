@@ -3,7 +3,7 @@ import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:braille_abc/models/enums_model.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
 class DictionaryScreen extends NavigationScreen {
@@ -18,7 +18,7 @@ class DictionaryScreen extends NavigationScreen {
     return CupertinoPageScaffold(
       navigationBar: NavigationBar(
         currentPage: this,
-        title: StringOfScreensMap[ScreenType.Dictionary],
+        title: ScreenNames.getName(ScreenType.Dictionary),
       ),
       child: SingleChildScrollView(
           child: MyExpandableList(

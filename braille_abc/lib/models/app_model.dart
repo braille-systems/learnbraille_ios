@@ -1,4 +1,4 @@
-import 'package:braille_abc/models/enums_model.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/section_model.dart';
 import 'package:braille_abc/screens/dictionary_screen.dart';
@@ -18,10 +18,10 @@ class AppModel {
   static final Alphabet _alphabet = Alphabet();
 
   static final List<MenuButton> menuButton = [
-    MenuButton(name: "Обучение", icon: CupertinoIcons.book),
-    MenuButton(name: "Практика", icon: CupertinoIcons.circle_grid_3x3_fill),
-    MenuButton(name: "Словарь", icon: CupertinoIcons.textformat),
-    MenuButton(name: "Настройки", icon: CupertinoIcons.settings),
+    MenuButton(name: ScreenType.Study, icon: CupertinoIcons.book),
+    MenuButton(name: ScreenType.Practice, icon: CupertinoIcons.circle_grid_3x3_fill),
+    MenuButton(name: ScreenType.Dictionary, icon: CupertinoIcons.textformat),
+    MenuButton(name: ScreenType.Settings, icon: CupertinoIcons.settings),
   ];
 
   static final Widget _menuScreen = MenuScreen(
@@ -59,7 +59,7 @@ class AppModel {
 
   static final List<SectionModel> sections = [
     SectionModel(
-      name: StringOfSectionsMap[SectionType.RussianSymbols],
+      name: SectionNames.getName(SectionType.RussianSymbols),
       icon: CupertinoIcons.textformat,
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +67,7 @@ class AppModel {
       ),
     ),
     SectionModel(
-      name: StringOfSectionsMap[SectionType.Numbers],
+      name: SectionNames.getName(SectionType.Numbers),
       icon: CupertinoIcons.textformat_123,
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +75,7 @@ class AppModel {
       ),
     ),
     SectionModel(
-      name: StringOfSectionsMap[SectionType.PunctuationSymbols],
+      name: SectionNames.getName(SectionType.PunctuationSymbols),
       icon: CupertinoIcons.exclamationmark,
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +83,7 @@ class AppModel {
       ),
     ),
     SectionModel(
-      name: StringOfSectionsMap[SectionType.ArithmeticSymbols],
+      name: SectionNames.getName(SectionType.ArithmeticSymbols),
       icon: CupertinoIcons.plus_slash_minus,
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +91,7 @@ class AppModel {
       ),
     ),
     SectionModel(
-      name: StringOfSectionsMap[SectionType.Signs],
+      name: SectionNames.getName(SectionType.Signs),
       icon: CupertinoIcons.square_grid_2x2,
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

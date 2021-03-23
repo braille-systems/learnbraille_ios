@@ -1,5 +1,5 @@
 import 'package:braille_abc/components/study_item_widget.dart';
-import 'package:braille_abc/models/enums_model.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'struct_symbol.dart';
 
 class SymbolsFactory {
@@ -131,7 +131,7 @@ class Alphabet {
       // ];
       SymbolsFactory factory = SymbolsFactory();
       _alphabet = Map();
-      for (var token in StringOfSectionsMap.keys) {
+      for (var token in SectionNames.stringOfSectionsMap.keys) {
         _alphabet[token] = factory.createSymbolsGroup(token);
       }
     }

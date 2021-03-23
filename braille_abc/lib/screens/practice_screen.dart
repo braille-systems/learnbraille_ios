@@ -1,7 +1,7 @@
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:braille_abc/models/enums_model.dart';
+import 'package:braille_abc/models/app_names.dart';
 
 class PracticeScreen extends NavigationScreen {
   const PracticeScreen({
@@ -15,7 +15,7 @@ class PracticeScreen extends NavigationScreen {
     return CupertinoPageScaffold(
       navigationBar: NavigationBar(
         currentPage: this,
-        title: StringOfScreensMap[ScreenType.Practice],
+        title: ScreenNames.getName(ScreenType.Practice),
       ),
       child: SafeArea(
         child: Center(child: Text('practice')),

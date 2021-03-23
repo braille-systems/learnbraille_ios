@@ -1,4 +1,4 @@
-import 'package:braille_abc/models/enums_model.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
@@ -101,7 +101,7 @@ class _LetterViewState extends State<LetterView> {
                 child: Icon(
                   CupertinoIcons.arrow_right_arrow_left,
                   color: CupertinoColors.white,
-                  semanticLabel: "Изменить режим",
+                  semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
                 ),
               ),
               SymbolWidget(

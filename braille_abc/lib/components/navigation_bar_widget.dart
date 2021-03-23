@@ -3,7 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:braille_abc/screens/help_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'bottom_bar_widget.dart';
-import 'package:braille_abc/models/enums_model.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
 class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeWidget {
@@ -23,7 +23,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
     return CupertinoNavigationBar(
       backgroundColor: CupertinoColors.extraLightBackgroundGray,
       leading: Semantics(
-        label: StringOfSemanticsMap[SemanticsType.Back],
+        label: SemanticNames.getName(SemanticsType.Back),
         child: CupertinoNavigationBarBackButton(
           onPressed: () {
             if (currentPage.hasNavigationBar) {
@@ -45,21 +45,21 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
       ),
       trailing: currentPage.helpPage != null
           ? CupertinoButton(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10,
-              ),
-              child: Icon(CupertinoIcons.question_circle, semanticLabel: StringOfScreensMap[ScreenType.Help], size: 35),
-              onPressed: () {
-                Timer(Duration(milliseconds: 10), () {
-                  scakey.currentState.displayTapBar(false);
-                });
-                Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                        builder: (context) =>
-                            HelpScreen(currentHelp: currentPage.helpPage, previousPage: currentPage)));
-              },
-            )
+        padding: const EdgeInsets.symmetric(
+          horizontal: 10,
+        ),
+        child: Icon(CupertinoIcons.question_circle, semanticLabel: ScreenNames.getName(ScreenType.Help), size: 35),
+        onPressed: () {
+          Timer(Duration(milliseconds: 10), () {
+            scakey.currentState.displayTapBar(false);
+          });
+          Navigator.push(
+              context,
+              CupertinoPageRoute(
+                  builder: (context) =>
+                      HelpScreen(currentHelp: currentPage.helpPage, previousPage: currentPage)));
+        },
+      )
           : null,
     );
   }

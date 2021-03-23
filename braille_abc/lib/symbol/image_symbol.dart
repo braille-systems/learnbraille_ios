@@ -1,10 +1,9 @@
-import 'package:braille_abc/models/enums_model.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'struct_symbol.dart';
 import 'list_symbols.dart';
-
 
 class SymbolWidget extends StatefulWidget {
   final double width;
@@ -16,12 +15,12 @@ class SymbolWidget extends StatefulWidget {
 
   SymbolWidget(
       {Key key,
-        @required this.textDir,
-        @required this.char,
-        @required this.dictSection,
-        @required this.isTapped,
-        @required this.width,
-        @required this.height})
+      @required this.textDir,
+      @required this.char,
+      @required this.dictSection,
+      @required this.isTapped,
+      @required this.width,
+      @required this.height})
       : super(key: key) {
     createState();
   }
@@ -59,7 +58,11 @@ class _SymbolState extends State<SymbolWidget> {
               runSpacing: 30,
               children: symbol.dots
                   .map((item) => Semantics(
-                        label: "Точка" + item.outputData + (item.press ? "закрашена" : "не закрашена"),
+                        label: SemanticNames.getName(SemanticsType.Dot) +
+                            item.outputData +
+                            (item.press
+                                ? SemanticNames.getName(SemanticsType.Painted)
+                                : SemanticNames.getName(SemanticsType.NotPainted)),
                         button: false,
                         child: ElevatedButton(
                           onPressed: () {

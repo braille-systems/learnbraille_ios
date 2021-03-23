@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: widget.menuButton.name,
+      label: ScreenNames.getName(widget.menuButton.name),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.orange[300],
@@ -57,7 +58,7 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AutoSizeText(
-              widget.menuButton.name,
+              ScreenNames.getName(widget.menuButton.name),
               style: TextStyle(
                 fontSize: 30,
               ),

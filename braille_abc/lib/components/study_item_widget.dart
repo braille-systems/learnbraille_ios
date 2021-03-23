@@ -1,4 +1,4 @@
-import 'package:braille_abc/models/enums_model.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,7 +36,7 @@ class StudyItem extends StatelessWidget {
               builder: (context) => LetterScreen(
                 sectionName: sectionName,
                 symbol: symbol.getChar(),
-                previousPage: AppModel.navigationScreens['DictionaryScreen'],
+                previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
                 helpPage:  LetterViewHelp(),
               ),
             ),
