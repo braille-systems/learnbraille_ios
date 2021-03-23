@@ -1,4 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:braille_abc/components/help_widgets.dart';
+import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/screens/letter_practice_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:braille_abc/shared/screen_params.dart';
@@ -46,6 +49,14 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
         onPressed: () {
           if (Practice.getPool().isNotEmpty) {
             print(Practice.getPool());
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => LetterPracticeScreen(
+                    helpPage: LetterPracticeHelp(),
+                    previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  ),
+                ),
+              );
           }
         },
       ),
@@ -115,7 +126,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             DecoratedIcon(
               widget.practiceButton.icon,
               color: CupertinoColors.white,
-              size: 48.0,
+              size: 47.0,
               shadows: <Shadow>[
                 Styles.buildButtonShadow(),
                 for(var stroke in Styles.buildStroke(0.25))

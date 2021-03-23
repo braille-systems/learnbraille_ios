@@ -136,7 +136,7 @@ class PracticeHelp extends Screen {
   @override
   Widget build(BuildContext context) {
     List<IconData> subIcon = [
-      CupertinoIcons.arrow_right_arrow_left,
+      CupertinoIcons.chevron_right_2,
     ];
     return Column(
       children: [
@@ -161,6 +161,51 @@ class PracticeHelp extends Screen {
                     sectionName: HelpModel.helpSection['Разделы практики'].content[i].content[j].name,
                     child: Html(
                         data: HelpModel.helpSection['Разделы практики'].content[i].content[i].description,
+                        defaultTextStyle: Styles.helpTextStyle()),
+                  )
+              ],
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class LetterPracticeHelp extends Screen {
+  const LetterPracticeHelp({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<IconData> subIcon = [
+      CupertinoIcons.quote_bubble_fill,
+      CupertinoIcons.arrow_right_arrow_left,
+      CupertinoIcons.arrow_right,
+    ];
+    return Column(
+      children: [
+        Html(
+          data: HelpModel.helpSection['Практика'].description,
+          defaultTextStyle: Styles.helpTextStyle(),
+        ),
+        for (int i = 0; i < HelpModel.helpSection['Практика'].content.length; i++)
+          ExpansionSection(
+            color: Colors.orangeAccent,
+            sectionIcon: CupertinoIcons.circle_grid_3x3_fill,
+            sectionName: HelpModel.helpSection['Практика'].content[i].name,
+            child: Column(
+              children: [
+                Html(
+                  data: HelpModel.helpSection['Практика'].content[i].description,
+                  defaultTextStyle: Styles.helpTextStyle(),
+                ),
+                for (int j = 0; j < HelpModel.helpSection['Практика'].content[i].content.length; j++)
+                  ExpansionSection(
+                    sectionIcon: subIcon[j],
+                    sectionName: HelpModel.helpSection['Практика'].content[i].content[j].name,
+                    child: Html(
+                        data: HelpModel.helpSection['Практика'].content[i].content[i].description,
                         defaultTextStyle: Styles.helpTextStyle()),
                   )
               ],
