@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/help_model.dart';
 import 'package:braille_abc/models/screen_model.dart';
@@ -58,7 +59,7 @@ class MenuScreen extends NavigationScreen {
                 ),
                 CupertinoButton(
                   child: Icon(
-                    CupertinoIcons.question_circle,
+                    AppIcon.getIcon(AppIcons.HelpScreen),
                     semanticLabel: ScreenNames.getName(ScreenType.Help),
                     size: ScreenParams.height(5, context),
                   ),

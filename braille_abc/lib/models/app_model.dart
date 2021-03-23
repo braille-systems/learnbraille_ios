@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/section_model.dart';
@@ -18,18 +19,18 @@ class AppModel {
   static final Alphabet _alphabet = Alphabet();
 
   static final List<MenuButton> menuButton = [
-    MenuButton(name: ScreenNames.getName(ScreenType.Study), icon: CupertinoIcons.book),
-    MenuButton(name: ScreenNames.getName(ScreenType.Practice), icon: CupertinoIcons.circle_grid_3x3_fill),
-    MenuButton(name: ScreenNames.getName(ScreenType.Dictionary), icon: CupertinoIcons.textformat),
-    MenuButton(name: ScreenNames.getName(ScreenType.Settings), icon: CupertinoIcons.settings),
+    MenuButton(name: ScreenNames.getName(ScreenType.Study), icon: AppIcon.getIcon(AppIcons.StudyScreen)),
+    MenuButton(name: ScreenNames.getName(ScreenType.Practice), icon: AppIcon.getIcon(AppIcons.PracticeScreen)),
+    MenuButton(name: ScreenNames.getName(ScreenType.Dictionary), icon: AppIcon.getIcon(AppIcons.DictionaryScreen)),
+    MenuButton(name: ScreenNames.getName(ScreenType.Settings), icon: AppIcon.getIcon(AppIcons.SettingsScreen)),
   ];
 
   static final List<MenuButton> practiceButtons = [
-    MenuButton(name: SectionNames.getName(SectionType.RussianSymbols), icon: CupertinoIcons.textformat),
-    MenuButton(name: SectionNames.getName(SectionType.Numbers), icon: CupertinoIcons.textformat_123),
-    MenuButton(name: SectionNames.getName(SectionType.PunctuationSymbols), icon: CupertinoIcons.exclamationmark),
-    MenuButton(name: SectionNames.getName(SectionType.ArithmeticSymbols), icon: CupertinoIcons.plus_slash_minus),
-    MenuButton(name: SectionNames.getName(SectionType.Signs), icon: CupertinoIcons.square_grid_2x2),
+    MenuButton(name: SectionNames.getName(SectionType.RussianSymbols), icon: AppIcon.getIcon(AppIcons.RussianAlphabetSection)),
+    MenuButton(name: SectionNames.getName(SectionType.Numbers), icon: AppIcon.getIcon(AppIcons.NumbersSection)),
+    MenuButton(name: SectionNames.getName(SectionType.PunctuationSymbols), icon: AppIcon.getIcon(AppIcons.PunctuationSymbolsSection)),
+    MenuButton(name: SectionNames.getName(SectionType.ArithmeticSymbols), icon: AppIcon.getIcon(AppIcons.ArithmeticSymbolsSection)),
+    MenuButton(name: SectionNames.getName(SectionType.Signs), icon: AppIcon.getIcon(AppIcons.SignsSection)),
   ];
 
   static final Widget _menuScreen = MenuScreen(
@@ -68,7 +69,7 @@ class AppModel {
   static final List<SectionModel> sections = [
     SectionModel(
       name: SectionNames.getName(SectionType.RussianSymbols),
-      icon: CupertinoIcons.textformat,
+      icon: AppIcon.getIcon(AppIcons.RussianAlphabetSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: _alphabet.listOfStudyItems(SectionType.RussianSymbols),
@@ -76,7 +77,7 @@ class AppModel {
     ),
     SectionModel(
       name: SectionNames.getName(SectionType.Numbers),
-      icon: CupertinoIcons.textformat_123,
+      icon: AppIcon.getIcon(AppIcons.NumbersSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: _alphabet.listOfStudyItems(SectionType.Numbers),
@@ -84,7 +85,7 @@ class AppModel {
     ),
     SectionModel(
       name: SectionNames.getName(SectionType.PunctuationSymbols),
-      icon: CupertinoIcons.exclamationmark,
+      icon: AppIcon.getIcon(AppIcons.PunctuationSymbolsSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: _alphabet.listOfStudyItems(SectionType.PunctuationSymbols),
@@ -92,7 +93,7 @@ class AppModel {
     ),
     SectionModel(
       name: SectionNames.getName(SectionType.ArithmeticSymbols),
-      icon: CupertinoIcons.plus_slash_minus,
+      icon: AppIcon.getIcon(AppIcons.ArithmeticSymbolsSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: _alphabet.listOfStudyItems(SectionType.ArithmeticSymbols),
@@ -100,7 +101,7 @@ class AppModel {
     ),
     SectionModel(
       name: SectionNames.getName(SectionType.Signs),
-      icon: CupertinoIcons.square_grid_2x2,
+      icon: AppIcon.getIcon(AppIcons.SignsSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: _alphabet.listOfStudyItems(SectionType.Signs),

@@ -10,7 +10,7 @@ enum SectionType
 
 class SectionNames
 {
-  static final Map<SectionType, String> stringOfSectionsMap =
+  static const Map<SectionType, String> stringOfSectionsMap =
   {
     SectionType.RussianSymbols : "Русский алфавит",
     SectionType.Numbers : "Цифры",
@@ -39,11 +39,11 @@ enum ScreenType
 
 class ScreenNames
 {
-  static final Map<ScreenType, String> stringOfScreensMap =
+  static const Map<ScreenType, String> stringOfScreensMap =
   {
     ScreenType.Dictionary : "Словарь",
     ScreenType.Help : "Справка",
-    ScreenType.Home : "Меню", // ?
+    ScreenType.Home : "Меню",
     ScreenType.Letter : "Просмотр символа",
     ScreenType.Practice: "Практика",
     ScreenType.Settings: "Настройки",
@@ -67,7 +67,7 @@ enum XmlItemType
 
 class XmlNames
 {
-  static final Map<XmlItemType, String> stringOfXmlItemMap =
+  static const Map<XmlItemType, String> stringOfXmlItemMap =
   {
     XmlItemType.Alphabet : "Алфавит",
     XmlItemType.GeneralHelp : "Общая справка",
@@ -93,7 +93,7 @@ enum SemanticsType
 
 class SemanticNames
 {
-  static final Map<SemanticsType, String> stringOfSemanticsMap =
+  static const Map<SemanticsType, String> stringOfSemanticsMap =
   {
     SemanticsType.ChangeMode : "Изменить режим",
     SemanticsType.Back : "Назад",

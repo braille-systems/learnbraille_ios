@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/components/body_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
@@ -52,7 +53,7 @@ class _BottomState extends State<Bottom> {
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   backgroundColor: CupertinoColors.lightBackgroundGray,
-                  icon: Icon(CupertinoIcons.bars),
+                  icon: Icon(AppIcon.getIcon(AppIcons.MenuScreen)),
                   label: ScreenNames.getName(ScreenType.Home),
                 ),
                 for (int i = 0; i < AppModel.menuButton.length; i++)

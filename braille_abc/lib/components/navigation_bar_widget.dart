@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/screens/help_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'bottom_bar_widget.dart';
@@ -48,7 +49,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
         padding: const EdgeInsets.symmetric(
           horizontal: 10,
         ),
-        child: Icon(CupertinoIcons.question_circle, semanticLabel: ScreenNames.getName(ScreenType.Help), size: 35),
+        child: Icon(AppIcon.getIcon(AppIcons.HelpScreen), semanticLabel: ScreenNames.getName(ScreenType.Help), size: 35),
         onPressed: () {
           Timer(Duration(milliseconds: 10), () {
             scakey.currentState.displayTapBar(false);

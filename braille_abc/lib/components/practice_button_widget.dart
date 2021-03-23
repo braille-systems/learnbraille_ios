@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
               width: ScreenParams.width(25, context),
             ),
             DecoratedIcon(
-              CupertinoIcons.chevron_right_2,
+              AppIcon.getIcon(AppIcons.ContinueButton),
               color: CupertinoColors.black,
               size: 22.0,
             ),

@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
@@ -99,7 +100,7 @@ class _LetterViewState extends State<LetterView> {
                   else if (this._dir == TextDirection.rtl) this._dir = TextDirection.ltr;
                 }),
                 child: Icon(
-                  CupertinoIcons.arrow_right_arrow_left,
+                  AppIcon.getIcon(AppIcons.ChangeModeButton),
                   color: CupertinoColors.white,
                   semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
                 ),

@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/help_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,7 +22,7 @@ class MainMenuHelp extends Screen {
       ),
       for (int i = 0; i < HelpModel.helpSection[XmlNames.getName(XmlItemType.MainMenu)].content.length; i++)
         ExpansionSection(
-          sectionIcon: CupertinoIcons.bars,
+          sectionIcon: AppIcon.getIcon(AppIcons.MenuScreen),
           sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.MainMenu)].content[i].name,
           child: Html(
               data: HelpModel.helpSection[XmlNames.getName(XmlItemType.MainMenu)].content[i].description,
@@ -38,10 +39,10 @@ class GeneralHelp extends Screen {
 
   @override
   Widget build(BuildContext context) {
-    List<IconData> subIcon = [CupertinoIcons.back, CupertinoIcons.question_circle];
+    List<IconData> subIcon = [AppIcon.getIcon(AppIcons.BackButton), AppIcon.getIcon(AppIcons.HelpScreen)];
     return ExpansionSection(
       color: Colors.orangeAccent,
-      sectionIcon: CupertinoIcons.info,
+      sectionIcon: AppIcon.getIcon(AppIcons.GeneralHelpInHelpScreen),
       sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.GeneralHelp)].name,
       child: Column(
         children: [
@@ -77,7 +78,7 @@ class DictionaryHelp extends Screen {
       ),
       for (int i = 0; i < HelpModel.helpSection[XmlNames.getName(XmlItemType.Alphabet)].content.length; i++)
         ExpansionSection(
-          sectionIcon: CupertinoIcons.textformat,
+          sectionIcon: AppIcon.getIcon(AppIcons.DictionaryScreen),
           sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.Alphabet)].content[i].name,
           child: Html(
               data: HelpModel.helpSection[XmlNames.getName(XmlItemType.Alphabet)].content[i].description,
@@ -95,7 +96,7 @@ class LetterViewHelp extends Screen {
   @override
   Widget build(BuildContext context) {
     List<IconData> subIcon = [
-      CupertinoIcons.arrow_right_arrow_left,
+      AppIcon.getIcon(AppIcons.ChangeModeButton),
     ];
     return Column(
       children: [
@@ -106,7 +107,7 @@ class LetterViewHelp extends Screen {
         for (int i = 0; i < HelpModel.helpSection[XmlNames.getName(XmlItemType.SymbolView)].content.length; i++)
           ExpansionSection(
             color: Colors.orangeAccent,
-            sectionIcon: CupertinoIcons.circle_grid_3x3_fill,
+            sectionIcon: AppIcon.getIcon(AppIcons.DictionaryScreen),
             sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.SymbolView)].content[i].name,
             child: Column(
               children: [
