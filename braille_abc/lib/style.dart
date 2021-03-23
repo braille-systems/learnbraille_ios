@@ -9,7 +9,28 @@ abstract class Styles {
     );
   }
 
-  static TextStyle helpTextStyle(){
+  static List<Shadow> buildStroke(double stroke) {
+    return [
+      Shadow(
+        offset: Offset(-stroke, -stroke),
+        color: CupertinoColors.darkBackgroundGray,
+      ),
+      Shadow(
+        offset: Offset(stroke, -stroke),
+        color: CupertinoColors.darkBackgroundGray,
+      ),
+      Shadow(
+        offset: Offset(-stroke, stroke),
+        color: CupertinoColors.darkBackgroundGray,
+      ),
+      Shadow(
+        offset: Offset(stroke, stroke),
+        color: CupertinoColors.darkBackgroundGray,
+      ),
+    ];
+  }
+
+  static TextStyle helpTextStyle() {
     return TextStyle(fontSize: 19);
   }
 }

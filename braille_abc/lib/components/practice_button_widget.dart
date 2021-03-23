@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:decorated_icon/decorated_icon.dart';
-import 'package:braille_abc/screens/practice_screen.dart';
+import 'package:braille_abc/models/practice_model.dart';
 
 import 'package:braille_abc/style.dart';
 
@@ -115,25 +115,11 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             DecoratedIcon(
               widget.practiceButton.icon,
               color: CupertinoColors.white,
-              size: 50.0,
+              size: 48.0,
               shadows: <Shadow>[
                 Styles.buildButtonShadow(),
-                Shadow(
-                  offset: Offset(-.25, -.25),
-                  color: Colors.black45,
-                ),
-                Shadow(
-                  offset: Offset(.25, -.25),
-                  color: Colors.black45,
-                ),
-                Shadow(
-                  offset: Offset(-.25, .25),
-                  color: Colors.black45,
-                ),
-                Shadow(
-                  offset: Offset(.25, .25),
-                  color: Colors.black45,
-                ),
+                for(var stroke in Styles.buildStroke(0.25))
+                  stroke,
               ],
             ),
             Row(

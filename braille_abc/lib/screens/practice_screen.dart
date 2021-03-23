@@ -6,23 +6,7 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import '../models/menu_button.dart';
 
-//TODO: Replace this class to other module. Mb remove static.
-class Practice {
-  static List<String> _pool = [];
 
-  static void addSymbolGroup(String groupName) {
-    _pool.add(groupName);
-  }
-  static void removeSymbolGroup(String groupName) {
-    _pool.remove(groupName);
-  }
-  static List<String> getPool() {
-    return _pool;
-  }
-  static void updatePool() {
-    _pool.clear();
-  }
-}
 
 class PracticeScreen extends NavigationScreen {
   const PracticeScreen({
@@ -49,7 +33,7 @@ class PracticeScreen extends NavigationScreen {
             Column(
               children: [
                 Container(
-                  height: ScreenParams.heightIOS14(72, context),
+                  height: ScreenParams.heightIOS14(80, context),
                   child: GridView.count(
                     crossAxisCount: 2,
                     physics: NeverScrollableScrollPhysics(),
