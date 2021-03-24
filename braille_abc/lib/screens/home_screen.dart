@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:braille_abc/models/app_icons.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/help_model.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/screens/help_screen.dart';
@@ -52,13 +54,13 @@ class MenuScreen extends NavigationScreen {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Меню",
+                  ScreenNames.getName(ScreenType.Home),
                   style: TextStyle(color: CupertinoColors.black, fontSize: 55, fontWeight: FontWeight.bold),
                 ),
                 CupertinoButton(
                   child: Icon(
-                    CupertinoIcons.question_circle,
-                    semanticLabel: "Справка",
+                    AppIcon.getIcon(AppIcons.HelpScreen),
+                    semanticLabel: ScreenNames.getName(ScreenType.Help),
                     size: ScreenParams.height(5, context),
                   ),
                   onPressed: () {

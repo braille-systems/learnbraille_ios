@@ -1,3 +1,5 @@
+import 'package:braille_abc/models/app_icons.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,10 +11,10 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 import '../style.dart';
 
 class LetterScreen extends SectionScreen {
-  final String titleSymbol;
+  final SectionType sectionName;
   final String symbol;
 
-  const LetterScreen({Key key, Screen helpPage, Screen previousPage, @required this.titleSymbol, @required this.symbol})
+  const LetterScreen({Key key, Screen helpPage, Screen previousPage, @required this.sectionName, @required this.symbol})
       : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override
@@ -20,20 +22,20 @@ class LetterScreen extends SectionScreen {
     return CupertinoPageScaffold(
         navigationBar: NavigationBar(
           currentPage: this,
-          title: "Просмотр символа",
+          title: ScreenNames.getName(ScreenType.Letter),
         ),
         child: LetterView(
-          titleSymbol: titleSymbol,
+          sectionName: sectionName,
           symbol: symbol,
         ));
   }
 }
 
 class LetterView extends StatefulWidget {
-  LetterView({Key key, @required this.titleSymbol, @required this.symbol}) : super(key: key);
+  LetterView({Key key, @required this.sectionName, @required this.symbol}) : super(key: key);
 
-  final String str = "Просмотр символа";
-  final String titleSymbol;
+  final String str = ScreenNames.getName(ScreenType.Letter);
+  final SectionType sectionName;
   final String symbol;
 
   @override
@@ -69,7 +71,7 @@ class _LetterViewState extends State<LetterView> {
             Semantics(
               button: false,
               child: LetterWidget(
-                title: widget.titleSymbol,
+                title: widget.sectionName,
                 symbol: widget.symbol,
               ),
             )
@@ -98,9 +100,9 @@ class _LetterViewState extends State<LetterView> {
                   else if (this._dir == TextDirection.rtl) this._dir = TextDirection.ltr;
                 }),
                 child: Icon(
-                  CupertinoIcons.arrow_right_arrow_left,
+                  AppIcon.getIcon(AppIcons.ChangeModeButton),
                   color: CupertinoColors.white,
-                  semanticLabel: "Изменить режим",
+                  semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
                 ),
               ),
               SymbolWidget(
@@ -109,7 +111,7 @@ class _LetterViewState extends State<LetterView> {
                   isTapped: false,
                   width: 200,
                   height: 350,
-                  dictSection: widget.titleSymbol),
+                  dictSection: widget.sectionName),
               SizedBox(
                 height: ScreenParams.width(60, context),
                 width: ScreenParams.height(8, context),

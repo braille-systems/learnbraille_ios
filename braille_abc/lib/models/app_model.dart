@@ -1,3 +1,5 @@
+import 'package:braille_abc/models/app_icons.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/section_model.dart';
 import 'package:braille_abc/screens/dictionary_screen.dart';
@@ -17,18 +19,18 @@ class AppModel {
   static final Alphabet _alphabet = Alphabet();
 
   static final List<MenuButton> menuButton = [
-    MenuButton(name: "Обучение", icon: CupertinoIcons.book),
-    MenuButton(name: "Практика", icon: CupertinoIcons.circle_grid_3x3_fill),
-    MenuButton(name: "Словарь", icon: CupertinoIcons.textformat),
-    MenuButton(name: "Настройки", icon: CupertinoIcons.settings),
+    MenuButton(name: ScreenNames.getName(ScreenType.Study), icon: AppIcon.getIcon(AppIcons.StudyScreen)),
+    MenuButton(name: ScreenNames.getName(ScreenType.Practice), icon: AppIcon.getIcon(AppIcons.PracticeScreen)),
+    MenuButton(name: ScreenNames.getName(ScreenType.Dictionary), icon: AppIcon.getIcon(AppIcons.DictionaryScreen)),
+    MenuButton(name: ScreenNames.getName(ScreenType.Settings), icon: AppIcon.getIcon(AppIcons.SettingsScreen)),
   ];
 
   static final List<MenuButton> practiceButtons = [
-    MenuButton(name: "Русский алфавит", icon: CupertinoIcons.textformat),
-    MenuButton(name: "Цифры", icon: CupertinoIcons.textformat_123),
-    MenuButton(name: "Знаки препинания", icon: CupertinoIcons.exclamationmark),
-    MenuButton(name: "Арифметические знаки", icon: CupertinoIcons.plus_slash_minus),
-    MenuButton(name: "Признаки", icon: CupertinoIcons.square_grid_2x2),
+    MenuButton(name: SectionNames.getName(SectionType.RussianSymbols), icon: AppIcon.getIcon(AppIcons.RussianAlphabetSection)),
+    MenuButton(name: SectionNames.getName(SectionType.Numbers), icon: AppIcon.getIcon(AppIcons.NumbersSection)),
+    MenuButton(name: SectionNames.getName(SectionType.PunctuationSymbols), icon: AppIcon.getIcon(AppIcons.PunctuationSymbolsSection)),
+    MenuButton(name: SectionNames.getName(SectionType.ArithmeticSymbols), icon: AppIcon.getIcon(AppIcons.ArithmeticSymbolsSection)),
+    MenuButton(name: SectionNames.getName(SectionType.Signs), icon: AppIcon.getIcon(AppIcons.SignsSection)),
   ];
 
   static final Widget _menuScreen = MenuScreen(
@@ -66,43 +68,43 @@ class AppModel {
 
   static final List<SectionModel> sections = [
     SectionModel(
-      name: "Русский алфавит",
-      icon: CupertinoIcons.textformat,
+      name: SectionNames.getName(SectionType.RussianSymbols),
+      icon: AppIcon.getIcon(AppIcons.RussianAlphabetSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _alphabet.listOfStudyItems("Русский алфавит"),
+        children: _alphabet.listOfStudyItems(SectionType.RussianSymbols),
       ),
     ),
     SectionModel(
-      name: "Цифры",
-      icon: CupertinoIcons.textformat_123,
+      name: SectionNames.getName(SectionType.Numbers),
+      icon: AppIcon.getIcon(AppIcons.NumbersSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _alphabet.listOfStudyItems("Цифры"),
+        children: _alphabet.listOfStudyItems(SectionType.Numbers),
       ),
     ),
     SectionModel(
-      name: "Знаки препинания",
-      icon: CupertinoIcons.exclamationmark,
+      name: SectionNames.getName(SectionType.PunctuationSymbols),
+      icon: AppIcon.getIcon(AppIcons.PunctuationSymbolsSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _alphabet.listOfStudyItems("Знаки препинания"),
+        children: _alphabet.listOfStudyItems(SectionType.PunctuationSymbols),
       ),
     ),
     SectionModel(
-      name: "Арифметические знаки",
-      icon: CupertinoIcons.plus_slash_minus,
+      name: SectionNames.getName(SectionType.ArithmeticSymbols),
+      icon: AppIcon.getIcon(AppIcons.ArithmeticSymbolsSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _alphabet.listOfStudyItems("Арифметические знаки"),
+        children: _alphabet.listOfStudyItems(SectionType.ArithmeticSymbols),
       ),
     ),
     SectionModel(
-      name: "Признаки",
-      icon: CupertinoIcons.square_grid_2x2,
+      name: SectionNames.getName(SectionType.Signs),
+      icon: AppIcon.getIcon(AppIcons.SignsSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _alphabet.listOfStudyItems("Признаки"),
+        children: _alphabet.listOfStudyItems(SectionType.Signs),
       ),
     ),
   ];

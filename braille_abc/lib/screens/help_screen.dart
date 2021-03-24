@@ -3,6 +3,7 @@ import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:braille_abc/models/app_names.dart';
 
 class HelpScreen extends Screen {
   const HelpScreen({
@@ -18,7 +19,7 @@ class HelpScreen extends Screen {
     return CupertinoPageScaffold(
       navigationBar: NavigationBar(
         currentPage: this,
-        title: "Справка",
+        title: ScreenNames.getName(ScreenType.Help),
       ),
       child: SafeArea(
         child: Scaffold(
