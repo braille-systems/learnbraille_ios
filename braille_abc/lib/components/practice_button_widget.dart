@@ -2,6 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/letter_practice_screen.dart';
+import 'package:braille_abc/models/app_icons.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:braille_abc/shared/screen_params.dart';
@@ -21,7 +23,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: "Продолжить",
+      label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.orange[300],
@@ -33,14 +35,14 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             AutoSizeText(
-              "Продолжить",
+              SemanticNames.getName(SemanticsType.Continue),
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300, color: CupertinoColors.black),
             ),
             SizedBox(
               width: ScreenParams.width(25, context),
             ),
             DecoratedIcon(
-              CupertinoIcons.chevron_right_2,
+              AppIcon.getIcon(AppIcons.ContinueButton),
               color: CupertinoColors.black,
               size: 22.0,
             ),

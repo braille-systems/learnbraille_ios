@@ -1,6 +1,7 @@
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:braille_abc/models/app_names.dart';
 
 class StudyScreen extends NavigationScreen {
   const StudyScreen({
@@ -14,7 +15,7 @@ class StudyScreen extends NavigationScreen {
     return CupertinoPageScaffold(
       navigationBar: NavigationBar(
         currentPage: this,
-        title: "Обучение",
+        title: ScreenNames.getName(ScreenType.Study),
       ),
       child: SafeArea(
         child: Center(child: Text('Study')),

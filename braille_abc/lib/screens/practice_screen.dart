@@ -4,8 +4,8 @@ import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:braille_abc/models/app_names.dart';
 import '../models/menu_button.dart';
-
 
 
 class PracticeScreen extends NavigationScreen {
@@ -20,7 +20,7 @@ class PracticeScreen extends NavigationScreen {
     return CupertinoPageScaffold(
       navigationBar: NavigationBar(
         currentPage: this,
-        title: "Практика",
+        title: ScreenNames.getName(ScreenType.Practice),
       ),
       child: SafeArea(
         minimum: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
