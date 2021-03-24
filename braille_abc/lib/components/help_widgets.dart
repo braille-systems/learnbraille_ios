@@ -134,3 +134,91 @@ class LetterViewHelp extends Screen {
     );
   }
 }
+
+class PracticeHelp extends Screen {
+  const PracticeHelp({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<IconData> subIcon = [
+      AppIcon.getIcon(AppIcons.ContinueButton),
+    ];
+    return Column(
+      children: [
+        Html(
+          data: HelpModel.helpSection[XmlNames.getName(XmlItemType.PracticeSections)].description,
+          defaultTextStyle: Styles.helpTextStyle(),
+        ),
+        for (int i = 0; i < HelpModel.helpSection[XmlNames.getName(XmlItemType.PracticeSections)].content.length; i++)
+          ExpansionSection(
+            color: Colors.orangeAccent,
+            sectionIcon: AppIcon.getIcon(AppIcons.PracticeScreen),
+            sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.PracticeSections)].content[i].name,
+            child: Column(
+              children: [
+                Html(
+                  data: HelpModel.helpSection[XmlNames.getName(XmlItemType.PracticeSections)].content[i].description,
+                  defaultTextStyle: Styles.helpTextStyle(),
+                ),
+                for (int j = 0; j < HelpModel.helpSection[XmlNames.getName(XmlItemType.PracticeSections)].content[i].content.length; j++)
+                  ExpansionSection(
+                    sectionIcon: subIcon[j],
+                    sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.PracticeSections)].content[i].content[j].name,
+                    child: Html(
+                        data: HelpModel.helpSection[XmlNames.getName(XmlItemType.PracticeSections)].content[i].content[i].description,
+                        defaultTextStyle: Styles.helpTextStyle()),
+                  )
+              ],
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class LetterPracticeHelp extends Screen {
+  const LetterPracticeHelp({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List<IconData> subIcon = [
+      AppIcon.getIcon(AppIcons.HintButton),
+      AppIcon.getIcon(AppIcons.ChangeModeButton),
+      AppIcon.getIcon(AppIcons.NextStep),
+    ];
+    return Column(
+      children: [
+        Html(
+          data: HelpModel.helpSection[ScreenNames.getName(ScreenType.Practice)].description,
+          defaultTextStyle: Styles.helpTextStyle(),
+        ),
+        for (int i = 0; i < HelpModel.helpSection[ScreenNames.getName(ScreenType.Practice)].content.length; i++)
+          ExpansionSection(
+            color: Colors.orangeAccent,
+            sectionIcon: AppIcon.getIcon(AppIcons.PracticeScreen),
+            sectionName: HelpModel.helpSection[ScreenNames.getName(ScreenType.Practice)].content[i].name,
+            child: Column(
+              children: [
+                Html(
+                  data: HelpModel.helpSection[ScreenNames.getName(ScreenType.Practice)].content[i].description,
+                  defaultTextStyle: Styles.helpTextStyle(),
+                ),
+                for (int j = 0; j < HelpModel.helpSection[ScreenNames.getName(ScreenType.Practice)].content[i].content.length; j++)
+                  ExpansionSection(
+                    sectionIcon: subIcon[j],
+                    sectionName: HelpModel.helpSection[ScreenNames.getName(ScreenType.Practice)].content[i].content[j].name,
+                    child: Html(
+                        data: HelpModel.helpSection[ScreenNames.getName(ScreenType.Practice)].content[i].content[i].description,
+                        defaultTextStyle: Styles.helpTextStyle()),
+                  )
+              ],
+            ),
+          ),
+      ],
+    );
+  }
+}

@@ -13,6 +13,8 @@ enum AppIcons
   BackButton,
   ContinueButton,
   ChangeModeButton,
+  HintButton,
+  NextStep,
 
   RussianAlphabetSection,
   NumbersSection,
@@ -38,6 +40,8 @@ class AppIcon
     AppIcons.BackButton : CupertinoIcons.back,
     AppIcons.ContinueButton : CupertinoIcons.chevron_right_2,
     AppIcons.ChangeModeButton : CupertinoIcons.arrow_right_arrow_left,
+    AppIcons.HintButton : CupertinoIcons.quote_bubble_fill,
+    AppIcons.NextStep : CupertinoIcons.arrow_right,
 
     AppIcons.Add : CupertinoIcons.add,
     AppIcons.GeneralHelpInHelpScreen : CupertinoIcons.info,

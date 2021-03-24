@@ -45,7 +45,7 @@ class AppModel {
 
   static final Widget _practiceScreen = PracticeScreen(
       previousPage: _menuScreen,
-      helpPage: null
+      helpPage: PracticeHelp(),
   );
 
   static final Widget _dictionaryScreen = DictionaryScreen(
