@@ -22,7 +22,7 @@ class LetterScreen extends SectionScreen {
     return CupertinoPageScaffold(
         navigationBar: NavigationBar(
           currentPage: this,
-          title: "Просмотр символа",
+          title: ScreenNames.getName(ScreenType.Letter),
         ),
         child: LetterView(
           sectionName: sectionName,
@@ -34,7 +34,7 @@ class LetterScreen extends SectionScreen {
 class LetterView extends StatefulWidget {
   LetterView({Key key, @required this.sectionName, @required this.symbol}) : super(key: key);
 
-  final String str = "Просмотр символа";
+  final String str = ScreenNames.getName(ScreenType.Letter);
   final SectionType sectionName;
   final String symbol;
 
