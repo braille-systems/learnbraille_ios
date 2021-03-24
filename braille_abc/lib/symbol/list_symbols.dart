@@ -122,13 +122,6 @@ class Alphabet {
 
   Alphabet() {
     if (_alphabet == null) {
-      // final List<String> tokens = <String>[
-      //   "Русский алфавит",
-      //   "Знаки препинания",
-      //   "Арифметические знаки",
-      //   "Цифры",
-      //   "Признаки",
-      // ];
       SymbolsFactory factory = SymbolsFactory();
       _alphabet = Map();
       for (var token in SectionNames.stringOfSectionsMap.keys) {

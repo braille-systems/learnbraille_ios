@@ -53,18 +53,12 @@ abstract class Symbol {
     return char;
   }
 
-  // String ofGroup();
-
 }
 
 class RussianSymbol extends Symbol {
   static final SectionType groupName = SectionType.RussianSymbols;
 
   const RussianSymbol({String char, List<DotImage> list}) : super(dots: list, char: char);
-
-  // String ofGroup() {
-  //   return groupName;
-  // }
 }
 
 class PunctuationSymbol extends Symbol {
@@ -72,9 +66,6 @@ class PunctuationSymbol extends Symbol {
 
   const PunctuationSymbol({String char, List<DotImage> list}) : super (dots: list, char: char);
 
-  // String ofGroup() {
-  //   return groupName;
-  // }
 }
 
 class ArithmeticSymbol extends Symbol {
@@ -82,9 +73,6 @@ class ArithmeticSymbol extends Symbol {
 
   const ArithmeticSymbol({String char, List<DotImage> list}) : super (dots: list, char: char);
 
-  // String ofGroup() {
-  //   return groupName;
-  // }
 }
 
 class Number extends Symbol{
@@ -92,9 +80,6 @@ class Number extends Symbol{
 
   const Number({String char, List<DotImage> list}) : super (dots: list, char: char);
 
-  // String ofGroup() {
-  //   return groupName;
-  // }
 }
 
 class Sign extends Symbol{
@@ -102,7 +87,4 @@ class Sign extends Symbol{
 
   const Sign({List<DotImage> list, String char}) : super (dots: list, char: char);
 
-  // String ofGroup() {
-  //   return groupName;
-  // }
 }
