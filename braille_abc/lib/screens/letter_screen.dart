@@ -1,5 +1,6 @@
-import 'package:braille_abc/components/help_widgets.dart';
-import 'package:braille_abc/screens/dictionary_screen.dart';
+import 'package:braille_abc/models/app_icons.dart';
+import 'package:braille_abc/models/app_names.dart';
+import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,18 +10,39 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 
 import '../style.dart';
 
-class LetterScreen extends StatefulWidget {
-  LetterScreen({Key key, @required this.titleSymbol, @required this.symbol}) : super(key: key);
+class LetterScreen extends SectionScreen {
+  final SectionType sectionName;
+  final String symbol;
 
-  final String str = "Просмотр символа";
-  final String titleSymbol;
+  const LetterScreen({Key key, Screen helpPage, Screen previousPage, @required this.sectionName, @required this.symbol})
+      : super(key: key, helpPage: helpPage, previousPage: previousPage);
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoPageScaffold(
+        navigationBar: NavigationBar(
+          currentPage: this,
+          title: ScreenNames.getName(ScreenType.Letter),
+        ),
+        child: LetterView(
+          sectionName: sectionName,
+          symbol: symbol,
+        ));
+  }
+}
+
+class LetterView extends StatefulWidget {
+  LetterView({Key key, @required this.sectionName, @required this.symbol}) : super(key: key);
+
+  final String str = ScreenNames.getName(ScreenType.Letter);
+  final SectionType sectionName;
   final String symbol;
 
   @override
-  _LetterScreenState createState() => _LetterScreenState();
+  _LetterViewState createState() => _LetterViewState();
 }
 
-class _LetterScreenState extends State<LetterScreen> {
+class _LetterViewState extends State<LetterView> {
   TextDirection _dir = TextDirection.ltr;
 
   @override
@@ -39,34 +61,21 @@ class _LetterScreenState extends State<LetterScreen> {
     }
 
     return CupertinoPageScaffold(
-      navigationBar: NavigationBar(
-        title: widget.str,
-        previousPage: DictionaryScreen(),
-        helpPage: LetterViewHelp(),
-        currentPage: LetterScreen(
-          titleSymbol: widget.titleSymbol,
-          symbol: widget.symbol,
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
             height: ScreenParams.height(5, context),
           ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Semantics(
-                  button: false,
-                  child: LetterWidget(
-                    title: widget.titleSymbol,
-                    symbol: widget.symbol,
-                  ),
-                )
-
-              ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
+            Semantics(
+              button: false,
+              child: LetterWidget(
+                title: widget.sectionName,
+                symbol: widget.symbol,
+              ),
+            )
+          ]),
           SizedBox(
             height: ScreenParams.height(5, context),
           ),
@@ -91,12 +100,18 @@ class _LetterScreenState extends State<LetterScreen> {
                   else if (this._dir == TextDirection.rtl) this._dir = TextDirection.ltr;
                 }),
                 child: Icon(
-                  CupertinoIcons.arrow_right_arrow_left,
+                  AppIcon.getIcon(AppIcons.ChangeModeButton),
                   color: CupertinoColors.white,
-                  semanticLabel: "Изменить режим",
+                  semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
                 ),
               ),
-              SymbolWidget(textDir: mode, char: widget.symbol, isTapped: false, width: 200, height: 350, dictSection: widget.titleSymbol),
+              SymbolWidget(
+                  textDir: mode,
+                  char: widget.symbol,
+                  isTapped: false,
+                  width: 200,
+                  height: 350,
+                  dictSection: widget.sectionName),
               SizedBox(
                 height: ScreenParams.width(60, context),
                 width: ScreenParams.height(8, context),
