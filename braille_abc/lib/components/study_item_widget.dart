@@ -37,6 +37,7 @@ class StudyItem extends StatelessWidget {
                 symbol: symbol.getChar(),
                 previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
                 helpPage:  LetterViewHelp(),
+                touchable: false,
               ),
             ),
           );

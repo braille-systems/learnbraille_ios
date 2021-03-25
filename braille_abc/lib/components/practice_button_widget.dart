@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:braille_abc/models/practice_model.dart';
+import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/components/help_widgets.dart';
 
 import 'package:braille_abc/style.dart';
 
 import '../models/menu_button.dart';
+import 'package:braille_abc/screens/letter_screen.dart';
 
 class ContinueButtonWidget extends StatefulWidget {
   @override
@@ -47,11 +50,86 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
           if (Practice.getPool().isNotEmpty) {
             print(Practice.getPool());
           }
-        },
+          Navigator.of(context).push(
+            CupertinoPageRoute(
+              builder: (context) => LetterScreen(
+                titleSymbol: 't',
+                symbol: 't',
+                previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
+                helpPage:  LetterViewHelp(),
+                touchable: true,
+              ),
+            ),
+          );
+          },
       ),
     );
   }
 }
+
+/*class PracticeSymbol extends StatefulWidget{
+  PracticeSymbol(Key key,
+  List<String> str): super(key: key){
+    SymbolsFactory factory = new SymbolsFactory();
+    for(var i in Practice.getPool()) {
+      var group = factory.createSymbolsGroup(i);
+      data.addAll(group);
+      title[group.length] = i;
+    }
+  }
+
+  final List<Symbol> data = <Symbol>[];
+  final Map<int, String> title = new Map<int, String>();
+
+  void rand(Symbol sym, String tit){
+    var rand = new Random();
+    int num = rand.nextInt(data.length);
+    sym = data[num];
+    int startTitle = 0;
+    for(var i in title.keys) {
+      if (num < i) {
+        if ((startTitle != 0) && (startTitle < i)) {
+          startTitle = i;
+        }
+        else {
+          startTitle = i;
+        }
+      }
+    }
+    tit = title[startTitle];
+    for(var i in title.keys){
+      if(i >= startTitle) {
+        String str = title[i];
+        title.remove(i);
+        i--;
+        title[i] = str;
+      }
+    }
+  }
+
+  @override
+  State<StatefulWidget> createState() => _PracticeSymbol();
+}
+
+class _PracticeSymbol extends State<PracticeSymbol>{
+
+  _PracticeSymbol(){
+    widget.rand(symbol, title);
+  }
+
+  Symbol symbol;
+  String title;
+
+  @override
+  Widget build(BuildContext context){
+    return LetterScreen(
+        titleSymbol: title,
+        symbol: symbol.getChar(),
+        previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
+        helpPage:  LetterViewHelp(),
+    );
+  }
+}*/
 
 class PracticeButtonWidget extends StatefulWidget {
   const PracticeButtonWidget({
