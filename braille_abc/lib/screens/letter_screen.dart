@@ -1,27 +1,28 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'dart:math';
+
+import '../style.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
-import 'package:braille_abc/screens/practice_screen.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/components/letter_widget.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
-import 'dart:math';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
 
-import '../style.dart';
+import 'package:braille_abc/screens/practice_screen.dart';
 
 class LetterScreen extends SectionScreen {
   final SectionType sectionName;
   final ScreenType screenType;
   final String symbol;
-  final bool touchable;
+  final bool isDotsTouchable;
 
   const LetterScreen(
       {Key key,
@@ -30,7 +31,7 @@ class LetterScreen extends SectionScreen {
       @required this.screenType,
       @required this.sectionName,
       @required this.symbol,
-      @required this.touchable})
+      @required this.isDotsTouchable})
       : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override
@@ -44,19 +45,19 @@ class LetterScreen extends SectionScreen {
           screenType: screenType,
           sectionName: sectionName,
           symbol: symbol,
-          touchable: touchable,
+          isDotsTouchable: isDotsTouchable,
         ));
   }
 }
 
 class LetterView extends StatefulWidget {
-  LetterView({Key key, @required this.sectionName, @required this.screenType, @required this.symbol, @required this.touchable}) : super(key: key);
+  LetterView({Key key, @required this.sectionName, @required this.screenType, @required this.symbol, @required this.isDotsTouchable}) : super(key: key);
 
   final String str = ScreenNames.getName(ScreenType.Letter);
   final SectionType sectionName;
   final ScreenType screenType;
   final String symbol;
-  final bool touchable;
+  final bool isDotsTouchable;
 
   @override
   _LetterViewState createState() => _LetterViewState();
@@ -128,11 +129,11 @@ class _LetterViewState extends State<LetterView> {
               SymbolWidget(
                   textDir: mode,
                   char: widget.symbol,
-                  isTapped: widget.touchable,
+                  isTapped: widget.isDotsTouchable,
                   width: 200,
                   height: 350,
                   dictSection: widget.sectionName),
-              widget.touchable
+              widget.isDotsTouchable
                   ? SizedBox(
                       height: ScreenParams.height(30, context),
                       width: ScreenParams.width(17, context),
@@ -157,9 +158,9 @@ class _LetterViewState extends State<LetterView> {
                                       screenType: widget.screenType,
                                       symbol: PracticeSymbol.getString(),
                                       sectionName: PracticeSymbol.getSectionName(),
-                                      previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
+                                      previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
                                       helpPage: LetterViewHelp(),
-                                      touchable: true,
+                                      isDotsTouchable: true,
                                     ),
                                   ),
                                 )
@@ -172,8 +173,9 @@ class _LetterViewState extends State<LetterView> {
                                 );
                         }),
                         child: Icon(
-                          CupertinoIcons.chevron_right_2,
+                          AppIcon.AppIconsMap[AppIcons.ContinueButton],
                           color: CupertinoColors.white,
+                          semanticLabel: SemanticNames.getName(SemanticsType.Continue),
                         ),
                       ),
                     )

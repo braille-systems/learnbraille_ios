@@ -71,7 +71,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
                 screenType: ScreenType.Practice,
                 previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
                 helpPage:  LetterViewHelp(),
-                touchable: true,
+                isDotsTouchable: true,
               ),
             ),
           );
