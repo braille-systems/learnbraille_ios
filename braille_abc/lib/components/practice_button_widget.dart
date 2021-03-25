@@ -26,7 +26,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.orange[300],
+          primary: AppColors.first,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -99,12 +99,12 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
       label: widget.practiceButton.name,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.orange[300],
+          primary: AppColors.first,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0),
           ),
           textStyle: TextStyle(
-            color: CupertinoColors.white,
+            color: AppColors.second,
             shadows: <Shadow>[
               Styles.buildButtonShadow(),
             ],
@@ -129,7 +129,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             ),
             DecoratedIcon(
               widget.practiceButton.icon,
-              color: CupertinoColors.white,
+              color: AppColors.second,
               size: 47.0,
               shadows: <Shadow>[
                 Styles.buildButtonShadow(),

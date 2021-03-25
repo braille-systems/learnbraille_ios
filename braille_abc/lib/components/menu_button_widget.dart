@@ -38,12 +38,12 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
       label: widget.menuButton.name,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.orange[300],
+          primary: AppColors.first,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0),
           ),
           textStyle: TextStyle(
-            color: Colors.white,
+            color: AppColors.second,
             shadows: <Shadow>[
               Styles.buildButtonShadow(),
             ],
@@ -68,7 +68,7 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
             ),
             DecoratedIcon(
               widget.menuButton.icon,
-              color: Colors.white,
+              color: AppColors.second,
               size: 100,
               shadows: <Shadow>[
                 Styles.buildButtonShadow(),

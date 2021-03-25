@@ -1,4 +1,19 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class AppColors{
+  static const Color barBackground = CupertinoColors.lightBackgroundGray;
+  static const Color background = CupertinoColors.tertiarySystemBackground;
+  static const Color first = Colors.orangeAccent;
+  static const Color second = Colors.white;
+
+  static const Color symbolText = Colors.black;
+  static const Color symbol = Colors.black;
+  static const Color symbolBoarder = Colors.black;
+  static const Color symbolContainer = Colors.white;
+
+  static const Color topBarText = Colors.black;
+}
 
 abstract class Styles {
   static Shadow buildButtonShadow() {
