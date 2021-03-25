@@ -41,6 +41,7 @@ class LetterScreen extends SectionScreen {
           title: ScreenNames.getName(screenType),
         ),
         child: LetterView(
+          screenType: screenType,
           sectionName: sectionName,
           symbol: symbol,
           touchable: touchable,
