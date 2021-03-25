@@ -1,5 +1,5 @@
 class Practice {
-  static List<String> _pool = [];
+  static final List<String> _pool = [];
 
   static void addSymbolGroup(String groupName) {
     _pool.add(groupName);

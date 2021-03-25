@@ -12,8 +12,9 @@ class DotImage {
   int num;
   DotImage(this.num, bool isPress){
     outputData = num.toString();
-    if(isPress)
-      this.setIsPressed(true);
+    if(isPress) {
+      setIsPressed(true);
+    }
   }
 
   void setIsPressed(bool state){
@@ -40,10 +41,11 @@ abstract class Symbol {
   }
 
   String dotsToString() {
-    StringBuffer str = new StringBuffer(char + ": точки ");
+    StringBuffer str =  StringBuffer(char + ": точки ");
     for(var d in dots){
-      if(d.press)
+      if(d.press) {
         str.write(d.outputData + ", ");
+      }
     }
     // (str.length - 2) is used to remove the last punctuation from output
     return str.toString().substring(0, str.length - 2);

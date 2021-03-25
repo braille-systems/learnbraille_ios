@@ -31,6 +31,18 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
+        onPressed: () {
+          if (Practice.getPool().isNotEmpty) {
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => LetterPracticeScreen(
+                    helpPage: LetterPracticeHelp(),
+                    previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  ),
+                ),
+              );
+          }
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -48,19 +60,6 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
             ),
           ],
         ),
-        onPressed: () {
-          if (Practice.getPool().isNotEmpty) {
-            print(Practice.getPool());
-              Navigator.of(context).push(
-                CupertinoPageRoute(
-                  builder: (context) => LetterPracticeScreen(
-                    helpPage: LetterPracticeHelp(),
-                    previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                  ),
-                ),
-              );
-          }
-        },
       ),
     );
   }
@@ -111,6 +110,9 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             ],
           ),
         ),
+        onPressed: () {
+          onChanged(!checkBox);
+        },
         child: Column(
           children: [
             Container(
@@ -148,9 +150,6 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             ),
           ],
         ),
-        onPressed: () {
-          onChanged(!checkBox);
-        },
       ),
     );
   }

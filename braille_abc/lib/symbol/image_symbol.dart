@@ -38,8 +38,7 @@ class _SymbolState extends State<SymbolWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
+    return Stack(
         textDirection: widget.textDir(),
         children: <Widget>[
           Container(
@@ -89,7 +88,6 @@ class _SymbolState extends State<SymbolWidget> {
             ),
           ),
         ],
-      ),
     );
   }
 }
