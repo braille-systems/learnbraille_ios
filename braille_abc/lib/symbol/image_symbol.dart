@@ -39,7 +39,7 @@ class _SymbolState extends State<SymbolWidget> {
     if(!this.isTapped)
       symbol = Search.element(char, dictSection);
     else
-      symbol = DefaultSymbol(list: Search.imageSymbol(d: <int>[]), char: "No");
+      symbol = Symbol.defaultSymbol();
   }
 
   @override

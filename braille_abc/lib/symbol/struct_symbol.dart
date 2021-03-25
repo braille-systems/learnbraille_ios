@@ -1,5 +1,6 @@
 import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/foundation.dart';
+import 'list_symbols.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
@@ -37,6 +38,10 @@ abstract class Symbol {
 
   List<DotImage> set(){
     return dots;
+  }
+
+  static Symbol defaultSymbol(){
+    return RussianSymbol(list: Search.imageSymbol(d: <int>[]), char: "No");
   }
 
   String dotsToString() {
@@ -87,8 +92,4 @@ class Sign extends Symbol{
 
   const Sign({List<DotImage> list, String char}) : super (dots: list, char: char);
 
-}
-
-class DefaultSymbol extends Symbol{
-  const DefaultSymbol({List<DotImage> list, String char}) : super (dots: list, char: char);
 }

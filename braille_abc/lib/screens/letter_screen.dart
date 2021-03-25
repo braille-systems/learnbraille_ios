@@ -144,14 +144,16 @@ class _LetterViewState extends State<LetterView> {
                   padding: EdgeInsets.symmetric(vertical: ScreenParams.width(40, context), horizontal: ScreenParams.width(5, context)),
                 ),
                 onPressed: () => setState(() {
-                  if(PracticeSymbol.endPractice())
+                  if(PracticeSymbol.endPractice()) {
                     Practice.updatePool();
+                    PracticeSymbol.update();
+                  }
                   !PracticeSymbol.endPractice() ? Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) => LetterScreen(
                         symbol: PracticeSymbol.getString(),
                         sectionName: PracticeSymbol.getSectionName(),
-                        previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
+                        previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
                         helpPage:  LetterViewHelp(),
                         touchable: true,
                       ),
@@ -185,25 +187,16 @@ class PracticeSymbol{
     SymbolsFactory factory = new SymbolsFactory();
     for(var i in strings){
       var group = factory.createSymbolsGroup(i);
-      _data.addAll(group);
-      _startGroup.add(_data.length);
+      for(var j in group)
+        _data[j] = i;
     }
   }
 
   static String getString(){
     var rand = new Random();
     int num = rand.nextInt(_data.length);
-    Symbol symbol = _data[num];
-    int j = -1, q = 0;
-    for(var i in _startGroup){
-      if(i > num){
-        if(j == -1)
-          j = q;
-        _startGroup[q]--;
-      }
-      q++;
-    }
-    _title = Practice.getPool()[j];
+    Symbol symbol = _data.keys.toList()[num];
+    _title = _data[symbol];
     _data.remove(symbol);
     return symbol.char;
   }
@@ -213,7 +206,6 @@ class PracticeSymbol{
   }
 
   static void update(){
-    _startGroup.clear();
     _data.clear();
   }
 
@@ -224,7 +216,6 @@ class PracticeSymbol{
       return false;
   }
 
-  static final List<int> _startGroup = <int>[];
-  static final List<Symbol> _data = <Symbol>[];
+  static final Map<Symbol, SectionType> _data = new Map<Symbol, SectionType>();
   static SectionType _title;
 }
