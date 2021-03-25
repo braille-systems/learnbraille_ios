@@ -19,10 +19,18 @@ import '../style.dart';
 
 class LetterScreen extends SectionScreen {
   final SectionType sectionName;
+  final ScreenType screenType;
   final String symbol;
   final bool touchable;
 
-  const LetterScreen({Key key, Screen helpPage, Screen previousPage, @required this.sectionName, @required this.symbol, @required this.touchable})
+  const LetterScreen(
+      {Key key,
+      Screen helpPage,
+      Screen previousPage,
+      @required this.screenType,
+      @required this.sectionName,
+      @required this.symbol,
+      @required this.touchable})
       : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override
@@ -30,9 +38,10 @@ class LetterScreen extends SectionScreen {
     return CupertinoPageScaffold(
         navigationBar: NavigationBar(
           currentPage: this,
-          title: ScreenNames.getName(ScreenType.Letter),
+          title: ScreenNames.getName(screenType),
         ),
         child: LetterView(
+          screenType: screenType,
           sectionName: sectionName,
           symbol: symbol,
           touchable: touchable,
@@ -41,10 +50,11 @@ class LetterScreen extends SectionScreen {
 }
 
 class LetterView extends StatefulWidget {
-  LetterView({Key key, @required this.sectionName, @required this.symbol, @required this.touchable}) : super(key: key);
+  LetterView({Key key, @required this.sectionName, @required this.screenType, @required this.symbol, @required this.touchable}) : super(key: key);
 
   final String str = ScreenNames.getName(ScreenType.Letter);
   final SectionType sectionName;
+  final ScreenType screenType;
   final String symbol;
   final bool touchable;
 
@@ -53,7 +63,6 @@ class LetterView extends StatefulWidget {
 }
 
 class _LetterViewState extends State<LetterView> {
-
   TextDirection _dir = TextDirection.ltr;
 
   @override
@@ -91,7 +100,7 @@ class _LetterViewState extends State<LetterView> {
             height: ScreenParams.height(5, context),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -116,10 +125,6 @@ class _LetterViewState extends State<LetterView> {
                   semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
                 ),
               ),
-              SizedBox(
-                height: ScreenParams.width(30, context),
-                width: ScreenParams.height(5, context),
-              ),
               SymbolWidget(
                   textDir: mode,
                   char: widget.symbol,
@@ -127,52 +132,55 @@ class _LetterViewState extends State<LetterView> {
                   width: 200,
                   height: 350,
                   dictSection: widget.sectionName),
-              SizedBox(
-                height: ScreenParams.width(30, context),
-                width: ScreenParams.height(5, context),
-              ),
-              widget.touchable ? ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: CupertinoColors.black,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  textStyle: TextStyle(
-                    color: CupertinoColors.white,
-                    shadows: <Shadow>[
-                      Styles.buildButtonShadow(),
-                    ],
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: ScreenParams.width(40, context), horizontal: ScreenParams.width(5, context)),
-                ),
-                onPressed: () => setState(() {
-                  if(PracticeSymbol.endPractice()) {
-                    Practice.updatePool();
-                    PracticeSymbol.update();
-                  }
-                  !PracticeSymbol.endPractice() ? Navigator.of(context).push(
-                    CupertinoPageRoute(
-                      builder: (context) => LetterScreen(
-                        symbol: PracticeSymbol.getString(),
-                        sectionName: PracticeSymbol.getSectionName(),
-                        previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                        helpPage:  LetterViewHelp(),
-                        touchable: true,
+              widget.touchable
+                  ? SizedBox(
+                      height: ScreenParams.height(30, context),
+                      width: ScreenParams.width(17, context),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: CupertinoColors.black,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                          textStyle: TextStyle(
+                            color: CupertinoColors.white,
+                            shadows: <Shadow>[
+                              Styles.buildButtonShadow(),
+                            ],
+                          ),
+                          padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
+                        ),
+                        onPressed: () => setState(() {
+                          if (PracticeSymbol.endPractice()) Practice.updatePool();
+                          !PracticeSymbol.endPractice()
+                              ? Navigator.of(context).push(
+                                  CupertinoPageRoute(
+                                    builder: (context) => LetterScreen(
+                                      screenType: widget.screenType,
+                                      symbol: PracticeSymbol.getString(),
+                                      sectionName: PracticeSymbol.getSectionName(),
+                                      previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
+                                      helpPage: LetterViewHelp(),
+                                      touchable: true,
+                                    ),
+                                  ),
+                                )
+                              : Navigator.of(context).push(
+                                  CupertinoPageRoute(
+                                      builder: (context) => PracticeScreen(
+                                            previousPage: AppModel.navigationScreens[navigation.MainMenu],
+                                            helpPage: PracticeHelp(),
+                                          )),
+                                );
+                        }),
+                        child: Icon(
+                          CupertinoIcons.chevron_right_2,
+                          color: CupertinoColors.white,
+                        ),
                       ),
+                    )
+                  : SizedBox(
+                      height: ScreenParams.height(30, context),
+                      width: ScreenParams.width(17, context),
                     ),
-                  ) : Navigator.of(context).push(
-                      CupertinoPageRoute(
-                      builder: (context) => PracticeScreen(
-                        previousPage: AppModel.navigationScreens[navigation.MainMenu],
-                        helpPage: PracticeHelp(),
-                      )
-                      ),
-                  );
-                }
-                ),
-                child: Icon(
-                  CupertinoIcons.chevron_right_2,
-                  color: CupertinoColors.white,
-                ),
-              ) : Container(),
             ],
           )
         ],
@@ -181,18 +189,18 @@ class _LetterViewState extends State<LetterView> {
   }
 }
 
-class PracticeSymbol{
-  static void addAllGroup(){
+class PracticeSymbol {
+  static void addAllGroup() {
     List<SectionType> strings = Practice.getPool();
     SymbolsFactory factory = new SymbolsFactory();
-    for(var i in strings){
+    for (var i in strings) {
       var group = factory.createSymbolsGroup(i);
       for(var j in group)
         _data[j] = i;
     }
   }
 
-  static String getString(){
+  static String getString() {
     var rand = new Random();
     int num = rand.nextInt(_data.length);
     Symbol symbol = _data.keys.toList()[num];
@@ -201,7 +209,7 @@ class PracticeSymbol{
     return symbol.char;
   }
 
-  static SectionType getSectionName(){
+  static SectionType getSectionName() {
     return _title;
   }
 
@@ -209,8 +217,8 @@ class PracticeSymbol{
     _data.clear();
   }
 
-  static bool endPractice(){
-    if(_data.length == 0)
+  static bool endPractice() {
+    if (_data.length == 0)
       return true;
     else
       return false;
