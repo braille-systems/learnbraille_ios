@@ -1,13 +1,29 @@
+import 'app_names.dart';
+
 class Practice {
-  static List<String> _pool = [];
+  static List<SectionType> _pool = [];
 
   static void addSymbolGroup(String groupName) {
-    _pool.add(groupName);
+    SectionType result;
+    for(var i in SectionNames.stringOfSectionsMap.entries){
+      if(groupName == i.value){
+        result = i.key;
+        break;
+      }
+    }
+    _pool.add(result);
   }
   static void removeSymbolGroup(String groupName) {
-    _pool.remove(groupName);
+    SectionType result;
+    for(var i in SectionNames.stringOfSectionsMap.entries){
+      if(groupName == i.value){
+        result = i.key;
+        break;
+      }
+    }
+    _pool.remove(result);
   }
-  static List<String> getPool() {
+  static List<SectionType> getPool() {
     return _pool;
   }
   static void updatePool() {

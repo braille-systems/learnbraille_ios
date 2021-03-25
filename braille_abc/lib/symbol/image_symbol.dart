@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -10,31 +11,35 @@ class SymbolWidget extends StatefulWidget {
   final double width;
   final double height;
   final String char;
-  final String dictSection;
+  final SectionType dictSection;
   final bool isTapped;
   final TextDirection Function() textDir;
 
   SymbolWidget(
       {Key key,
-        @required this.textDir,
-        @required this.char,
-        @required this.dictSection,
-        @required this.isTapped,
-        @required this.width,
-        @required this.height})
+      @required this.textDir,
+      @required this.char,
+      @required this.dictSection,
+      @required this.isTapped,
+      @required this.width,
+      @required this.height})
       : super(key: key) {
     createState();
   }
 
   @override
-  _SymbolState createState() => _SymbolState(char: char, dictSection: dictSection);
+  _SymbolState createState() => _SymbolState(char: char, dictSection: dictSection, isTapped: this.isTapped);
 }
 
 class _SymbolState extends State<SymbolWidget> {
   Symbol symbol;
+  final bool isTapped;
 
-  _SymbolState({String char, String dictSection}) {
-    symbol = Search.element(char, dictSection);
+  _SymbolState({String char, SectionType dictSection, @required this.isTapped}) {
+    if(!this.isTapped)
+      symbol = Search.element(char, dictSection);
+    else
+      symbol = DefaultSymbol(list: Search.imageSymbol(d: <int>[]), char: "No");
   }
 
   @override
@@ -54,30 +59,32 @@ class _SymbolState extends State<SymbolWidget> {
               alignment: WrapAlignment.center,
               runAlignment: WrapAlignment.center,
               textDirection: widget.textDir(),
-              spacing: 25.0 / 667 * widget.height,
+              spacing: 55.0 / 667 * widget.height,
               direction: Axis.vertical,
-              runSpacing: 16.0 / 667 * widget.height,
+              runSpacing: 40.0 / 667 * widget.height,
               children: symbol.dots
                   .map((item) => Semantics(
-                        label: "Точка" + item.outputData + (item.press ? "закрашена" : "не закрашена"),
+                        label: SemanticNames.getName(SemanticsType.Dot) +
+                            item.outputData +
+                            (item.press
+                                ? SemanticNames.getName(SemanticsType.Painted)
+                                : SemanticNames.getName(SemanticsType.NotPainted)),
                         button: false,
                        child: Container(
-                         height: 80.0 / 330 * widget.height,
-                         width: 80.0 / 330 * widget.height,
+                         height: 75.0 / 330 * widget.height,
+                         width: 75.0 / 330 * widget.height,
                          decoration: BoxDecoration(
                            shape: BoxShape.circle,
                            border: Border.all(
-                             color: item.onP,
-                             width: 10,
+                             color: CupertinoColors.black,
+                             width: 8,
                            ),
                          ),
                          child: CupertinoButton(
                             onPressed: () {
                               if (widget.isTapped) {
                                 setState(() {
-                                  item.p = (item.press ? CupertinoColors.black : CupertinoColors.white);
-                                  item.onP = (item.press ? CupertinoColors.white : CupertinoColors.black);
-                                  item.press = !item.press;
+                                  item.setIsPressed(!item.press);
                                 });
                               }
                             },

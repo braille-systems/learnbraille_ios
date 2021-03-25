@@ -1,4 +1,7 @@
+import 'package:braille_abc/models/app_icons.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
+import 'package:braille_abc/screens/practice_screen.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,15 +12,17 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'dart:math';
+import 'package:braille_abc/components/help_widgets.dart';
+import 'package:braille_abc/models/app_model.dart';
 
 import '../style.dart';
 
 class LetterScreen extends SectionScreen {
-  final String titleSymbol;
+  final SectionType sectionName;
   final String symbol;
   final bool touchable;
 
-  const LetterScreen({Key key, Screen helpPage, Screen previousPage, @required this.titleSymbol, @required this.symbol, @required this.touchable})
+  const LetterScreen({Key key, Screen helpPage, Screen previousPage, @required this.sectionName, @required this.symbol, @required this.touchable})
       : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override
@@ -25,10 +30,10 @@ class LetterScreen extends SectionScreen {
     return CupertinoPageScaffold(
         navigationBar: NavigationBar(
           currentPage: this,
-          title: "Просмотр символа",
+          title: ScreenNames.getName(ScreenType.Letter),
         ),
         child: LetterView(
-          titleSymbol: titleSymbol,
+          sectionName: sectionName,
           symbol: symbol,
           touchable: touchable,
         ));
@@ -36,11 +41,11 @@ class LetterScreen extends SectionScreen {
 }
 
 class LetterView extends StatefulWidget {
-  LetterView({Key key, @required this.titleSymbol, @required this.symbol, @required this.touchable}) : super(key: key);
+  LetterView({Key key, @required this.sectionName, @required this.symbol, @required this.touchable}) : super(key: key);
 
-  final String str = "Просмотр символа";
-  String titleSymbol;
-  String symbol;
+  final String str = ScreenNames.getName(ScreenType.Letter);
+  final SectionType sectionName;
+  final String symbol;
   final bool touchable;
 
   @override
@@ -49,16 +54,7 @@ class LetterView extends StatefulWidget {
 
 class _LetterViewState extends State<LetterView> {
 
-  _LetterViewState(){
-    if(widget.touchable == true) {
-      type = new PracticeSymbol();
-      widget.symbol = type.getSymbol().char;
-      widget.titleSymbol = type.titleSymbol();
-    }
-  }
-
   TextDirection _dir = TextDirection.ltr;
-  NextSymbol type;
 
   @override
   void initState() {
@@ -86,8 +82,8 @@ class _LetterViewState extends State<LetterView> {
             Semantics(
               button: false,
               child: LetterWidget(
-                title: widget.titleSymbol.toString(),
-                symbol: widget.symbol.toString(),
+                title: widget.sectionName,
+                symbol: widget.symbol,
               ),
             )
           ]),
@@ -95,7 +91,8 @@ class _LetterViewState extends State<LetterView> {
             height: ScreenParams.height(5, context),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
+            //crossAxisAlignment: CrossAxisAlignment.baseline,
             children: <Widget>[
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -115,10 +112,14 @@ class _LetterViewState extends State<LetterView> {
                   else if (this._dir == TextDirection.rtl) this._dir = TextDirection.ltr;
                 }),
                 child: Icon(
-                  CupertinoIcons.arrow_right_arrow_left,
+                  AppIcon.getIcon(AppIcons.ChangeModeButton),
                   color: CupertinoColors.white,
-                  semanticLabel: "Изменить режим",
+                  semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
                 ),
+              ),
+              SizedBox(
+                height: ScreenParams.width(30, context),
+                width: ScreenParams.height(5, context),
               ),
               SymbolWidget(
                   textDir: mode,
@@ -126,12 +127,12 @@ class _LetterViewState extends State<LetterView> {
                   isTapped: widget.touchable,
                   width: 200,
                   height: 350,
-                  dictSection: widget.titleSymbol),
+                  dictSection: widget.sectionName),
               SizedBox(
-                height: ScreenParams.width(60, context),
-                width: ScreenParams.height(8, context),
+                height: ScreenParams.width(30, context),
+                width: ScreenParams.height(5, context),
               ),
-              ElevatedButton(
+              widget.touchable ? ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: CupertinoColors.black,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -141,19 +142,36 @@ class _LetterViewState extends State<LetterView> {
                       Styles.buildButtonShadow(),
                     ],
                   ),
-                  padding: EdgeInsets.symmetric(vertical: ScreenParams.width(40, context)),
+                  padding: EdgeInsets.symmetric(vertical: ScreenParams.width(40, context), horizontal: ScreenParams.width(5, context)),
                 ),
-                onPressed: !widget.touchable ? null : () => setState(() {
-                  widget.symbol = type.getSymbol().char;
-                  widget.titleSymbol = type.titleSymbol();
+                onPressed: () => setState(() {
+                  if(PracticeSymbol.endPractice())
+                    Practice.updatePool();
+                  !PracticeSymbol.endPractice() ? Navigator.of(context).push(
+                    CupertinoPageRoute(
+                      builder: (context) => LetterScreen(
+                        symbol: PracticeSymbol.getString(),
+                        sectionName: PracticeSymbol.getSectionName(),
+                        previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
+                        helpPage:  LetterViewHelp(),
+                        touchable: true,
+                      ),
+                    ),
+                  ) : Navigator.of(context).push(
+                      CupertinoPageRoute(
+                      builder: (context) => PracticeScreen(
+                        previousPage: AppModel.navigationScreens[navigation.MainMenu],
+                        helpPage: PracticeHelp(),
+                      )
+                      ),
+                  );
                 }
                 ),
                 child: Icon(
                   CupertinoIcons.chevron_right_2,
                   color: CupertinoColors.white,
                 ),
-              )
-              // change_mode_widget
+              ) : Container(),
             ],
           )
         ],
@@ -162,48 +180,52 @@ class _LetterViewState extends State<LetterView> {
   }
 }
 
-abstract class NextSymbol{
-
-  final List<Symbol> data = <Symbol>[];
-
-  Symbol getSymbol();
-  String titleSymbol();
-}
-
-class PracticeSymbol extends NextSymbol{
-  PracticeSymbol(){
-    List<String> strings = Practice.getPool();
+class PracticeSymbol{
+  static void addAllGroup(){
+    List<SectionType> strings = Practice.getPool();
     SymbolsFactory factory = new SymbolsFactory();
     for(var i in strings){
       var group = factory.createSymbolsGroup(i);
-      data.addAll(group);
-      startGroup.add(data.length);
+      _data.addAll(group);
+      _startGroup.add(_data.length);
     }
   }
 
-  Symbol getSymbol(){
+  static String getString(){
     var rand = new Random();
-    int num = rand.nextInt(data.length);
-    Symbol symbol = data[num];
+    int num = rand.nextInt(_data.length);
+    Symbol symbol = _data[num];
     int j = -1, q = 0;
-    for(var i in startGroup){
+    for(var i in _startGroup){
       if(i > num){
         if(j == -1)
           j = q;
-        startGroup[q]--;
+        _startGroup[q]--;
       }
       q++;
     }
-    title.clear();
-    title.write(Practice.getPool()[j]);
-    data.remove(symbol);
-    return symbol;
+    _title = Practice.getPool()[j];
+    _data.remove(symbol);
+    return symbol.char;
   }
 
-  String titleSymbol(){
-    return title.toString();
+  static SectionType getSectionName(){
+    return _title;
   }
 
-  final List<int> startGroup = <int>[];
-  final StringBuffer title = new StringBuffer(null);
+  static void update(){
+    _startGroup.clear();
+    _data.clear();
+  }
+
+  static bool endPractice(){
+    if(_data.length == 0)
+      return true;
+    else
+      return false;
+  }
+
+  static final List<int> _startGroup = <int>[];
+  static final List<Symbol> _data = <Symbol>[];
+  static SectionType _title;
 }

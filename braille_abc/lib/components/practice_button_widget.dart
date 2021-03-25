@@ -1,11 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:braille_abc/components/help_widgets.dart';
+import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/screens/letter_practice_screen.dart';
+import 'package:braille_abc/models/app_icons.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:braille_abc/models/practice_model.dart';
-import 'package:braille_abc/models/app_model.dart';
-import 'package:braille_abc/components/help_widgets.dart';
 
 import 'package:braille_abc/style.dart';
 
@@ -21,7 +24,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: "Продолжить",
+      label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.orange[300],
@@ -33,14 +36,14 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             AutoSizeText(
-              "Продолжить",
+              SemanticNames.getName(SemanticsType.Continue),
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300, color: CupertinoColors.black),
             ),
             SizedBox(
               width: ScreenParams.width(25, context),
             ),
             DecoratedIcon(
-              CupertinoIcons.chevron_right_2,
+              AppIcon.getIcon(AppIcons.ContinueButton),
               color: CupertinoColors.black,
               size: 22.0,
             ),
@@ -49,13 +52,23 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
         onPressed: () {
           if (Practice.getPool().isNotEmpty) {
             print(Practice.getPool());
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => LetterPracticeScreen(
+                    helpPage: LetterPracticeHelp(),
+                    previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  ),
+                ),
+              );
           }
+          PracticeSymbol.update();
+          PracticeSymbol.addAllGroup();
           Navigator.of(context).push(
             CupertinoPageRoute(
               builder: (context) => LetterScreen(
-                titleSymbol: 't',
-                symbol: 't',
-                previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
+                symbol: PracticeSymbol.getString(),
+                sectionName: PracticeSymbol.getSectionName(),
+                previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
                 helpPage:  LetterViewHelp(),
                 touchable: true,
               ),
@@ -193,7 +206,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             DecoratedIcon(
               widget.practiceButton.icon,
               color: CupertinoColors.white,
-              size: 48.0,
+              size: 47.0,
               shadows: <Shadow>[
                 Styles.buildButtonShadow(),
                 for(var stroke in Styles.buildStroke(0.25))
