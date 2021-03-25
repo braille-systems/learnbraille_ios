@@ -92,7 +92,6 @@ class _LetterViewState extends State<LetterView> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            //crossAxisAlignment: CrossAxisAlignment.baseline,
             children: <Widget>[
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
