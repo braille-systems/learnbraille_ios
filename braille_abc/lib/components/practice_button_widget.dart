@@ -126,6 +126,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
           ),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               alignment: Alignment.center,
@@ -142,7 +143,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             DecoratedIcon(
               widget.practiceButton.icon,
               color: CupertinoColors.white,
-              size: 47.0,
+              size: 45.0,
               shadows: <Shadow>[
                 Styles.buildButtonShadow(),
                 for(var stroke in Styles.buildStroke(0.25))
@@ -152,12 +153,17 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Checkbox(
-                  value: checkBox,
-                  onChanged: (bool val) {
-                    onChanged(val);
-                  },
-                ),
+                SizedBox(
+                  width: ScreenParams.width(10, context),
+                  height: ScreenParams.height(5, context),
+                  child: Checkbox(
+                    value: checkBox,
+                    onChanged: (bool val) {
+                      onChanged(val);
+                    },
+                  ),
+                )
+
               ],
             ),
           ],
