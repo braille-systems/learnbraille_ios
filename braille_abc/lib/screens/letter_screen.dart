@@ -95,9 +95,9 @@ class _LetterViewState extends State<LetterView> {
                   padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
                 ),
                 onPressed: () => setState(() {
-                  if (this._dir == TextDirection.ltr)
-                    this._dir = TextDirection.rtl;
-                  else if (this._dir == TextDirection.rtl) this._dir = TextDirection.ltr;
+                  if (_dir == TextDirection.ltr) {
+                    _dir = TextDirection.rtl;
+                  } else if (_dir == TextDirection.rtl) _dir = TextDirection.ltr;
                 }),
                 child: Icon(
                   AppIcon.getIcon(AppIcons.ChangeModeButton),

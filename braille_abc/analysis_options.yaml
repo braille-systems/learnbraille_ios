@@ -1,0 +1,41 @@
+include: package:pedantic/analysis_options.yaml
+
+linter:
+  rules:
+    # Common
+    one_member_abstracts: true
+    avoid_print: true
+    prefer_collection_literals: false    
+    omit_local_variable_types: false
+    prefer_single_quotes: false
+
+    # Safety
+    test_types_in_equals: true
+    cancel_subscriptions: true
+    close_sinks: true
+    avoid_returning_this: true
+    avoid_setters_without_getters: true
+    hash_and_equals: true
+    throw_in_finally: true
+    control_flow_in_finally: true
+
+    # Unnecessary code
+    unnecessary_statements: true
+    unnecessary_final: true
+    unnecessary_lambdas: true
+    unnecessary_overrides: true
+    avoid_empty_else: true
+    avoid_unnecessary_containers: true
+    empty_statements: true
+
+    # Naming
+    camel_case_types: true
+    package_names: true
+    file_names: true
+    library_prefixes: true
+    non_constant_identifier_names: true
+    avoid_renaming_method_parameters: true
+
+    # Dependencies
+    avoid_web_libraries_in_flutter: true
+    sort_pub_dependencies: true

@@ -49,7 +49,6 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
         padding: const EdgeInsets.symmetric(
           horizontal: 10,
         ),
-        child: Icon(AppIcon.getIcon(AppIcons.HelpScreen), semanticLabel: ScreenNames.getName(ScreenType.Help), size: 35),
         onPressed: () {
           Timer(Duration(milliseconds: 10), () {
             scakey.currentState.displayTapBar(false);
@@ -60,6 +59,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
                   builder: (context) =>
                       HelpScreen(currentHelp: currentPage.helpPage, previousPage: currentPage)));
         },
+        child: Icon(AppIcon.getIcon(AppIcons.HelpScreen), semanticLabel: ScreenNames.getName(ScreenType.Help), size: 35),
       )
           : null,
     );
@@ -67,7 +67,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
 
   @override
   Size get preferredSize {
-    return new Size.fromHeight(20.0);
+    return  Size.fromHeight(20.0);
   }
 
   @override
