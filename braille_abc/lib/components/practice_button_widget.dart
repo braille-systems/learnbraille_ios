@@ -68,6 +68,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
               builder: (context) => LetterScreen(
                 symbol: PracticeSymbol.getString(),
                 sectionName: PracticeSymbol.getSectionName(),
+                screenType: ScreenType.Practice,
                 previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
                 helpPage:  LetterViewHelp(),
                 touchable: true,

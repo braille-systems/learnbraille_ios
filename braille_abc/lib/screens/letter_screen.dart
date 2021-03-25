@@ -19,6 +19,7 @@ import '../style.dart';
 
 class LetterScreen extends SectionScreen {
   final SectionType sectionName;
+  final ScreenType screenType;
   final String symbol;
   final bool touchable;
 
@@ -26,6 +27,7 @@ class LetterScreen extends SectionScreen {
       {Key key,
       Screen helpPage,
       Screen previousPage,
+      @required this.screenType,
       @required this.sectionName,
       @required this.symbol,
       @required this.touchable})
@@ -36,7 +38,7 @@ class LetterScreen extends SectionScreen {
     return CupertinoPageScaffold(
         navigationBar: NavigationBar(
           currentPage: this,
-          title: ScreenNames.getName(ScreenType.Letter),
+          title: ScreenNames.getName(screenType),
         ),
         child: LetterView(
           sectionName: sectionName,
@@ -47,10 +49,11 @@ class LetterScreen extends SectionScreen {
 }
 
 class LetterView extends StatefulWidget {
-  LetterView({Key key, @required this.sectionName, @required this.symbol, @required this.touchable}) : super(key: key);
+  LetterView({Key key, @required this.sectionName, @required this.screenType, @required this.symbol, @required this.touchable}) : super(key: key);
 
   final String str = ScreenNames.getName(ScreenType.Letter);
   final SectionType sectionName;
+  final ScreenType screenType;
   final String symbol;
   final bool touchable;
 
@@ -150,6 +153,7 @@ class _LetterViewState extends State<LetterView> {
                               ? Navigator.of(context).push(
                                   CupertinoPageRoute(
                                     builder: (context) => LetterScreen(
+                                      screenType: widget.screenType,
                                       symbol: PracticeSymbol.getString(),
                                       sectionName: PracticeSymbol.getSectionName(),
                                       previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],

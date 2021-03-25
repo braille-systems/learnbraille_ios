@@ -35,6 +35,7 @@ class StudyItem extends StatelessWidget {
             CupertinoPageRoute(
               builder: (context) => LetterScreen(
                 sectionName: sectionName,
+                screenType: ScreenType.Letter,
                 symbol: symbol.getChar(),
                 previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
                 helpPage:  LetterViewHelp(),
