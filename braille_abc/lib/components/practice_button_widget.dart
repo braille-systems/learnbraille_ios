@@ -12,8 +12,6 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/models/practice_button.dart';
 import 'package:braille_abc/style.dart';
-import 'package:braille_abc/models/app_icons.dart';
-import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
 
 class ContinueButtonWidget extends StatefulWidget {
