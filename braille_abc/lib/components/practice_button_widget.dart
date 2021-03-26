@@ -1,22 +1,23 @@
-import 'dart:async';
-
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:braille_abc/components/help_widgets.dart';
-import 'package:braille_abc/models/app_model.dart';
-import 'package:braille_abc/models/app_icons.dart';
-import 'package:braille_abc/models/app_names.dart';
+import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
+
+import 'package:braille_abc/components/help_widgets.dart';
+import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/screens/letter_practice_screen.dart';
+import 'package:braille_abc/models/app_icons.dart';
+import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/shared/screen_params.dart';
-import 'package:decorated_icon/decorated_icon.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/models/practice_button.dart';
+import 'package:braille_abc/symbol/list_symbols.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
+
 
 import 'package:braille_abc/style.dart';
-
 import 'package:braille_abc/screens/letter_screen.dart';
-
-import 'package:braille_abc/components/bottom_bar_widget.dart';
 
 class ContinueButtonWidget extends StatefulWidget {
   @override
@@ -35,6 +36,32 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
+        onPressed: () {
+          if (Practice.getPool().isNotEmpty) {
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) => LetterPracticeScreen(
+                  helpPage: LetterPracticeHelp(),
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                ),
+              ),
+            );
+            PracticeSymbol.update();
+            PracticeSymbol.addAllGroup();
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) => LetterScreen(
+                  symbol: PracticeSymbol.getString(),
+                  sectionName: PracticeSymbol.getSectionName(),
+                  screenType: ScreenType.Practice,
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  helpPage: LetterViewHelp(),
+                  isDotsTouchable: true,
+                ),
+              ),
+            );
+          }
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -52,28 +79,6 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
             ),
           ],
         ),
-        onPressed: () {
-          Timer(Duration(milliseconds: 10), () {
-            scakey.currentState.displayTapBar(false);
-          });
-          if (Practice.getPool().isNotEmpty) {
-            print(Practice.getPool());
-            PracticeSymbol.update();
-            PracticeSymbol.addAllGroup();
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => LetterScreen(
-                  symbol: PracticeSymbol.getString(),
-                  sectionName: PracticeSymbol.getSectionName(),
-                  screenType: ScreenType.Practice,
-                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                  helpPage: LetterPracticeHelp(),
-                  isDotsTouchable: true,
-                ),
-              ),
-            );
-          }
-        },
       ),
     );
   }
@@ -124,6 +129,9 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             ],
           ),
         ),
+        onPressed: () {
+          onChanged(!checkBox);
+        },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -165,10 +173,52 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             ),
           ],
         ),
-        onPressed: () {
-          onChanged(!checkBox);
-        },
       ),
     );
   }
+}
+
+class PracticeSymbol {
+  static void addAllGroup() {
+    List<SectionType> strings = Practice.getPool();
+    SymbolsFactory factory = SymbolsFactory();
+    for (var i in strings) {
+      var group = factory.createSymbolsGroup(i);
+      for(var j in group) {
+        _data[j] = i;
+      }
+    }
+  }
+
+  static String getString() {
+    var rand = Random();
+    if(_data.isEmpty){
+      return "";
+    }
+    int num = rand.nextInt(_data.length);
+    Symbol symbol = _data.keys.toList()[num];
+    _title = _data[symbol];
+    _data.remove(symbol);
+    return symbol.char;
+  }
+
+  static SectionType getSectionName() {
+    return _title;
+  }
+
+  static void update(){
+    _data.clear();
+  }
+
+  static bool endPractice() {
+    if (_data.isEmpty) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  static final Map<Symbol, SectionType> _data = Map<Symbol, SectionType>();
+  static SectionType _title;
 }

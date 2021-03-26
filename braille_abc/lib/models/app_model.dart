@@ -10,7 +10,6 @@ import 'package:braille_abc/screens/settings_screen.dart';
 import 'package:braille_abc/screens/study_screen.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:braille_abc/models/menu_button.dart';
 
 enum navigation { MainMenu, StudyScreen, PracticeScreen, DictionaryScreen, SettingsScreen }

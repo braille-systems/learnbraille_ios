@@ -1,11 +1,11 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:braille_abc/screens/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:braille_abc/models/menu_button.dart';
-import 'package:braille_abc/shared/screen_params.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 
+import 'package:braille_abc/screens/home_screen.dart';
+import 'package:braille_abc/models/menu_button.dart';
+import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/style.dart';

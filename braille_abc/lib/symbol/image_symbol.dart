@@ -28,7 +28,7 @@ class SymbolWidget extends StatefulWidget {
   }
 
   @override
-  _SymbolState createState() => _SymbolState(char: char, dictSection: dictSection, isTapped: this.isTapped);
+  _SymbolState createState() => _SymbolState(char: char, dictSection: dictSection, isTapped: isTapped);
 }
 
 class _SymbolState extends State<SymbolWidget> {
@@ -36,16 +36,17 @@ class _SymbolState extends State<SymbolWidget> {
   final bool isTapped;
 
   _SymbolState({String char, SectionType dictSection, @required this.isTapped}) {
-    if(!this.isTapped)
+    if(!isTapped) {
       symbol = Search.element(char, dictSection);
-    else
+    }
+    else {
       symbol = Symbol.defaultSymbol();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
+    return Stack(
         textDirection: widget.textDir(),
         children: <Widget>[
           Container(
@@ -71,8 +72,8 @@ class _SymbolState extends State<SymbolWidget> {
                                 : SemanticNames.getName(SemanticsType.NotPainted)),
                         button: false,
                        child: Container(
-                         height: 75.0 / 330 * widget.height,
-                         width: 75.0 / 330 * widget.height,
+                         height: 75.0 / 330 * widget.height,//all proportions are relative to height and width of widget
+                         width: 75.0 / 330 * widget.height,//proportions are made as on the layout: https://www.figma.com/file/pJE5TUjBKvdy2ZmpMnHAS4/Практика
                          decoration: BoxDecoration(
                            shape: BoxShape.circle,
                            border: Border.all(
@@ -101,7 +102,6 @@ class _SymbolState extends State<SymbolWidget> {
             ),
           ),
         ],
-      ),
     );
   }
 }

@@ -5,7 +5,7 @@ import 'package:braille_abc/symbol/struct_symbol.dart';
 class SymbolsFactory {
   SymbolsFactory();
 
-  List<Symbol> createSymbolsGroup(final SectionType groupName) {
+  List<Symbol> createSymbolsGroup(SectionType groupName) {
     switch (groupName) {
       case SectionType.RussianSymbols:
         {

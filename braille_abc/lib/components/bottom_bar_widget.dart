@@ -1,10 +1,11 @@
+import 'package:flutter/cupertino.dart';
+
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/components/body_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
-import 'package:flutter/cupertino.dart';
 
-final scakey = new GlobalKey<_BottomState>();
+final scakey =  GlobalKey<_BottomState>();
 
 class Bottom extends StatefulWidget {
   Bottom({Key key}) : super(key: key);
@@ -14,7 +15,7 @@ class Bottom extends StatefulWidget {
 }
 
 class _BottomState extends State<Bottom> {
-  final myKey = new GlobalKey<_BottomState>();
+  final myKey =  GlobalKey<_BottomState>();
   bool _disableTapBar = false;
   final CupertinoTabController _controller = CupertinoTabController();
 

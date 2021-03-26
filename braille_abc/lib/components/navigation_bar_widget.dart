@@ -1,8 +1,10 @@
 import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/screens/help_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
@@ -49,7 +51,6 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
         padding: const EdgeInsets.symmetric(
           horizontal: 10,
         ),
-        child: Icon(AppIcon.getIcon(AppIcons.HelpScreen), semanticLabel: ScreenNames.getName(ScreenType.Help), size: 35),
         onPressed: () {
           Timer(Duration(milliseconds: 10), () {
             scakey.currentState.displayTapBar(false);
@@ -60,6 +61,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
                   builder: (context) =>
                       HelpScreen(currentHelp: currentPage.helpPage, previousPage: currentPage)));
         },
+        child: Icon(AppIcon.getIcon(AppIcons.HelpScreen), semanticLabel: ScreenNames.getName(ScreenType.Help), size: 35),
       )
           : null,
     );
@@ -67,7 +69,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
 
   @override
   Size get preferredSize {
-    return new Size.fromHeight(20.0);
+    return  Size.fromHeight(20.0);
   }
 
   @override
