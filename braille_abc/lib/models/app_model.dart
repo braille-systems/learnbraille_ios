@@ -1,6 +1,7 @@
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/components/help_widgets.dart';
+import 'package:braille_abc/models/practice_button.dart';
 import 'package:braille_abc/models/section_model.dart';
 import 'package:braille_abc/screens/dictionary_screen.dart';
 import 'package:braille_abc/screens/home_screen.dart';
@@ -10,6 +11,8 @@ import 'package:braille_abc/screens/study_screen.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'app_icons.dart';
+import 'app_names.dart';
 import 'menu_button.dart';
 import 'section_model.dart';
 
@@ -25,12 +28,12 @@ class AppModel {
     MenuButton(name: ScreenNames.getName(ScreenType.Settings), icon: AppIcon.getIcon(AppIcons.SettingsScreen)),
   ];
 
-  static final List<MenuButton> practiceButtons = [
-    MenuButton(name: SectionNames.getName(SectionType.RussianSymbols), icon: AppIcon.getIcon(AppIcons.RussianAlphabetSection)),
-    MenuButton(name: SectionNames.getName(SectionType.Numbers), icon: AppIcon.getIcon(AppIcons.NumbersSection)),
-    MenuButton(name: SectionNames.getName(SectionType.PunctuationSymbols), icon: AppIcon.getIcon(AppIcons.PunctuationSymbolsSection)),
-    MenuButton(name: SectionNames.getName(SectionType.ArithmeticSymbols), icon: AppIcon.getIcon(AppIcons.ArithmeticSymbolsSection)),
-    MenuButton(name: SectionNames.getName(SectionType.Signs), icon: AppIcon.getIcon(AppIcons.SignsSection)),
+  static final List<PracticeButton> practiceButtons = [
+    PracticeButton(sectionType: SectionType.RussianSymbols, icon: AppIcons.RussianAlphabetSection),
+    PracticeButton(sectionType: SectionType.Numbers, icon: AppIcons.NumbersSection),
+    PracticeButton(sectionType: SectionType.PunctuationSymbols, icon: AppIcons.PunctuationSymbolsSection),
+    PracticeButton(sectionType: SectionType.ArithmeticSymbols, icon: AppIcons.ArithmeticSymbolsSection),
+    PracticeButton(sectionType: SectionType.Signs, icon: AppIcons.SignsSection),
   ];
 
   static final Widget _menuScreen = MenuScreen(

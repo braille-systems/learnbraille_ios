@@ -3,15 +3,11 @@ import 'app_names.dart';
 class Practice {
   static List<SectionType> _pool = [];
 
-  static SectionType _search(String groupName){
-    return SectionNames.stringOfSectionsMap.keys.firstWhere((k) => SectionNames.stringOfSectionsMap[k] == groupName, orElse: () => null);
+  static void addSymbolGroup(SectionType sectionType) {
+    _pool.add(sectionType);
   }
-
-  static void addSymbolGroup(String groupName) {
-    _pool.add(_search(groupName));
-  }
-  static void removeSymbolGroup(String groupName) {
-    _pool.remove(_search(groupName));
+  static void removeSymbolGroup(SectionType sectionType) {
+    _pool.remove(sectionType);
   }
   static List<SectionType> getPool() {
     return _pool;

@@ -9,10 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:braille_abc/models/practice_model.dart';
+import 'package:braille_abc/models/practice_button.dart';
 
 import 'package:braille_abc/style.dart';
 
-import '../models/menu_button.dart';
+import '../models/app_icons.dart';
+import '../models/app_names.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
 
 class ContinueButtonWidget extends StatefulWidget {
@@ -52,30 +54,31 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
         onPressed: () {
           if (Practice.getPool().isNotEmpty) {
             print(Practice.getPool());
-              Navigator.of(context).push(
-                CupertinoPageRoute(
-                  builder: (context) => LetterPracticeScreen(
-                    helpPage: LetterPracticeHelp(),
-                    previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                  ),
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) => LetterPracticeScreen(
+                  helpPage: LetterPracticeHelp(),
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
                 ),
-              );
-          }
-          PracticeSymbol.update();
-          PracticeSymbol.addAllGroup();
-          Navigator.of(context).push(
-            CupertinoPageRoute(
-              builder: (context) => LetterScreen(
-                symbol: PracticeSymbol.getString(),
-                sectionName: PracticeSymbol.getSectionName(),
-                screenType: ScreenType.Practice,
-                previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                helpPage:  LetterViewHelp(),
-                isDotsTouchable: true,
               ),
-            ),
-          );
-          },
+            );
+
+            PracticeSymbol.update();
+            PracticeSymbol.addAllGroup();
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) => LetterScreen(
+                  symbol: PracticeSymbol.getString(),
+                  sectionName: PracticeSymbol.getSectionName(),
+                  screenType: ScreenType.Practice,
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  helpPage: LetterViewHelp(),
+                  isDotsTouchable: true,
+                ),
+              ),
+            );
+          }
+        },
       ),
     );
   }
@@ -87,7 +90,7 @@ class PracticeButtonWidget extends StatefulWidget {
     @required this.practiceButton,
   }) : super(key: key);
 
-  final MenuButton practiceButton;
+  final PracticeButton practiceButton;
 
   @override
   State<PracticeButtonWidget> createState() => _PracticeButtonWidget();
@@ -101,9 +104,9 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
       () {
         checkBox = val;
         if (checkBox) {
-          Practice.addSymbolGroup(widget.practiceButton.name);
+          Practice.addSymbolGroup(widget.practiceButton.sectionType);
         } else {
-          Practice.removeSymbolGroup(widget.practiceButton.name);
+          Practice.removeSymbolGroup(widget.practiceButton.sectionType);
         }
       },
     );
@@ -112,7 +115,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: widget.practiceButton.name,
+      label: SectionNames.getName(widget.practiceButton.sectionType),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.orange[300],
@@ -133,7 +136,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
               alignment: Alignment.center,
               height: 50,
               child: AutoSizeText(
-                widget.practiceButton.name,
+                SectionNames.getName(widget.practiceButton.sectionType),
                 style: TextStyle(fontSize: 20),
                 textAlign: TextAlign.center,
               ),
@@ -142,13 +145,12 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
               height: ScreenParams.height(2.0, context),
             ),
             DecoratedIcon(
-              widget.practiceButton.icon,
+              AppIcon.getIcon(widget.practiceButton.icon),
               color: CupertinoColors.white,
               size: 45.0,
               shadows: <Shadow>[
                 Styles.buildButtonShadow(),
-                for(var stroke in Styles.buildStroke(0.25))
-                  stroke,
+                for (var stroke in Styles.buildStroke(0.25)) stroke,
               ],
             ),
             Row(
@@ -164,7 +166,6 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
                     },
                   ),
                 )
-
               ],
             ),
           ],

@@ -6,6 +6,7 @@ import 'package:braille_abc/models/menu_button.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 
+import '../models/practice_model.dart';
 import 'bottom_bar_widget.dart';
 import 'package:braille_abc/style.dart';
 
@@ -52,6 +53,7 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
         ),
         onPressed: () {
           scakey.currentState.onItemTapped(widget.index);
+          Practice.updatePool();
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

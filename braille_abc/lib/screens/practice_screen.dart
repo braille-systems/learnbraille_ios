@@ -6,7 +6,8 @@ import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/models/app_names.dart';
-import '../models/menu_button.dart';
+
+import '../models/app_model.dart';
 
 
 class PracticeScreen extends NavigationScreen {
@@ -44,10 +45,7 @@ class PracticeScreen extends NavigationScreen {
                     children: <Widget>[
                       for (var i = 0; i < AppModel.practiceButtons.length; ++i)
                         PracticeButtonWidget(
-                          practiceButton: MenuButton(
-                            name: AppModel.practiceButtons[i].name,
-                            icon: AppModel.practiceButtons[i].icon,
-                          ),
+                          practiceButton: AppModel.practiceButtons[i],
                         ),
                     ],
                   ),
