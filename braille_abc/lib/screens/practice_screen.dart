@@ -7,9 +7,6 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/models/app_names.dart';
 
-import '../models/app_model.dart';
-
-
 class PracticeScreen extends NavigationScreen {
   const PracticeScreen({
     Key key,

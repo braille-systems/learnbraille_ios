@@ -37,5 +37,6 @@ linter:
     avoid_renaming_method_parameters: true
 
     # Dependencies
+    always_use_package_imports: true
     avoid_web_libraries_in_flutter: true
     sort_pub_dependencies: true

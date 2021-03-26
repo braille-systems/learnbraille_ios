@@ -1,23 +1,22 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:decorated_icon/decorated_icon.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'dart:math';
+
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/letter_practice_screen.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'dart:math';
 import 'package:braille_abc/shared/screen_params.dart';
-import 'package:decorated_icon/decorated_icon.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/models/practice_button.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 
-import 'package:braille_abc/style.dart';
 
-import '../models/app_icons.dart';
-import '../models/app_names.dart';
+import 'package:braille_abc/style.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
 
 class ContinueButtonWidget extends StatefulWidget {

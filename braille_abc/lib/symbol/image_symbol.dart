@@ -4,8 +4,8 @@ import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'struct_symbol.dart';
-import 'list_symbols.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
+import 'package:braille_abc/symbol/list_symbols.dart';
 
 class SymbolWidget extends StatefulWidget {
   final double width;
