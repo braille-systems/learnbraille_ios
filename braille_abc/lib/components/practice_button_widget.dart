@@ -1,7 +1,8 @@
+import 'dart:async';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
-import 'package:braille_abc/screens/letter_practice_screen.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,9 +14,9 @@ import 'package:braille_abc/models/practice_button.dart';
 
 import 'package:braille_abc/style.dart';
 
-import '../models/app_icons.dart';
-import '../models/app_names.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
+
+import 'package:braille_abc/components/bottom_bar_widget.dart';
 
 class ContinueButtonWidget extends StatefulWidget {
   @override
@@ -52,17 +53,11 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
           ],
         ),
         onPressed: () {
+          Timer(Duration(milliseconds: 10), () {
+            scakey.currentState.displayTapBar(false);
+          });
           if (Practice.getPool().isNotEmpty) {
             print(Practice.getPool());
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => LetterPracticeScreen(
-                  helpPage: LetterPracticeHelp(),
-                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                ),
-              ),
-            );
-
             PracticeSymbol.update();
             PracticeSymbol.addAllGroup();
             Navigator.of(context).push(
@@ -72,7 +67,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
                   sectionName: PracticeSymbol.getSectionName(),
                   screenType: ScreenType.Practice,
                   previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                  helpPage: LetterViewHelp(),
+                  helpPage: LetterPracticeHelp(),
                   isDotsTouchable: true,
                 ),
               ),

@@ -1,4 +1,4 @@
-import 'app_names.dart';
+import 'package:braille_abc/models/app_names.dart';
 
 class Practice {
   static List<SectionType> _pool = [];

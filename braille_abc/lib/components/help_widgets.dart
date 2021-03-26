@@ -4,8 +4,8 @@ import 'package:braille_abc/models/help_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import '../style.dart';
-import 'expansion_section_widget.dart';
+import 'package:braille_abc/style.dart';
+import 'package:braille_abc/components/expansion_section_widget.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
 class MainMenuHelp extends Screen {

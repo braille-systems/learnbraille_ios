@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-import '../style.dart';
+import 'package:braille_abc/style.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
@@ -193,7 +193,7 @@ class _LetterViewState extends State<LetterView> {
 
 class PracticeSymbol {
   static void addAllGroup() {
-    List<SectionType> strings = Practice.getPool();
+    List<SectionType> strings = Practice.getPool().cast<SectionType>();
     SymbolsFactory factory = new SymbolsFactory();
     for (var i in strings) {
       var group = factory.createSymbolsGroup(i);

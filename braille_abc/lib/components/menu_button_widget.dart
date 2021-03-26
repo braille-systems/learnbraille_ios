@@ -6,8 +6,8 @@ import 'package:braille_abc/models/menu_button.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 
-import '../models/practice_model.dart';
-import 'bottom_bar_widget.dart';
+import 'package:braille_abc/models/practice_model.dart';
+import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/style.dart';
 
 class MenuButtonWidget extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/screens/help_screen.dart';
 import 'package:flutter/cupertino.dart';
-import 'bottom_bar_widget.dart';
+import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 

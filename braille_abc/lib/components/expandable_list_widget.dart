@@ -1,7 +1,7 @@
 import 'package:braille_abc/models/section_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'expansion_section_widget.dart';
+import 'package:braille_abc/components/expansion_section_widget.dart';
 
 class MyExpandableList extends StatefulWidget {
   const MyExpandableList({
