@@ -26,9 +26,9 @@ class _ExpansionSection extends State<ExpansionSection> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 2),
-      decoration: new BoxDecoration(
+      decoration:  BoxDecoration(
           color: Colors.orangeAccent, //new Color.fromRGBO(255, 0, 0, 0.0),
-          borderRadius: new BorderRadius.circular(10)),
+          borderRadius:  BorderRadius.circular(10)),
       child: ExpansionTile(
         onExpansionChanged: (expanded) {
           setState(() {
@@ -48,8 +48,8 @@ class _ExpansionSection extends State<ExpansionSection> {
           widget.sectionName,
           style: TextStyle(fontSize: 23, color: myColor),
         ),
-        children: <Widget>[widget.child],
         backgroundColor: CupertinoColors.tertiarySystemBackground,
+        children: <Widget>[widget.child],
       ),
     );
   }

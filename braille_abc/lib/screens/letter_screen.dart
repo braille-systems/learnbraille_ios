@@ -116,9 +116,9 @@ class _LetterViewState extends State<LetterView> {
                   padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
                 ),
                 onPressed: () => setState(() {
-                  if (this._dir == TextDirection.ltr)
-                    this._dir = TextDirection.rtl;
-                  else if (this._dir == TextDirection.rtl) this._dir = TextDirection.ltr;
+                  if (_dir == TextDirection.ltr) {
+                    _dir = TextDirection.rtl;
+                  } else if (_dir == TextDirection.rtl) _dir = TextDirection.ltr;
                 }),
                 child: Icon(
                   AppIcon.getIcon(AppIcons.ChangeModeButton),
@@ -194,16 +194,17 @@ class _LetterViewState extends State<LetterView> {
 class PracticeSymbol {
   static void addAllGroup() {
     List<SectionType> strings = Practice.getPool();
-    SymbolsFactory factory = new SymbolsFactory();
+    SymbolsFactory factory = SymbolsFactory();
     for (var i in strings) {
       var group = factory.createSymbolsGroup(i);
-      for(var j in group)
+      for(var j in group) {
         _data[j] = i;
+      }
     }
   }
 
   static String getString() {
-    var rand = new Random();
+    var rand = Random();
     int num = rand.nextInt(_data.length);
     Symbol symbol = _data.keys.toList()[num];
     _title = _data[symbol];
@@ -220,12 +221,14 @@ class PracticeSymbol {
   }
 
   static bool endPractice() {
-    if (_data.length == 0)
+    if (_data.isEmpty) {
       return true;
-    else
+    }
+    else {
       return false;
+    }
   }
 
-  static final Map<Symbol, SectionType> _data = new Map<Symbol, SectionType>();
+  static final Map<Symbol, SectionType> _data = Map<Symbol, SectionType>();
   static SectionType _title;
 }

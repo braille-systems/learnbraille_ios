@@ -34,6 +34,32 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
+        onPressed: () {
+          if (Practice.getPool().isNotEmpty) {
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) => LetterPracticeScreen(
+                  helpPage: LetterPracticeHelp(),
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                ),
+              ),
+            );
+            PracticeSymbol.update();
+            PracticeSymbol.addAllGroup();
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) => LetterScreen(
+                  symbol: PracticeSymbol.getString(),
+                  sectionName: PracticeSymbol.getSectionName(),
+                  screenType: ScreenType.Practice,
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  helpPage: LetterViewHelp(),
+                  isDotsTouchable: true,
+                ),
+              ),
+            );
+          }
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -51,34 +77,6 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
             ),
           ],
         ),
-        onPressed: () {
-          if (Practice.getPool().isNotEmpty) {
-            print(Practice.getPool());
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => LetterPracticeScreen(
-                  helpPage: LetterPracticeHelp(),
-                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                ),
-              ),
-            );
-
-            PracticeSymbol.update();
-            PracticeSymbol.addAllGroup();
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => LetterScreen(
-                  symbol: PracticeSymbol.getString(),
-                  sectionName: PracticeSymbol.getSectionName(),
-                  screenType: ScreenType.Practice,
-                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                  helpPage: LetterViewHelp(),
-                  isDotsTouchable: true,
-                ),
-              ),
-            );
-          }
-        },
       ),
     );
   }
@@ -129,6 +127,9 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             ],
           ),
         ),
+        onPressed: () {
+          onChanged(!checkBox);
+        },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -170,9 +171,6 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             ),
           ],
         ),
-        onPressed: () {
-          onChanged(!checkBox);
-        },
       ),
     );
   }

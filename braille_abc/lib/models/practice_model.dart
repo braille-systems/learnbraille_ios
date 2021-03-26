@@ -1,7 +1,7 @@
 import 'app_names.dart';
 
 class Practice {
-  static List<SectionType> _pool = [];
+  static final List<SectionType> _pool = [];
 
   static void addSymbolGroup(SectionType sectionType) {
     _pool.add(sectionType);

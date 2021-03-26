@@ -58,11 +58,6 @@ class MenuScreen extends NavigationScreen {
                   style: TextStyle(color: CupertinoColors.black, fontSize: 55, fontWeight: FontWeight.bold),
                 ),
                 CupertinoButton(
-                  child: Icon(
-                    AppIcon.getIcon(AppIcons.HelpScreen),
-                    semanticLabel: ScreenNames.getName(ScreenType.Help),
-                    size: ScreenParams.height(5, context),
-                  ),
                   onPressed: () {
                     scakey.currentState.displayTapBar(false);
                     Navigator.of(context).push(
@@ -73,6 +68,11 @@ class MenuScreen extends NavigationScreen {
                               )),
                     );
                   },
+                  child: Icon(
+                    AppIcon.getIcon(AppIcons.HelpScreen),
+                    semanticLabel: ScreenNames.getName(ScreenType.Help),
+                    size: ScreenParams.height(5, context),
+                  ),
                 ),
               ],
             ),
@@ -80,7 +80,7 @@ class MenuScreen extends NavigationScreen {
             Container(
               height: ScreenParams.heightIOS14(80, context),
               child: GridView.count(
-                physics: new NeverScrollableScrollPhysics(),
+                physics:  NeverScrollableScrollPhysics(),
                 childAspectRatio: (4.0 / 5.0),
                 mainAxisSpacing: ScreenParams.height(3, context),
                 crossAxisSpacing: ScreenParams.height(2, context),

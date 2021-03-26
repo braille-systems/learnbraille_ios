@@ -28,7 +28,7 @@ class SymbolWidget extends StatefulWidget {
   }
 
   @override
-  _SymbolState createState() => _SymbolState(char: char, dictSection: dictSection, isTapped: this.isTapped);
+  _SymbolState createState() => _SymbolState(char: char, dictSection: dictSection, isTapped: isTapped);
 }
 
 class _SymbolState extends State<SymbolWidget> {
@@ -36,16 +36,17 @@ class _SymbolState extends State<SymbolWidget> {
   final bool isTapped;
 
   _SymbolState({String char, SectionType dictSection, @required this.isTapped}) {
-    if(!this.isTapped)
+    if(!isTapped) {
       symbol = Search.element(char, dictSection);
-    else
+    }
+    else {
       symbol = Symbol.defaultSymbol();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
+    return Stack(
         textDirection: widget.textDir(),
         children: <Widget>[
           Container(
@@ -101,7 +102,6 @@ class _SymbolState extends State<SymbolWidget> {
             ),
           ),
         ],
-      ),
     );
   }
 }

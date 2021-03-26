@@ -28,7 +28,6 @@ class StudyItem extends StatelessWidget {
       child: CupertinoButton(
         color: CupertinoColors.white,
         disabledColor: CupertinoColors.white,
-        child: Text(symbol.dotsToString(), style: TextStyle(color: CupertinoColors.black)),
         onPressed: () {
           scakey.currentState.displayTapBar(false);
           Navigator.of(context).push(
@@ -44,6 +43,7 @@ class StudyItem extends StatelessWidget {
             ),
           );
         },
+        child: Text(symbol.dotsToString(), style: TextStyle(color: CupertinoColors.black)),
       ),
     );
   }
