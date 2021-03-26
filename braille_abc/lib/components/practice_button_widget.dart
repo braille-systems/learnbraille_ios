@@ -6,10 +6,13 @@ import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/models/practice_button.dart';
+import 'package:braille_abc/symbol/list_symbols.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
 
 import 'package:braille_abc/style.dart';
 
@@ -174,4 +177,49 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
       ),
     );
   }
+}
+
+class PracticeSymbol {
+  static void addAllGroup() {
+    List<SectionType> strings = Practice.getPool();
+    SymbolsFactory factory = SymbolsFactory();
+    for (var i in strings) {
+      var group = factory.createSymbolsGroup(i);
+      for(var j in group) {
+        _data[j] = i;
+      }
+    }
+  }
+
+  static String getString() {
+    var rand = Random();
+    if(_data.isEmpty){
+      return "";
+    }
+    int num = rand.nextInt(_data.length);
+    Symbol symbol = _data.keys.toList()[num];
+    _title = _data[symbol];
+    _data.remove(symbol);
+    return symbol.char;
+  }
+
+  static SectionType getSectionName() {
+    return _title;
+  }
+
+  static void update(){
+    _data.clear();
+  }
+
+  static bool endPractice() {
+    if (_data.isEmpty) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  static final Map<Symbol, SectionType> _data = Map<Symbol, SectionType>();
+  static SectionType _title;
 }

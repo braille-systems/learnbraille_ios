@@ -1,18 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 import '../style.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
-import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/components/letter_widget.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
 import 'package:braille_abc/models/practice_model.dart';
-import 'package:braille_abc/symbol/struct_symbol.dart';
+import 'package:braille_abc/components/practice_button_widget.dart';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
 
@@ -150,27 +148,40 @@ class _LetterViewState extends State<LetterView> {
                           padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
                         ),
                         onPressed: () => setState(() {
-                          if (PracticeSymbol.endPractice()) Practice.updatePool();
-                          !PracticeSymbol.endPractice()
-                              ? Navigator.of(context).push(
-                                  CupertinoPageRoute(
-                                    builder: (context) => LetterScreen(
-                                      screenType: widget.screenType,
-                                      symbol: PracticeSymbol.getString(),
-                                      sectionName: PracticeSymbol.getSectionName(),
-                                      previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                                      helpPage: LetterViewHelp(),
-                                      isDotsTouchable: true,
-                                    ),
-                                  ),
-                                )
-                              : Navigator.of(context).push(
-                                  CupertinoPageRoute(
-                                      builder: (context) => PracticeScreen(
-                                            previousPage: AppModel.navigationScreens[navigation.MainMenu],
-                                            helpPage: PracticeHelp(),
-                                          )),
-                                );
+                          switch(widget.screenType) {
+                            case ScreenType.Practice:
+                              if (PracticeSymbol.endPractice()) Practice.updatePool();
+                              !PracticeSymbol.endPractice()
+                                  ? Navigator.of(context).push(
+                                CupertinoPageRoute(
+                                  builder: (context) =>
+                                      LetterScreen(
+                                        screenType: widget.screenType,
+                                        symbol: PracticeSymbol.getString(),
+                                        sectionName: PracticeSymbol
+                                            .getSectionName(),
+                                        previousPage: AppModel
+                                            .navigationScreens[navigation
+                                            .PracticeScreen],
+                                        helpPage: LetterViewHelp(),
+                                        isDotsTouchable: true,
+                                      ),
+                                ),
+                              )
+                                  : Navigator.of(context).push(
+                                CupertinoPageRoute(
+                                    builder: (context) =>
+                                        PracticeScreen(
+                                          previousPage: AppModel
+                                              .navigationScreens[navigation
+                                              .MainMenu],
+                                          helpPage: PracticeHelp(),
+                                        )),
+                              );
+                              break;
+                            default:
+                              break;
+                          }
                         }),
                         child: Icon(
                           AppIcon.AppIconsMap[AppIcons.ContinueButton],
@@ -189,46 +200,4 @@ class _LetterViewState extends State<LetterView> {
       ),
     );
   }
-}
-
-class PracticeSymbol {
-  static void addAllGroup() {
-    List<SectionType> strings = Practice.getPool();
-    SymbolsFactory factory = SymbolsFactory();
-    for (var i in strings) {
-      var group = factory.createSymbolsGroup(i);
-      for(var j in group) {
-        _data[j] = i;
-      }
-    }
-  }
-
-  static String getString() {
-    var rand = Random();
-    int num = rand.nextInt(_data.length);
-    Symbol symbol = _data.keys.toList()[num];
-    _title = _data[symbol];
-    _data.remove(symbol);
-    return symbol.char;
-  }
-
-  static SectionType getSectionName() {
-    return _title;
-  }
-
-  static void update(){
-    _data.clear();
-  }
-
-  static bool endPractice() {
-    if (_data.isEmpty) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-
-  static final Map<Symbol, SectionType> _data = Map<Symbol, SectionType>();
-  static SectionType _title;
 }

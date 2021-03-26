@@ -72,8 +72,8 @@ class _SymbolState extends State<SymbolWidget> {
                                 : SemanticNames.getName(SemanticsType.NotPainted)),
                         button: false,
                        child: Container(
-                         height: 75.0 / 330 * widget.height,
-                         width: 75.0 / 330 * widget.height,
+                         height: 75.0 / 330 * widget.height,//all proportions are relative to height and width of widget
+                         width: 75.0 / 330 * widget.height,//proportions are made as on the layout: https://www.figma.com/file/pJE5TUjBKvdy2ZmpMnHAS4/Практика
                          decoration: BoxDecoration(
                            shape: BoxShape.circle,
                            border: Border.all(
