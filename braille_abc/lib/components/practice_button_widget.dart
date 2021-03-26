@@ -48,14 +48,14 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
           children: [
             AutoSizeText(
               SemanticNames.getName(SemanticsType.Continue),
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300, color: CupertinoColors.black),
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300, color: AppColors.continueBtnTextIcon),
             ),
             SizedBox(
               width: ScreenParams.width(25, context),
             ),
             DecoratedIcon(
               AppIcon.getIcon(AppIcons.ContinueButton),
-              color: CupertinoColors.black,
+              color: AppColors.continueBtnTextIcon,
               size: 22.0,
             ),
           ],

@@ -1,12 +1,13 @@
 import 'package:braille_abc/models/app_names.dart';
+import 'package:braille_abc/style.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 class DotImage {
-  Color p = CupertinoColors.white;
-  Color onP = CupertinoColors.black;
+  Color p = AppColors.dotOnPress;
+  Color onP = AppColors.dotPress;
   bool press = false;
   String outputData;
   int num;
@@ -23,7 +24,7 @@ class DotImage {
       p = CupertinoColors.black;
       onP = CupertinoColors.white;
     }
-    else{
+    else {
       p = CupertinoColors.black;
       onP = CupertinoColors.white;
     }

@@ -84,15 +84,10 @@ class _LetterViewState extends State<LetterView> {
             children: <Widget>[
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: CupertinoColors.black,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  textStyle: TextStyle(
-                    color: CupertinoColors.white,
-                    shadows: <Shadow>[
-                      Styles.buildButtonShadow(),
-                    ],
-                  ),
+                  primary: AppColors.changeModeBtn,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15))),
                   padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
+
                 ),
                 onPressed: () => setState(() {
                   if (_dir == TextDirection.ltr) {
@@ -101,7 +96,7 @@ class _LetterViewState extends State<LetterView> {
                 }),
                 child: Icon(
                   AppIcon.getIcon(AppIcons.ChangeModeButton),
-                  color: CupertinoColors.white,
+                  color: AppColors.changeModeIcon,
                   semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
                 ),
               ),

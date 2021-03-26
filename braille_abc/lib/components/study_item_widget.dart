@@ -1,6 +1,7 @@
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
 import 'bottom_bar_widget.dart';
@@ -22,12 +23,12 @@ class StudyItem extends StatelessWidget {
       alignment: Alignment.topLeft,
       width: double.infinity,
       decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: CupertinoColors.inactiveGray, width: 0.5)), shape: BoxShape.rectangle
+          border: Border(bottom: BorderSide(color: AppColors.expandItemsBoarder, width: 0.5)), shape: BoxShape.rectangle
           // shape: BoxShape.circle,
           ),
       child: CupertinoButton(
-        color: CupertinoColors.white,
-        disabledColor: CupertinoColors.white,
+        color: AppColors.background,
+        disabledColor: AppColors.background,
         onPressed: () {
           scakey.currentState.displayTapBar(false);
           Navigator.of(context).push(
@@ -41,7 +42,7 @@ class StudyItem extends StatelessWidget {
             ),
           );
         },
-        child: Text(symbol.dotsToString(), style: TextStyle(color: CupertinoColors.black)),
+        child: Text(symbol.dotsToString(), style: TextStyle(color: AppColors.expandItemsText)),
       ),
     );
   }

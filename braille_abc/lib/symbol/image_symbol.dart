@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'struct_symbol.dart';
 import 'list_symbols.dart';
+import 'package:braille_abc/style.dart';
 
 class SymbolWidget extends StatefulWidget {
   final double width;
@@ -46,7 +47,7 @@ class _SymbolState extends State<SymbolWidget> {
             width: widget.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Colors.orange[300],
+              color: AppColors.first,
             ),
             child: Wrap(
               alignment: WrapAlignment.center,
@@ -67,8 +68,8 @@ class _SymbolState extends State<SymbolWidget> {
                           onPressed: () {
                             if (widget.isTapped) {
                               setState(() {
-                                item.p = (item.press ? CupertinoColors.black : CupertinoColors.white);
-                                item.onP = (item.press ? CupertinoColors.white : CupertinoColors.black);
+                                item.p = (item.press ? AppColors.dotPress : AppColors.dotPress);
+                                item.onP = (item.press ? AppColors.dotPress : AppColors.dotPress);
                                 item.press = !item.press;
                               });
                             }
@@ -77,7 +78,7 @@ class _SymbolState extends State<SymbolWidget> {
                             primary: item.p,
                             onPrimary: item.onP,
                             shape: CircleBorder(),
-                            side: BorderSide(width: 10, color: CupertinoColors.black),
+                            side: BorderSide(width: 10, color: AppColors.dotBoarder),
                             padding: EdgeInsets.all(20),
                           ),
                           child: Text(item.outputData,
