@@ -1,6 +1,6 @@
 import 'package:braille_abc/components/study_item_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
-import 'struct_symbol.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
 
 class SymbolsFactory {
   SymbolsFactory();

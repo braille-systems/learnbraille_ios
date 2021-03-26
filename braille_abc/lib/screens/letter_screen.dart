@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-import '../style.dart';
+import 'package:braille_abc/style.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
@@ -15,7 +15,6 @@ import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
-
 import 'package:braille_abc/screens/practice_screen.dart';
 
 class LetterScreen extends SectionScreen {
