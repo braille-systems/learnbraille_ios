@@ -15,6 +15,7 @@ import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/practice_screen.dart';
 
+@immutable
 class LetterScreen extends SectionScreen {
   final SectionType sectionName;
   final ScreenType screenType;
@@ -47,6 +48,7 @@ class LetterScreen extends SectionScreen {
   }
 }
 
+@immutable
 class LetterView extends StatefulWidget {
   LetterView(
       {Key key,

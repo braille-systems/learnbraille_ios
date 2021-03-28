@@ -5,6 +5,7 @@ import 'package:braille_abc/style.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 
+@immutable
 class LetterWidget extends StatelessWidget {
   const LetterWidget({Key key, @required this.title, @required this.symbol}) : super(key: key);
 

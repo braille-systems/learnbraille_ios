@@ -1,7 +1,9 @@
 import 'package:braille_abc/components/study_item_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
+import 'package:flutter/cupertino.dart';
 
+@immutable
 class SymbolsFactory {
   SymbolsFactory();
 
@@ -9,7 +11,7 @@ class SymbolsFactory {
     switch (groupName) {
       case SectionType.RussianSymbols:
         {
-          List<Symbol> russian = <Symbol>[
+          final List<Symbol> russian = <Symbol>[
             RussianSymbol(list: Search.imageSymbol(d: <int>[1]), char: "А"),
             RussianSymbol(list: Search.imageSymbol(d: <int>[1, 2]), char: "Б"),
             RussianSymbol(list: Search.imageSymbol(d: <int>[2, 4, 5, 6]), char: "В"),
@@ -49,7 +51,7 @@ class SymbolsFactory {
         break;
       case SectionType.PunctuationSymbols:
         {
-          List<Symbol> punctuationMarks = <Symbol>[
+          final List<Symbol> punctuationMarks = <Symbol>[
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[2]), char: "Запятая"),
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 6]), char: "Дефис"),
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 5, 6]), char: "Точка"),
@@ -70,7 +72,7 @@ class SymbolsFactory {
 
       case SectionType.ArithmeticSymbols:
         {
-          List<Symbol> arithmeticSigns = <Symbol>[
+          final List<Symbol> arithmeticSigns = <Symbol>[
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5]), char: "Знак Плюс"),
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[3, 6]), char: "Знак Минус"),
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[3]), char: "Знак умножения точкой"),
@@ -84,7 +86,7 @@ class SymbolsFactory {
         break;
       case SectionType.Numbers:
         {
-          List<Symbol> numbers = <Symbol>[
+          final List<Symbol> numbers = <Symbol>[
             Number(list: Search.imageSymbol(d: <int>[1]), char: "1"),
             Number(list: Search.imageSymbol(d: <int>[1, 2]), char: "2"),
             Number(list: Search.imageSymbol(d: <int>[1, 4]), char: "3"),
@@ -101,7 +103,7 @@ class SymbolsFactory {
         break;
       case SectionType.Signs:
         {
-          List<Symbol> signs = <Symbol>[
+          final List<Symbol> signs = <Symbol>[
             Sign(list: Search.imageSymbol(d: <int>[3, 4, 5, 6]), char: "Цифровой знак"),
             Sign(list: Search.imageSymbol(d: <int>[4, 5, 6]), char: "Признак курсивного шрифта"),
             Sign(list: Search.imageSymbol(d: <int>[1, 2, 4, 5, 6]), char: "Признак жирного шрифта"),
@@ -117,6 +119,7 @@ class SymbolsFactory {
   }
 }
 
+@immutable
 class Alphabet {
   static Map<SectionType, List<Symbol>> _alphabet;
 
@@ -138,8 +141,8 @@ class Alphabet {
   }
 
   List<StudyItem> listOfStudyItems(SectionType key) {
-    List<StudyItem> lsi = [];
-    List<Symbol> los = listOfSymbols(key);
+    final List<StudyItem> lsi = [];
+    final List<Symbol> los = listOfSymbols(key);
     for (var symbol in los) {
       if (symbol.char != null) {
         lsi.add(StudyItem(symbol: symbol, sectionName: key));
@@ -149,10 +152,11 @@ class Alphabet {
   }
 }
 
+@immutable
 class Search {
   static Symbol element(String ch, SectionType keymap) {
-    Alphabet alphabet = Alphabet();
-    List<Symbol> list = alphabet.listOfSymbols(keymap);
+    final Alphabet alphabet = Alphabet();
+    final List<Symbol> list = alphabet.listOfSymbols(keymap);
 
     for (int i = 0; i < list.length; i++) {
       if (list[i].char.compareTo(ch) == 0) {
@@ -163,7 +167,7 @@ class Search {
   }
 
   static List<DotImage> imageSymbol({List<int> d}) {
-    List<DotImage> data = <DotImage>[
+    final List<DotImage> data = <DotImage>[
       DotImage(1, false),
       DotImage(2, false),
       DotImage(3, false),

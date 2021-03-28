@@ -26,6 +26,7 @@ enum AppIcons
   GeneralHelpInHelpScreen,
 }
 
+@immutable
 class AppIcon
 {
   static const Map<AppIcons, IconData> AppIconsMap =

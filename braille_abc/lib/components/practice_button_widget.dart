@@ -19,7 +19,7 @@ import 'package:braille_abc/style.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
 
 
-
+@immutable
 class ContinueButtonWidget extends StatefulWidget {
   @override
   State<ContinueButtonWidget> createState() => _ContinueButtonWidget();
@@ -118,7 +118,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
               height: 50,
               child: AutoSizeText(
                 SectionNames.getName(widget.practiceButton.sectionType),
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -127,7 +127,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             ),
             DecoratedIcon(
               AppIcon.getIcon(widget.practiceButton.icon),
-              color: CupertinoColors.white,
+              color: AppColors.second,
               size: 45.0,
               shadows: <Shadow>[
                 Styles.buildButtonShadow(),
@@ -158,8 +158,8 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
 
 class PracticeSymbol {
   static void addAllGroup() {
-    List<SectionType> strings = Practice.getPool();
-    SymbolsFactory factory = SymbolsFactory();
+    final List<SectionType> strings = Practice.getPool();
+    final SymbolsFactory factory = SymbolsFactory();
     for (var i in strings) {
       var group = factory.createSymbolsGroup(i);
       for(var j in group) {
@@ -173,8 +173,8 @@ class PracticeSymbol {
     if(_data.isEmpty){
       return "";
     }
-    int num = rand.nextInt(_data.length);
-    Symbol symbol = _data.keys.toList()[num];
+    final int num = rand.nextInt(_data.length);
+    final Symbol symbol = _data.keys.toList()[num];
     _title = _data[symbol];
     _data.remove(symbol);
     return symbol.char;

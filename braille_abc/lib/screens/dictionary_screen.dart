@@ -6,11 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
+@immutable
 class DictionaryScreen extends NavigationScreen {
   const DictionaryScreen({
     Key key,
-    Widget helpPage,
-    Widget previousPage,
+    final Widget helpPage,
+    final Widget previousPage,
   }) : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override
