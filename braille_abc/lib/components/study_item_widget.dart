@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
-import 'bottom_bar_widget.dart';
+import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 
 class StudyItem extends StatelessWidget {
@@ -30,14 +32,18 @@ class StudyItem extends StatelessWidget {
         color: AppColors.background,
         disabledColor: AppColors.background,
         onPressed: () {
-          scakey.currentState.displayTapBar(false);
+          Timer(Duration(milliseconds: 10), () {
+            scakey.currentState.displayTapBar(false);
+          });
           Navigator.of(context).push(
             CupertinoPageRoute(
               builder: (context) => LetterScreen(
                 sectionName: sectionName,
+                screenType: ScreenType.Letter,
                 symbol: symbol.getChar(),
                 previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
                 helpPage:  LetterViewHelp(),
+                isDotsTouchable: false,
               ),
             ),
           );

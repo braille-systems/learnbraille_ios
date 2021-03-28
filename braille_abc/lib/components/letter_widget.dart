@@ -1,8 +1,9 @@
-import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:braille_abc/shared/screen_params.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:braille_abc/style.dart';
+
+import 'package:braille_abc/models/app_names.dart';
+import 'package:braille_abc/shared/screen_params.dart';
 
 class LetterWidget extends StatelessWidget {
   const LetterWidget({Key key, @required this.title, @required this.symbol}) : super(key: key);

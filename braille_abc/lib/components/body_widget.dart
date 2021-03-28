@@ -1,5 +1,6 @@
-import 'package:braille_abc/models/app_model.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'package:braille_abc/models/app_model.dart';
 
 class Body extends StatefulWidget {
   final int index;
