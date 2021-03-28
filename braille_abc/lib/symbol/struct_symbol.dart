@@ -6,10 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:braille_abc/style.dart';
 
-
 class DotImage {
-  Color p = CupertinoColors.white;
-  Color onP = CupertinoColors.black;
+  Color p = AppColors.dotOnPress;
+  Color onP = AppColors.dotPress;
   bool press = false;
   String outputData;
   int num;
@@ -23,12 +22,12 @@ class DotImage {
   void setIsPressed(bool state){
     press = state;
     if(press){
-      p = CupertinoColors.black;
-      onP = CupertinoColors.white;
+      p = AppColors.dotPress;
+      onP = AppColors.dotOnPress;
     }
     else{
-      p = CupertinoColors.white;
-      onP = CupertinoColors.black;
+      p = AppColors.dotOnPress;
+      onP = AppColors.dotPress;
     }
   }
 }

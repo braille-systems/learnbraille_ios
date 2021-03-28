@@ -27,17 +27,15 @@ class _ExpansionSection extends State<ExpansionSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 2),
-      decoration:  BoxDecoration(
-          color: Colors.orangeAccent, //new Color.fromRGBO(255, 0, 0, 0.0),
-          borderRadius:  BorderRadius.circular(10)),
+      margin: EdgeInsets.symmetric(vertical: 2),
+      decoration:  AppDecorations.expansionSection,
       child: ExpansionTile(
         onExpansionChanged: (expanded) {
           setState(() {
             if (expanded) {
-              myColor = Colors.orangeAccent;
+              myColor = AppColors.first;
             } else {
-              myColor = Colors.white;
+              myColor = AppColors.second;
             }
           });
         },
@@ -50,7 +48,7 @@ class _ExpansionSection extends State<ExpansionSection> {
           widget.sectionName,
           style: TextStyle(fontSize: 23, color: myColor),
         ),
-        backgroundColor: CupertinoColors.tertiarySystemBackground,
+        backgroundColor: AppColors.expandBackground,
         children: <Widget>[widget.child],
       ),
     );
