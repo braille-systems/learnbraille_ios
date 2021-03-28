@@ -1,5 +1,6 @@
 import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/foundation.dart';
+import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
@@ -24,8 +25,8 @@ class DotImage {
       onP = CupertinoColors.white;
     }
     else{
-      p = CupertinoColors.black;
-      onP = CupertinoColors.white;
+      p = CupertinoColors.white;
+      onP = CupertinoColors.black;
     }
   }
 }
@@ -38,6 +39,10 @@ abstract class Symbol {
 
   List<DotImage> set(){
     return dots;
+  }
+
+  static Symbol defaultSymbol(){
+    return RussianSymbol(list: Search.imageSymbol(d: <int>[]), char: "No");
   }
 
   String dotsToString() {
