@@ -7,8 +7,9 @@ import 'package:braille_abc/models/app_names.dart';
 
 final scakey =  GlobalKey<_BottomState>();
 
+@immutable
 class Bottom extends StatefulWidget {
-  Bottom({Key key}) : super(key: key);
+  const Bottom({Key key}) : super(key: key);
 
   @override
   _BottomState createState() => _BottomState();
@@ -99,14 +100,14 @@ class InvisibleCupertinoTabBar extends CupertinoTabBar {
   @override
   InvisibleCupertinoTabBar copyWith({
     Key key,
-    List<BottomNavigationBarItem> items,
-    Color backgroundColor,
-    Color activeColor,
-    Color inactiveColor,
-    double iconSize,
-    Border border,
-    int currentIndex,
-    ValueChanged<int> onTap,
+    final List<BottomNavigationBarItem> items,
+    final Color backgroundColor,
+    final Color activeColor,
+    final Color inactiveColor,
+    final double iconSize,
+    final Border border,
+    final int currentIndex,
+    final ValueChanged<int> onTap,
   }) =>
       InvisibleCupertinoTabBar();
 }

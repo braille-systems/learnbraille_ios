@@ -8,6 +8,7 @@ import 'package:braille_abc/screens/letter_screen.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 
+@immutable
 class StudyItem extends StatelessWidget {
   const StudyItem({
     Key key,

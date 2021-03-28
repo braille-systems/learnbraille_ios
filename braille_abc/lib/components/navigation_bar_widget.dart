@@ -9,6 +9,7 @@ import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
+@immutable
 class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeWidget {
   const NavigationBar({
     Key key,

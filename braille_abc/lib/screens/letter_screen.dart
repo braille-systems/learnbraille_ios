@@ -15,6 +15,7 @@ import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/practice_screen.dart';
 
+@immutable
 class LetterScreen extends SectionScreen {
   final SectionType sectionName;
   final ScreenType screenType;
@@ -47,8 +48,15 @@ class LetterScreen extends SectionScreen {
   }
 }
 
+@immutable
 class LetterView extends StatefulWidget {
-  LetterView({Key key, @required this.sectionName, @required this.screenType, @required this.symbol, @required this.isDotsTouchable}) : super(key: key);
+  LetterView(
+      {Key key,
+      @required this.sectionName,
+      @required this.screenType,
+      @required this.symbol,
+      @required this.isDotsTouchable})
+      : super(key: key);
 
   final String str = ScreenNames.getName(ScreenType.Letter);
   final SectionType sectionName;
@@ -147,36 +155,29 @@ class _LetterViewState extends State<LetterView> {
                           padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
                         ),
                         onPressed: () => setState(() {
-                          switch(widget.screenType) {
+                          switch (widget.screenType) {
                             case ScreenType.Practice:
                               if (PracticeSymbol.endPractice()) Practice.updatePool();
                               !PracticeSymbol.endPractice()
                                   ? Navigator.of(context).push(
-                                CupertinoPageRoute(
-                                  builder: (context) =>
-                                      LetterScreen(
-                                        screenType: widget.screenType,
-                                        symbol: PracticeSymbol.getString(),
-                                        sectionName: PracticeSymbol
-                                            .getSectionName(),
-                                        previousPage: AppModel
-                                            .navigationScreens[navigation
-                                            .PracticeScreen],
-                                        helpPage: LetterViewHelp(),
-                                        isDotsTouchable: true,
+                                      CupertinoPageRoute(
+                                        builder: (context) => LetterScreen(
+                                          screenType: widget.screenType,
+                                          symbol: PracticeSymbol.getString(),
+                                          sectionName: PracticeSymbol.getSectionName(),
+                                          previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                                          helpPage: LetterViewHelp(),
+                                          isDotsTouchable: true,
+                                        ),
                                       ),
-                                ),
-                              )
+                                    )
                                   : Navigator.of(context).push(
-                                CupertinoPageRoute(
-                                    builder: (context) =>
-                                        PracticeScreen(
-                                          previousPage: AppModel
-                                              .navigationScreens[navigation
-                                              .MainMenu],
-                                          helpPage: PracticeHelp(),
-                                        )),
-                              );
+                                      CupertinoPageRoute(
+                                          builder: (context) => PracticeScreen(
+                                                previousPage: AppModel.navigationScreens[navigation.MainMenu],
+                                                helpPage: PracticeHelp(),
+                                              )),
+                                    );
                               break;
                             default:
                               break;

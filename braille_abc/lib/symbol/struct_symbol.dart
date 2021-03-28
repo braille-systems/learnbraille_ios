@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
+
 class DotImage {
   Color p = CupertinoColors.white;
   Color onP = CupertinoColors.black;
@@ -46,7 +47,7 @@ abstract class Symbol {
   }
 
   String dotsToString() {
-    StringBuffer str =  StringBuffer(char + ": точки ");
+    final StringBuffer str =  StringBuffer(char + ": точки ");
     for(var d in dots){
       if(d.press) {
         str.write(d.outputData + ", ");
@@ -62,12 +63,14 @@ abstract class Symbol {
 
 }
 
+@immutable
 class RussianSymbol extends Symbol {
   static final SectionType groupName = SectionType.RussianSymbols;
 
   const RussianSymbol({String char, List<DotImage> list}) : super(dots: list, char: char);
 }
 
+@immutable
 class PunctuationSymbol extends Symbol {
   static final SectionType groupName = SectionType.PunctuationSymbols;
 
@@ -75,6 +78,7 @@ class PunctuationSymbol extends Symbol {
 
 }
 
+@immutable
 class ArithmeticSymbol extends Symbol {
   static final SectionType groupName = SectionType.ArithmeticSymbols;
 
@@ -82,6 +86,7 @@ class ArithmeticSymbol extends Symbol {
 
 }
 
+@immutable
 class Number extends Symbol{
   static final SectionType groupName = SectionType.Numbers;
 
@@ -89,6 +94,7 @@ class Number extends Symbol{
 
 }
 
+@immutable
 class Sign extends Symbol{
   static final SectionType groupName = SectionType.Signs;
 

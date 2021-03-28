@@ -1,4 +1,6 @@
 
+import 'package:flutter/cupertino.dart';
+
 enum SectionType
 {
   RussianSymbols,
@@ -8,6 +10,7 @@ enum SectionType
   Signs
 }
 
+@immutable
 class SectionNames
 {
   static const Map<SectionType, String> stringOfSectionsMap =
@@ -37,6 +40,7 @@ enum ScreenType
   Study
 }
 
+@immutable
 class ScreenNames
 {
   static const Map<ScreenType, String> stringOfScreensMap =
@@ -66,6 +70,7 @@ enum XmlItemType
   PracticeSections
 }
 
+@immutable
 class XmlNames
 {
   static const Map<XmlItemType, String> stringOfXmlItemMap =
@@ -93,6 +98,7 @@ enum SemanticsType
   Continue,
 }
 
+@immutable
 class SemanticNames
 {
   static const Map<SemanticsType, String> stringOfSemanticsMap =

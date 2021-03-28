@@ -1,19 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:xml/xml.dart';
 
+@immutable
 class Section {
-  String name;
-  String description;
-  List<Section> content;
+  final String name;
+  final String description;
+  final List<Section> content;
 
   Section(this.name, this.description, this.content);
 }
 
+@immutable
 class HelpModel {
-  static Map<String, Section> helpSection = Map();
+  static final Map<String, Section> helpSection = Map();
 
   static Future<Null> fillHelpModel(BuildContext context) async {
-    String xmlString = await DefaultAssetBundle.of(context).loadString("data/help.xml");
+    final String xmlString = await DefaultAssetBundle.of(context).loadString("data/help.xml");
     var xml = XmlDocument.parse(xmlString);
     _parseXmlSection("general_button", xml);
     _parseXmlSection("section", xml);
@@ -29,7 +31,7 @@ class HelpModel {
   }
 
   static List<Section> _parseButtonSection(Iterable<XmlNode> buttonSection) {
-    List<Section> buttonSections = [];
+    final List<Section> buttonSections = [];
     for (var el in buttonSection) {
       buttonSections.add(_getSection(el));
     }

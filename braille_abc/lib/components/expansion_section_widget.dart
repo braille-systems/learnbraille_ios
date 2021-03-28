@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+@immutable
 class ExpansionSection extends StatefulWidget {
-  ExpansionSection({
+  const ExpansionSection({
     Key key,
     this.sectionIcon = CupertinoIcons.add,
     this.sectionName,
@@ -25,7 +26,7 @@ class _ExpansionSection extends State<ExpansionSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 2),
+      margin: const EdgeInsets.symmetric(vertical: 2),
       decoration:  BoxDecoration(
           color: Colors.orangeAccent, //new Color.fromRGBO(255, 0, 0, 0.0),
           borderRadius:  BorderRadius.circular(10)),

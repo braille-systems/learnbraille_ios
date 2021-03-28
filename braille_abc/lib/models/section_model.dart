@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
+@immutable
 class SectionModel {
-  String name;
-  IconData icon;
-  Widget expandedList;
+  final String name;
+  final IconData icon;
+  final Widget expandedList;
 
   SectionModel({this.name, this.icon, this.expandedList});
 }

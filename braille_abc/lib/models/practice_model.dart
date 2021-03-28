@@ -1,5 +1,7 @@
 import 'package:braille_abc/models/app_names.dart';
+import 'package:flutter/cupertino.dart';
 
+@immutable
 class Practice {
   static final List<SectionType> _pool = [];
 

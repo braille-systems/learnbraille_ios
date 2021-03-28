@@ -10,6 +10,7 @@ import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/style.dart';
 
+@immutable
 class MenuButtonWidget extends StatefulWidget {
   const MenuButtonWidget({
     Key key,
@@ -25,6 +26,7 @@ class MenuButtonWidget extends StatefulWidget {
   @override
   _MenuButtonWidget createState() => _MenuButtonWidget();
 }
+
 
 class _MenuButtonWidget extends State<MenuButtonWidget> {
   @override
@@ -49,7 +51,7 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
               Styles.buildButtonShadow(),
             ],
           ),
-          padding: EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.symmetric(vertical: 20),
         ),
         onPressed: () {
           scakey.currentState.onItemTapped(widget.index);

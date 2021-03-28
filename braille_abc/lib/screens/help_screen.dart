@@ -5,11 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:braille_abc/models/app_names.dart';
 
+@immutable
 class HelpScreen extends Screen {
   const HelpScreen({
     Key key,
-    Screen previousPage,
-    this.currentHelp,
+    final Screen previousPage,
+    final this.currentHelp,
   }) : super(key: key, hasNavigationBar: false, helpPage: null, previousPage: previousPage);
 
   final Widget currentHelp;
