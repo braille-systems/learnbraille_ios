@@ -23,8 +23,8 @@ class AppColors{
   static const Color dotOnPress = Colors.white;
   static const Color dotBoarder = Colors.black;
 
-  static const Color changeModeBtn = Colors.black;
-  static const Color changeModeIcon = Colors.white;
+  static const Color sideBtn = Colors.black;
+  static const Color sideIcon = Colors.white;
 
 }
 

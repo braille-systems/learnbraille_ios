@@ -48,7 +48,13 @@ class LetterScreen extends SectionScreen {
 }
 
 class LetterView extends StatefulWidget {
-  LetterView({Key key, @required this.sectionName, @required this.screenType, @required this.symbol, @required this.isDotsTouchable}) : super(key: key);
+  LetterView(
+      {Key key,
+      @required this.sectionName,
+      @required this.screenType,
+      @required this.symbol,
+      @required this.isDotsTouchable})
+      : super(key: key);
 
   final String str = ScreenNames.getName(ScreenType.Letter);
   final SectionType sectionName;
@@ -102,10 +108,10 @@ class _LetterViewState extends State<LetterView> {
             children: <Widget>[
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: AppColors.changeModeBtn,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15))),
+                  primary: AppColors.sideBtn,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15))),
                   padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
-
                 ),
                 onPressed: () => setState(() {
                   if (_dir == TextDirection.ltr) {
@@ -114,7 +120,7 @@ class _LetterViewState extends State<LetterView> {
                 }),
                 child: Icon(
                   AppIcon.getIcon(AppIcons.ChangeModeButton),
-                  color: AppColors.changeModeIcon,
+                  color: AppColors.sideIcon,
                   semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
                 ),
               ),
@@ -131,47 +137,36 @@ class _LetterViewState extends State<LetterView> {
                       width: ScreenParams.width(17, context),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: CupertinoColors.black,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                          textStyle: TextStyle(
-                            color: CupertinoColors.white,
-                            shadows: <Shadow>[
-                              Styles.buildButtonShadow(),
-                            ],
-                          ),
+                          primary: AppColors.sideBtn,
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.only(topLeft: Radius.circular(15), bottomLeft: Radius.circular(15))),
                           padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
                         ),
                         onPressed: () => setState(() {
-                          switch(widget.screenType) {
+                          switch (widget.screenType) {
                             case ScreenType.Practice:
                               if (PracticeSymbol.endPractice()) Practice.updatePool();
                               !PracticeSymbol.endPractice()
                                   ? Navigator.of(context).push(
-                                CupertinoPageRoute(
-                                  builder: (context) =>
-                                      LetterScreen(
-                                        screenType: widget.screenType,
-                                        symbol: PracticeSymbol.getString(),
-                                        sectionName: PracticeSymbol
-                                            .getSectionName(),
-                                        previousPage: AppModel
-                                            .navigationScreens[navigation
-                                            .PracticeScreen],
-                                        helpPage: LetterViewHelp(),
-                                        isDotsTouchable: true,
+                                      CupertinoPageRoute(
+                                        builder: (context) => LetterScreen(
+                                          screenType: widget.screenType,
+                                          symbol: PracticeSymbol.getString(),
+                                          sectionName: PracticeSymbol.getSectionName(),
+                                          previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                                          helpPage: LetterViewHelp(),
+                                          isDotsTouchable: true,
+                                        ),
                                       ),
-                                ),
-                              )
+                                    )
                                   : Navigator.of(context).push(
-                                CupertinoPageRoute(
-                                    builder: (context) =>
-                                        PracticeScreen(
-                                          previousPage: AppModel
-                                              .navigationScreens[navigation
-                                              .MainMenu],
-                                          helpPage: PracticeHelp(),
-                                        )),
-                              );
+                                      CupertinoPageRoute(
+                                          builder: (context) => PracticeScreen(
+                                                previousPage: AppModel.navigationScreens[navigation.MainMenu],
+                                                helpPage: PracticeHelp(),
+                                              )),
+                                    );
                               break;
                             default:
                               break;
@@ -179,7 +174,7 @@ class _LetterViewState extends State<LetterView> {
                         }),
                         child: Icon(
                           AppIcon.AppIconsMap[AppIcons.ContinueButton],
-                          color: CupertinoColors.white,
+                          color: AppColors.sideIcon,
                           semanticLabel: SemanticNames.getName(SemanticsType.Continue),
                         ),
                       ),
