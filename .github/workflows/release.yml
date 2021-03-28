@@ -43,7 +43,7 @@ jobs:
       - uses: actions/setup-node@v2
       - run: npm install git-release-notes
       - run: mkdir -p docs/release/v0.0
-      - run: git-release-notes v0.1..v0.0 markdown > docs/release/v0.0/CHANGELOG.md
+      - run: npx git-release-notes v0.1..v0.0 markdown > docs/release/v0.0/CHANGELOG.md
       
       - uses: softprops/action-gh-release@v1
         with:
