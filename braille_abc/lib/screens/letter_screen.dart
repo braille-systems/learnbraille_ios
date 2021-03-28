@@ -1,20 +1,34 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:braille_abc/style.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/components/letter_widget.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
-
-import '../style.dart';
+import 'package:braille_abc/models/practice_model.dart';
+import 'package:braille_abc/components/practice_button_widget.dart';
+import 'package:braille_abc/components/help_widgets.dart';
+import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/screens/practice_screen.dart';
 
 class LetterScreen extends SectionScreen {
   final SectionType sectionName;
+  final ScreenType screenType;
   final String symbol;
+  final bool isDotsTouchable;
 
-  const LetterScreen({Key key, Screen helpPage, Screen previousPage, @required this.sectionName, @required this.symbol})
+  const LetterScreen(
+      {Key key,
+      Screen helpPage,
+      Screen previousPage,
+      @required this.screenType,
+      @required this.sectionName,
+      @required this.symbol,
+      @required this.isDotsTouchable})
       : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override
@@ -22,21 +36,31 @@ class LetterScreen extends SectionScreen {
     return CupertinoPageScaffold(
         navigationBar: NavigationBar(
           currentPage: this,
-          title: ScreenNames.getName(ScreenType.Letter),
+          title: ScreenNames.getName(screenType),
         ),
         child: LetterView(
+          screenType: screenType,
           sectionName: sectionName,
           symbol: symbol,
+          isDotsTouchable: isDotsTouchable,
         ));
   }
 }
 
 class LetterView extends StatefulWidget {
-  LetterView({Key key, @required this.sectionName, @required this.symbol}) : super(key: key);
+  LetterView(
+      {Key key,
+      @required this.sectionName,
+      @required this.screenType,
+      @required this.symbol,
+      @required this.isDotsTouchable})
+      : super(key: key);
 
   final String str = ScreenNames.getName(ScreenType.Letter);
   final SectionType sectionName;
+  final ScreenType screenType;
   final String symbol;
+  final bool isDotsTouchable;
 
   @override
   _LetterViewState createState() => _LetterViewState();
@@ -82,41 +106,76 @@ class _LetterViewState extends State<LetterView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: CupertinoColors.black,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  textStyle: TextStyle(
-                    color: CupertinoColors.white,
-                    shadows: <Shadow>[
-                      Styles.buildButtonShadow(),
-                    ],
+              SizedBox(
+                height: ScreenParams.height(30, context),
+                width: ScreenParams.width(17, context),
+                child: ElevatedButton(
+                  style: AppDecorations.changeDirButton,
+                  onPressed: () => setState(() {
+                    if (_dir == TextDirection.ltr) {
+                      _dir = TextDirection.rtl;
+                    } else if (_dir == TextDirection.rtl) _dir = TextDirection.ltr;
+                  }),
+                  child: Icon(
+                    AppIcon.getIcon(AppIcons.ChangeModeButton),
+                    color: AppColors.sideIcon,
+                    semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
-                ),
-                onPressed: () => setState(() {
-                  if (_dir == TextDirection.ltr) {
-                    _dir = TextDirection.rtl;
-                  } else if (_dir == TextDirection.rtl) _dir = TextDirection.ltr;
-                }),
-                child: Icon(
-                  AppIcon.getIcon(AppIcons.ChangeModeButton),
-                  color: CupertinoColors.white,
-                  semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
                 ),
               ),
               SymbolWidget(
                   textDir: mode,
                   char: widget.symbol,
-                  isTapped: false,
+                  isTapped: widget.isDotsTouchable,
                   width: 200,
                   height: 350,
                   dictSection: widget.sectionName),
-              SizedBox(
-                height: ScreenParams.width(60, context),
-                width: ScreenParams.height(8, context),
-              ),
-              // change_mode_widget
+              widget.isDotsTouchable
+                  ? SizedBox(
+                      height: ScreenParams.height(30, context),
+                      width: ScreenParams.width(17, context),
+                      child: ElevatedButton(
+                        style: AppDecorations.nextButton,
+                        onPressed: () => setState(() {
+                          switch (widget.screenType) {
+                            case ScreenType.Practice:
+                              if (PracticeSymbol.endPractice()) Practice.updatePool();
+                              !PracticeSymbol.endPractice()
+                                  ? Navigator.of(context).push(
+                                      CupertinoPageRoute(
+                                        builder: (context) => LetterScreen(
+                                          screenType: widget.screenType,
+                                          symbol: PracticeSymbol.getString(),
+                                          sectionName: PracticeSymbol.getSectionName(),
+                                          previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                                          helpPage: LetterViewHelp(),
+                                          isDotsTouchable: true,
+                                        ),
+                                      ),
+                                    )
+                                  : Navigator.of(context).push(
+                                      CupertinoPageRoute(
+                                          builder: (context) => PracticeScreen(
+                                                previousPage: AppModel.navigationScreens[navigation.MainMenu],
+                                                helpPage: PracticeHelp(),
+                                              )),
+                                    );
+                              break;
+                            default:
+                              break;
+                          }
+                        }),
+                        child: Icon(
+                          AppIcon.AppIconsMap[AppIcons.ContinueButton],
+                          color: AppColors.sideIcon,
+                          semanticLabel: SemanticNames.getName(SemanticsType.Continue),
+                        ),
+                      ),
+                    )
+                  : SizedBox(
+                      height: ScreenParams.height(30, context),
+                      width: ScreenParams.width(17, context),
+                    ),
             ],
           )
         ],

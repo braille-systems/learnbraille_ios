@@ -1,3 +1,4 @@
+import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ class ExpansionSection extends StatefulWidget {
     this.sectionIcon = CupertinoIcons.add,
     this.sectionName,
     this.child,
-    this.color = CupertinoColors.white,
+    this.color = AppColors.second,
   }) : super(key: key);
 
   final IconData sectionIcon;
@@ -20,22 +21,20 @@ class ExpansionSection extends StatefulWidget {
 }
 
 class _ExpansionSection extends State<ExpansionSection> {
-  Color myColor = Colors.white;
+  Color myColor = AppColors.second;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 2),
-      decoration:  BoxDecoration(
-          color: Colors.orangeAccent, //new Color.fromRGBO(255, 0, 0, 0.0),
-          borderRadius:  BorderRadius.circular(10)),
+      decoration:  AppDecorations.expansionSection,
       child: ExpansionTile(
         onExpansionChanged: (expanded) {
           setState(() {
             if (expanded) {
-              myColor = Colors.orangeAccent;
+              myColor = AppColors.first;
             } else {
-              myColor = Colors.white;
+              myColor = AppColors.second;
             }
           });
         },
@@ -48,7 +47,7 @@ class _ExpansionSection extends State<ExpansionSection> {
           widget.sectionName,
           style: TextStyle(fontSize: 23, color: myColor),
         ),
-        backgroundColor: CupertinoColors.tertiarySystemBackground,
+        backgroundColor: AppColors.expandBackground,
         children: <Widget>[widget.child],
       ),
     );

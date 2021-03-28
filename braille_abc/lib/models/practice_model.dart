@@ -1,13 +1,15 @@
-class Practice {
-  static final List<String> _pool = [];
+import 'package:braille_abc/models/app_names.dart';
 
-  static void addSymbolGroup(String groupName) {
-    _pool.add(groupName);
+class Practice {
+  static final List<SectionType> _pool = [];
+
+  static void addSymbolGroup(SectionType sectionType) {
+    _pool.add(sectionType);
   }
-  static void removeSymbolGroup(String groupName) {
-    _pool.remove(groupName);
+  static void removeSymbolGroup(SectionType sectionType) {
+    _pool.remove(sectionType);
   }
-  static List<String> getPool() {
+  static List<SectionType> getPool() {
     return _pool;
   }
   static void updatePool() {

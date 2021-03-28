@@ -1,11 +1,12 @@
-import 'package:braille_abc/models/app_icons.dart';
-import 'package:braille_abc/models/app_names.dart';
-import 'package:braille_abc/models/help_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import '../style.dart';
-import 'expansion_section_widget.dart';
+
+import 'package:braille_abc/models/app_icons.dart';
+import 'package:braille_abc/models/app_names.dart';
+import 'package:braille_abc/models/help_model.dart';
+import 'package:braille_abc/style.dart';
+import 'package:braille_abc/components/expansion_section_widget.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
 class MainMenuHelp extends Screen {
@@ -41,7 +42,7 @@ class GeneralHelp extends Screen {
   Widget build(BuildContext context) {
     List<IconData> subIcon = [AppIcon.getIcon(AppIcons.BackButton), AppIcon.getIcon(AppIcons.HelpScreen)];
     return ExpansionSection(
-      color: Colors.orangeAccent,
+      color: AppColors.first,
       sectionIcon: AppIcon.getIcon(AppIcons.GeneralHelpInHelpScreen),
       sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.GeneralHelp)].name,
       child: Column(
@@ -106,7 +107,7 @@ class LetterViewHelp extends Screen {
         ),
         for (int i = 0; i < HelpModel.helpSection[XmlNames.getName(XmlItemType.SymbolView)].content.length; i++)
           ExpansionSection(
-            color: Colors.orangeAccent,
+            color: AppColors.first,
             sectionIcon: AppIcon.getIcon(AppIcons.DictionaryScreen),
             sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.SymbolView)].content[i].name,
             child: Column(
@@ -153,7 +154,7 @@ class PracticeHelp extends Screen {
         ),
         for (int i = 0; i < HelpModel.helpSection[XmlNames.getName(XmlItemType.PracticeSections)].content.length; i++)
           ExpansionSection(
-            color: Colors.orangeAccent,
+            color: AppColors.first,
             sectionIcon: AppIcon.getIcon(AppIcons.PracticeScreen),
             sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.PracticeSections)].content[i].name,
             child: Column(
@@ -198,7 +199,7 @@ class LetterPracticeHelp extends Screen {
         ),
         for (int i = 0; i < HelpModel.helpSection[ScreenNames.getName(ScreenType.Practice)].content.length; i++)
           ExpansionSection(
-            color: Colors.orangeAccent,
+            color: AppColors.first,
             sectionIcon: AppIcon.getIcon(AppIcons.PracticeScreen),
             sectionName: HelpModel.helpSection[ScreenNames.getName(ScreenType.Practice)].content[i].name,
             child: Column(

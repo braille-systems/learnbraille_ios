@@ -1,7 +1,9 @@
-import 'package:braille_abc/models/section_model.dart';
+import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'expansion_section_widget.dart';
+
+import 'package:braille_abc/models/section_model.dart';
+import 'package:braille_abc/components/expansion_section_widget.dart';
 
 class MyExpandableList extends StatefulWidget {
   const MyExpandableList({
@@ -21,7 +23,7 @@ class _MyExpandableListState extends State<MyExpandableList> {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
         child: Card(
-          color: CupertinoColors.tertiarySystemBackground,
+          color: AppColors.expandBackground,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[

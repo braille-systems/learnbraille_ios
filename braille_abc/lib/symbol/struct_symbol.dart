@@ -1,12 +1,14 @@
 import 'package:braille_abc/models/app_names.dart';
+import 'package:braille_abc/style.dart';
 import 'package:flutter/foundation.dart';
+import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 class DotImage {
-  Color p = CupertinoColors.white;
-  Color onP = CupertinoColors.black;
+  Color p = AppColors.dotOnPress;
+  Color onP = AppColors.dotPress;
   bool press = false;
   String outputData;
   int num;
@@ -20,12 +22,12 @@ class DotImage {
   void setIsPressed(bool state){
     press = state;
     if(press){
-      p = CupertinoColors.black;
-      onP = CupertinoColors.white;
+      p = AppColors.dotPress;
+      onP = AppColors.dotOnPress;
     }
     else{
-      p = CupertinoColors.black;
-      onP = CupertinoColors.white;
+      p = AppColors.dotOnPress;
+      onP = AppColors.dotPress;
     }
   }
 }
@@ -38,6 +40,10 @@ abstract class Symbol {
 
   List<DotImage> set(){
     return dots;
+  }
+
+  static Symbol defaultSymbol(){
+    return RussianSymbol(list: Search.imageSymbol(d: <int>[]), char: "No");
   }
 
   String dotsToString() {
