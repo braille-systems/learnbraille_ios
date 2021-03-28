@@ -84,6 +84,7 @@ class _SymbolState extends State<SymbolWidget> {
                            ),
                          ),
                          child: CupertinoButton(
+                           pressedOpacity: widget.isTapped ? 0.4 : 1.0,
                             onPressed: () {
                               if (widget.isTapped) {
                                 setState(() {
