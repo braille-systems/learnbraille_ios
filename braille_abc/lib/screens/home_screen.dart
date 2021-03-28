@@ -5,6 +5,7 @@ import 'package:braille_abc/models/help_model.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/screens/help_screen.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
+import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:braille_abc/components/menu_button_widget.dart';
@@ -55,7 +56,7 @@ class MenuScreen extends NavigationScreen {
               children: [
                 Text(
                   ScreenNames.getName(ScreenType.Home),
-                  style: TextStyle(color: CupertinoColors.black, fontSize: 55, fontWeight: FontWeight.bold),
+                  style: TextStyle(color: AppColors.navigationBarText, fontSize: 55, fontWeight: FontWeight.bold),
                 ),
                 CupertinoButton(
                   onPressed: () {
