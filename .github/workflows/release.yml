@@ -19,7 +19,7 @@ jobs:
       
       - uses: softprops/action-gh-release@v1
         with:
-          body_path: docs/release/$RELEASE_VERSION/CHANGELOG.md
+          body_path: docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
           files: |
             LICENSE
         env:
