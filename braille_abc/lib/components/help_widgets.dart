@@ -42,7 +42,7 @@ class GeneralHelp extends Screen {
   Widget build(BuildContext context) {
     List<IconData> subIcon = [AppIcon.getIcon(AppIcons.BackButton), AppIcon.getIcon(AppIcons.HelpScreen)];
     return ExpansionSection(
-      color: Colors.orangeAccent,
+      color: AppColors.first,
       sectionIcon: AppIcon.getIcon(AppIcons.GeneralHelpInHelpScreen),
       sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.GeneralHelp)].name,
       child: Column(
@@ -107,7 +107,7 @@ class LetterViewHelp extends Screen {
         ),
         for (int i = 0; i < HelpModel.helpSection[XmlNames.getName(XmlItemType.SymbolView)].content.length; i++)
           ExpansionSection(
-            color: Colors.orangeAccent,
+            color: AppColors.first,
             sectionIcon: AppIcon.getIcon(AppIcons.DictionaryScreen),
             sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.SymbolView)].content[i].name,
             child: Column(
@@ -154,7 +154,7 @@ class PracticeHelp extends Screen {
         ),
         for (int i = 0; i < HelpModel.helpSection[XmlNames.getName(XmlItemType.PracticeSections)].content.length; i++)
           ExpansionSection(
-            color: Colors.orangeAccent,
+            color: AppColors.first,
             sectionIcon: AppIcon.getIcon(AppIcons.PracticeScreen),
             sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.PracticeSections)].content[i].name,
             child: Column(
@@ -199,7 +199,7 @@ class LetterPracticeHelp extends Screen {
         ),
         for (int i = 0; i < HelpModel.helpSection[ScreenNames.getName(ScreenType.Practice)].content.length; i++)
           ExpansionSection(
-            color: Colors.orangeAccent,
+            color: AppColors.first,
             sectionIcon: AppIcon.getIcon(AppIcons.PracticeScreen),
             sectionName: HelpModel.helpSection[ScreenNames.getName(ScreenType.Practice)].content[i].name,
             child: Column(

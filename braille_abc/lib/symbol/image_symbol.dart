@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:braille_abc/models/app_names.dart';
+import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -55,7 +56,7 @@ class _SymbolState extends State<SymbolWidget> {
             width: widget.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Colors.orange[300],
+              color: AppColors.first,
             ),
             child: Wrap(
               alignment: WrapAlignment.center,
@@ -78,7 +79,7 @@ class _SymbolState extends State<SymbolWidget> {
                          decoration: BoxDecoration(
                            shape: BoxShape.circle,
                            border: Border.all(
-                             color: CupertinoColors.black,
+                             color: AppColors.dotBoarder,
                              width: 8,
                            ),
                          ),
