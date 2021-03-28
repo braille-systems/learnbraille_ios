@@ -38,8 +38,8 @@ abstract class Symbol {
   final String char;
   const Symbol({this.dots, this.char});
 
-  List<DotImage> set(){
-    return dots;
+  List<bool> getDotsInfo() {
+    return [for(int i = 0; i < 6; ++i) dots[i].press];
   }
 
   static Symbol defaultSymbol(){
