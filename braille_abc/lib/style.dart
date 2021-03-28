@@ -50,7 +50,7 @@ class AppColors {
 }
 
 
-
+/// App button styles
 class AppDecorations {
   /*static ButtonStyle continueButton = ElevatedButton.styleFrom(
     primary: AppColors.first,
