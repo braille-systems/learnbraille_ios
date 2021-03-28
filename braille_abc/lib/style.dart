@@ -2,14 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppColors {
-
+  /** Main App colors **/
   /// main UI color
   static const Color first = Colors.orangeAccent;
   /// UI color, that contrast to main (f.e: icons, text on main color)
   static const Color second = Colors.white;
   /// Navigation bar background color
   static const Color navigationBar = CupertinoColors.systemGrey5;
+  /// Navigation bar text color
+  static const Color navigationBarText = Colors.black;
 
+  /** Expandable list style **/
   /// Expandable list item background color
   static const Color expandBackground = CupertinoColors.tertiarySystemBackground;
   /// Expandable list item boarder color
@@ -17,27 +20,38 @@ class AppColors {
   /// Expandable list item text color
   static const Color expandItemsText =  CupertinoColors.black;
 
+  /** Symbol widget style **/
   /// Braille symbol text color
   static const Color symbolText = Colors.black;
+  /// Braille symbol symbol color
   static const Color symbol = Colors.black;
+  /// Braille symbol boarder color
   static const Color symbolBoarder = Colors.black;
+  /// Braille symbol widget background color
   static const Color symbolContainer = Colors.white;
 
-  static const Color topBarText = Colors.black;
-
-  static const Color continueBtnTextIcon = Colors.black;
-
+  /** Braille dots  style **/
+  /// Braille filled dot
   static const Color dotPress = Colors.black;
+  /// Braille not filled dot
   static const Color dotOnPress = Colors.white;
+  /// Braille dot boarder
   static const Color dotBoarder = Colors.black;
 
+  /** Side buttons which are located in the letter sections**/
+  /// Side buttons color
   static const Color sideBtn = Colors.black;
+  /// Side buttons icon color
   static const Color sideIcon = Colors.white;
 
+  /** Other...**/
+  /// Continue button text color (practice screen)
+  static const Color continueBtnTextIcon = Colors.black;
 }
 
-class AppDecorations{
 
+
+class AppDecorations {
   /*static ButtonStyle continueButton = ElevatedButton.styleFrom(
     primary: AppColors.first,
     shape: RoundedRectangleBorder(
@@ -103,7 +117,6 @@ class AppDecorations{
 }
 
 abstract class Styles {
-
   static Shadow buildButtonShadow() {
     return Shadow(
       offset: Offset(3.0, 3.0),
@@ -136,5 +149,4 @@ abstract class Styles {
   static TextStyle helpTextStyle() {
     return TextStyle(fontSize: 19);
   }
-
 }

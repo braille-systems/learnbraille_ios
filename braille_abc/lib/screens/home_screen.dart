@@ -56,7 +56,7 @@ class MenuScreen extends NavigationScreen {
               children: [
                 Text(
                   ScreenNames.getName(ScreenType.Home),
-                  style: TextStyle(color: AppColors.topBarText, fontSize: 55, fontWeight: FontWeight.bold),
+                  style: TextStyle(color: AppColors.navigationBarText, fontSize: 55, fontWeight: FontWeight.bold),
                 ),
                 CupertinoButton(
                   onPressed: () {

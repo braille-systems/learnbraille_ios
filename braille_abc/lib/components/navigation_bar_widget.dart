@@ -43,7 +43,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
       ),
       middle: AutoSizeText(
         title,
-        style: TextStyle(color: AppColors.topBarText, fontSize: 25, fontWeight: FontWeight.bold),
+        style: TextStyle(color: AppColors.navigationBarText, fontSize: 25, fontWeight: FontWeight.bold),
       ),
       trailing: currentPage.helpPage != null
           ? CupertinoButton(
