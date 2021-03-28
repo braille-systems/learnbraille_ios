@@ -14,6 +14,14 @@ import 'package:braille_abc/components/practice_button_widget.dart';
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/practice_screen.dart';
+import 'package:braille_abc/symbol/list_symbols.dart';
+
+import '../models/practice_model.dart';
+import '../models/practice_model.dart';
+import '../models/practice_model.dart';
+import '../models/practice_model.dart';
+import '../models/practice_model.dart';
+
 
 class LetterScreen extends SectionScreen {
   final SectionType sectionName;
@@ -48,7 +56,13 @@ class LetterScreen extends SectionScreen {
 }
 
 class LetterView extends StatefulWidget {
-  LetterView({Key key, @required this.sectionName, @required this.screenType, @required this.symbol, @required this.isDotsTouchable}) : super(key: key);
+  LetterView(
+      {Key key,
+      @required this.sectionName,
+      @required this.screenType,
+      @required this.symbol,
+      @required this.isDotsTouchable})
+      : super(key: key);
 
   final String str = ScreenNames.getName(ScreenType.Letter);
   final SectionType sectionName;
@@ -147,36 +161,42 @@ class _LetterViewState extends State<LetterView> {
                           padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
                         ),
                         onPressed: () => setState(() {
-                          switch(widget.screenType) {
+                          switch (widget.screenType) {
                             case ScreenType.Practice:
-                              if (PracticeSymbol.endPractice()) Practice.updatePool();
-                              !PracticeSymbol.endPractice()
-                                  ? Navigator.of(context).push(
-                                CupertinoPageRoute(
-                                  builder: (context) =>
-                                      LetterScreen(
-                                        screenType: widget.screenType,
-                                        symbol: PracticeSymbol.getString(),
-                                        sectionName: PracticeSymbol
-                                            .getSectionName(),
-                                        previousPage: AppModel
-                                            .navigationScreens[navigation
-                                            .PracticeScreen],
-                                        helpPage: LetterViewHelp(),
-                                        isDotsTouchable: true,
-                                      ),
-                                ),
-                              )
-                                  : Navigator.of(context).push(
-                                CupertinoPageRoute(
-                                    builder: (context) =>
-                                        PracticeScreen(
-                                          previousPage: AppModel
-                                              .navigationScreens[navigation
-                                              .MainMenu],
-                                          helpPage: PracticeHelp(),
-                                        )),
-                              );
+                              if (!PracticeSymbol.endPractice()) {
+                                if(PracticeResults.checkAnswer(Search.element(widget.symbol, widget.sectionName).getDotsInfo())) {
+                                  PracticeResults.incCorrectAnswerCounter();
+                                } else {
+                                  PracticeResults.incStepCounter();
+                                }
+                                PracticeResults.resetAnswer();
+
+                                Navigator.of(context).push(
+                                  CupertinoPageRoute(
+                                    builder: (context) => LetterScreen(
+                                      screenType: widget.screenType,
+                                      symbol: PracticeSymbol.getString(),
+                                      sectionName: PracticeSymbol.getSectionName(),
+                                      previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                                      helpPage: LetterViewHelp(),
+                                      isDotsTouchable: true,
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                Practice.updatePool();
+                                print(PracticeResults.getStepCounter());
+                                print(PracticeResults.getCorrectAnswerCounter());
+                                Navigator.of(context).push(
+                                  CupertinoPageRoute(
+                                    builder: (context) => PracticeScreen(
+                                      previousPage: AppModel.navigationScreens[navigation.MainMenu],
+                                      helpPage: PracticeHelp(),
+                                    ),
+                                  ),
+                                );
+                                PracticeResults.updatePracticeResults();
+                              }
                               break;
                             default:
                               break;
