@@ -21,11 +21,7 @@ class LetterWidget extends StatelessWidget {
         child: Container(
             width: ScreenParams.width(70, context),
             height: ScreenParams.height(30, context),
-            decoration: BoxDecoration(
-              color: AppColors.symbolContainer,
-              border: Border.all(color: AppColors.symbolBoarder, width: 7.0),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
+            decoration: AppDecorations.letterWidget,
             child: Column(
               children: [
                 Flexible(

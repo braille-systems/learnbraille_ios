@@ -1,15 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AppColors{
-  static const Color barBackground = CupertinoColors.lightBackgroundGray;
-  static const Color background = CupertinoColors.tertiarySystemBackground;
+class AppColors {
+
+  /// main UI color
+  static const Color first = Colors.orangeAccent;
+  /// UI color, that contrast to main (f.e: icons, text on main color)
+  static const Color second = Colors.white;
+  /// Navigation bar background color
+  static const Color navigationBar = CupertinoColors.systemGrey5;
+
+  /// Expandable list item background color
+  static const Color expandBackground = CupertinoColors.tertiarySystemBackground;
+  /// Expandable list item boarder color
   static const Color expandItemsBoarder =  CupertinoColors.inactiveGray;
+  /// Expandable list item text color
   static const Color expandItemsText =  CupertinoColors.black;
 
-  static const Color first = Colors.orangeAccent;
-  static const Color second = Colors.white;
-
+  /// Braille symbol text color
   static const Color symbolText = Colors.black;
   static const Color symbol = Colors.black;
   static const Color symbolBoarder = Colors.black;
@@ -28,7 +36,74 @@ class AppColors{
 
 }
 
+class AppDecorations{
+
+  /*static ButtonStyle continueButton = ElevatedButton.styleFrom(
+    primary: AppColors.first,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+  );*/
+
+  static ButtonStyle sectionButton = ElevatedButton.styleFrom(
+    primary: AppColors.first,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(25.0),
+    ),
+    textStyle: TextStyle(
+      color: AppColors.second,
+      shadows: <Shadow>[
+        Styles.buildButtonShadow(),
+      ],
+    ),
+  );
+
+  static ButtonStyle menuButton = ElevatedButton.styleFrom(
+    primary: AppColors.first,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(25.0),
+    ),
+    textStyle: TextStyle(
+      color: AppColors.second,
+      shadows: <Shadow>[
+        Styles.buildButtonShadow(),
+      ],
+    ),
+    padding: EdgeInsets.symmetric(vertical: 20),
+  );
+
+  static ButtonStyle changeDirButton = ElevatedButton.styleFrom(
+    primary: AppColors.sideBtn,
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15))),
+    padding: EdgeInsets.symmetric(vertical: 30),
+  );
+
+  static ButtonStyle nextButton = ElevatedButton.styleFrom(
+    primary: AppColors.sideBtn,
+    shape: RoundedRectangleBorder(
+        borderRadius:
+        BorderRadius.only(topLeft: Radius.circular(15), bottomLeft: Radius.circular(15))),
+    padding: EdgeInsets.symmetric(vertical: 30),
+  );
+
+  static BoxDecoration expansionSection = BoxDecoration(
+  color: AppColors.first,
+  borderRadius:  BorderRadius.circular(10));
+
+  static BoxDecoration letterWidget =  BoxDecoration(
+    color: AppColors.symbolContainer,
+    border: Border.all(color: AppColors.symbolBoarder, width: 7.0),
+    borderRadius: BorderRadius.circular(10.0),
+  );
+
+  static BoxDecoration studyItem = BoxDecoration(
+      border: Border(bottom: BorderSide(color: AppColors.expandItemsBoarder, width: 0.5)), shape: BoxShape.rectangle
+  );
+}
+
 abstract class Styles {
+
   static Shadow buildButtonShadow() {
     return Shadow(
       offset: Offset(3.0, 3.0),
@@ -61,4 +136,5 @@ abstract class Styles {
   static TextStyle helpTextStyle() {
     return TextStyle(fontSize: 19);
   }
+
 }

@@ -20,12 +20,10 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
   final String title;
   final Screen currentPage;
 
-  //bool displayBottomBar(Widget screen) => AppModel.navigationScreens.toString().contains(screen.toString());
-
   @override
   Widget build(BuildContext context) {
     return CupertinoNavigationBar(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.navigationBar,
       leading: Semantics(
         label: SemanticNames.getName(SemanticsType.Back),
         child: CupertinoNavigationBarBackButton(

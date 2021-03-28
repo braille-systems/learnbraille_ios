@@ -23,7 +23,7 @@ class _MyExpandableListState extends State<MyExpandableList> {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
         child: Card(
-          color: AppColors.background,
+          color: AppColors.expandBackground,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[

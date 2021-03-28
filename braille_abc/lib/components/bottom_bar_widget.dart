@@ -53,13 +53,12 @@ class _BottomState extends State<Bottom> {
               onTap: onItemTapped,
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  backgroundColor: AppColors.barBackground,
                   icon: Icon(AppIcon.getIcon(AppIcons.MenuScreen)),
                   label: ScreenNames.getName(ScreenType.Home),
                 ),
                 for (int i = 0; i < AppModel.menuButton.length; i++)
                   BottomNavigationBarItem(
-                    backgroundColor: AppColors.background,
+                    backgroundColor: AppColors.expandBackground,
                     icon: Icon(AppModel.menuButton[i].icon),
                     label: AppModel.menuButton[i].name,
                   ),

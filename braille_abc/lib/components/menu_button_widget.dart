@@ -38,19 +38,7 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
     return Semantics(
       label: widget.menuButton.name,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: AppColors.first,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25.0),
-          ),
-          textStyle: TextStyle(
-            color: AppColors.second,
-            shadows: <Shadow>[
-              Styles.buildButtonShadow(),
-            ],
-          ),
-          padding: EdgeInsets.symmetric(vertical: 20),
-        ),
+        style:AppDecorations.menuButton,
         onPressed: () {
           scakey.currentState.onItemTapped(widget.index);
           Practice.updatePool();

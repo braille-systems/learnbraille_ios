@@ -24,13 +24,10 @@ class StudyItem extends StatelessWidget {
     return Container(
       alignment: Alignment.topLeft,
       width: double.infinity,
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: AppColors.expandItemsBoarder, width: 0.5)), shape: BoxShape.rectangle
-          // shape: BoxShape.circle,
-          ),
+      decoration: AppDecorations.studyItem,
       child: CupertinoButton(
-        color: AppColors.background,
-        disabledColor: AppColors.background,
+        color: AppColors.expandBackground,
+        disabledColor: AppColors.expandBackground,
         onPressed: () {
           Timer(Duration(milliseconds: 10), () {
             scakey.currentState.displayTapBar(false);

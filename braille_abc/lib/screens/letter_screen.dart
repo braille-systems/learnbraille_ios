@@ -106,22 +106,21 @@ class _LetterViewState extends State<LetterView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: AppColors.sideBtn,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15))),
-                  padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
-                ),
-                onPressed: () => setState(() {
-                  if (_dir == TextDirection.ltr) {
-                    _dir = TextDirection.rtl;
-                  } else if (_dir == TextDirection.rtl) _dir = TextDirection.ltr;
-                }),
-                child: Icon(
-                  AppIcon.getIcon(AppIcons.ChangeModeButton),
-                  color: AppColors.sideIcon,
-                  semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
+              SizedBox(
+                height: ScreenParams.height(30, context),
+                width: ScreenParams.width(17, context),
+                child: ElevatedButton(
+                  style: AppDecorations.changeDirButton,
+                  onPressed: () => setState(() {
+                    if (_dir == TextDirection.ltr) {
+                      _dir = TextDirection.rtl;
+                    } else if (_dir == TextDirection.rtl) _dir = TextDirection.ltr;
+                  }),
+                  child: Icon(
+                    AppIcon.getIcon(AppIcons.ChangeModeButton),
+                    color: AppColors.sideIcon,
+                    semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
+                  ),
                 ),
               ),
               SymbolWidget(
@@ -136,13 +135,7 @@ class _LetterViewState extends State<LetterView> {
                       height: ScreenParams.height(30, context),
                       width: ScreenParams.width(17, context),
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: AppColors.sideBtn,
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.only(topLeft: Radius.circular(15), bottomLeft: Radius.circular(15))),
-                          padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
-                        ),
+                        style: AppDecorations.nextButton,
                         onPressed: () => setState(() {
                           switch (widget.screenType) {
                             case ScreenType.Practice:

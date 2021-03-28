@@ -31,12 +31,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
     return Semantics(
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: AppColors.first,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
+        style: AppDecorations.sectionButton,
         onPressed: () {
           if (Practice.getPool().isNotEmpty) {
             scakey.currentState.displayTapBar(false);
@@ -111,18 +106,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
     return Semantics(
       label: SectionNames.getName(widget.practiceButton.sectionType),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: AppColors.first,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25.0),
-          ),
-          textStyle: TextStyle(
-            color: AppColors.second,
-            shadows: <Shadow>[
-              Styles.buildButtonShadow(),
-            ],
-          ),
-        ),
+        style: AppDecorations.sectionButton,
         onPressed: () {
           onChanged(!checkBox);
         },
