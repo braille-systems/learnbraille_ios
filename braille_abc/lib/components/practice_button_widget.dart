@@ -128,7 +128,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             ),
             DecoratedIcon(
               AppIcon.getIcon(widget.practiceButton.icon),
-              color: CupertinoColors.white,
+              color: AppColors.second,
               size: 45.0,
               shadows: <Shadow>[
                 Styles.buildButtonShadow(),

@@ -1,6 +1,6 @@
+import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:braille_abc/style.dart';
 
 @immutable
 class ExpansionSection extends StatefulWidget {
@@ -9,7 +9,7 @@ class ExpansionSection extends StatefulWidget {
     this.sectionIcon = CupertinoIcons.add,
     this.sectionName,
     this.child,
-    this.color = CupertinoColors.white,
+    this.color = AppColors.second,
   }) : super(key: key);
 
   final IconData sectionIcon;
@@ -22,7 +22,7 @@ class ExpansionSection extends StatefulWidget {
 }
 
 class _ExpansionSection extends State<ExpansionSection> {
-  Color myColor = Colors.white;
+  Color myColor = AppColors.second;
 
   @override
   Widget build(BuildContext context) {
