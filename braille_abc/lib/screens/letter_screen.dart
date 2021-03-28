@@ -16,12 +16,6 @@ import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/practice_screen.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
 
-import '../models/practice_model.dart';
-import '../models/practice_model.dart';
-import '../models/practice_model.dart';
-import '../models/practice_model.dart';
-import '../models/practice_model.dart';
-
 
 class LetterScreen extends SectionScreen {
   final SectionType sectionName;
@@ -163,20 +157,21 @@ class _LetterViewState extends State<LetterView> {
                         onPressed: () => setState(() {
                           switch (widget.screenType) {
                             case ScreenType.Practice:
-                              if (!PracticeSymbol.endPractice()) {
-                                if(PracticeResults.checkAnswer(Search.element(widget.symbol, widget.sectionName).getDotsInfo())) {
-                                  PracticeResults.incCorrectAnswerCounter();
-                                } else {
-                                  PracticeResults.incStepCounter();
-                                }
-                                PracticeResults.resetAnswer();
+                              if(PracticeResults.checkAnswer(Search.element(widget.symbol, widget.sectionName).getDotsInfo())) {
+                                PracticeResults.incCorrectAnswerCounter();
+                              } else {
+                                PracticeResults.incStepCounter();
+                              }
+                              PracticeResults.resetAnswer();
 
+                              if (!PracticeSymbol.isPracticeEnd()) {
+                                PracticeSymbol.nextSymbol();
                                 Navigator.of(context).push(
                                   CupertinoPageRoute(
                                     builder: (context) => LetterScreen(
                                       screenType: widget.screenType,
-                                      symbol: PracticeSymbol.getString(),
-                                      sectionName: PracticeSymbol.getSectionName(),
+                                      symbol: PracticeSymbol.getSymbol(),
+                                      sectionName: PracticeSymbol.getSectionType(),
                                       previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
                                       helpPage: LetterViewHelp(),
                                       isDotsTouchable: true,
@@ -185,8 +180,7 @@ class _LetterViewState extends State<LetterView> {
                                 );
                               } else {
                                 Practice.updatePool();
-                                print(PracticeResults.getStepCounter());
-                                print(PracticeResults.getCorrectAnswerCounter());
+                                PracticeSymbol.update();
                                 Navigator.of(context).push(
                                   CupertinoPageRoute(
                                     builder: (context) => PracticeScreen(
