@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,17 +31,10 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
     return Semantics(
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: Colors.orange[300],
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
+        style: AppDecorations.sectionButton,
         onPressed: () {
           if (Practice.getPool().isNotEmpty) {
-            Timer(Duration(milliseconds: 10), () {
-              scakey.currentState.displayTapBar(true);
-            });
+            scakey.currentState.displayTapBar(false);
             PracticeSymbol.update();
             PracticeSymbol.addAllGroup();
             Navigator.of(context).push(
@@ -65,14 +56,14 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
           children: [
             AutoSizeText(
               SemanticNames.getName(SemanticsType.Continue),
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300, color: CupertinoColors.black),
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300, color: AppColors.continueBtnTextIcon),
             ),
             SizedBox(
               width: ScreenParams.width(25, context),
             ),
             DecoratedIcon(
               AppIcon.getIcon(AppIcons.ContinueButton),
-              color: CupertinoColors.black,
+              color: AppColors.continueBtnTextIcon,
               size: 22.0,
             ),
           ],
@@ -115,18 +106,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
     return Semantics(
       label: SectionNames.getName(widget.practiceButton.sectionType),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: Colors.orange[300],
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25.0),
-          ),
-          textStyle: TextStyle(
-            color: CupertinoColors.white,
-            shadows: <Shadow>[
-              Styles.buildButtonShadow(),
-            ],
-          ),
-        ),
+        style: AppDecorations.sectionButton,
         onPressed: () {
           onChanged(!checkBox);
         },

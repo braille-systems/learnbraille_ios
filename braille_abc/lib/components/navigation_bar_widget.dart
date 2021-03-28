@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -19,12 +20,10 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
   final String title;
   final Screen currentPage;
 
-  //bool displayBottomBar(Widget screen) => AppModel.navigationScreens.toString().contains(screen.toString());
-
   @override
   Widget build(BuildContext context) {
     return CupertinoNavigationBar(
-      backgroundColor: CupertinoColors.extraLightBackgroundGray,
+      backgroundColor: AppColors.navigationBar,
       leading: Semantics(
         label: SemanticNames.getName(SemanticsType.Back),
         child: CupertinoNavigationBarBackButton(
@@ -44,7 +43,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
       ),
       middle: AutoSizeText(
         title,
-        style: TextStyle(color: CupertinoColors.black, fontSize: 25, fontWeight: FontWeight.bold),
+        style: TextStyle(color: AppColors.navigationBarText, fontSize: 25, fontWeight: FontWeight.bold),
       ),
       trailing: currentPage.helpPage != null
           ? CupertinoButton(
