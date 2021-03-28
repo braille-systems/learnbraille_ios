@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
+import 'package:braille_abc/models/practice_model.dart';
 
 class SymbolWidget extends StatefulWidget {
   final double width;
@@ -87,6 +88,7 @@ class _SymbolState extends State<SymbolWidget> {
                               if (widget.isTapped) {
                                 setState(() {
                                   item.setIsPressed(!item.press);
+                                  PracticeResults.dotClick(int.parse(item.outputData));
                                 });
                               }
                             },
