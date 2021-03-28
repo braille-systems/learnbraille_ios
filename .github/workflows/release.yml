@@ -6,18 +6,44 @@ on:
       - 'v*'
 
 jobs:
+  artifact_android:
+    name: Build with Flutter for Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          lfs: true 
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11.x'
+
+      - run: git lfs pull
+      - run: flutter pub get
+        working-directory: ./braille_abc
+      - run: flutter build apk --release --no-tree-shake-icons
+        working-directory: ./braille_abc
+      
+
   release:
     name: Create release
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get tag name
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-
-      - name: Generate changelog
+      
+      - name: Get tag name
+        id: get_version
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      
+      - uses: softprops/action-gh-release@v1
+        with:
+          body_path: docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
+          files: |
+            LICENSE
+            braille_abc/build/app/outputs/apk/release/app-release.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release --branches refs/tags/v0.0
