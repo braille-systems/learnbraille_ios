@@ -42,6 +42,8 @@ jobs:
       
       - uses: softprops/action-gh-release@v1
         with:
+          fail_on_unmatched_files: true
+          name: Learn Braille IOS ${{ env.RELEASE_VERSION }}
           body_path: docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
           files: |
             LICENSE
