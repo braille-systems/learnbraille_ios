@@ -15,7 +15,7 @@ class HelpModel {
   static final Map<String, Section> helpSection = Map();
 
   static Future<Null> fillHelpModel(BuildContext context) async {
-    final String xmlString = await DefaultAssetBundle.of(context).loadString("data/help.xml");
+    String xmlString = await DefaultAssetBundle.of(context).loadString("data/help.xml");
     var xml = XmlDocument.parse(xmlString);
     _parseXmlSection("general_button", xml);
     _parseXmlSection("section", xml);
@@ -31,7 +31,7 @@ class HelpModel {
   }
 
   static List<Section> _parseButtonSection(Iterable<XmlNode> buttonSection) {
-    final List<Section> buttonSections = [];
+    List<Section> buttonSections = [];
     for (var el in buttonSection) {
       buttonSections.add(_getSection(el));
     }

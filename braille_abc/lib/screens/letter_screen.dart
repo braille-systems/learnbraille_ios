@@ -108,21 +108,27 @@ class _LetterViewState extends State<LetterView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              SizedBox(
-                height: ScreenParams.height(30, context),
-                width: ScreenParams.width(17, context),
-                child: ElevatedButton(
-                  style: AppDecorations.changeDirButton,
-                  onPressed: () => setState(() {
-                    if (_dir == TextDirection.ltr) {
-                      _dir = TextDirection.rtl;
-                    } else if (_dir == TextDirection.rtl) _dir = TextDirection.ltr;
-                  }),
-                  child: Icon(
-                    AppIcon.getIcon(AppIcons.ChangeModeButton),
-                    color: AppColors.sideIcon,
-                    semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: CupertinoColors.black,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                  textStyle: TextStyle(
+                    color: CupertinoColors.white,
+                    shadows: <Shadow>[
+                      Styles.buildButtonShadow(),
+                    ],
                   ),
+                  padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
+                ),
+                onPressed: () => setState(() {
+                  if (_dir == TextDirection.ltr) {
+                    _dir = TextDirection.rtl;
+                  } else if (_dir == TextDirection.rtl) _dir = TextDirection.ltr;
+                }),
+                child: Icon(
+                  AppIcon.getIcon(AppIcons.ChangeModeButton),
+                  color: CupertinoColors.white,
+                  semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
                 ),
               ),
               SymbolWidget(
@@ -137,7 +143,17 @@ class _LetterViewState extends State<LetterView> {
                       height: ScreenParams.height(30, context),
                       width: ScreenParams.width(17, context),
                       child: ElevatedButton(
-                        style: AppDecorations.nextButton,
+                        style: ElevatedButton.styleFrom(
+                          primary: CupertinoColors.black,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                          textStyle: TextStyle(
+                            color: CupertinoColors.white,
+                            shadows: <Shadow>[
+                              Styles.buildButtonShadow(),
+                            ],
+                          ),
+                          padding: EdgeInsets.symmetric(vertical: ScreenParams.width(25, context)),
+                        ),
                         onPressed: () => setState(() {
                           switch (widget.screenType) {
                             case ScreenType.Practice:
@@ -169,7 +185,7 @@ class _LetterViewState extends State<LetterView> {
                         }),
                         child: Icon(
                           AppIcon.AppIconsMap[AppIcons.ContinueButton],
-                          color: AppColors.sideIcon,
+                          color: CupertinoColors.white,
                           semanticLabel: SemanticNames.getName(SemanticsType.Continue),
                         ),
                       ),

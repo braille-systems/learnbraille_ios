@@ -11,8 +11,8 @@ import 'package:braille_abc/models/app_names.dart';
 class PracticeScreen extends NavigationScreen {
   const PracticeScreen({
     Key key,
-    final Widget helpPage,
-    final Widget previousPage,
+    Widget helpPage,
+    Widget previousPage,
   }) : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override

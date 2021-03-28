@@ -7,8 +7,8 @@ import 'package:braille_abc/models/app_names.dart';
 class SettingsScreen extends NavigationScreen {
   const SettingsScreen({
     Key key,
-    final Widget helpPage,
-    final Widget previousPage,
+    Widget helpPage,
+    Widget previousPage,
   }) : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override

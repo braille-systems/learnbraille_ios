@@ -19,8 +19,8 @@ abstract class Screen extends StatelessWidget {
 abstract class NavigationScreen extends Screen {
   const NavigationScreen({
     Key key,
-    final Screen helpPage,
-    final Screen previousPage,
+    Screen helpPage,
+    Screen previousPage,
   }) : super(key: key, hasNavigationBar: true, helpPage: helpPage, previousPage: previousPage);
 }
 
@@ -28,7 +28,7 @@ abstract class NavigationScreen extends Screen {
 abstract class SectionScreen extends Screen {
   const SectionScreen({
     Key key,
-    final Screen helpPage,
-    final Screen previousPage,
+    Screen helpPage,
+    Screen previousPage,
   }) : super(key: key, hasNavigationBar: false, helpPage: helpPage, previousPage: previousPage);
 }

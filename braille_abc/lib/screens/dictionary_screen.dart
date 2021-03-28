@@ -10,8 +10,8 @@ import 'package:braille_abc/models/screen_model.dart';
 class DictionaryScreen extends NavigationScreen {
   const DictionaryScreen({
     Key key,
-    final Widget helpPage,
-    final Widget previousPage,
+    Widget helpPage,
+    Widget previousPage,
   }) : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override
