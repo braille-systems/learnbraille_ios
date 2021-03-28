@@ -9,8 +9,8 @@ import 'package:braille_abc/models/app_names.dart';
 class HelpScreen extends Screen {
   const HelpScreen({
     Key key,
-    final Screen previousPage,
-    final this.currentHelp,
+    Screen previousPage,
+    this.currentHelp,
   }) : super(key: key, hasNavigationBar: false, helpPage: null, previousPage: previousPage);
 
   final Widget currentHelp;

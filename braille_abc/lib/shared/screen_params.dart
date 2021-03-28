@@ -15,21 +15,21 @@ class ScreenParams {
   // Height (without SafeArea)
   static double heightIOS14(double percent, BuildContext context) {
     var padding = MediaQuery.of(context).padding;
-    final double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
     return (height - padding.top - padding.bottom) * (percent / 100);
   }
 
   // Height (without status bar)
   static double heightWithoutSB(double percent, BuildContext context) {
     var padding = MediaQuery.of(context).padding;
-    final double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
     return (height - padding.top) * (percent / 100);
   }
 
   // Height (without status and toolbar)
   static double heightWithoutSBandTB(double percent, BuildContext context) {
     var padding = MediaQuery.of(context).padding;
-    final double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
     return (height - padding.top - kToolbarHeight) * (percent / 100);
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,6 +19,7 @@ import 'package:braille_abc/components/bottom_bar_widget.dart';
 
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
+import 'package:braille_abc/style.dart';
 
 
 @immutable
@@ -31,10 +34,17 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
     return Semantics(
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
-        style: AppDecorations.sectionButton,
+        style: ElevatedButton.styleFrom(
+          primary: Colors.orange[300],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
         onPressed: () {
           if (Practice.getPool().isNotEmpty) {
-            scakey.currentState.displayTapBar(false);
+            Timer(Duration(milliseconds: 10), () {
+              scakey.currentState.displayTapBar(true);
+            });
             PracticeSymbol.update();
             PracticeSymbol.addAllGroup();
             Navigator.of(context).push(
@@ -63,7 +73,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
             ),
             DecoratedIcon(
               AppIcon.getIcon(AppIcons.ContinueButton),
-              color: AppColors.continueBtnTextIcon,
+              color: CupertinoColors.black,
               size: 22.0,
             ),
           ],
@@ -106,7 +116,18 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
     return Semantics(
       label: SectionNames.getName(widget.practiceButton.sectionType),
       child: ElevatedButton(
-        style: AppDecorations.sectionButton,
+        style: ElevatedButton.styleFrom(
+          primary: Colors.orange[300],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25.0),
+          ),
+          textStyle: TextStyle(
+            color: CupertinoColors.white,
+            shadows: <Shadow>[
+              Styles.buildButtonShadow(),
+            ],
+          ),
+        ),
         onPressed: () {
           onChanged(!checkBox);
         },
@@ -158,8 +179,8 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
 
 class PracticeSymbol {
   static void addAllGroup() {
-    final List<SectionType> strings = Practice.getPool();
-    final SymbolsFactory factory = SymbolsFactory();
+    List<SectionType> strings = Practice.getPool();
+    SymbolsFactory factory = SymbolsFactory();
     for (var i in strings) {
       var group = factory.createSymbolsGroup(i);
       for(var j in group) {
@@ -173,8 +194,8 @@ class PracticeSymbol {
     if(_data.isEmpty){
       return "";
     }
-    final int num = rand.nextInt(_data.length);
-    final Symbol symbol = _data.keys.toList()[num];
+    int num = rand.nextInt(_data.length);
+    Symbol symbol = _data.keys.toList()[num];
     _title = _data[symbol];
     _data.remove(symbol);
     return symbol.char;

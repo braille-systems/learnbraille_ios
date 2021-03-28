@@ -1,5 +1,4 @@
 import 'package:braille_abc/models/app_names.dart';
-import 'package:braille_abc/style.dart';
 import 'package:flutter/foundation.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +7,8 @@ import 'package:flutter/widgets.dart';
 
 
 class DotImage {
-  Color p = AppColors.dotOnPress;
-  Color onP = AppColors.dotPress;
+  Color p = CupertinoColors.white;
+  Color onP = CupertinoColors.black;
   bool press = false;
   String outputData;
   int num;
@@ -23,12 +22,12 @@ class DotImage {
   void setIsPressed(bool state){
     press = state;
     if(press){
-      p = AppColors.dotPress;
-      onP = AppColors.dotOnPress;
+      p = CupertinoColors.black;
+      onP = CupertinoColors.white;
     }
     else{
-      p = AppColors.dotOnPress;
-      onP = AppColors.dotPress;
+      p = CupertinoColors.white;
+      onP = CupertinoColors.black;
     }
   }
 }
@@ -48,7 +47,7 @@ abstract class Symbol {
   }
 
   String dotsToString() {
-    final StringBuffer str =  StringBuffer(char + ": точки ");
+    StringBuffer str =  StringBuffer(char + ": точки ");
     for(var d in dots){
       if(d.press) {
         str.write(d.outputData + ", ");

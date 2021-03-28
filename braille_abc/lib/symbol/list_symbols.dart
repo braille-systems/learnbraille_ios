@@ -11,7 +11,7 @@ class SymbolsFactory {
     switch (groupName) {
       case SectionType.RussianSymbols:
         {
-          final List<Symbol> russian = <Symbol>[
+          List<Symbol> russian = <Symbol>[
             RussianSymbol(list: Search.imageSymbol(d: <int>[1]), char: "А"),
             RussianSymbol(list: Search.imageSymbol(d: <int>[1, 2]), char: "Б"),
             RussianSymbol(list: Search.imageSymbol(d: <int>[2, 4, 5, 6]), char: "В"),
@@ -51,7 +51,7 @@ class SymbolsFactory {
         break;
       case SectionType.PunctuationSymbols:
         {
-          final List<Symbol> punctuationMarks = <Symbol>[
+          List<Symbol> punctuationMarks = <Symbol>[
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[2]), char: "Запятая"),
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 6]), char: "Дефис"),
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 5, 6]), char: "Точка"),
@@ -72,7 +72,7 @@ class SymbolsFactory {
 
       case SectionType.ArithmeticSymbols:
         {
-          final List<Symbol> arithmeticSigns = <Symbol>[
+          List<Symbol> arithmeticSigns = <Symbol>[
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5]), char: "Знак Плюс"),
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[3, 6]), char: "Знак Минус"),
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[3]), char: "Знак умножения точкой"),
@@ -86,7 +86,7 @@ class SymbolsFactory {
         break;
       case SectionType.Numbers:
         {
-          final List<Symbol> numbers = <Symbol>[
+          List<Symbol> numbers = <Symbol>[
             Number(list: Search.imageSymbol(d: <int>[1]), char: "1"),
             Number(list: Search.imageSymbol(d: <int>[1, 2]), char: "2"),
             Number(list: Search.imageSymbol(d: <int>[1, 4]), char: "3"),
@@ -103,7 +103,7 @@ class SymbolsFactory {
         break;
       case SectionType.Signs:
         {
-          final List<Symbol> signs = <Symbol>[
+          List<Symbol> signs = <Symbol>[
             Sign(list: Search.imageSymbol(d: <int>[3, 4, 5, 6]), char: "Цифровой знак"),
             Sign(list: Search.imageSymbol(d: <int>[4, 5, 6]), char: "Признак курсивного шрифта"),
             Sign(list: Search.imageSymbol(d: <int>[1, 2, 4, 5, 6]), char: "Признак жирного шрифта"),
@@ -141,8 +141,8 @@ class Alphabet {
   }
 
   List<StudyItem> listOfStudyItems(SectionType key) {
-    final List<StudyItem> lsi = [];
-    final List<Symbol> los = listOfSymbols(key);
+    List<StudyItem> lsi = [];
+    List<Symbol> los = listOfSymbols(key);
     for (var symbol in los) {
       if (symbol.char != null) {
         lsi.add(StudyItem(symbol: symbol, sectionName: key));
@@ -155,8 +155,8 @@ class Alphabet {
 @immutable
 class Search {
   static Symbol element(String ch, SectionType keymap) {
-    final Alphabet alphabet = Alphabet();
-    final List<Symbol> list = alphabet.listOfSymbols(keymap);
+    Alphabet alphabet = Alphabet();
+    List<Symbol> list = alphabet.listOfSymbols(keymap);
 
     for (int i = 0; i < list.length; i++) {
       if (list[i].char.compareTo(ch) == 0) {
@@ -167,7 +167,7 @@ class Search {
   }
 
   static List<DotImage> imageSymbol({List<int> d}) {
-    final List<DotImage> data = <DotImage>[
+    List<DotImage> data = <DotImage>[
       DotImage(1, false),
       DotImage(2, false),
       DotImage(3, false),
