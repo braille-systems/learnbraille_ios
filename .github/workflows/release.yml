@@ -31,7 +31,7 @@ jobs:
   release:
     name: Create release
     runs-on: ubuntu-latest
-    needs: [artifact-android]
+    needs: [artifact_android]
 
     steps:
       - uses: actions/checkout@v2
