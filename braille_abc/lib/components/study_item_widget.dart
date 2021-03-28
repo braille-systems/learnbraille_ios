@@ -25,10 +25,13 @@ class StudyItem extends StatelessWidget {
     return Container(
       alignment: Alignment.topLeft,
       width: double.infinity,
-      decoration: AppDecorations.studyItem,
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: CupertinoColors.inactiveGray, width: 0.5)), shape: BoxShape.rectangle
+          // shape: BoxShape.circle,
+          ),
       child: CupertinoButton(
-        color: AppColors.expandBackground,
-        disabledColor: AppColors.expandBackground,
+        color: CupertinoColors.white,
+        disabledColor: CupertinoColors.white,
         onPressed: () {
           Timer(Duration(milliseconds: 10), () {
             scakey.currentState.displayTapBar(false);
@@ -46,7 +49,7 @@ class StudyItem extends StatelessWidget {
             ),
           );
         },
-        child: Text(symbol.dotsToString(), style: TextStyle(color: AppColors.expandItemsText)),
+        child: Text(symbol.dotsToString(), style: TextStyle(color: CupertinoColors.black)),
       ),
     );
   }

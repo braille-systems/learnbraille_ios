@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,10 +33,17 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
     return  Semantics(
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
-        style: AppDecorations.sectionButton,
+        style: ElevatedButton.styleFrom(
+          primary: Colors.orange[300],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
         onPressed: () {
           if (Practice.getPool().isNotEmpty) {
-            scakey.currentState.displayTapBar(false);
+            Timer(Duration(milliseconds: 10), () {
+              scakey.currentState.displayTapBar(true);
+            });
             PracticeSymbol.update();
             PracticeSymbol.addAllGroup();
             PracticeSymbol.nextSymbol();
@@ -57,14 +66,14 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
           children: [
             AutoSizeText(
               SemanticNames.getName(SemanticsType.Continue),
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300, color: AppColors.continueBtnTextIcon),
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w300, color: CupertinoColors.black),
             ),
             SizedBox(
               width: ScreenParams.width(25, context),
             ),
             DecoratedIcon(
               AppIcon.getIcon(AppIcons.ContinueButton),
-              color: AppColors.continueBtnTextIcon,
+              color: CupertinoColors.black,
               size: 22.0,
             ),
           ],
@@ -107,7 +116,18 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
     return Semantics(
       label: SectionNames.getName(widget.practiceButton.sectionType),
       child: ElevatedButton(
-        style: AppDecorations.sectionButton,
+        style: ElevatedButton.styleFrom(
+          primary: Colors.orange[300],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25.0),
+          ),
+          textStyle: TextStyle(
+            color: CupertinoColors.white,
+            shadows: <Shadow>[
+              Styles.buildButtonShadow(),
+            ],
+          ),
+        ),
         onPressed: () {
           onChanged(!checkBox);
         },
@@ -119,7 +139,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
               height: 50,
               child: AutoSizeText(
                 SectionNames.getName(widget.practiceButton.sectionType),
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
                 textAlign: TextAlign.center,
               ),
             ),
