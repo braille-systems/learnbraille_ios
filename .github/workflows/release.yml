@@ -43,7 +43,7 @@ jobs:
       - uses: actions/setup-node@v2
       - run: npm install git-release-notes
       - run: mkdir -p docs/release/${{ env.RELEASE_VERSION }}
-      - run: git-release-notes --branch feature/BRAILLE-142-automated-release v0.1..${{ env.RELEASE_VERSION }} markdown > docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
+      - run: npx git-release-notes --branch feature/BRAILLE-142-automated-release v0.1..${{ env.RELEASE_VERSION }} markdown > docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
       
       - uses: softprops/action-gh-release@v1
         with:
