@@ -1,6 +1,7 @@
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/models/screen_model.dart';
+import 'package:braille_abc/shared/non_swipeable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:braille_abc/models/app_names.dart';
@@ -16,22 +17,24 @@ class HelpScreen extends Screen {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: NavigationBar(
-        currentPage: this,
-        title: ScreenNames.getName(ScreenType.Help),
-      ),
-      child: SafeArea(
-        child: Scaffold(
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: Column(children: [
-              SizedBox(
-                height: 5,
-              ),
-              currentHelp,
-              GeneralHelp(),
-            ]),
+    return nonSwipeable(context,
+      CupertinoPageScaffold(
+        navigationBar: NavigationBar(
+          currentPage: this,
+          title: ScreenNames.getName(ScreenType.Help),
+        ),
+        child: SafeArea(
+          child: Scaffold(
+            body: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: Column(children: [
+                SizedBox(
+                  height: 5,
+                ),
+                currentHelp,
+                GeneralHelp(),
+              ]),
+            ),
           ),
         ),
       ),
