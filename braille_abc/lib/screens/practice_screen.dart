@@ -37,10 +37,10 @@ class PracticeScreen extends NavigationScreen {
               Column(
                 children: [
                   Container(
-                    height: ScreenParams.heightIOS14(80, context),
+                    height: ScreenParams.heightIOS14(77, context),
                     child: GridView.count(
                       crossAxisCount: 2,
-                      physics: NeverScrollableScrollPhysics(),
+                      //physics: NeverScrollableScrollPhysics(),
                       mainAxisSpacing: ScreenParams.width(4, context),
                       crossAxisSpacing: ScreenParams.height(4, context),
                       children: <Widget>[
@@ -50,6 +50,9 @@ class PracticeScreen extends NavigationScreen {
                           ),
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    height: 15,
                   ),
                   Container(
                     height: 48,
