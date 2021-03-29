@@ -1,0 +1,74 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*'
+
+jobs:
+  artifact_android:
+    name: Build with Flutter for Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          lfs: true 
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11.x'
+
+      - run: git lfs pull
+      - run: flutter pub get
+        working-directory: ./braille_abc
+      - run: flutter build apk --release --no-tree-shake-icons
+        working-directory: ./braille_abc
+      - uses: actions/upload-artifact@v1
+        with:
+          name: release-apk
+          path: braille_abc/build/app/outputs/apk/release/app-release.apk
+
+
+  release:
+    name: Create release
+    runs-on: ubuntu-latest
+    needs: [artifact_android]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      
+      - uses: actions/download-artifact@v1
+        with:
+          name: release-apk
+
+      # Collect tags info
+      - name: Get previous tag name
+        id: prevtag
+        uses: oprypin/find-latest-tag@v1
+        with:
+          repository: braille-systems/learnbraille_ios
+          releases-only: true
+      - name: Get current tag name
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      # Generate changelog
+      - uses: actions/setup-node@v2
+      - run: npm install git-release-notes
+      - run: mkdir -p docs/release/${{ env.RELEASE_VERSION }}
+      - run: npx git-release-notes ${{ steps.prevtag.outputs.tag }}..${{ env.RELEASE_VERSION }} markdown > docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
+      
+      # Create release
+      - uses: softprops/action-gh-release@v1
+        with:
+          name: Learn Braille IOS ${{ env.RELEASE_VERSION }}
+          body_path: docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
+          files: |
+            LICENSE
+            release-apk/app-release.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
