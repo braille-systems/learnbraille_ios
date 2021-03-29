@@ -46,6 +46,7 @@ jobs:
         with:
           name: release-apk
       - run: ls
+      - run: ls release-apk
 
       # Collect tags info
       - name: Get previous tag name
