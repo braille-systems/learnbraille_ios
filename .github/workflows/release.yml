@@ -45,8 +45,6 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: release-apk
-      - run: ls
-      - run: ls release-apk
 
       # Collect tags info
       - name: Get previous tag name
@@ -71,6 +69,6 @@ jobs:
           body_path: docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
           files: |
             LICENSE
-            release-apk
+            release-apk/app-release.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
