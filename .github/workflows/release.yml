@@ -45,7 +45,6 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: release-apk
-          path: braille_abc/build/app/outputs/apk/release/app-release.apk
 
       # Collect tags info
       - name: Get previous tag name
@@ -66,11 +65,10 @@ jobs:
       # Create release
       - uses: softprops/action-gh-release@v1
         with:
-          fail_on_unmatched_files: true
           name: Learn Braille IOS ${{ env.RELEASE_VERSION }}
           body_path: docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
           files: |
             LICENSE
-            braille_abc/build/app/outputs/apk/release/app-release.apk
+            release-apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
