@@ -26,7 +26,7 @@ jobs:
         working-directory: ./braille_abc
       - run: flutter build apk --release --no-tree-shake-icons
         working-directory: ./braille_abc
-      
+
 
   release:
     name: Create release
@@ -36,15 +36,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Get tag name
-        id: get_version
+      - name: Get previous tag name
+        uses: oprypin/find-latest-tag@v1
+        with:
+          repository: braille-systems/learnbraille_ios
+          releases-only: true
+      - name: Get current tag name
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
       - uses: actions/setup-node@v2
       - run: npm install git-release-notes
       - run: mkdir -p docs/release/${{ env.RELEASE_VERSION }}
-      - run: npx git-release-notes --branch feature/BRAILLE-142-automated-release 462cfd9..c362fe1 markdown > docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
-      
+      - run: npx git-release-notes --branch feature/BRAILLE-142-automated-release ${{ steps.octokit.outputs.tag }}..${{ env.RELEASE_VERSION }} markdown > docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
+
       - uses: softprops/action-gh-release@v1
         with:
           fail_on_unmatched_files: true
