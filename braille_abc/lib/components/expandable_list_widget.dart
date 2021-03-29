@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:braille_abc/models/section_model.dart';
 import 'package:braille_abc/components/expansion_section_widget.dart';
-import 'package:braille_abc/style.dart';
+
 @immutable
 class MyExpandableList extends StatefulWidget {
   const MyExpandableList({

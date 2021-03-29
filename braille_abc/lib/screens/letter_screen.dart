@@ -1,3 +1,4 @@
+import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -132,77 +133,78 @@ class _LetterViewState extends State<LetterView> {
                     ),
                   ),
                 ),
-              ),
-              SymbolWidget(
-                  textDir: mode,
-                  char: widget.symbol,
-                  isTapped: widget.isDotsTouchable,
-                  width: 200,
-                  height: 350,
-                  dictSection: widget.sectionName),
-              widget.isDotsTouchable
-                  ? SizedBox(
-                height: ScreenParams.height(30, context),
-                width: ScreenParams.width(17, context),
-                child: ElevatedButton(
-                  style: AppDecorations.nextButton,
-                  onPressed: () => setState(() {
-                    switch (widget.screenType) {
-                      case ScreenType.Practice:
-                        if (PracticeResults.checkAnswer(
-                            Search.element(widget.symbol, widget.sectionName).getDotsInfo())) {
-                          PracticeResults.incCorrectAnswerCounter();
-                        } else {
-                          PracticeResults.incStepCounter();
-                        }
-                        PracticeResults.resetAnswer();
+                SymbolWidget(
+                    textDir: mode,
+                    char: widget.symbol,
+                    isTapped: widget.isDotsTouchable,
+                    width: 200,
+                    height: 350,
+                    dictSection: widget.sectionName),
+                widget.isDotsTouchable
+                    ? SizedBox(
+                        height: ScreenParams.height(30, context),
+                        width: ScreenParams.width(17, context),
+                        child: ElevatedButton(
+                          style: AppDecorations.nextButton,
+                          onPressed: () => setState(() {
+                            switch (widget.screenType) {
+                              case ScreenType.Practice:
+                                if (PracticeResults.checkAnswer(
+                                    Search.element(widget.symbol, widget.sectionName).getDotsInfo())) {
+                                  PracticeResults.incCorrectAnswerCounter();
+                                } else {
+                                  PracticeResults.incStepCounter();
+                                }
+                                PracticeResults.resetAnswer();
 
-                        if (!PracticeSymbol.isPracticeEnd()) {
-                          PracticeSymbol.nextSymbol();
-                          Navigator.of(context).push(
-                            CupertinoPageRoute(
-                              builder: (context) => LetterScreen(
-                                screenType: widget.screenType,
-                                symbol: PracticeSymbol.getSymbol(),
-                                sectionName: PracticeSymbol.getSectionType(),
-                                previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                                helpPage: LetterViewHelp(),
-                                isDotsTouchable: true,
-                              ),
-                            ),
-                          );
-                        } else {
-                          Practice.updatePool();
-                          PracticeSymbol.update();
-                          Navigator.of(context).push(
-                            CupertinoPageRoute(
-                              builder: (context) => PracticeScreen(
-                                previousPage: AppModel.navigationScreens[navigation.MainMenu],
-                                helpPage: PracticeHelp(),
-                              ),
-                            ),
-                          );
-                          PracticeResults.updatePracticeResults();
-                        }
-                        break;
-                      default:
-                        break;
-                    }
-                  }),
-                  child: Icon(
-                    AppIcon.AppIconsMap[AppIcons.ContinueButton],
-                    color: AppColors.sideIcon,
-                    semanticLabel: SemanticNames.getName(SemanticsType.Continue),
-                  ),
-                ),
-              )
-                  : SizedBox(
-                height: ScreenParams.height(30, context),
-                width: ScreenParams.width(17, context),
-              ),
-            ],
-          )
-        ],
+                                if (!PracticeSymbol.isPracticeEnd()) {
+                                  PracticeSymbol.nextSymbol();
+                                  Navigator.of(context).push(
+                                    CupertinoPageRoute(
+                                      builder: (context) => LetterScreen(
+                                        screenType: widget.screenType,
+                                        symbol: PracticeSymbol.getSymbol(),
+                                        sectionName: PracticeSymbol.getSectionType(),
+                                        previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                                        helpPage: LetterViewHelp(),
+                                        isDotsTouchable: true,
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  scakey.currentState.displayTapBar(true);
+                                  Practice.updatePool();
+                                  PracticeSymbol.update();
+                                  Navigator.of(context).push(
+                                    CupertinoPageRoute(
+                                      builder: (context) => PracticeScreen(
+                                        previousPage: AppModel.navigationScreens[navigation.MainMenu],
+                                        helpPage: PracticeHelp(),
+                                      ),
+                                    ),
+                                  );
+                                  PracticeResults.updatePracticeResults();
+                                }
+                                break;
+                              default:
+                                break;
+                            }
+                          }),
+                          child: Icon(
+                            AppIcon.AppIconsMap[AppIcons.ContinueButton],
+                            color: AppColors.sideIcon,
+                            semanticLabel: SemanticNames.getName(SemanticsType.Continue),
+                          ),
+                        ),
+                      )
+                    : SizedBox(
+                        height: ScreenParams.height(30, context),
+                        width: ScreenParams.width(17, context),
+                      ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
