@@ -10,6 +10,7 @@ import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/style.dart';
 
+@immutable
 class MenuButtonWidget extends StatefulWidget {
   const MenuButtonWidget({
     Key key,
@@ -26,6 +27,7 @@ class MenuButtonWidget extends StatefulWidget {
   _MenuButtonWidget createState() => _MenuButtonWidget();
 }
 
+
 class _MenuButtonWidget extends State<MenuButtonWidget> {
   @override
   void initState() {
@@ -35,7 +37,7 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
+    return  Semantics(
       label: widget.menuButton.name,
       child: ElevatedButton(
         style:AppDecorations.menuButton,

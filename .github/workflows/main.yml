@@ -41,7 +41,7 @@ jobs:
       - run: git lfs pull
       - run: flutter pub get
         working-directory: ./braille_abc
-      - run: flutter build ios --no-codesign --no-tree-shake-icons
+      - run: flutter build ios --release --no-codesign --no-tree-shake-icons
         working-directory: ./braille_abc
 
 
@@ -64,7 +64,7 @@ jobs:
       - run: git lfs pull
       - run: flutter pub get
         working-directory: ./braille_abc
-      - run: flutter build apk --no-tree-shake-icons
+      - run: flutter build apk --release --no-tree-shake-icons
         working-directory: ./braille_abc
       
       - uses: actions/upload-artifact@v1

@@ -1,7 +1,9 @@
 import 'package:braille_abc/components/study_item_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
+import 'package:flutter/cupertino.dart';
 
+@immutable
 class SymbolsFactory {
   SymbolsFactory();
 
@@ -117,6 +119,7 @@ class SymbolsFactory {
   }
 }
 
+@immutable
 class Alphabet {
   static Map<SectionType, List<Symbol>> _alphabet;
 
@@ -149,6 +152,7 @@ class Alphabet {
   }
 }
 
+@immutable
 class Search {
   static Symbol element(String ch, SectionType keymap) {
     Alphabet alphabet = Alphabet();
