@@ -14,6 +14,7 @@ import 'package:braille_abc/models/menu_button.dart';
 
 enum navigation { MainMenu, StudyScreen, PracticeScreen, DictionaryScreen, SettingsScreen }
 
+@immutable
 class AppModel {
   static final Alphabet _alphabet = Alphabet();
 
@@ -32,32 +33,32 @@ class AppModel {
     PracticeButton(sectionType: SectionType.Signs, icon: AppIcons.SignsSection),
   ];
 
-  static final Widget _menuScreen = MenuScreen(
+  static const Widget _menuScreen = MenuScreen(
     previousPage: null,
     helpPage: MainMenuHelp(),
   );
 
-  static final Widget _studyScreen = StudyScreen(
+  static const Widget _studyScreen = StudyScreen(
     previousPage: _menuScreen,
     helpPage: null,
   );
 
-  static final Widget _practiceScreen = PracticeScreen(
+  static const Widget _practiceScreen = PracticeScreen(
       previousPage: _menuScreen,
       helpPage: PracticeHelp(),
   );
 
-  static final Widget _dictionaryScreen = DictionaryScreen(
+  static const Widget _dictionaryScreen = DictionaryScreen(
     previousPage: _menuScreen,
     helpPage: DictionaryHelp(),
   );
 
-  static final Widget _settingsScreen = SettingsScreen(
+  static const Widget _settingsScreen = SettingsScreen(
       previousPage: _menuScreen,
       helpPage: null
   );
 
-  static final Map<navigation, Widget> navigationScreens = {
+  static const Map<navigation, Widget> navigationScreens = {
     navigation.MainMenu: _menuScreen,
     navigation.StudyScreen: _studyScreen,
     navigation.PracticeScreen: _practiceScreen,

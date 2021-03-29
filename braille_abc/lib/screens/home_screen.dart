@@ -14,11 +14,10 @@ import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/menu_button.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 
-// ignore: must_be_immutable
+@immutable
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreen createState() => _HomeScreen();
-  int currentIndex;
 }
 
 class _HomeScreen extends State<HomeScreen> {

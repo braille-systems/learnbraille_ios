@@ -4,6 +4,7 @@ import 'package:braille_abc/shared/non_swipeable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/models/app_names.dart';
 
+@immutable
 class StudyScreen extends NavigationScreen {
   const StudyScreen({
     Key key,

@@ -12,7 +12,6 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/models/practice_button.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
-import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 
 import 'package:braille_abc/style.dart';
@@ -20,6 +19,7 @@ import 'package:braille_abc/screens/letter_screen.dart';
 
 
 
+@immutable
 class ContinueButtonWidget extends StatefulWidget {
   @override
   State<ContinueButtonWidget> createState() => _ContinueButtonWidget();
@@ -28,7 +28,7 @@ class ContinueButtonWidget extends StatefulWidget {
 class _ContinueButtonWidget extends State<ContinueButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    return Semantics(
+    return  Semantics(
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
         style: AppDecorations.sectionButton,
@@ -37,11 +37,12 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
             scakey.currentState.displayTapBar(false);
             PracticeSymbol.update();
             PracticeSymbol.addAllGroup();
+            PracticeSymbol.nextSymbol();
             Navigator.of(context).push(
               CupertinoPageRoute(
                 builder: (context) => LetterScreen(
-                  symbol: PracticeSymbol.getString(),
-                  sectionName: PracticeSymbol.getSectionName(),
+                  symbol: PracticeSymbol.getSymbol(),
+                  sectionName: PracticeSymbol.getSectionType(),
                   screenType: ScreenType.Practice,
                   previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
                   helpPage: LetterPracticeHelp(),
@@ -127,7 +128,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             ),
             DecoratedIcon(
               AppIcon.getIcon(widget.practiceButton.icon),
-              color: CupertinoColors.white,
+              color: AppColors.second,
               size: 45.0,
               shadows: <Shadow>[
                 Styles.buildButtonShadow(),
@@ -156,47 +157,47 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
   }
 }
 
+class Pair {
+  Pair(this.symbol, this.title);
+
+  void setPair(Pair pair) {
+    symbol = pair.symbol;
+    title = pair.title;
+  }
+
+  String symbol;
+  SectionType title;
+}
+
 class PracticeSymbol {
   static void addAllGroup() {
-    List<SectionType> strings = Practice.getPool();
-    SymbolsFactory factory = SymbolsFactory();
-    for (var i in strings) {
-      var group = factory.createSymbolsGroup(i);
-      for(var j in group) {
-        _data[j] = i;
+    var pool = Practice.getPool();
+    var factory = SymbolsFactory();
+    for(var item in pool) {
+      var group = factory.createSymbolsGroup(item);
+      for(var symbol in group) {
+        _symbolsPool.add(Pair(symbol.char, item));
       }
     }
   }
 
-  static String getString() {
+  static void nextSymbol() {
     var rand = Random();
-    if(_data.isEmpty){
-      return "";
-    }
-    int num = rand.nextInt(_data.length);
-    Symbol symbol = _data.keys.toList()[num];
-    _title = _data[symbol];
-    _data.remove(symbol);
-    return symbol.char;
+    var num = rand.nextInt(_symbolsPool.length);
+    _curSymbol.setPair(_symbolsPool[num]);
+    _symbolsPool.removeAt(num);
   }
 
-  static SectionType getSectionName() {
-    return _title;
+  static void update() {
+    _symbolsPool.clear();
   }
 
-  static void update(){
-    _data.clear();
-  }
+  static bool isPracticeEnd() => _symbolsPool.isEmpty;
 
-  static bool endPractice() {
-    if (_data.isEmpty) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
+  static String getSymbol() => _curSymbol.symbol;
 
-  static final Map<Symbol, SectionType> _data = Map<Symbol, SectionType>();
-  static SectionType _title;
+  static SectionType getSectionType() => _curSymbol.title;
+
+  static final Pair _curSymbol = Pair(null, null);
+  static final List<Pair> _symbolsPool = [];
 }

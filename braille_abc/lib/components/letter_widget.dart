@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:braille_abc/style.dart';
 
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/shared/screen_params.dart';
-
+import 'package:braille_abc/style.dart';
+@immutable
 class LetterWidget extends StatelessWidget {
   const LetterWidget({Key key, @required this.title, @required this.symbol}) : super(key: key);
 
@@ -28,10 +28,10 @@ class LetterWidget extends StatelessWidget {
                   flex: 1,
                   child: Center(
                       child: AutoSizeText(
-                    SectionNames.getName(title),
-                    style: const TextStyle(fontSize: 30.0, color: AppColors.symbolText, fontWeight: FontWeight.bold),
-                    maxLines: 1,
-                  )),
+                        SectionNames.getName(title),
+                        style: const TextStyle(fontSize: 30.0, color: AppColors.symbolText, fontWeight: FontWeight.bold),
+                        maxLines: 1,
+                      )),
                 ),
                 Flexible(
                     flex: 2,

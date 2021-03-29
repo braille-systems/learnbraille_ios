@@ -1,14 +1,17 @@
+import 'package:flutter/cupertino.dart';
+
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/components/body_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
+
 import 'package:braille_abc/style.dart';
-import 'package:flutter/cupertino.dart';
 
 final scakey =  GlobalKey<_BottomState>();
 
+@immutable
 class Bottom extends StatefulWidget {
-  Bottom({Key key}) : super(key: key);
+  const Bottom({Key key}) : super(key: key);
 
   @override
   _BottomState createState() => _BottomState();
@@ -50,20 +53,20 @@ class _BottomState extends State<Bottom> {
       tabBar: _disableTapBar
           ? InvisibleCupertinoTabBar()
           : CupertinoTabBar(
-              onTap: onItemTapped,
-              items: <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(AppIcon.getIcon(AppIcons.MenuScreen)),
-                  label: ScreenNames.getName(ScreenType.Home),
-                ),
-                for (int i = 0; i < AppModel.menuButton.length; i++)
-                  BottomNavigationBarItem(
-                    backgroundColor: AppColors.expandBackground,
-                    icon: Icon(AppModel.menuButton[i].icon),
-                    label: AppModel.menuButton[i].name,
-                  ),
-              ],
+        onTap: onItemTapped,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(AppIcon.getIcon(AppIcons.MenuScreen)),
+            label: ScreenNames.getName(ScreenType.Home),
+          ),
+          for (int i = 0; i < AppModel.menuButton.length; i++)
+            BottomNavigationBarItem(
+              backgroundColor: AppColors.expandBackground,
+              icon: Icon(AppModel.menuButton[i].icon),
+              label: AppModel.menuButton[i].name,
             ),
+        ],
+      ),
       tabBuilder: (context, index) {
         return CupertinoTabView(builder: (context) {
           return CupertinoPageScaffold(
