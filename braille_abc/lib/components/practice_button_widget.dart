@@ -18,6 +18,8 @@ import 'package:braille_abc/style.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
 
 
+
+@immutable
 class ContinueButtonWidget extends StatefulWidget {
   @override
   State<ContinueButtonWidget> createState() => _ContinueButtonWidget();
@@ -26,7 +28,7 @@ class ContinueButtonWidget extends StatefulWidget {
 class _ContinueButtonWidget extends State<ContinueButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    return Semantics(
+    return  Semantics(
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
         style: AppDecorations.sectionButton,
@@ -126,7 +128,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             ),
             DecoratedIcon(
               AppIcon.getIcon(widget.practiceButton.icon),
-              color: CupertinoColors.white,
+              color: AppColors.second,
               size: 45.0,
               shadows: <Shadow>[
                 Styles.buildButtonShadow(),

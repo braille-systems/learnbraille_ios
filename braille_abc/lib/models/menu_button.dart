@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
+@immutable
 class MenuButton {
-  String name;
-  IconData icon;
+  final String name;
+  final IconData icon;
 
-  MenuButton({this.name, this.icon});
+  const MenuButton({this.name, this.icon});
 }

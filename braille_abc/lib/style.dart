@@ -102,8 +102,8 @@ class AppDecorations {
   );
 
   static BoxDecoration expansionSection = BoxDecoration(
-  color: AppColors.first,
-  borderRadius:  BorderRadius.circular(10));
+      color: AppColors.first,
+      borderRadius:  BorderRadius.circular(10));
 
   static BoxDecoration letterWidget =  BoxDecoration(
     color: AppColors.symbolContainer,

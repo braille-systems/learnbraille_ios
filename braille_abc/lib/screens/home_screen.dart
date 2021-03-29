@@ -13,11 +13,10 @@ import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/menu_button.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 
-// ignore: must_be_immutable
+@immutable
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreen createState() => _HomeScreen();
-  int currentIndex;
 }
 
 class _HomeScreen extends State<HomeScreen> {
@@ -46,7 +45,7 @@ class MenuScreen extends NavigationScreen {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       child: SafeArea(
-        minimum: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        minimum: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -56,7 +55,7 @@ class MenuScreen extends NavigationScreen {
               children: [
                 Text(
                   ScreenNames.getName(ScreenType.Home),
-                  style: TextStyle(color: AppColors.navigationBarText, fontSize: 55, fontWeight: FontWeight.bold),
+                  style: TextStyle(color:AppColors.navigationBarText, fontSize: 55, fontWeight: FontWeight.bold),
                 ),
                 CupertinoButton(
                   onPressed: () {

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
+@immutable
 class DictionaryScreen extends NavigationScreen {
   const DictionaryScreen({
     Key key,

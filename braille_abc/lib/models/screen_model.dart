@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
+@immutable
 abstract class Screen extends StatelessWidget {
   const Screen({
     Key key,
@@ -14,6 +15,7 @@ abstract class Screen extends StatelessWidget {
   final Screen previousPage;
 }
 
+@immutable
 abstract class NavigationScreen extends Screen {
   const NavigationScreen({
     Key key,
@@ -22,6 +24,7 @@ abstract class NavigationScreen extends Screen {
   }) : super(key: key, hasNavigationBar: true, helpPage: helpPage, previousPage: previousPage);
 }
 
+@immutable
 abstract class SectionScreen extends Screen {
   const SectionScreen({
     Key key,

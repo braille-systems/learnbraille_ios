@@ -9,6 +9,7 @@ import 'package:braille_abc/style.dart';
 import 'package:braille_abc/components/expansion_section_widget.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
+@immutable
 class MainMenuHelp extends Screen {
   const MainMenuHelp({
     Key key,
@@ -33,6 +34,7 @@ class MainMenuHelp extends Screen {
   }
 }
 
+@immutable
 class GeneralHelp extends Screen {
   const GeneralHelp({
     Key key,
@@ -65,6 +67,7 @@ class GeneralHelp extends Screen {
   }
 }
 
+@immutable
 class DictionaryHelp extends Screen {
   const DictionaryHelp({
     Key key,
@@ -89,6 +92,7 @@ class DictionaryHelp extends Screen {
   }
 }
 
+@immutable
 class LetterViewHelp extends Screen {
   const LetterViewHelp({
     Key key,
@@ -136,6 +140,7 @@ class LetterViewHelp extends Screen {
   }
 }
 
+@immutable
 class PracticeHelp extends Screen {
   const PracticeHelp({
     Key key,
@@ -179,6 +184,7 @@ class PracticeHelp extends Screen {
   }
 }
 
+@immutable
 class LetterPracticeHelp extends Screen {
   const LetterPracticeHelp({
     Key key,

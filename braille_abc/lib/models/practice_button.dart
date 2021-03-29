@@ -1,10 +1,11 @@
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/app_icons.dart';
+import 'package:flutter/cupertino.dart';
 
-
+@immutable
 class PracticeButton {
-  SectionType sectionType;
-  AppIcons icon;
+  final SectionType sectionType;
+  final AppIcons icon;
 
-  PracticeButton({this.sectionType, this.icon});
+  const PracticeButton({this.sectionType, this.icon});
 }

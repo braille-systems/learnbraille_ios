@@ -10,6 +10,7 @@ import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
+@immutable
 class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeWidget {
   const NavigationBar({
     Key key,
@@ -19,6 +20,8 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
 
   final String title;
   final Screen currentPage;
+
+  //bool displayBottomBar(Widget screen) => AppModel.navigationScreens.toString().contains(screen.toString());
 
   @override
   Widget build(BuildContext context) {

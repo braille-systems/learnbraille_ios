@@ -2,8 +2,9 @@ import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+@immutable
 class ExpansionSection extends StatefulWidget {
-  ExpansionSection({
+  const ExpansionSection({
     Key key,
     this.sectionIcon = CupertinoIcons.add,
     this.sectionName,

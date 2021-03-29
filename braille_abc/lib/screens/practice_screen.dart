@@ -7,6 +7,7 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/models/app_names.dart';
 
+@immutable
 class PracticeScreen extends NavigationScreen {
   const PracticeScreen({
     Key key,
@@ -23,7 +24,7 @@ class PracticeScreen extends NavigationScreen {
         title: ScreenNames.getName(ScreenType.Practice),
       ),
       child: SafeArea(
-        minimum: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        minimum: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
