@@ -166,7 +166,7 @@ class _LetterViewState extends State<LetterView> {
                                         symbol: PracticeSymbol.getSymbol(),
                                         sectionName: PracticeSymbol.getSectionType(),
                                         previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                                        helpPage: LetterViewHelp(),
+                                        helpPage: LetterPracticeHelp(),
                                         isDotsTouchable: true,
                                       ),
                                     ),
