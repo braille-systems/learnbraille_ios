@@ -1,4 +1,3 @@
-import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +10,7 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/components/letter_widget.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
-import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/components/practice_button_widget.dart';
-import 'package:braille_abc/components/help_widgets.dart';
-import 'package:braille_abc/models/app_model.dart';
-import 'package:braille_abc/screens/practice_screen.dart';
-import 'package:braille_abc/symbol/list_symbols.dart';
 
 @immutable
 class LetterScreen extends SectionScreen {
@@ -149,7 +143,7 @@ class _LetterViewState extends State<LetterView> {
                           onPressed: () => setState(() {
                             switch (widget.screenType) {
                               case ScreenType.Practice:
-                                NewPracticeState.NewState(context, widget.screenType, widget.symbol, widget.sectionName);
+                                NewPracticeState.newState(context, widget.screenType, widget.symbol, widget.sectionName);
                                 break;
                               default:
                                 break;

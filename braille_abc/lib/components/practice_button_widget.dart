@@ -203,7 +203,7 @@ class PracticeSymbol {
 }
 
 class NewPracticeState{
-  static void NewState(BuildContext context, ScreenType screenType, String symbol, SectionType sectionName){
+  static void newState(BuildContext context, ScreenType screenType, String symbol, SectionType sectionName){
     if (PracticeResults.checkAnswer(
         Search.element(symbol, sectionName).getDotsInfo())) {
       PracticeResults.incCorrectAnswerCounter();
