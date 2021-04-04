@@ -43,7 +43,8 @@ class LetterScreen extends SectionScreen {
           sectionName: sectionName,
           symbol: symbol,
           isDotsTouchable: isDotsTouchable,
-        ));
+        )
+    );
   }
 }
 
@@ -139,27 +140,7 @@ class _LetterViewState extends State<LetterView> {
                         onPressed: () => setState(() {
                           switch (widget.screenType) {
                             case ScreenType.Practice:
-                              if (PracticeSymbol.endPractice()) Practice.updatePool();
-                              !PracticeSymbol.endPractice()
-                                  ? Navigator.of(context).push(
-                                      CupertinoPageRoute(
-                                        builder: (context) => LetterScreen(
-                                          screenType: widget.screenType,
-                                          symbol: PracticeSymbol.getString(),
-                                          sectionName: PracticeSymbol.getSectionName(),
-                                          previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                                          helpPage: LetterViewHelp(),
-                                          isDotsTouchable: true,
-                                        ),
-                                      ),
-                                    )
-                                  : Navigator.of(context).push(
-                                      CupertinoPageRoute(
-                                          builder: (context) => PracticeScreen(
-                                                previousPage: AppModel.navigationScreens[navigation.MainMenu],
-                                                helpPage: PracticeHelp(),
-                                              )),
-                                    );
+                              NewPracticeState.NewState(context, widget.screenType);
                               break;
                             default:
                               break;
@@ -183,3 +164,4 @@ class _LetterViewState extends State<LetterView> {
     );
   }
 }
+
