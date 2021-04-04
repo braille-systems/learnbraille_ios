@@ -202,10 +202,17 @@ class PracticeSymbol {
   static final List<Pair> _symbolsPool = [];
 }
 
-class NewPracticeState{
-  static void newState(BuildContext context, ScreenType screenType, String symbol, SectionType sectionName){
+class NewPracticeState extends OnPressButton{
+
+  NewPracticeState(
+    ScreenType screenType,
+    String symbol,
+    SectionType sectionName): super(screenType: screenType, symbol: symbol, sectionName: sectionName);
+
+  @override
+  void pressContinueButton(BuildContext context){
     if (PracticeResults.checkAnswer(
-        Search.element(symbol, sectionName).getDotsInfo())) {
+        Search.element(super.symbol, super.sectionName).getDotsInfo())) {
       PracticeResults.incCorrectAnswerCounter();
     } else {
       PracticeResults.incStepCounter();
@@ -217,7 +224,7 @@ class NewPracticeState{
       Navigator.of(context).push(
         CupertinoPageRoute(
           builder: (context) => LetterScreen(
-            screenType: screenType,
+            screenType: super.screenType,
             symbol: PracticeSymbol.getSymbol(),
             sectionName: PracticeSymbol.getSectionType(),
             previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
@@ -241,4 +248,7 @@ class NewPracticeState{
       PracticeResults.updatePracticeResults();
     }
   }
+
+  @override
+  void pressHelpButton(BuildContext context){}
 }

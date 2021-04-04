@@ -1,3 +1,5 @@
+//import 'dart:html';
+
 import 'package:braille_abc/shared/non_swipeable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -70,6 +72,7 @@ class LetterView extends StatefulWidget {
 
 class _LetterViewState extends State<LetterView> {
   TextDirection _dir = TextDirection.ltr;
+  OnPressButton pressed;
 
   @override
   void initState() {
@@ -84,6 +87,15 @@ class _LetterViewState extends State<LetterView> {
   Widget build(BuildContext context) {
     TextDirection mode() {
       return _dir;
+    }
+    switch (widget.screenType) {//add buttons realization
+      case ScreenType.Practice:
+        pressed = NewPracticeState(widget.screenType, widget.symbol, widget.sectionName);
+        break;
+      case ScreenType.Study:
+        break;
+      default:
+        break;
     }
 
     return nonSwipeable(
@@ -143,7 +155,8 @@ class _LetterViewState extends State<LetterView> {
                           onPressed: () => setState(() {
                             switch (widget.screenType) {
                               case ScreenType.Practice:
-                                NewPracticeState.newState(context, widget.screenType, widget.symbol, widget.sectionName);
+                                //NewPracticeState.newState(context, widget.screenType, widget.symbol, widget.sectionName);
+                                pressed.pressContinueButton(context);
                                 break;
                               default:
                                 break;
@@ -169,3 +182,17 @@ class _LetterViewState extends State<LetterView> {
   }
 }
 
+abstract class OnPressButton{//realization buttons
+  OnPressButton({
+    @required this.screenType,
+    @required this.symbol,
+    @required this.sectionName
+  });
+
+  final ScreenType screenType;
+  final String symbol;
+  final SectionType sectionName;
+
+  void pressContinueButton(BuildContext context);
+  void pressHelpButton(BuildContext context);
+}
