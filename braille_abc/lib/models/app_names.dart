@@ -113,7 +113,6 @@ class SemanticNames
     SemanticsType.Continue : "Продолжить",
     SemanticsType.ExpandableList : "выпадающий список.",
     SemanticsType.TapToOpen : "Нажмите, чтобы открыть."
-
   };
 
   static String getName(SemanticsType type)
