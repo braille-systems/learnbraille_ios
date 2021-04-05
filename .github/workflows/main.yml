@@ -93,8 +93,8 @@ jobs:
         working-directory: ./braille_abc/ios
       - run: flutter pub get
         working-directory: ./braille_abc
-      - run: pod install
-        working-directory: ./braille_abc/ios
+#      - run: pod install
+#        working-directory: ./braille_abc/ios
 
       - name: Setup SSH Keys and known_hosts for fastlane match
         run: |
