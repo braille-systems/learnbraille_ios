@@ -1,0 +1,6 @@
+git_url("git@github.com:braille-systems/private.git")
+
+storage_mode("git")
+
+app_identifier(["com.braillesystems.learnbraille"])
+username(ENV['FASTLANE_USER'])
