@@ -113,7 +113,7 @@ jobs:
           
           echo "stage three"
           eval $(ssh-agent)
-          ssh-add "$SSH_PATH/id_rsa"
+          ssh-add "$SSH_PATH/id_ed25519"
         env:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       
