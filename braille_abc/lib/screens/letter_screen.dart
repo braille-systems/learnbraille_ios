@@ -79,10 +79,6 @@ class _LetterViewState extends State<LetterView> {
     super.initState();
   }
 
-  TextDirection mode() {
-    return _dir;
-  }
-
   @override
   Widget build(BuildContext context) {
     TextDirection mode() {
@@ -125,19 +121,7 @@ class _LetterViewState extends State<LetterView> {
                 SizedBox(
                   height: ScreenParams.height(30, context),
                   width: ScreenParams.width(17, context),
-                  child: ElevatedButton(
-                    style: AppDecorations.changeDirButton,
-                    onPressed: () => setState(() {
-                      if (_dir == TextDirection.ltr) {
-                        _dir = TextDirection.rtl;
-                      } else if (_dir == TextDirection.rtl) _dir = TextDirection.ltr;
-                    }),
-                    child: Icon(
-                      AppIcon.getIcon(AppIcons.ChangeModeButton),
-                      color: AppColors.sideIcon,
-                      semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
-                    ),
-                  ),
+                  child: ModeButton(letter: this),
                 ),
                 SymbolWidget(
                     textDir: mode,
@@ -150,24 +134,7 @@ class _LetterViewState extends State<LetterView> {
                     ? SizedBox(
                         height: ScreenParams.height(30, context),
                         width: ScreenParams.width(17, context),
-                        child: ElevatedButton(
-                          style: AppDecorations.nextButton,
-                          onPressed: () => setState(() {
-                            switch (widget.screenType) {
-                              case ScreenType.Practice:
-                                //NewPracticeState.newState(context, widget.screenType, widget.symbol, widget.sectionName);
-                                pressed.pressContinueButton(context);
-                                break;
-                              default:
-                                break;
-                            }
-                          }),
-                          child: Icon(
-                            AppIcon.AppIconsMap[AppIcons.ContinueButton],
-                            color: AppColors.sideIcon,
-                            semanticLabel: SemanticNames.getName(SemanticsType.Continue),
-                          ),
-                        ),
+                        child: ContinueButton(letter: this),
                       )
                     : SizedBox(
                         height: ScreenParams.height(30, context),
@@ -177,6 +144,70 @@ class _LetterViewState extends State<LetterView> {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ModeButton extends StatefulWidget{
+
+  ModeButton({@required this.letter});
+
+  final _LetterViewState letter;
+
+  @override
+  _ModeButtonState createState() => _ModeButtonState();
+}
+
+class _ModeButtonState extends State<ModeButton>{
+  @override
+  Widget build(BuildContext context){
+    return ElevatedButton(
+      style: AppDecorations.changeDirButton,
+      onPressed: () => setState((){
+          widget.letter.setState(() {
+            if(widget.letter._dir == TextDirection.ltr){
+              widget.letter._dir = TextDirection.rtl;
+            }
+            else{
+              widget.letter._dir = TextDirection.ltr;
+            }
+          });
+        },
+      ),
+      child: Icon(
+        AppIcon.getIcon(AppIcons.ChangeModeButton),
+        color: AppColors.sideIcon,
+        semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
+      ),
+    );
+  }
+}
+
+class ContinueButton extends StatefulWidget{
+
+  ContinueButton({@required this.letter});
+
+  final _LetterViewState letter;
+
+  @override
+  _ContinueButtonState createState() => _ContinueButtonState();
+}
+
+class _ContinueButtonState extends State<ContinueButton>{
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: AppDecorations.nextButton,
+      onPressed: () => setState(() {
+        widget.letter.pressed.pressContinueButton(context);
+        widget.letter.setState(() {
+        });
+      }),
+      child: Icon(
+        AppIcon.AppIconsMap[AppIcons.ContinueButton],
+        color: AppColors.sideIcon,
+        semanticLabel: SemanticNames.getName(SemanticsType.Continue),
       ),
     );
   }
