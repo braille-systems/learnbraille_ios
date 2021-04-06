@@ -1,4 +1,4 @@
-git_url("https://github.com/braille-systems/certificates")
+git_url("git@github.com:braille-systems/certificates.git")
 git_branch("main")
 storage_mode("git")
 
