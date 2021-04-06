@@ -52,13 +52,14 @@ class AppColors {
 
 /// App button styles
 class AppDecorations {
-  /*static ButtonStyle continueButton = ElevatedButton.styleFrom(
+  static ButtonStyle continueButton = ElevatedButton.styleFrom(
+    primary: AppColors.first,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(25.0),
     ),
-  );*/
+  );
 
-  static ButtonStyle sectionButton = ElevatedButton.styleFrom(
+  /*static ButtonStyle sectionButton = ElevatedButton.styleFrom(
     primary: AppColors.first,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(25.0),
@@ -69,7 +70,7 @@ class AppDecorations {
         Styles.buildButtonShadow(),
       ],
     ),
-  );
+  );*/
 
   static ButtonStyle menuButton = ElevatedButton.styleFrom(
     primary: AppColors.first,

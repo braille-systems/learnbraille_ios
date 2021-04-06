@@ -19,6 +19,7 @@ class PracticeScreen extends NavigationScreen {
   @override
   Widget build(BuildContext context) {
     Practice.updatePool();
+    ContinueButtonWidget continueButton = ContinueButtonWidget();
     return nonSwipeable(
       context,
       CupertinoPageScaffold(
@@ -39,11 +40,14 @@ class PracticeScreen extends NavigationScreen {
                   Container(
                     height: ScreenParams.heightIOS14(80, context),
                     child: ListView(
-                      children: <Widget> [
-                        for(var practiceButton in AppModel.practiceButtons)
+                      children: <Widget>[
+                        for (var practiceButton in AppModel.practiceButtons)
                           Container(
                             margin: EdgeInsets.symmetric(vertical: 2),
-                            child: PracticeButtonWidget(practiceButton: practiceButton,),
+                            child: PracticeButtonWidget(
+                              practiceButton: practiceButton,
+                              stateButton: continueButton.state,
+                            ),
                           ),
                       ],
                     ),
@@ -53,7 +57,7 @@ class PracticeScreen extends NavigationScreen {
                   ),
                   Container(
                     height: 48,
-                    child: ContinueButtonWidget(),
+                    child: continueButton,
                   )
                 ],
               ),
