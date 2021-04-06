@@ -9,6 +9,7 @@ import 'package:braille_abc/style.dart';
 import 'package:braille_abc/components/expansion_section_widget.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
+
 enum HelpSections {
   General,
   MainMenu,
@@ -68,6 +69,7 @@ class Help extends Screen {
     }
   }
 
+
   Column buildHelp(List<IconData> subIcon, String helpPage) {
     return Column(
       children: [
@@ -102,5 +104,3 @@ class Help extends Screen {
     );
   }
 }
-
-
