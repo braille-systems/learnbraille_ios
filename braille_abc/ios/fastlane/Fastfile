@@ -33,6 +33,7 @@ platform :ios do
     match(
       type: "appstore",
       readonly: is_ci,
+      branch: "main",
       keychain_name: ENV['MATCH_KEYCHAIN_NAME'],
       keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
     )
