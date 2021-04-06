@@ -22,8 +22,13 @@ import 'package:braille_abc/screens/letter_screen.dart';
 
 @immutable
 class ContinueButtonWidget extends StatefulWidget {
+
+  ContinueButtonWidget();
+
+  final _ContinueButtonWidget state = _ContinueButtonWidget();
+
   @override
-  State<ContinueButtonWidget> createState() => _ContinueButtonWidget();
+  State<ContinueButtonWidget> createState() => state;
 }
 
 class _ContinueButtonWidget extends State<ContinueButtonWidget> {
@@ -33,7 +38,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
         style: AppDecorations.sectionButton,
-        onPressed: () {
+        onPressed: Practice.emptyPool() ? null : () {
           if (Practice.getPool().isNotEmpty) {
             scakey.currentState.displayTapBar(false);
             PracticeSymbol.update();
@@ -79,9 +84,11 @@ class PracticeButtonWidget extends StatefulWidget {
   const PracticeButtonWidget({
     Key key,
     @required this.practiceButton,
+    @required this.stateButton,
   }) : super(key: key);
 
   final PracticeButton practiceButton;
+  final _ContinueButtonWidget stateButton;
 
   @override
   State<PracticeButtonWidget> createState() => _PracticeButtonWidget();
@@ -99,6 +106,8 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
         } else {
           Practice.removeSymbolGroup(widget.practiceButton.sectionType);
         }
+        widget.stateButton.setState(() {
+        });
       },
     );
   }

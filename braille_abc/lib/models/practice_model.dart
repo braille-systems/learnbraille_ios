@@ -17,6 +17,8 @@ class Practice {
   static void updatePool() {
     _pool.clear();
   }
+
+  static bool emptyPool() => _pool.isEmpty;
 }
 
 class PracticeResults {
