@@ -73,33 +73,35 @@ class _SymbolState extends State<SymbolWidget> {
                       ? SemanticNames.getName(SemanticsType.Painted)
                       : SemanticNames.getName(SemanticsType.NotPainted)),
               button: false,
-              child: Container(
-                height: 75.0 / 330 * widget.height,//all proportions are relative to height and width of widget
-                width: 75.0 / 330 * widget.height,//proportions are made as on the layout: https://www.figma.com/file/pJE5TUjBKvdy2ZmpMnHAS4/Практика
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: AppColors.dotBoarder,
-                    width: 8,
+              child: ExcludeSemantics(
+                child: Container(
+                  height: 75.0 / 330 * widget.height,//all proportions are relative to height and width of widget
+                  width: 75.0 / 330 * widget.height,//proportions are made as on the layout: https://www.figma.com/file/pJE5TUjBKvdy2ZmpMnHAS4/Практика
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: AppColors.dotBoarder,
+                      width: 8,
+                    ),
+                  ),
+                  child: CupertinoButton(
+                    onPressed: () {
+                      if (widget.isTapped) {
+                        setState(() {
+                          item.setIsPressed(!item.press);
+                          PracticeResults.dotClick(int.parse(item.outputData));
+                        });
+                      }
+                    },
+                    borderRadius: BorderRadius.all(Radius.circular(1000),),
+                    padding: EdgeInsets.zero,
+                    color: item.p,
+                    child: Text(item.outputData,
+                        textDirection: TextDirection.ltr,
+                        style: TextStyle(fontSize: 0.18 * widget.height - 8 / 330 * widget.height, color: item.onP, fontWeight: FontWeight.bold)),
                   ),
                 ),
-                child: CupertinoButton(
-                  onPressed: () {
-                    if (widget.isTapped) {
-                      setState(() {
-                        item.setIsPressed(!item.press);
-                        PracticeResults.dotClick(int.parse(item.outputData));
-                      });
-                    }
-                  },
-                  borderRadius: BorderRadius.all(Radius.circular(1000),),
-                  padding: EdgeInsets.zero,
-                  color: item.p,
-                  child: Text(item.outputData,
-                      textDirection: TextDirection.ltr,
-                      style: TextStyle(fontSize: 0.18 * widget.height - 8 / 330 * widget.height, color: item.onP, fontWeight: FontWeight.bold)),
-                ),
-              ),
+              )
             ))
                 .toList(growable: false),
           ),
