@@ -13,6 +13,7 @@ import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/models/practice_button.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
+import 'package:braille_abc/screens/practice_screen.dart';
 
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
@@ -197,7 +198,57 @@ class PracticeSymbol {
   static String getSymbol() => _curSymbol.symbol;
 
   static SectionType getSectionType() => _curSymbol.title;
-
   static final Pair _curSymbol = Pair(null, null);
   static final List<Pair> _symbolsPool = [];
+}
+
+class NewPracticeState extends OnPressButton{
+
+  NewPracticeState(
+    ScreenType screenType,
+    String symbol,
+    SectionType sectionName): super(screenType: screenType, symbol: symbol, sectionName: sectionName);
+
+  @override
+  void pressContinueButton(BuildContext context){
+    if (PracticeResults.checkAnswer(
+        Search.element(super.symbol, super.sectionName).getDotsInfo())) {
+      PracticeResults.incCorrectAnswerCounter();
+    } else {
+      PracticeResults.incStepCounter();
+    }
+    PracticeResults.resetAnswer();
+
+    if (!PracticeSymbol.isPracticeEnd()) {
+      PracticeSymbol.nextSymbol();
+      Navigator.of(context).push(
+        CupertinoPageRoute(
+          builder: (context) => LetterScreen(
+            screenType: super.screenType,
+            symbol: PracticeSymbol.getSymbol(),
+            sectionName: PracticeSymbol.getSectionType(),
+            previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+            helpPage: LetterPracticeHelp(),
+            isDotsTouchable: true,
+          ),
+        ),
+      );
+    } else {
+      scakey.currentState.displayTapBar(true);
+      Practice.updatePool();
+      PracticeSymbol.update();
+      Navigator.of(context).push(
+        CupertinoPageRoute(
+          builder: (context) => PracticeScreen(
+            previousPage: AppModel.navigationScreens[navigation.MainMenu],
+            helpPage: PracticeHelp(),
+          ),
+        ),
+      );
+      PracticeResults.updatePracticeResults();
+    }
+  }
+
+  @override
+  void pressHelpButton(BuildContext context){}
 }
