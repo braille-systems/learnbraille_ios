@@ -59,19 +59,6 @@ class AppDecorations {
     ),
   );
 
-  /*static ButtonStyle sectionButton = ElevatedButton.styleFrom(
-    primary: AppColors.first,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(25.0),
-    ),
-    textStyle: TextStyle(
-      color: AppColors.second,
-      shadows: <Shadow>[
-        Styles.buildButtonShadow(),
-      ],
-    ),
-  );*/
-
   static ButtonStyle menuButton = ElevatedButton.styleFrom(
     primary: AppColors.first,
     shape: RoundedRectangleBorder(
