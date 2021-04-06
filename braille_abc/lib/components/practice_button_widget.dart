@@ -38,8 +38,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
         style: AppDecorations.sectionButton,
-        onPressed: Practice.emptyPool() ? null : () {
-          if (Practice.getPool().isNotEmpty) {
+        onPressed: Practice.getPool().isNotEmpty ? () {
             scakey.currentState.displayTapBar(false);
             PracticeSymbol.update();
             PracticeSymbol.addAllGroup();
@@ -56,8 +55,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
                 ),
               ),
             );
-          }
-        },
+        } : null,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
