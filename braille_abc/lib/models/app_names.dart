@@ -96,6 +96,8 @@ enum SemanticsType
   Painted,
   NotPainted,
   Continue,
+  ExpandableList,
+  TapToOpen,
 }
 
 @immutable
@@ -109,6 +111,8 @@ class SemanticNames
     SemanticsType.Painted : "закрашена",
     SemanticsType.NotPainted : "не закрашена",
     SemanticsType.Continue : "Продолжить",
+    SemanticsType.ExpandableList : "выпадающий список.",
+    SemanticsType.TapToOpen : "Нажмите, чтобы открыть."
   };
 
   static String getName(SemanticsType type)
