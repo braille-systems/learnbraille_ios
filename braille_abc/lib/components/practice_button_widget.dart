@@ -50,7 +50,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
                   sectionName: PracticeSymbol.getSectionType(),
                   screenType: ScreenType.Practice,
                   previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                  helpPage: LetterPracticeHelp(),
+                  helpPage: Help(helpName:HelpSections.LetterPractice),
                   isDotsTouchable: true,
                 ),
               ),
@@ -221,7 +221,7 @@ class NewPracticeState extends OnPressButton{
             shortSymbol: PracticeSymbol.getShortSymbol(),
             sectionName: PracticeSymbol.getSectionType(),
             previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-            helpPage: LetterPracticeHelp(),
+            helpPage:  Help(helpName:HelpSections.LetterPractice),
             isDotsTouchable: true,
           ),
         ),
@@ -234,7 +234,7 @@ class NewPracticeState extends OnPressButton{
         CupertinoPageRoute(
           builder: (context) => PracticeScreen(
             previousPage: AppModel.navigationScreens[navigation.MainMenu],
-            helpPage: PracticeHelp(),
+            helpPage: Help(helpName:HelpSections.Practice),
           ),
         ),
       );

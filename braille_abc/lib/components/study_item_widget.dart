@@ -41,7 +41,7 @@ class StudyItem extends StatelessWidget {
                 symbol: symbol.getChar(),
                 shortSymbol: symbol.getShortChar(),
                 previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
-                helpPage:  LetterViewHelp(),
+                helpPage:  Help(helpName:HelpSections.LetterView),
                 isDotsTouchable: false,
               ),
             ),
