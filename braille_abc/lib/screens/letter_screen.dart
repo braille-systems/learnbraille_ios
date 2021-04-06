@@ -166,7 +166,7 @@ class _LetterViewState extends State<LetterView> {
                                         symbol: PracticeSymbol.getSymbol(),
                                         sectionName: PracticeSymbol.getSectionType(),
                                         previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                                        helpPage: LetterPracticeHelp(),
+                                        helpPage: Help(helpName:HelpSections.LetterPractice),
                                         isDotsTouchable: true,
                                       ),
                                     ),
@@ -179,7 +179,7 @@ class _LetterViewState extends State<LetterView> {
                                     CupertinoPageRoute(
                                       builder: (context) => PracticeScreen(
                                         previousPage: AppModel.navigationScreens[navigation.MainMenu],
-                                        helpPage: PracticeHelp(),
+                                        helpPage:Help(helpName:HelpSections.Practice),
                                       ),
                                     ),
                                   );

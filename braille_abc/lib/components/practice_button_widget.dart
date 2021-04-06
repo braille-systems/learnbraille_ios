@@ -45,7 +45,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
                   sectionName: PracticeSymbol.getSectionType(),
                   screenType: ScreenType.Practice,
                   previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                  helpPage: LetterPracticeHelp(),
+                  helpPage: Help(helpName:HelpSections.LetterPractice),
                   isDotsTouchable: true,
                 ),
               ),

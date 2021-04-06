@@ -35,7 +35,7 @@ class AppModel {
 
   static const Widget _menuScreen = MenuScreen(
     previousPage: null,
-    helpPage: MainMenuHelp(),
+    helpPage: Help(helpName:HelpSections.MainMenu),
   );
 
   static const Widget _studyScreen = StudyScreen(
@@ -45,12 +45,12 @@ class AppModel {
 
   static const Widget _practiceScreen = PracticeScreen(
       previousPage: _menuScreen,
-      helpPage: PracticeHelp(),
+      helpPage: Help(helpName:HelpSections.Practice),
   );
 
   static const Widget _dictionaryScreen = DictionaryScreen(
     previousPage: _menuScreen,
-    helpPage: DictionaryHelp(),
+    helpPage: Help(helpName:HelpSections.Dictionary),
   );
 
   static const Widget _settingsScreen = SettingsScreen(
