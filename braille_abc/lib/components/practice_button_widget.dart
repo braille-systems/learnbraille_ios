@@ -19,7 +19,6 @@ import 'package:braille_abc/style.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
 
 
-
 @immutable
 class ContinueButtonWidget extends StatefulWidget {
 
@@ -37,7 +36,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
     return  Semantics(
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
-        style: AppDecorations.sectionButton,
+        style: AppDecorations.continueButton,
         onPressed: Practice.getPool().isNotEmpty ? () {
             scakey.currentState.displayTapBar(false);
             PracticeSymbol.update();
@@ -95,7 +94,7 @@ class PracticeButtonWidget extends StatefulWidget {
 class _PracticeButtonWidget extends State<PracticeButtonWidget> {
   bool checkBox = false;
 
-  void onChanged(bool val) {
+    void onChanged(bool val) {
     setState(
       () {
         checkBox = val;
@@ -114,51 +113,32 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
   Widget build(BuildContext context) {
     return Semantics(
       label: SectionNames.getName(widget.practiceButton.sectionType),
-      child: ElevatedButton(
-        style: AppDecorations.sectionButton,
-        onPressed: () {
-          onChanged(!checkBox);
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              alignment: Alignment.center,
-              height: 50,
-              child: AutoSizeText(
-                SectionNames.getName(widget.practiceButton.sectionType),
-                style: TextStyle(fontSize: 20),
-                textAlign: TextAlign.center,
-              ),
+      child: Card(
+        elevation: 3,
+        margin: EdgeInsets.symmetric(vertical: 2),
+        child: ListTile(
+          minVerticalPadding: 0,
+          onTap: () => onChanged(!checkBox),
+          leading: Icon(
+            AppIcon.getIcon(widget.practiceButton.icon),
+            color: AppColors.first,
+            size: 45,
+          ),
+          title: Align(
+            alignment: Alignment.centerLeft,
+            child: AutoSizeText(
+              SectionNames.getName(widget.practiceButton.sectionType),
+              style: TextStyle(fontSize: 22, color: AppColors.symbolText, fontWeight: FontWeight.w400),
+              maxLines: 2,
             ),
-            SizedBox(
-              height: ScreenParams.height(2.0, context),
-            ),
-            DecoratedIcon(
-              AppIcon.getIcon(widget.practiceButton.icon),
-              color: AppColors.second,
-              size: 45.0,
-              shadows: <Shadow>[
-                Styles.buildButtonShadow(),
-                for (var stroke in Styles.buildStroke(0.25)) stroke,
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                SizedBox(
-                  width: ScreenParams.width(10, context),
-                  height: ScreenParams.height(5, context),
-                  child: Checkbox(
-                    value: checkBox,
-                    onChanged: (bool val) {
-                      onChanged(val);
-                    },
-                  ),
-                )
-              ],
-            ),
-          ],
+          ),
+          trailing: CupertinoSwitch(
+            activeColor: AppColors.first,
+            value: checkBox,
+            onChanged: (bool val) {
+              onChanged(val);
+            },
+          ),
         ),
       ),
     );
