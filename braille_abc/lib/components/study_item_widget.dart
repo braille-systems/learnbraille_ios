@@ -40,7 +40,7 @@ class StudyItem extends StatelessWidget {
                 screenType: ScreenType.Letter,
                 symbol: symbol.getChar(),
                 previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
-                helpPage:  LetterViewHelp(),
+                helpPage:  Help(helpName:HelpSections.LetterView),
                 isDotsTouchable: false,
               ),
             ),
