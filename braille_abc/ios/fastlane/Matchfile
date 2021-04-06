@@ -1,4 +1,5 @@
 git_url("git@github.com:braille-systems/certificates.git")
+git_branch("main")
 storage_mode("git")
 
 app_identifier(["com.braillesystems.learnbraille"])
