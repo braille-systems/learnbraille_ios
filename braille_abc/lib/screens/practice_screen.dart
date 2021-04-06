@@ -27,7 +27,7 @@ class PracticeScreen extends NavigationScreen {
           title: ScreenNames.getName(ScreenType.Practice),
         ),
         child: SafeArea(
-          minimum: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          minimum: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -37,16 +37,13 @@ class PracticeScreen extends NavigationScreen {
               Column(
                 children: [
                   Container(
-                    height: ScreenParams.heightIOS14(77, context),
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      //physics: NeverScrollableScrollPhysics(),
-                      mainAxisSpacing: ScreenParams.width(4, context),
-                      crossAxisSpacing: ScreenParams.height(4, context),
-                      children: <Widget>[
-                        for (var i = 0; i < AppModel.practiceButtons.length; ++i)
-                          PracticeButtonWidget(
-                            practiceButton: AppModel.practiceButtons[i],
+                    height: ScreenParams.heightIOS14(80, context),
+                    child: ListView(
+                      children: <Widget> [
+                        for(var practiceButton in AppModel.practiceButtons)
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 2),
+                            child: PracticeButtonWidget(practiceButton: practiceButton,),
                           ),
                       ],
                     ),
