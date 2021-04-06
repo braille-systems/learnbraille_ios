@@ -29,19 +29,21 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
       backgroundColor: AppColors.navigationBar,
       leading: Semantics(
         label: SemanticNames.getName(SemanticsType.Back),
-        child: CupertinoNavigationBarBackButton(
-          onPressed: () {
-            if (currentPage.hasNavigationBar) {
-              scakey.currentState.onItemTapped(0);
-            } else {
-              if (currentPage.previousPage.hasNavigationBar) {
-                Timer(Duration(milliseconds: 10), () {
-                  scakey.currentState.displayTapBar(true);
-                });
+        child: ExcludeSemantics(
+          child: CupertinoNavigationBarBackButton(
+            onPressed: () {
+              if (currentPage.hasNavigationBar) {
+                scakey.currentState.onItemTapped(0);
+              } else {
+                if (currentPage.previousPage.hasNavigationBar) {
+                  Timer(Duration(milliseconds: 10), () {
+                    scakey.currentState.displayTapBar(true);
+                  });
+                }
+                Navigator.push(context, CupertinoPageRoute(builder: (context) => currentPage.previousPage));
               }
-              Navigator.push(context, CupertinoPageRoute(builder: (context) => currentPage.previousPage));
-            }
-          },
+            },
+          ),
         ),
       ),
       middle: AutoSizeText(
