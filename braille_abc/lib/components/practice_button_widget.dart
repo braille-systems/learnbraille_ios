@@ -46,6 +46,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
               CupertinoPageRoute(
                 builder: (context) => LetterScreen(
                   symbol: PracticeSymbol.getSymbol(),
+                  shortSymbol: PracticeSymbol.getShortSymbol(),
                   sectionName: PracticeSymbol.getSectionType(),
                   screenType: ScreenType.Practice,
                   previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
@@ -146,15 +147,18 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
 }
 
 class Pair {
-  Pair(this.symbol, this.title);
+  Pair(this.symbol, this.shortSymbol, this.title);
 
   void setPair(Pair pair) {
     symbol = pair.symbol;
+    shortSymbol = pair.shortSymbol;
     title = pair.title;
   }
 
   String symbol;
+  String shortSymbol;
   SectionType title;
+
 }
 
 class PracticeSymbol {
@@ -164,7 +168,7 @@ class PracticeSymbol {
     for(var item in pool) {
       var group = factory.createSymbolsGroup(item);
       for(var symbol in group) {
-        _symbolsPool.add(Pair(symbol.char, item));
+        _symbolsPool.add(Pair(symbol.getChar(), symbol.getShortChar(), item));
       }
     }
   }
@@ -183,9 +187,10 @@ class PracticeSymbol {
   static bool isPracticeEnd() => _symbolsPool.isEmpty;
 
   static String getSymbol() => _curSymbol.symbol;
+  static String getShortSymbol() => _curSymbol.shortSymbol ?? _curSymbol.symbol;
 
   static SectionType getSectionType() => _curSymbol.title;
-  static final Pair _curSymbol = Pair(null, null);
+  static final Pair _curSymbol = Pair(null, null, null);
   static final List<Pair> _symbolsPool = [];
 }
 
@@ -213,6 +218,7 @@ class NewPracticeState extends OnPressButton{
           builder: (context) => LetterScreen(
             screenType: super.screenType,
             symbol: PracticeSymbol.getSymbol(),
+            shortSymbol: PracticeSymbol.getShortSymbol(),
             sectionName: PracticeSymbol.getSectionType(),
             previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
             helpPage: LetterPracticeHelp(),

@@ -39,6 +39,7 @@ class StudyItem extends StatelessWidget {
                 sectionName: sectionName,
                 screenType: ScreenType.Letter,
                 symbol: symbol.getChar(),
+                shortSymbol: symbol.getShortChar(),
                 previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
                 helpPage:  LetterViewHelp(),
                 isDotsTouchable: false,
