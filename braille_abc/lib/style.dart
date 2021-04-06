@@ -52,23 +52,10 @@ class AppColors {
 
 /// App button styles
 class AppDecorations {
-  /*static ButtonStyle continueButton = ElevatedButton.styleFrom(
-    primary: AppColors.first,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20),
-    ),
-  );*/
-
-  static ButtonStyle sectionButton = ElevatedButton.styleFrom(
+  static ButtonStyle continueButton = ElevatedButton.styleFrom(
     primary: AppColors.first,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(25.0),
-    ),
-    textStyle: TextStyle(
-      color: AppColors.second,
-      shadows: <Shadow>[
-        Styles.buildButtonShadow(),
-      ],
     ),
   );
 
