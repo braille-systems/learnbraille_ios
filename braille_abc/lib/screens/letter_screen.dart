@@ -19,6 +19,7 @@ class LetterScreen extends SectionScreen {
   final SectionType sectionName;
   final ScreenType screenType;
   final String symbol;
+  final String shortSymbol;
   final bool isDotsTouchable;
 
   const LetterScreen(
@@ -28,7 +29,8 @@ class LetterScreen extends SectionScreen {
       @required this.screenType,
       @required this.sectionName,
       @required this.symbol,
-      @required this.isDotsTouchable})
+      @required this.isDotsTouchable,
+      @required this.shortSymbol})
       : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override
@@ -44,6 +46,7 @@ class LetterScreen extends SectionScreen {
             screenType: screenType,
             sectionName: sectionName,
             symbol: symbol,
+            shortSymbol: shortSymbol,
             isDotsTouchable: isDotsTouchable,
           )),
     );
@@ -52,18 +55,20 @@ class LetterScreen extends SectionScreen {
 
 @immutable
 class LetterView extends StatefulWidget {
-  LetterView(
-      {Key key,
-      @required this.sectionName,
-      @required this.screenType,
-      @required this.symbol,
-      @required this.isDotsTouchable})
-      : super(key: key);
+  LetterView({
+    Key key,
+    @required this.sectionName,
+    @required this.screenType,
+    @required this.symbol,
+    @required this.shortSymbol,
+    @required this.isDotsTouchable,
+  }) : super(key: key);
 
   final String str = ScreenNames.getName(ScreenType.Letter);
   final SectionType sectionName;
   final ScreenType screenType;
   final String symbol;
+  final String shortSymbol;
   final bool isDotsTouchable;
 
   @override
@@ -84,7 +89,9 @@ class _LetterViewState extends State<LetterView> {
     TextDirection mode() {
       return _dir;
     }
-    switch (widget.screenType) {//add buttons realization
+
+    switch (widget.screenType) {
+      //add buttons realization
       case ScreenType.Practice:
         pressed = NewPracticeState(widget.screenType, widget.symbol, widget.sectionName);
         break;
@@ -108,7 +115,7 @@ class _LetterViewState extends State<LetterView> {
                 button: false,
                 child: LetterWidget(
                   title: widget.sectionName,
-                  symbol: widget.symbol,
+                  symbol: widget.shortSymbol,
                 ),
               )
             ]),
@@ -149,8 +156,7 @@ class _LetterViewState extends State<LetterView> {
   }
 }
 
-class ModeButton extends StatefulWidget{
-
+class ModeButton extends StatefulWidget {
   ModeButton({@required this.letter});
 
   final _LetterViewState letter;
@@ -159,17 +165,17 @@ class ModeButton extends StatefulWidget{
   _ModeButtonState createState() => _ModeButtonState();
 }
 
-class _ModeButtonState extends State<ModeButton>{
+class _ModeButtonState extends State<ModeButton> {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return ElevatedButton(
       style: AppDecorations.changeDirButton,
-      onPressed: () => setState((){
+      onPressed: () => setState(
+        () {
           widget.letter.setState(() {
-            if(widget.letter._dir == TextDirection.ltr){
+            if (widget.letter._dir == TextDirection.ltr) {
               widget.letter._dir = TextDirection.rtl;
-            }
-            else{
+            } else {
               widget.letter._dir = TextDirection.ltr;
             }
           });
@@ -184,8 +190,7 @@ class _ModeButtonState extends State<ModeButton>{
   }
 }
 
-class ContinueButton extends StatefulWidget{
-
+class ContinueButton extends StatefulWidget {
   ContinueButton({@required this.letter});
 
   final _LetterViewState letter;
@@ -194,15 +199,14 @@ class ContinueButton extends StatefulWidget{
   _ContinueButtonState createState() => _ContinueButtonState();
 }
 
-class _ContinueButtonState extends State<ContinueButton>{
+class _ContinueButtonState extends State<ContinueButton> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: AppDecorations.nextButton,
       onPressed: () => setState(() {
         widget.letter.pressed.pressContinueButton(context);
-        widget.letter.setState(() {
-        });
+        widget.letter.setState(() {});
       }),
       child: Icon(
         AppIcon.AppIconsMap[AppIcons.ContinueButton],
@@ -213,17 +217,15 @@ class _ContinueButtonState extends State<ContinueButton>{
   }
 }
 
-abstract class OnPressButton{//realization buttons
-  OnPressButton({
-    @required this.screenType,
-    @required this.symbol,
-    @required this.sectionName
-  });
+abstract class OnPressButton {
+  //realization buttons
+  OnPressButton({@required this.screenType, @required this.symbol, @required this.sectionName});
 
   final ScreenType screenType;
   final String symbol;
   final SectionType sectionName;
 
   void pressContinueButton(BuildContext context);
+
   void pressHelpButton(BuildContext context);
 }
