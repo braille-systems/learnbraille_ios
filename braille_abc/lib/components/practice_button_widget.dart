@@ -14,6 +14,7 @@ import 'package:braille_abc/models/practice_button.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/screens/practice_screen.dart';
+import 'package:braille_abc/screens/results_screen.dart';
 
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
@@ -226,9 +227,12 @@ class NewPracticeState extends OnPressButton{
       PracticeSymbol.update();
       Navigator.of(context).push(
         CupertinoPageRoute(
-          builder: (context) => PracticeScreen(
+          builder: (context) => false ? PracticeScreen(
             previousPage: AppModel.navigationScreens[navigation.MainMenu],
             helpPage: Help(helpName:HelpSections.Practice),
+          ) : ResultsScreen(
+            helpPage: Help(helpName: HelpSections.Practice,),
+            previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
           ),
         ),
       );

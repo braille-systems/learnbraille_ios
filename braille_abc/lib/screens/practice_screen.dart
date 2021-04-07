@@ -7,6 +7,7 @@ import 'package:braille_abc/shared/non_swipeable.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/models/app_names.dart';
+import 'package:flutter/material.dart';
 
 @immutable
 class PracticeScreen extends NavigationScreen {
