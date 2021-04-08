@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/screens/practice_screen.dart';
 import 'package:braille_abc/shared/screen_params.dart';
@@ -43,7 +44,7 @@ class _PositionWidget extends State<PositionWidget> {
         Divider(
           height: ScreenParams.width(1, context),
           thickness: 1.0,
-          color: Colors.black,
+          color: AppColors.divider,
         ),
       ],
     );
@@ -81,7 +82,7 @@ class _ResultsInfoWidget extends State<ResultsInfoWidget> {
             Divider(
               height: ScreenParams.width(1, context),
               thickness: 2.0,
-              color: Colors.black,
+              color: AppColors.divider,
             ),
             for (var position in widget.results.getDetailPositionsPool())
               PositionWidget(
@@ -116,6 +117,7 @@ class _BackButtonWidget extends State<BackButtonWidget> {
         onPressed: () {
           Navigator.of(context).pushAndRemoveUntil(
               CupertinoPageRoute(builder: (BuildContext context) => PracticeScreen()), (Route<dynamic> route) => false);
+          scakey.currentState.onItemTapped(0);
         },
         child: Align(
           alignment: Alignment.center,

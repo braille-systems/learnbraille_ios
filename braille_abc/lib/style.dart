@@ -48,7 +48,7 @@ class AppColors {
   /// Continue button text color (practice screen)
   static const Color continueBtnTextIcon = Colors.black;
   ///
-  static const Color divider = Colors.black45;
+  static const Color divider = Colors.black;
 }
 
 
