@@ -55,7 +55,7 @@ class _SymbolState extends State<SymbolWidget> {
           height: widget.height,
           width: widget.width,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(20),
             color: AppColors.first,
           ),
           child: Wrap(
@@ -64,7 +64,7 @@ class _SymbolState extends State<SymbolWidget> {
             textDirection: widget.textDir(),
             spacing: 55.0 / 667 * widget.height,
             direction: Axis.vertical,
-            runSpacing: 40.0 / 667 * widget.height,
+            runSpacing: 45.0 / 667 * widget.height,
             children: symbol.dots
                 .map((item) => Semantics(
               label: SemanticNames.getName(SemanticsType.Dot) +
