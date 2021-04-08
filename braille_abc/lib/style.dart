@@ -102,7 +102,7 @@ class AppDecorations {
   static BoxDecoration letterWidget =  BoxDecoration(
     color: AppColors.symbolContainer,
     border: Border.all(color: AppColors.symbolBoarder, width: 7.0),
-    borderRadius: BorderRadius.circular(30.0),
+    borderRadius: BorderRadius.circular(25.0),
   );
 
   static BoxDecoration studyItem = BoxDecoration(
