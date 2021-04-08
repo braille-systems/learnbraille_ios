@@ -151,7 +151,6 @@ class _ModeButtonState extends State<ModeButton> {
       ),
       child: Icon(
         AppIcon.getIcon(AppIcons.ChangeModeButton),
-        size: ScreenParams.width(10, context),
         color: AppColors.sideIcon,
         semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
       ),
