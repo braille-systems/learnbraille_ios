@@ -7,6 +7,7 @@ import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
 import 'package:braille_abc/components/practice_button_widget.dart';
+import 'package:flutter/rendering.dart';
 
 @immutable
 class LetterButtons extends StatefulWidget{
@@ -147,6 +148,7 @@ class _ModeButtonState extends State<ModeButton> {
               widget.letter._dir = TextDirection.ltr;
             }
           });
+          SemanticsService.announce("Режим изменен", TextDirection.ltr);
         },
       ),
       child: Icon(
