@@ -55,7 +55,7 @@ class _SymbolState extends State<SymbolWidget> {
           height: widget.height,
           width: widget.width,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(25),
             color: AppColors.first,
           ),
           child: Wrap(
