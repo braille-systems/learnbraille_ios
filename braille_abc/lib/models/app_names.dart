@@ -103,10 +103,10 @@ class ResultsPair {
 class ResultsInfo {
   ResultsInfo(Results results) {
     _resultsMap = {
-      ResultsPositions.StepCounter: ResultsPair("Всего пройдено", results.stepCounter),
-      ResultsPositions.CorrectAnswers: ResultsPair("Верно", results.correctAnswerCounter),
-      ResultsPositions.HintCounter: ResultsPair("Подсказок использовано", 0),
-      ResultsPositions.GeneralInfo: ResultsPair("Общие результаты", 0),
+      ResultsPositions.StepCounter: ResultsPair("Всего пройдено:", results.stepCounter),
+      ResultsPositions.CorrectAnswers: ResultsPair("Верно:", results.correctAnswerCounter),
+      ResultsPositions.HintCounter: ResultsPair("Подсказок использовано:", 0),
+      ResultsPositions.GeneralInfo: ResultsPair("Общие результаты:", 0),
     };
   }
 

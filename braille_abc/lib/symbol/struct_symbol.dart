@@ -61,6 +61,11 @@ abstract class Symbol {
     return char;
   }
 
+
+  String getShortChar(){
+    return char;
+  }
+
 }
 
 @immutable
@@ -73,17 +78,26 @@ class RussianSymbol extends Symbol {
 @immutable
 class PunctuationSymbol extends Symbol {
   static final SectionType groupName = SectionType.PunctuationSymbols;
+  final String shortChar;
+  const PunctuationSymbol({String char, List<DotImage> list, this.shortChar}) : super (dots: list, char: char);
 
-  const PunctuationSymbol({String char, List<DotImage> list}) : super (dots: list, char: char);
+  @override
+  String getShortChar(){
+    return shortChar;
+  }
 
 }
 
 @immutable
 class ArithmeticSymbol extends Symbol {
   static final SectionType groupName = SectionType.ArithmeticSymbols;
+  final String shortChar;
+  const ArithmeticSymbol({String char, List<DotImage> list, this.shortChar}) : super (dots: list, char: char);
 
-  const ArithmeticSymbol({String char, List<DotImage> list}) : super (dots: list, char: char);
-
+  @override
+  String getShortChar(){
+    return shortChar;
+  }
 }
 
 @immutable

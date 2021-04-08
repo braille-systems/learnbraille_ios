@@ -10,7 +10,9 @@ import 'package:flutter/material.dart';
 
 @immutable
 class ResultsScreen extends NavigationScreen {
-  const ResultsScreen({Key key, Widget helpPage, Widget previousPage})
+  final Results results;
+
+  const ResultsScreen({Key key, Widget helpPage, Widget previousPage, this.results})
       : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override
@@ -32,7 +34,7 @@ class ResultsScreen extends NavigationScreen {
               ),
               Container(
                 height: ScreenParams.heightIOS14(80, context),
-                child: ResultsInfoWidget(results: ResultsInfo(PracticeResults.getResults())),
+                child: ResultsInfoWidget(results: ResultsInfo(results)),
               ),
               SizedBox(
                 height: 15,

@@ -47,6 +47,8 @@ class AppColors {
   /** Other...**/
   /// Continue button text color (practice screen)
   static const Color continueBtnTextIcon = Colors.black;
+  ///
+  static const Color divider = Colors.black45;
 }
 
 
@@ -75,6 +77,13 @@ class AppDecorations {
 
   static ButtonStyle changeDirButton = ElevatedButton.styleFrom(
     primary: AppColors.sideBtn,
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15))),
+    padding: EdgeInsets.symmetric(vertical: 30),
+  );
+
+  static ButtonStyle hintButton = ElevatedButton.styleFrom(
+    primary: AppColors.first,
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15))),
     padding: EdgeInsets.symmetric(vertical: 30),

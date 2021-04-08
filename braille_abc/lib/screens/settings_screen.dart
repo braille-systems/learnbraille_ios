@@ -22,7 +22,7 @@ class SettingsScreen extends NavigationScreen {
           title: ScreenNames.getName(ScreenType.Settings),
         ),
         child: SafeArea(
-          child: Center(child: Text('settings')),
+          child: Center(child: Text('Раздел в разработке...')),
         ),
       ),
     );

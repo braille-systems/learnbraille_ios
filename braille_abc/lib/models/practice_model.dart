@@ -31,7 +31,9 @@ class PracticeResults {
   static int _stepCounter = 0;
   static int _correctAnswerCounter = 0;
 
-  static Results getResults() => Results(_stepCounter, _correctAnswerCounter);
+  static Results getResults() {
+    return Results(_stepCounter, _correctAnswerCounter);
+  }
 
   static void resetAnswer() {
     for(var i = 0; i < _answer.length; ++i) {
@@ -58,10 +60,6 @@ class PracticeResults {
     assert(1 <= dotNum && dotNum <= 6);
     _answer[dotNum - 1] = !_answer[dotNum - 1];
   }
-
-  // static int getStepCounter() => _stepCounter;
-
-  // static int getCorrectAnswerCounter() => _correctAnswerCounter;
 
   static bool checkAnswer(List<bool> correctAnswer) {
     assert(_answer.length == correctAnswer.length);
