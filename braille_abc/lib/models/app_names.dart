@@ -65,6 +65,7 @@ enum SemanticsType {
   ExpandableList,
   TapToOpen,
   BackToMainMenu,
+  Results,
 }
 
 @immutable
@@ -79,6 +80,7 @@ class SemanticNames {
     SemanticsType.ExpandableList: "выпадающий список.",
     SemanticsType.TapToOpen: "Нажмите, чтобы открыть.",
     SemanticsType.BackToMainMenu: "Вернуться на главное меню",
+    SemanticsType.Results: "Результаты",
   };
 
   static String getName(SemanticsType type) {

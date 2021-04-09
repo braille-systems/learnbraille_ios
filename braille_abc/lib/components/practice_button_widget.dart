@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -22,10 +23,8 @@ import 'package:braille_abc/screens/letter_screen.dart';
 class ContinueButtonWidget extends StatefulWidget {
   ContinueButtonWidget();
 
-  final _ContinueButtonWidget state = _ContinueButtonWidget();
-
   @override
-  State<ContinueButtonWidget> createState() => state;
+  State<ContinueButtonWidget> createState() => _ContinueButtonWidget();
 }
 
 class _ContinueButtonWidget extends State<ContinueButtonWidget> {
@@ -35,27 +34,27 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
         style: AppDecorations.continueButton,
-        onPressed: Practice.getPool().isNotEmpty
-            ? () {
-                scakey.currentState.displayTapBar(false);
-                PracticeSymbol.update();
-                PracticeSymbol.addAllGroup();
-                PracticeSymbol.nextSymbol();
-                Navigator.of(context).push(
-                  CupertinoPageRoute(
-                    builder: (context) => LetterScreen(
-                      symbol: PracticeSymbol.getSymbol(),
-                      shortSymbol: PracticeSymbol.getShortSymbol(),
-                      sectionName: PracticeSymbol.getSectionType(),
-                      screenType: ScreenType.Practice,
-                      previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                      helpPage: Help(helpName: HelpSections.LetterPractice),
-                      isDotsTouchable: true,
-                    ),
-                  ),
-                );
-              }
-            : null,
+        onPressed: () {
+          if(Practice.getPool().isNotEmpty) {
+            scakey.currentState.displayTapBar(false);
+            PracticeSymbol.update();
+            PracticeSymbol.addAllGroup();
+            PracticeSymbol.nextSymbol();
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) => LetterScreen(
+                  symbol: PracticeSymbol.getSymbol(),
+                  shortSymbol: PracticeSymbol.getShortSymbol(),
+                  sectionName: PracticeSymbol.getSectionType(),
+                  screenType: ScreenType.Practice,
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  helpPage: Help(helpName: HelpSections.LetterPractice),
+                  isDotsTouchable: true,
+                ),
+              ),
+            );
+          }
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -82,11 +81,9 @@ class PracticeButtonWidget extends StatefulWidget {
   const PracticeButtonWidget({
     Key key,
     @required this.practiceButton,
-    @required this.stateButton,
   }) : super(key: key);
 
   final PracticeButton practiceButton;
-  final _ContinueButtonWidget stateButton;
 
   @override
   State<PracticeButtonWidget> createState() => _PracticeButtonWidget();
@@ -104,7 +101,6 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
         } else {
           Practice.removeSymbolGroup(widget.practiceButton.sectionType);
         }
-        widget.stateButton.setState(() {});
       },
     );
   }
