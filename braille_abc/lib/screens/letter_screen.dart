@@ -117,7 +117,7 @@ class _LetterViewState extends State<LetterView> {
               )
             ]),
             SizedBox(
-              height: ScreenParams.height(5, context),
+              height: ScreenParams.height(3, context),
             ),
             letterButtons,
           ],
