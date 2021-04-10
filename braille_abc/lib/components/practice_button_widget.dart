@@ -33,7 +33,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
     return Semantics(
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
-        style: AppDecorations.continueButton,
+        style: AppDecorations.navigationButton,
         onPressed: () {
           if(Practice.getPool().isNotEmpty) {
             scakey.currentState.displayTapBar(false);

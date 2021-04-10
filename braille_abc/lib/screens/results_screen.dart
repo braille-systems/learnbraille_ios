@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class ResultsScreen extends NavigationScreen {
+class ResultsScreen extends SectionScreen {
   final Results results;
 
   const ResultsScreen({Key key, Widget helpPage, Widget previousPage, this.results})

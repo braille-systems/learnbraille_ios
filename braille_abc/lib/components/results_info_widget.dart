@@ -108,12 +108,7 @@ class _BackButtonWidget extends State<BackButtonWidget> {
     return Semantics(
       label: SemanticNames.getName(SemanticsType.BackToMainMenu),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: AppColors.first,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25.0),
-          ),
-        ),
+        style: AppDecorations.navigationButton,
         onPressed: () {
           Navigator.of(context).pushAndRemoveUntil(
               CupertinoPageRoute(builder: (BuildContext context) => PracticeScreen()), (Route<dynamic> route) => false);

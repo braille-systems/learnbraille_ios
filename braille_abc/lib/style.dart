@@ -54,7 +54,7 @@ class AppColors {
 
 /// App button styles
 class AppDecorations {
-  static ButtonStyle continueButton = ElevatedButton.styleFrom(
+  static ButtonStyle navigationButton = ElevatedButton.styleFrom(
     primary: AppColors.first,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(25.0),
