@@ -118,16 +118,13 @@ jobs:
           mkdir -p "$SSH_PATH"
           touch "$SSH_PATH/known_hosts"
           
-          echo "stage one"
           echo "$PRIVATE_KEY" > "$SSH_PATH/id_ed25519"
           
-          echo "stage two"
           chmod 700 "$SSH_PATH"
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           chmod 600 "$SSH_PATH/known_hosts"
           chmod 600 "$SSH_PATH/id_ed25519"
           
-          echo "stage three"
           eval $(ssh-agent)
           ssh-add "$SSH_PATH/id_ed25519"
         env:
