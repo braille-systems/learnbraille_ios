@@ -35,7 +35,6 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
       child: ElevatedButton(
         style: AppDecorations.navigationButton,
         onPressed: Practice.isNotEmpty.value ? () {
-          //if(Practice.getPool().isNotEmpty) {
             scakey.currentState.displayTapBar(false);
             PracticeSymbol.update();
             PracticeSymbol.addAllGroup();
