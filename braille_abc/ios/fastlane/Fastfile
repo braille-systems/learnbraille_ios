@@ -28,7 +28,11 @@ platform :ios do
         timeout: 3600,
         lock_when_sleeps: false
       )
-    end    
+    end
+
+    #unlock_keychain(
+    #  password: ENV["MATCH_KEYCHAIN_PASSWORD"]
+    #)
     
     match(
       type: "appstore",
@@ -36,7 +40,7 @@ platform :ios do
       keychain_name: ENV['MATCH_KEYCHAIN_NAME'],
       keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
     )
-    
+
     build_app(
       workspace: "Runner.xcworkspace",
       scheme: "Runner",
