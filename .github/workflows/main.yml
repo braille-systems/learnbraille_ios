@@ -96,7 +96,7 @@ jobs:
   deploy_testflight:
     name: Deploy to IOS TestFlight
     runs-on: macos-latest
-    needs: [build_ios, build_android]
+    #needs: [build_ios, build_android]
 
     steps:
       - uses: actions/checkout@v2
