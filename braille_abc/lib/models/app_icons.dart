@@ -15,6 +15,7 @@ enum AppIcons
   ChangeModeButton,
   HintButton,
   NextStep,
+  TipButton,
 
   RussianAlphabetSection,
   NumbersSection,
@@ -43,6 +44,7 @@ class AppIcon
     AppIcons.ChangeModeButton : CupertinoIcons.arrow_right_arrow_left,
     AppIcons.HintButton : CupertinoIcons.quote_bubble_fill,
     AppIcons.NextStep : CupertinoIcons.arrow_right,
+    AppIcons.TipButton : CupertinoIcons.lightbulb,
 
     AppIcons.Add : CupertinoIcons.add,
     AppIcons.GeneralHelpInHelpScreen : CupertinoIcons.info,
