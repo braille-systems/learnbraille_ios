@@ -56,7 +56,13 @@ class PracticeScreen extends NavigationScreen {
                   ),
                   Container(
                     height: 48,
-                    child: ContinueButtonWidget(),
+                    //child: ContinueButtonWidget(),
+                    child: ValueListenableBuilder<bool>(
+                      valueListenable: Practice.isNotEmpty,
+                      builder: (context, value, child){
+                        return ContinueButtonWidget();
+                      }
+                    ),
                   )
                 ],
               ),
