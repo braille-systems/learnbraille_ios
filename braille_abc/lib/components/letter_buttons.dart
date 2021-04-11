@@ -40,6 +40,7 @@ class LetterButtons extends StatefulWidget{
 abstract class _LetterButtonsState extends State<LetterButtons>{
   TextDirection _dir = TextDirection.ltr;
   OnPressButton pressed;
+  bool isTapped;
 
   @override
   Widget build(BuildContext context);
@@ -78,6 +79,11 @@ class DictionaryButtonsState extends _LetterButtonsState{
 }
 
 class PracticeButtonsState extends _LetterButtonsState{
+
+  PracticeButtonsState(){
+    isTapped = true;
+  }
+
   @override
   Widget build(BuildContext context){
     TextDirection mode() {
@@ -96,7 +102,7 @@ class PracticeButtonsState extends _LetterButtonsState{
         SymbolWidget(
             textDir: mode,
             char: widget.symbol,
-            isTapped: true,
+            isTapped: isTapped,
             width: ScreenParams.width(57, context),
             height: ScreenParams.height(45, context),
             dictSection: widget.sectionName),
@@ -203,6 +209,7 @@ class _TipButtonState extends State<TipButton> {
       onPressed: () => setState(
             () {
           widget.letter.setState(() {
+            widget.letter.isTapped = !widget.letter.isTapped;
           });
         },
       ),
