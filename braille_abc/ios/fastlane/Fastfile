@@ -31,7 +31,6 @@ platform :ios do
     end
 
     unlock_keychain(
-      name: ENV['MATCH_KEYCHAIN_NAME'],
       password: ENV["MATCH_KEYCHAIN_PASSWORD"]
     )
     
