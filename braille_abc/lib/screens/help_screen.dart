@@ -33,7 +33,7 @@ class HelpScreen extends Screen {
                   height: 5,
                 ),
                 currentHelp,
-                GeneralHelp(),
+                Help(helpName:HelpSections.General),
               ]),
             ),
           ),
