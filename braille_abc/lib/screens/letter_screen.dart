@@ -81,7 +81,6 @@ class _LetterViewState extends State<LetterView> {
 
   @override
   Widget build(BuildContext context) {
-
     switch (widget.screenType) {
       //add buttons realization
       case ScreenType.Practice:
@@ -93,7 +92,11 @@ class _LetterViewState extends State<LetterView> {
         break;
     }
 
-    LetterButtons letterButtons = LetterButtons(sectionName: widget.sectionName, screenType: widget.screenType, symbol: widget.symbol, shortSymbol: widget.shortSymbol);
+    LetterButtons letterButtons = LetterButtons(
+        sectionName: widget.sectionName,
+        screenType: widget.screenType,
+        symbol: widget.symbol,
+        shortSymbol: widget.shortSymbol);
 
     return nonSwipeable(
       context,
