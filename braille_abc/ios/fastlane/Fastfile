@@ -30,9 +30,9 @@ platform :ios do
       )
     end
 
-    unlock_keychain(
-      password: ENV["MATCH_KEYCHAIN_PASSWORD"]
-    )
+    #unlock_keychain(
+    #  password: ENV["MATCH_KEYCHAIN_PASSWORD"]
+    #)
     
     match(
       type: "appstore",
@@ -41,10 +41,11 @@ platform :ios do
       keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
     )
 
-    gym(
+    build_app(
       workspace: "Runner.xcworkspace",
       scheme: "Runner",
-      export_method: "app-store"
+      export_method: "app-store",
+      xcargs: "-allowProvisioningUpdates"
     )
     
     upload_to_testflight
