@@ -47,12 +47,14 @@ class AppColors {
   /** Other...**/
   /// Continue button text color (practice screen)
   static const Color continueBtnTextIcon = Colors.black;
+  ///
+  static const Color divider = Colors.black;
 }
 
 
 /// App button styles
 class AppDecorations {
-  static ButtonStyle continueButton = ElevatedButton.styleFrom(
+  static ButtonStyle navigationButton = ElevatedButton.styleFrom(
     primary: AppColors.first,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(25.0),

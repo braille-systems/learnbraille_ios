@@ -1,95 +1,61 @@
-
+import 'package:braille_abc/models/practice_model.dart';
 import 'package:flutter/cupertino.dart';
 
-enum SectionType
-{
-  RussianSymbols,
-  Numbers,
-  ArithmeticSymbols,
-  PunctuationSymbols,
-  Signs
-}
+enum SectionType { RussianSymbols, Numbers, ArithmeticSymbols, PunctuationSymbols, Signs }
 
 @immutable
-class SectionNames
-{
-  static const Map<SectionType, String> stringOfSectionsMap =
-  {
-    SectionType.RussianSymbols : "Русский алфавит",
-    SectionType.Numbers : "Цифры",
-    SectionType.ArithmeticSymbols : "Арифметические знаки",
-    SectionType.PunctuationSymbols : "Знаки препинания",
-    SectionType.Signs : "Признаки"
+class SectionNames {
+  static const Map<SectionType, String> stringOfSectionsMap = {
+    SectionType.RussianSymbols: "Русский алфавит",
+    SectionType.Numbers: "Цифры",
+    SectionType.ArithmeticSymbols: "Арифметические знаки",
+    SectionType.PunctuationSymbols: "Знаки препинания",
+    SectionType.Signs: "Признаки"
   };
 
-  static String getName(SectionType type)
-  {
-      return stringOfSectionsMap[type];
+  static String getName(SectionType type) {
+    return stringOfSectionsMap[type];
   }
 }
 
-
-enum ScreenType
-{
-  Dictionary,
-  Help,
-  Home,
-  Letter,
-  Practice,
-  Settings,
-  Study
-}
+enum ScreenType { Dictionary, Help, Home, Letter, Practice, Settings, Study, Results }
 
 @immutable
-class ScreenNames
-{
-  static const Map<ScreenType, String> stringOfScreensMap =
-  {
-    ScreenType.Dictionary : "Словарь",
-    ScreenType.Help : "Справка",
-    ScreenType.Home : "Меню",
-    ScreenType.Letter : "Просмотр символа",
+class ScreenNames {
+  static const Map<ScreenType, String> stringOfScreensMap = {
+    ScreenType.Dictionary: "Словарь",
+    ScreenType.Help: "Справка",
+    ScreenType.Home: "Меню",
+    ScreenType.Letter: "Просмотр символа",
     ScreenType.Practice: "Практика",
     ScreenType.Settings: "Настройки",
     ScreenType.Study: "Обучение",
+    ScreenType.Results: "Результаты",
   };
 
-  static String getName(ScreenType type)
-  {
+  static String getName(ScreenType type) {
     return stringOfScreensMap[type];
   }
 }
 
-
-enum XmlItemType
-{
-  MainMenu,
-  GeneralHelp,
-  Alphabet,
-  SymbolView,
-  PracticeSections
-}
+enum XmlItemType { MainMenu, GeneralHelp, Alphabet, SymbolView, PracticeSections }
 
 @immutable
-class XmlNames
-{
-  static const Map<XmlItemType, String> stringOfXmlItemMap =
-  {
-    XmlItemType.Alphabet : "Алфавит",
-    XmlItemType.GeneralHelp : "Общая справка",
-    XmlItemType.MainMenu : "Главное меню",
-    XmlItemType.SymbolView : "Просмотр символа",
-    XmlItemType.PracticeSections : "Разделы практики",
+class XmlNames {
+  static const Map<XmlItemType, String> stringOfXmlItemMap = {
+    XmlItemType.Alphabet: "Алфавит",
+    XmlItemType.GeneralHelp: "Общая справка",
+    XmlItemType.MainMenu: "Главное меню",
+    XmlItemType.SymbolView: "Просмотр символа",
+    XmlItemType.PracticeSections: "Разделы практики",
   };
 
-  static String getName(XmlItemType type)
-  {
+  static String getName(XmlItemType type) {
     return stringOfXmlItemMap[type];
   }
 }
 
-enum SemanticsType
-{
+enum SemanticsType {
   ChangeMode,
   Back,
   Dot,
@@ -98,28 +64,58 @@ enum SemanticsType
   Continue,
   ExpandableList,
   TapToOpen,
+  BackToMainMenu,
+  Results,
 }
 
 @immutable
-class SemanticNames
-{
-  static const Map<SemanticsType, String> stringOfSemanticsMap =
-  {
-    SemanticsType.ChangeMode : "Изменить режим",
-    SemanticsType.Back : "Назад",
+class SemanticNames {
+  static const Map<SemanticsType, String> stringOfSemanticsMap = {
+    SemanticsType.ChangeMode: "Изменить режим",
+    SemanticsType.Back: "Назад",
     SemanticsType.Dot: "Точка",
-    SemanticsType.Painted : "закрашена",
-    SemanticsType.NotPainted : "не закрашена",
-    SemanticsType.Continue : "Продолжить",
-    SemanticsType.ExpandableList : "выпадающий список.",
-    SemanticsType.TapToOpen : "Нажмите, чтобы открыть."
+    SemanticsType.Painted: "закрашена",
+    SemanticsType.NotPainted: "не закрашена",
+    SemanticsType.Continue: "Продолжить",
+    SemanticsType.ExpandableList: "выпадающий список.",
+    SemanticsType.TapToOpen: "Нажмите, чтобы открыть.",
+    SemanticsType.BackToMainMenu: "Вернуться на главное меню",
+    SemanticsType.Results: "Результаты",
   };
 
-  static String getName(SemanticsType type)
-  {
+  static String getName(SemanticsType type) {
     return stringOfSemanticsMap[type];
   }
 }
 
+enum ResultsPositions {
+  StepCounter,
+  CorrectAnswers,
+  HintCounter,
+  GeneralInfo,
+}
 
+class ResultsPair {
+  ResultsPair(this.name, this.value);
 
+  final String name;
+  int value;
+}
+
+class ResultsInfo {
+  ResultsInfo(Results results) {
+    _resultsMap = {
+      ResultsPositions.StepCounter: ResultsPair("Всего пройдено:", results.stepCounter),
+      ResultsPositions.CorrectAnswers: ResultsPair("Верно:", results.correctAnswerCounter),
+      ResultsPositions.HintCounter: ResultsPair("Подсказок использовано:", 0),
+      ResultsPositions.GeneralInfo: ResultsPair("Общие результаты:", 0),
+    };
+  }
+
+  ResultsPair getResultsInfo(ResultsPositions position) => _resultsMap[position];
+
+  List<ResultsPositions> getDetailPositionsPool() =>
+      [ResultsPositions.StepCounter, ResultsPositions.CorrectAnswers, ResultsPositions.HintCounter];
+
+  Map<ResultsPositions, ResultsPair> _resultsMap;
+}
