@@ -138,9 +138,7 @@ jobs:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       
       - name: Deploy to TestFlight
-        run: |
-          sed -i '' 's/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/' Runner.xcodeproj/project.pbxproj
-          bundle exec fastlane beta
+        run: bundle exec fastlane beta
         working-directory: ./braille_abc/ios
         env:
           TEAM_ID: ${{ secrets.TEAM_ID }}
