@@ -7,7 +7,7 @@ on:
 
 jobs:
   artifact_android:
-    name: Build with Flutter for Android
+    name: Build Android artifact
     runs-on: ubuntu-latest
 
     steps:
