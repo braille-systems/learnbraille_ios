@@ -30,10 +30,6 @@ platform :ios do
       )
     end
 
-    #unlock_keychain(
-    #  password: ENV["MATCH_KEYCHAIN_PASSWORD"]
-    #)
-    
     match(
       type: "appstore",
       readonly: is_ci,
