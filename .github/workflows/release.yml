@@ -11,9 +11,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+       # Git checkout wit lfs caching
       - uses: actions/checkout@v2
         with:
-          lfs: true 
+          lfs: true
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}-v1
+
+      # Setup flutter from stable and java 11
       - uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
@@ -21,12 +32,14 @@ jobs:
         with:
           java-version: '11.x'
 
+      # Setup env and build
       - run: git lfs pull
       - run: flutter pub get
         working-directory: ./braille_abc
       - run: flutter build apk --release --no-tree-shake-icons
         working-directory: ./braille_abc
       
+      # Upload apk artifact
       - uses: actions/upload-artifact@v1
         with:
           name: release-apk
@@ -39,10 +52,12 @@ jobs:
     needs: [artifact_android]
 
     steps:
+      # Git checkout without lfs
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       
+      # Download artifact from previous job
       - uses: actions/download-artifact@v1
         with:
           name: release-apk
