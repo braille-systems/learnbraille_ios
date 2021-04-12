@@ -38,7 +38,7 @@ class ScreenNames {
   }
 }
 
-enum XmlItemType { MainMenu, GeneralHelp, Alphabet, SymbolView, PracticeSections }
+enum XmlItemType { MainMenu, GeneralHelp, Alphabet, SymbolView, PracticeSections, PracticeResult }
 
 @immutable
 class XmlNames {
@@ -48,6 +48,7 @@ class XmlNames {
     XmlItemType.MainMenu: "Главное меню",
     XmlItemType.SymbolView: "Просмотр символа",
     XmlItemType.PracticeSections: "Разделы практики",
+    XmlItemType.PracticeResult: "Результаты",
   };
 
   static String getName(XmlItemType type) {
@@ -68,6 +69,10 @@ enum SemanticsType {
   Results,
   Selected,
   NotSelected,
+  Hint,
+  ChosenMode,
+  Reading,
+  Writing
 }
 
 @immutable
@@ -85,6 +90,10 @@ class SemanticNames {
     SemanticsType.Results: "Результаты",
     SemanticsType.Selected: " выбрано",
     SemanticsType.NotSelected: " не выбрано",
+    SemanticsType.Hint: "Подсказка",
+    SemanticsType.ChosenMode: "Сейчас выбран режим ",
+    SemanticsType.Reading: "чтения",
+    SemanticsType.Writing: "записи",
   };
 
   static String getName(SemanticsType type) {
