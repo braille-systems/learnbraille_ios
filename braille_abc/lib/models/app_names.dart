@@ -66,6 +66,10 @@ enum SemanticsType {
   TapToOpen,
   BackToMainMenu,
   Results,
+  Hint,
+  ChosenMode,
+  Reading,
+  Writing
 }
 
 @immutable
@@ -81,6 +85,10 @@ class SemanticNames {
     SemanticsType.TapToOpen: "Нажмите, чтобы открыть.",
     SemanticsType.BackToMainMenu: "Вернуться на главное меню",
     SemanticsType.Results: "Результаты",
+    SemanticsType.Hint: "Подсказка",
+    SemanticsType.ChosenMode: "Сейчас выбран режим ",
+    SemanticsType.Reading: "чтения",
+    SemanticsType.Writing: "записи",
   };
 
   static String getName(SemanticsType type) {
