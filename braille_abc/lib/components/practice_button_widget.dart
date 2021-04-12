@@ -224,7 +224,7 @@ class NewPracticeState extends OnPressButton {
         CupertinoPageRoute(
           builder: (context) => ResultsScreen(
             helpPage: Help(
-              helpName: HelpSections.Practice,
+              helpName: HelpSections.PracticeResult,
             ),
             previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
             results: results,

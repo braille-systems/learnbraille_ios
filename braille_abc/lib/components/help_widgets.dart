@@ -17,6 +17,7 @@ enum HelpSections {
   LetterPractice,
   Dictionary,
   LetterView,
+  PracticeResult,
 }
 
 @immutable
@@ -64,13 +65,18 @@ class Help extends Screen {
           AppIcon.getIcon(AppIcons.ChangeModeButton),
         ];
         return buildHelp(subIcon, XmlNames.getName(XmlItemType.SymbolView));
+      case  HelpSections.PracticeResult:
+        List<IconData> subIcon = [
+          AppIcon.getIcon(AppIcons.BackButton),
+        ];
+        return buildHelp(subIcon, XmlNames.getName(XmlItemType.PracticeResult));
       default:
         return null;
     }
   }
 
 
-  Column buildHelp(List<IconData> subIcon, String helpPage) {
+  Column buildHelp(List<IconData> subIcon, String helpPage, {bool general = false}) {
     return Column(
       children: [
         Html(
