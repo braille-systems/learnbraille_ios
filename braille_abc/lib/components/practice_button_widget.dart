@@ -108,6 +108,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
   Widget build(BuildContext context) {
     return Semantics(
       label: SectionNames.getName(widget.practiceButton.sectionType),
+      hint: (checkBox) ? SemanticNames.getName(SemanticsType.Selected) : SemanticNames.getName(SemanticsType.NotSelected),
       child: Card(
         elevation: 3,
         margin: EdgeInsets.symmetric(vertical: 2),
@@ -120,12 +121,14 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             size: 45,
           ),
           title: Align(
-            alignment: Alignment.centerLeft,
-            child: AutoSizeText(
-              SectionNames.getName(widget.practiceButton.sectionType),
-              style: TextStyle(fontSize: 22, color: AppColors.symbolText, fontWeight: FontWeight.w400),
-              maxLines: 2,
-            ),
+              alignment: Alignment.centerLeft,
+              child: ExcludeSemantics(
+                child: AutoSizeText(
+                  SectionNames.getName(widget.practiceButton.sectionType),
+                  style: TextStyle(fontSize: 22, color: AppColors.symbolText, fontWeight: FontWeight.w400),
+                  maxLines: 2,
+                ),
+              )
           ),
           trailing: CupertinoSwitch(
             activeColor: AppColors.first,
@@ -227,7 +230,7 @@ class NewPracticeState extends OnPressButton {
         CupertinoPageRoute(
           builder: (context) => ResultsScreen(
             helpPage: Help(
-              helpName: HelpSections.Practice,
+              helpName: HelpSections.PracticeResult,
             ),
             previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
             results: results,
