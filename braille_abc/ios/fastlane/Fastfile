@@ -51,6 +51,6 @@ platform :ios do
       export_method: "app-store"
     )
     
-    upload_to_testflight(api_key_path: "./api_key.json")
+    upload_to_testflight
   end
 end
