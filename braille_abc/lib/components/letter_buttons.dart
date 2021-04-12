@@ -143,25 +143,28 @@ class ModeButton extends StatefulWidget {
 class _ModeButtonState extends State<ModeButton> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: AppDecorations.changeDirButton,
-      onPressed: () => setState(
-            () {
-          widget.letter.setState(() {
-            if (widget.letter._dir == TextDirection.ltr) {
-              widget.letter._dir = TextDirection.rtl;
-            } else {
-              widget.letter._dir = TextDirection.ltr;
-            }
-          });
-          SemanticsService.announce("Режим изменен", TextDirection.ltr);
-        },
-      ),
-      child: Icon(
-        AppIcon.getIcon(AppIcons.ChangeModeButton),
-        color: AppColors.sideIcon,
-        semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
-      ),
+    return Semantics(
+      label: SemanticNames.getName(SemanticsType.ChangeMode),
+      hint: "Сейчас выбран режим " + ((widget.letter._dir == TextDirection.ltr) ? "чтения" : "записи"),
+      child: ElevatedButton(
+          style: AppDecorations.changeDirButton,
+          onPressed: () => setState(
+                () {
+              widget.letter.setState(() {
+                if (widget.letter._dir == TextDirection.ltr) {
+                  widget.letter._dir = TextDirection.rtl;
+                } else {
+                  widget.letter._dir = TextDirection.ltr;
+                }
+              });
+            },
+          ),
+          child: ExcludeSemantics(
+            child: Icon(
+              AppIcon.getIcon(AppIcons.ChangeModeButton),
+              color: AppColors.sideIcon,
+            ),
+          )),
     );
   }
 }
