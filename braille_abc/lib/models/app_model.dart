@@ -72,7 +72,7 @@ class AppModel {
       icon: AppIcon.getIcon(AppIcons.RussianAlphabetSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _alphabet.listOfStudyItems(SectionType.RussianSymbols),
+        children: _alphabet.listOfStudyItems(SectionType.RussianSymbols, true),
       ),
     ),
     SectionModel(
@@ -80,7 +80,7 @@ class AppModel {
       icon: AppIcon.getIcon(AppIcons.NumbersSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _alphabet.listOfStudyItems(SectionType.Numbers),
+        children: _alphabet.listOfStudyItems(SectionType.Numbers, true),
       ),
     ),
     SectionModel(
@@ -88,7 +88,7 @@ class AppModel {
       icon: AppIcon.getIcon(AppIcons.PunctuationSymbolsSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _alphabet.listOfStudyItems(SectionType.PunctuationSymbols),
+        children: _alphabet.listOfStudyItems(SectionType.PunctuationSymbols, true),
       ),
     ),
     SectionModel(
@@ -96,7 +96,7 @@ class AppModel {
       icon: AppIcon.getIcon(AppIcons.ArithmeticSymbolsSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _alphabet.listOfStudyItems(SectionType.ArithmeticSymbols),
+        children: _alphabet.listOfStudyItems(SectionType.ArithmeticSymbols, true),
       ),
     ),
     SectionModel(
@@ -104,7 +104,7 @@ class AppModel {
       icon: AppIcon.getIcon(AppIcons.SignsSection),
       expandedList: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _alphabet.listOfStudyItems(SectionType.Signs),
+        children: _alphabet.listOfStudyItems(SectionType.Signs, true),
       ),
     ),
   ];

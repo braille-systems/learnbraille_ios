@@ -22,7 +22,7 @@ class StudyScreen extends NavigationScreen {
           title: ScreenNames.getName(ScreenType.Study),
         ),
         child: SafeArea(
-          child: Center(child: Text('Study')),
+          child: Center(child: Text('Раздел в разработке...')),
         ),
       ),
     );

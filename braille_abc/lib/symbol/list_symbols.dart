@@ -52,19 +52,19 @@ class SymbolsFactory {
       case SectionType.PunctuationSymbols:
         {
           List<Symbol> punctuationMarks = <Symbol>[
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2]), char: "Запятая"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 6]), char: "Дефис"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 5, 6]), char: "Точка"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5]), char: "Восклицательный знак"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 6]), char: "Вопросительный знак"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 3, 6]), char: "Открывающая кавычка"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 5, 6]), char: "Закрывающая кавычка"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[1, 2, 6]), char: "Левая литеральная скобка"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 4, 5]), char: "Правая литеральная скобка"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 5]), char: "Звёздочка"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 5]), char: "Двоеточие"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 3]), char: "Точка с запятой"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[4]), char: "Ударение"),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2]), char: "Запятая", shortChar: ","),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 6]), char: "Дефис", shortChar: "-"),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 5, 6]), char: "Точка", shortChar: "."),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5]), char: "Восклицательный знак", shortChar: "!"),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 6]), char: "Вопросительный знак", shortChar: "?"),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 3, 6]), char: "Открывающая кавычка", shortChar: "«"),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 5, 6]), char: "Закрывающая кавычка", shortChar: "»"),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[1, 2, 6]), char: "Левая литеральная скобка", shortChar: "("),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 4, 5]), char: "Правая литеральная скобка", shortChar: ")"),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 5]), char: "Звёздочка", shortChar: "*"),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 5]), char: "Двоеточие", shortChar: ":"),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 3]), char: "Точка с запятой", shortChar: ";"),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[4]), char: "Ударение", shortChar: "'"),
           ];
           return punctuationMarks;
         }
@@ -73,17 +73,18 @@ class SymbolsFactory {
       case SectionType.ArithmeticSymbols:
         {
           List<Symbol> arithmeticSigns = <Symbol>[
-            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5]), char: "Знак Плюс"),
-            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[3, 6]), char: "Знак Минус"),
-            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[3]), char: "Знак умножения точкой"),
-            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 6]), char: "Знак умножения крестом"),
-            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[3, 5, 6]), char: "Знак деления (углом)"),
-            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 5, 6]), char: "Знак деления (двумя точками)"),
-            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5, 6]), char: "Знак равества"),
+            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5]), char: "Знак Плюс",shortChar: "+" ),
+            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[3, 6]), char: "Знак Минус", shortChar: "-"),
+            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[3]), char: "Знак умножения точкой", shortChar: "⋅"),
+            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 6]), char: "Знак умножения крестом", shortChar: "х"),
+            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[3, 5, 6]), char: "Знак деления (углом)", shortChar: "/"),
+            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 5, 6]), char: "Знак деления (двумя точками)", shortChar: ":"),
+            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5, 6]), char: "Знак равества", shortChar: "="),
           ];
           return arithmeticSigns;
         }
         break;
+
       case SectionType.Numbers:
         {
           List<Symbol> numbers = <Symbol>[
@@ -140,12 +141,16 @@ class Alphabet {
     return null;
   }
 
-  List<StudyItem> listOfStudyItems(SectionType key) {
+  List<StudyItem> listOfStudyItems(SectionType key, bool fullName) {
     List<StudyItem> lsi = [];
     List<Symbol> los = listOfSymbols(key);
     for (var symbol in los) {
       if (symbol.char != null) {
-        lsi.add(StudyItem(symbol: symbol, sectionName: key));
+        if(fullName) {
+          lsi.add(StudyItem(symbol: symbol, sectionName: key));
+        } else{
+          lsi.add(StudyItem(symbol: symbol, sectionName: key));
+        }
       }
     }
     return lsi;

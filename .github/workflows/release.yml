@@ -7,13 +7,24 @@ on:
 
 jobs:
   artifact_android:
-    name: Build with Flutter for Android
+    name: Build Android artifact
     runs-on: ubuntu-latest
 
     steps:
+       # Git checkout wit lfs caching
       - uses: actions/checkout@v2
         with:
-          lfs: true 
+          lfs: true
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}-v1
+
+      # Setup flutter from stable and java 11
       - uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
@@ -21,11 +32,14 @@ jobs:
         with:
           java-version: '11.x'
 
+      # Setup env and build
       - run: git lfs pull
       - run: flutter pub get
         working-directory: ./braille_abc
       - run: flutter build apk --release --no-tree-shake-icons
         working-directory: ./braille_abc
+      
+      # Upload apk artifact
       - uses: actions/upload-artifact@v1
         with:
           name: release-apk
@@ -38,35 +52,23 @@ jobs:
     needs: [artifact_android]
 
     steps:
+      # Git checkout without lfs
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       
+      # Download artifact from previous job
       - uses: actions/download-artifact@v1
         with:
           name: release-apk
 
-      # Collect tags info
-      - name: Get previous tag name
-        id: prevtag
-        uses: oprypin/find-latest-tag@v1
-        with:
-          repository: braille-systems/learnbraille_ios
-          releases-only: true
       - name: Get current tag name
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
-      # Generate changelog
-      - uses: actions/setup-node@v2
-      - run: npm install git-release-notes
-      - run: mkdir -p docs/release/${{ env.RELEASE_VERSION }}
-      - run: npx git-release-notes ${{ steps.prevtag.outputs.tag }}..${{ env.RELEASE_VERSION }} markdown > docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
-      
       # Create release
       - uses: softprops/action-gh-release@v1
         with:
           name: Learn Braille IOS ${{ env.RELEASE_VERSION }}
-          body_path: docs/release/${{ env.RELEASE_VERSION }}/CHANGELOG.md
           files: |
             LICENSE
             release-apk/app-release.apk

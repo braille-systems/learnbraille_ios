@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -13,31 +14,27 @@ import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/models/practice_button.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
-import 'package:braille_abc/screens/practice_screen.dart';
-
+import 'package:braille_abc/screens/results_screen.dart';
+import 'package:braille_abc/components/letter_buttons.dart';
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/screens/letter_screen.dart';
 
-
 @immutable
 class ContinueButtonWidget extends StatefulWidget {
-
   ContinueButtonWidget();
 
-  final _ContinueButtonWidget state = _ContinueButtonWidget();
-
   @override
-  State<ContinueButtonWidget> createState() => state;
+  State<ContinueButtonWidget> createState() => _ContinueButtonWidget();
 }
 
 class _ContinueButtonWidget extends State<ContinueButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    return  Semantics(
+    return Semantics(
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
-        style: AppDecorations.continueButton,
-        onPressed: Practice.getPool().isNotEmpty ? () {
+        style: AppDecorations.navigationButton,
+        onPressed: Practice.isNotEmpty.value ? () {
             scakey.currentState.displayTapBar(false);
             PracticeSymbol.update();
             PracticeSymbol.addAllGroup();
@@ -46,10 +43,11 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
               CupertinoPageRoute(
                 builder: (context) => LetterScreen(
                   symbol: PracticeSymbol.getSymbol(),
+                  shortSymbol: PracticeSymbol.getShortSymbol(),
                   sectionName: PracticeSymbol.getSectionType(),
                   screenType: ScreenType.Practice,
                   previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                  helpPage: Help(helpName:HelpSections.LetterPractice),
+                  helpPage: Help(helpName: HelpSections.LetterPractice),
                   isDotsTouchable: true,
                 ),
               ),
@@ -81,11 +79,9 @@ class PracticeButtonWidget extends StatefulWidget {
   const PracticeButtonWidget({
     Key key,
     @required this.practiceButton,
-    @required this.stateButton,
   }) : super(key: key);
 
   final PracticeButton practiceButton;
-  final _ContinueButtonWidget stateButton;
 
   @override
   State<PracticeButtonWidget> createState() => _PracticeButtonWidget();
@@ -94,7 +90,7 @@ class PracticeButtonWidget extends StatefulWidget {
 class _PracticeButtonWidget extends State<PracticeButtonWidget> {
   bool checkBox = false;
 
-    void onChanged(bool val) {
+  void onChanged(bool val) {
     setState(
       () {
         checkBox = val;
@@ -103,8 +99,6 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
         } else {
           Practice.removeSymbolGroup(widget.practiceButton.sectionType);
         }
-        widget.stateButton.setState(() {
-        });
       },
     );
   }
@@ -146,14 +140,16 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
 }
 
 class Pair {
-  Pair(this.symbol, this.title);
+  Pair(this.symbol, this.shortSymbol, this.title);
 
   void setPair(Pair pair) {
     symbol = pair.symbol;
+    shortSymbol = pair.shortSymbol;
     title = pair.title;
   }
 
   String symbol;
+  String shortSymbol;
   SectionType title;
 }
 
@@ -161,10 +157,10 @@ class PracticeSymbol {
   static void addAllGroup() {
     var pool = Practice.getPool();
     var factory = SymbolsFactory();
-    for(var item in pool) {
+    for (var item in pool) {
       var group = factory.createSymbolsGroup(item);
-      for(var symbol in group) {
-        _symbolsPool.add(Pair(symbol.char, item));
+      for (var symbol in group) {
+        _symbolsPool.add(Pair(symbol.getChar(), symbol.getShortChar(), item));
       }
     }
   }
@@ -184,22 +180,20 @@ class PracticeSymbol {
 
   static String getSymbol() => _curSymbol.symbol;
 
+  static String getShortSymbol() => _curSymbol.shortSymbol ?? _curSymbol.symbol;
+
   static SectionType getSectionType() => _curSymbol.title;
-  static final Pair _curSymbol = Pair(null, null);
+  static final Pair _curSymbol = Pair(null, null, null);
   static final List<Pair> _symbolsPool = [];
 }
 
-class NewPracticeState extends OnPressButton{
-
-  NewPracticeState(
-    ScreenType screenType,
-    String symbol,
-    SectionType sectionName): super(screenType: screenType, symbol: symbol, sectionName: sectionName);
+class NewPracticeState extends OnPressButton {
+  NewPracticeState(ScreenType screenType, String symbol, SectionType sectionName)
+      : super(screenType: screenType, symbol: symbol, sectionName: sectionName);
 
   @override
-  void pressContinueButton(BuildContext context){
-    if (PracticeResults.checkAnswer(
-        Search.element(super.symbol, super.sectionName).getDotsInfo())) {
+  void pressContinueButton(BuildContext context) {
+    if (PracticeResults.checkAnswer(Search.element(super.symbol, super.sectionName).getDotsInfo())) {
       PracticeResults.incCorrectAnswerCounter();
     } else {
       PracticeResults.incStepCounter();
@@ -213,22 +207,27 @@ class NewPracticeState extends OnPressButton{
           builder: (context) => LetterScreen(
             screenType: super.screenType,
             symbol: PracticeSymbol.getSymbol(),
+            shortSymbol: PracticeSymbol.getShortSymbol(),
             sectionName: PracticeSymbol.getSectionType(),
             previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-            helpPage:  Help(helpName:HelpSections.LetterPractice),
+            helpPage: Help(helpName: HelpSections.LetterPractice),
             isDotsTouchable: true,
           ),
         ),
       );
     } else {
+      var results = PracticeResults.getResults();
       scakey.currentState.displayTapBar(true);
       Practice.updatePool();
       PracticeSymbol.update();
       Navigator.of(context).push(
         CupertinoPageRoute(
-          builder: (context) => PracticeScreen(
-            previousPage: AppModel.navigationScreens[navigation.MainMenu],
-            helpPage: Help(helpName:HelpSections.Practice),
+          builder: (context) => ResultsScreen(
+            helpPage: Help(
+              helpName: HelpSections.Practice,
+            ),
+            previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+            results: results,
           ),
         ),
       );
@@ -237,5 +236,5 @@ class NewPracticeState extends OnPressButton{
   }
 
   @override
-  void pressHelpButton(BuildContext context){}
+  void pressHelpButton(BuildContext context) {}
 }

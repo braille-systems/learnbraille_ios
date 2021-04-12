@@ -29,8 +29,9 @@ class LetterWidget extends StatelessWidget {
                   child: Center(
                       child: AutoSizeText(
                         SectionNames.getName(title),
-                        style: const TextStyle(fontSize: 30.0, color: AppColors.symbolText, fontWeight: FontWeight.bold),
-                        maxLines: 1,
+                        style: const TextStyle(fontSize: 35.0, color: AppColors.symbolText, fontWeight: FontWeight.bold),
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
                       )),
                 ),
                 Flexible(

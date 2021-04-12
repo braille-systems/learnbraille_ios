@@ -47,12 +47,14 @@ class AppColors {
   /** Other...**/
   /// Continue button text color (practice screen)
   static const Color continueBtnTextIcon = Colors.black;
+  ///
+  static const Color divider = Colors.black;
 }
 
 
 /// App button styles
 class AppDecorations {
-  static ButtonStyle continueButton = ElevatedButton.styleFrom(
+  static ButtonStyle navigationButton = ElevatedButton.styleFrom(
     primary: AppColors.first,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(25.0),
@@ -76,7 +78,14 @@ class AppDecorations {
   static ButtonStyle changeDirButton = ElevatedButton.styleFrom(
     primary: AppColors.sideBtn,
     shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15))),
+        borderRadius: BorderRadius.only(topRight: Radius.circular(25), bottomRight: Radius.circular(25))),
+    padding: EdgeInsets.symmetric(vertical: 30),
+  );
+
+  static ButtonStyle hintButton = ElevatedButton.styleFrom(
+    primary: AppColors.first,
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(25), bottomLeft: Radius.circular(25))),
     padding: EdgeInsets.symmetric(vertical: 30),
   );
 
@@ -84,7 +93,7 @@ class AppDecorations {
     primary: AppColors.sideBtn,
     shape: RoundedRectangleBorder(
         borderRadius:
-        BorderRadius.only(topLeft: Radius.circular(15), bottomLeft: Radius.circular(15))),
+        BorderRadius.only(topLeft: Radius.circular(25), bottomLeft: Radius.circular(25))),
     padding: EdgeInsets.symmetric(vertical: 30),
   );
 
@@ -95,7 +104,7 @@ class AppDecorations {
   static BoxDecoration letterWidget =  BoxDecoration(
     color: AppColors.symbolContainer,
     border: Border.all(color: AppColors.symbolBoarder, width: 7.0),
-    borderRadius: BorderRadius.circular(10.0),
+    borderRadius: BorderRadius.circular(25.0),
   );
 
   static BoxDecoration studyItem = BoxDecoration(
