@@ -107,6 +107,7 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
   Widget build(BuildContext context) {
     return Semantics(
       label: SectionNames.getName(widget.practiceButton.sectionType),
+      hint: (checkBox) ? SemanticNames.getName(SemanticsType.Selected) : SemanticNames.getName(SemanticsType.NotSelected),
       child: Card(
         elevation: 3,
         margin: EdgeInsets.symmetric(vertical: 2),
