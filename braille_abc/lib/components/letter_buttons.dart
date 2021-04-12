@@ -41,6 +41,7 @@ class LetterButtons extends StatefulWidget{
 abstract class _LetterButtonsState extends State<LetterButtons>{
   TextDirection _dir = TextDirection.ltr;
   OnPressButton pressed;
+  bool isTapped;
 
   @override
   Widget build(BuildContext context);
@@ -58,20 +59,20 @@ class DictionaryButtonsState extends _LetterButtonsState{
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         SizedBox(
-          height: ScreenParams.height(37, context),
-          width: ScreenParams.width(17, context),
+          height: ScreenParams.height(34, context),
+          width: ScreenParams.width(15, context),
           child: ModeButton(letter: this),
         ),
         SymbolWidget(
             textDir: mode,
             char: widget.symbol,
             isTapped: false,
-            width: 200,
-            height: 350,
+            width: ScreenParams.width(57, context),
+            height: ScreenParams.height(45, context),
             dictSection: widget.sectionName),
         SizedBox(
           height: ScreenParams.height(37, context),
-          width: ScreenParams.width(17, context),
+          width: ScreenParams.width(14, context),
         )
       ],
     );
@@ -79,6 +80,11 @@ class DictionaryButtonsState extends _LetterButtonsState{
 }
 
 class PracticeButtonsState extends _LetterButtonsState{
+
+  PracticeButtonsState(){
+    isTapped = true;
+  }
+
   @override
   Widget build(BuildContext context){
     TextDirection mode() {
@@ -89,37 +95,37 @@ class PracticeButtonsState extends _LetterButtonsState{
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
+        SizedBox(
+          height: ScreenParams.height(34, context),
+          width: ScreenParams.width(15, context),
+          child: ModeButton(letter: this),
+        ),
+        SymbolWidget(
+            textDir: mode,
+            char: widget.symbol,
+            isTapped: isTapped,
+            width: ScreenParams.width(57, context),
+            height: ScreenParams.height(45, context),
+            dictSection: widget.sectionName),
         Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children:[
               SizedBox(
                 height: ScreenParams.height(12, context),
-                width: ScreenParams.width(17, context),
+                width: ScreenParams.width(15, context),
                 child: TipButton(letter: this),
               ),
               SizedBox(
-                height: ScreenParams.height(4, context),
-                width: ScreenParams.width(17, context),
+                height: ScreenParams.height(2, context),
+                width: ScreenParams.width(15, context),
               ),
               SizedBox(
-                height: ScreenParams.height(21, context),
-                width: ScreenParams.width(17, context),
-                child: ModeButton(letter: this),
+                height: ScreenParams.height(29, context),
+                width: ScreenParams.width(15, context),
+                child: ContinueButton(letter: this),
               ),
             ]
         ),
-        SymbolWidget(
-            textDir: mode,
-            char: widget.symbol,
-            isTapped: true,
-            width: 200,
-            height: 350,
-            dictSection: widget.sectionName),
-        SizedBox(
-          height: ScreenParams.height(37, context),
-          width: ScreenParams.width(17, context),
-          child: ContinueButton(letter: this),
-        )
       ],
     );
   }
@@ -180,6 +186,7 @@ class _ContinueButtonState extends State<ContinueButton> {
       }),
       child: Icon(
         AppIcon.AppIconsMap[AppIcons.ContinueButton],
+        size: ScreenParams.width(10, context),
         color: AppColors.sideIcon,
         semanticLabel: SemanticNames.getName(SemanticsType.Continue),
       ),
@@ -204,11 +211,13 @@ class _TipButtonState extends State<TipButton> {
       onPressed: () => setState(
             () {
           widget.letter.setState(() {
+            widget.letter.isTapped = !widget.letter.isTapped;
           });
         },
       ),
       child: Icon(
         AppIcon.getIcon(AppIcons.TipButton),
+        size: ScreenParams.width(10, context),
         color: AppColors.sideIcon,
         semanticLabel: SemanticNames.getName(SemanticsType.ChangeMode),
       ),

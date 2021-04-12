@@ -4,25 +4,40 @@ import 'package:flutter/cupertino.dart';
 @immutable
 class Practice {
   static final List<SectionType> _pool = [];
+  static final isNotEmpty = ValueNotifier(_pool.isNotEmpty);
 
   static void addSymbolGroup(SectionType sectionType) {
     _pool.add(sectionType);
+    isNotEmpty.value = _pool.isNotEmpty;
   }
   static void removeSymbolGroup(SectionType sectionType) {
     _pool.remove(sectionType);
+    isNotEmpty.value = _pool.isNotEmpty;
   }
   static List<SectionType> getPool() {
     return _pool;
   }
   static void updatePool() {
     _pool.clear();
+    isNotEmpty.value = false;
   }
+}
+
+class Results {
+  final int stepCounter;
+  final int correctAnswerCounter;
+
+  const Results(this.stepCounter, this.correctAnswerCounter);
 }
 
 class PracticeResults {
   static final List<bool> _answer = [false, false, false, false, false, false];
   static int _stepCounter = 0;
   static int _correctAnswerCounter = 0;
+
+  static Results getResults() {
+    return Results(_stepCounter, _correctAnswerCounter);
+  }
 
   static void resetAnswer() {
     for(var i = 0; i < _answer.length; ++i) {
@@ -49,10 +64,6 @@ class PracticeResults {
     assert(1 <= dotNum && dotNum <= 6);
     _answer[dotNum - 1] = !_answer[dotNum - 1];
   }
-
-  static int getStepCounter() => _stepCounter;
-
-  static int getCorrectAnswerCounter() => _correctAnswerCounter;
 
   static bool checkAnswer(List<bool> correctAnswer) {
     assert(_answer.length == correctAnswer.length);

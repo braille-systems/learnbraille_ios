@@ -30,24 +30,41 @@ class SymbolWidget extends StatefulWidget {
   }
 
   @override
-  _SymbolState createState() => _SymbolState(char: char, dictSection: dictSection, isTapped: isTapped);
+  _SymbolState createState() => _SymbolState(char: char, section: dictSection);
 }
 
 class _SymbolState extends State<SymbolWidget> {
   Symbol symbol;
-  final bool isTapped;
+  bool lastIsTapped;
+  final String char;
+  final SectionType section;
 
-  _SymbolState({String char, SectionType dictSection, @required this.isTapped}) {
-    if(!isTapped) {
-      symbol = Search.element(char, dictSection);
+  _SymbolState({@required this.char, @required this.section});
+
+  @override
+  void initState(){
+    super.initState();
+    if(!widget.isTapped) {
+      symbol = Search.element(char, section);
     }
     else {
       symbol = Symbol.defaultSymbol();
     }
+    lastIsTapped = widget.isTapped;
   }
 
   @override
   Widget build(BuildContext context) {
+    if(lastIsTapped != widget.isTapped) {
+      if (!widget.isTapped) {
+        symbol = Search.element(char, section);
+      }
+      else {
+        symbol = Symbol.defaultSymbol();
+      }
+      lastIsTapped = widget.isTapped;
+    }
+
     return Stack(
       textDirection: widget.textDir(),
       children: <Widget>[
@@ -55,7 +72,7 @@ class _SymbolState extends State<SymbolWidget> {
           height: widget.height,
           width: widget.width,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(25),
             color: AppColors.first,
           ),
           child: Wrap(
@@ -64,7 +81,7 @@ class _SymbolState extends State<SymbolWidget> {
             textDirection: widget.textDir(),
             spacing: 55.0 / 667 * widget.height,
             direction: Axis.vertical,
-            runSpacing: 40.0 / 667 * widget.height,
+            runSpacing: 45.0 / 667 * widget.height,
             children: symbol.dots
                 .map((item) => Semantics(
               label: SemanticNames.getName(SemanticsType.Dot) +

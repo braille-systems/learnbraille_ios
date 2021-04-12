@@ -1,0 +1,15 @@
+# The bundle identifier of your app
+app_identifier("com.braillesystems.learnbraille")
+
+# Your Apple email address
+apple_id(ENV['FASTLANE_USER'])
+
+# App Store Connect Team ID
+itc_team_id(ENV['ITC_TEAM_ID'])
+
+# Developer Portal Team ID
+team_id(ENV['TEAM_ID'])
+
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
