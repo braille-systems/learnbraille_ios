@@ -38,7 +38,7 @@ class ScreenNames {
   }
 }
 
-enum XmlItemType { MainMenu, GeneralHelp, Alphabet, SymbolView, PracticeSections }
+enum XmlItemType { MainMenu, GeneralHelp, Alphabet, SymbolView, PracticeSections, PracticeResult }
 
 @immutable
 class XmlNames {
@@ -48,6 +48,7 @@ class XmlNames {
     XmlItemType.MainMenu: "Главное меню",
     XmlItemType.SymbolView: "Просмотр символа",
     XmlItemType.PracticeSections: "Разделы практики",
+    XmlItemType.PracticeResult: "Результаты",
   };
 
   static String getName(XmlItemType type) {
