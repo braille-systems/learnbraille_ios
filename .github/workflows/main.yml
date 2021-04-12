@@ -113,7 +113,7 @@ jobs:
   deploy_testflight:
     name: Deploy to TestFlight
     runs-on: macos-latest
-    needs: [build_ios, build_android]
+    #needs: [build_ios, build_android]
 
     steps:
       # Git checkout wit lfs caching
@@ -177,3 +177,6 @@ jobs:
           MATCH_KEYCHAIN_NAME: ${{ secrets.MATCH_KEYCHAIN_NAME }}
           MATCH_KEYCHAIN_PASSWORD: ${{ secrets.MATCH_KEYCHAIN_PASSWORD }}
           DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS: ${{ secrets.DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
