@@ -4,18 +4,22 @@ import 'package:flutter/cupertino.dart';
 @immutable
 class Practice {
   static final List<SectionType> _pool = [];
+  static final isNotEmpty = ValueNotifier(_pool.isNotEmpty);
 
   static void addSymbolGroup(SectionType sectionType) {
     _pool.add(sectionType);
+    isNotEmpty.value = _pool.isNotEmpty;
   }
   static void removeSymbolGroup(SectionType sectionType) {
     _pool.remove(sectionType);
+    isNotEmpty.value = _pool.isNotEmpty;
   }
   static List<SectionType> getPool() {
     return _pool;
   }
   static void updatePool() {
     _pool.clear();
+    isNotEmpty.value = false;
   }
 }
 
