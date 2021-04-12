@@ -3,6 +3,7 @@ import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:vibration/vibration.dart';
 import 'dart:math';
 
 import 'package:braille_abc/components/help_widgets.dart';
@@ -195,8 +196,10 @@ class NewPracticeState extends OnPressButton {
   void pressContinueButton(BuildContext context) {
     if (PracticeResults.checkAnswer(Search.element(super.symbol, super.sectionName).getDotsInfo())) {
       PracticeResults.incCorrectAnswerCounter();
+      Vibration.vibrate(duration: 300, amplitude: 128, repeat: 3);
     } else {
       PracticeResults.incStepCounter();
+      Vibration.vibrate(duration: 600, amplitude: 256);
     }
     PracticeResults.resetAnswer();
 
