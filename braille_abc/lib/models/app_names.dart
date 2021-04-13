@@ -86,7 +86,7 @@ class SemanticNames {
     SemanticsType.Continue: "Продолжить",
     SemanticsType.ExpandableList: "выпадающий список.",
     SemanticsType.TapToOpen: "Нажмите, чтобы открыть.",
-    SemanticsType.BackToMainMenu: "Вернуться на главное меню",
+    SemanticsType.BackToMainMenu: "Вернуться в главное меню",
     SemanticsType.Results: "Результаты",
     SemanticsType.Selected: " выбрано",
     SemanticsType.NotSelected: " не выбрано",

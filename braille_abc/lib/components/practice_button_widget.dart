@@ -223,7 +223,6 @@ class NewPracticeState extends OnPressButton {
       );
     } else {
       var results = PracticeResults.getResults();
-      scakey.currentState.displayTapBar(true);
       Practice.updatePool();
       PracticeSymbol.update();
       Navigator.of(context).push(
