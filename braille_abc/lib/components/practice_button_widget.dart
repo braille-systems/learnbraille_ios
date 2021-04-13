@@ -3,7 +3,7 @@ import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:vibration/vibration.dart';
+// import 'package:vibration/vibration.dart';
 import 'dart:math';
 
 import 'package:braille_abc/components/help_widgets.dart';
@@ -35,31 +35,37 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
       label: SemanticNames.getName(SemanticsType.Continue),
       child: ElevatedButton(
         style: AppDecorations.navigationButton,
-        onPressed: Practice.isNotEmpty.value ? () {
-            scakey.currentState.displayTapBar(false);
-            PracticeSymbol.update();
-            PracticeSymbol.addAllGroup();
-            PracticeSymbol.nextSymbol();
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => LetterScreen(
-                  symbol: PracticeSymbol.getSymbol(),
-                  shortSymbol: PracticeSymbol.getShortSymbol(),
-                  sectionName: PracticeSymbol.getSectionType(),
-                  screenType: ScreenType.Practice,
-                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-                  helpPage: Help(helpName: HelpSections.LetterPractice),
-                  isDotsTouchable: true,
-                ),
-              ),
-            );
-        } : null,
+        onPressed: Practice.isNotEmpty.value
+            ? () {
+                scakey.currentState.displayTapBar(false);
+                PracticeSymbol.update();
+                PracticeSymbol.addAllGroup();
+                PracticeSymbol.nextSymbol();
+                Navigator.of(context).push(
+                  CupertinoPageRoute(
+                    builder: (context) => LetterScreen(
+                      symbol: PracticeSymbol.getSymbol(),
+                      shortSymbol: PracticeSymbol.getShortSymbol(),
+                      sectionName: PracticeSymbol.getSectionType(),
+                      screenType: ScreenType.Practice,
+                      previousPage:
+                          AppModel.navigationScreens[navigation.PracticeScreen],
+                      helpPage: Help(helpName: HelpSections.LetterPractice),
+                      isDotsTouchable: true,
+                    ),
+                  ),
+                );
+              }
+            : null,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             AutoSizeText(
               SemanticNames.getName(SemanticsType.Continue),
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w300, color: AppColors.continueBtnTextIcon),
+              style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w300,
+                  color: AppColors.continueBtnTextIcon),
             ),
             SizedBox(
               width: ScreenParams.width(25, context),
@@ -108,7 +114,9 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
   Widget build(BuildContext context) {
     return Semantics(
       label: SectionNames.getName(widget.practiceButton.sectionType),
-      hint: (checkBox) ? SemanticNames.getName(SemanticsType.Selected) : SemanticNames.getName(SemanticsType.NotSelected),
+      hint: (checkBox)
+          ? SemanticNames.getName(SemanticsType.Selected)
+          : SemanticNames.getName(SemanticsType.NotSelected),
       child: Card(
         elevation: 3,
         margin: EdgeInsets.symmetric(vertical: 2),
@@ -125,11 +133,13 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
               child: ExcludeSemantics(
                 child: AutoSizeText(
                   SectionNames.getName(widget.practiceButton.sectionType),
-                  style: TextStyle(fontSize: 22, color: AppColors.symbolText, fontWeight: FontWeight.w400),
+                  style: TextStyle(
+                      fontSize: 22,
+                      color: AppColors.symbolText,
+                      fontWeight: FontWeight.w400),
                   maxLines: 2,
                 ),
-              )
-          ),
+              )),
           trailing: CupertinoSwitch(
             activeColor: AppColors.first,
             value: checkBox,
@@ -192,17 +202,19 @@ class PracticeSymbol {
 }
 
 class NewPracticeState extends OnPressButton {
-  NewPracticeState(ScreenType screenType, String symbol, SectionType sectionName)
+  NewPracticeState(
+      ScreenType screenType, String symbol, SectionType sectionName)
       : super(screenType: screenType, symbol: symbol, sectionName: sectionName);
 
   @override
   void pressContinueButton(BuildContext context) {
-    if (PracticeResults.checkAnswer(Search.element(super.symbol, super.sectionName).getDotsInfo())) {
+    if (PracticeResults.checkAnswer(
+        Search.element(super.symbol, super.sectionName).getDotsInfo())) {
       PracticeResults.incCorrectAnswerCounter();
-      Vibration.vibrate(duration: 300, amplitude: 128, repeat: 3);
+      // Vibration.vibrate(duration: 300, amplitude: 128, repeat: 3);
     } else {
       PracticeResults.incStepCounter();
-      Vibration.vibrate(duration: 600, amplitude: 256);
+      // Vibration.vibrate(duration: 600, amplitude: 256);
     }
     PracticeResults.resetAnswer();
 
