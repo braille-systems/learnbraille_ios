@@ -27,7 +27,6 @@ class MenuButtonWidget extends StatefulWidget {
   _MenuButtonWidget createState() => _MenuButtonWidget();
 }
 
-
 class _MenuButtonWidget extends State<MenuButtonWidget> {
   @override
   void initState() {
@@ -37,40 +36,45 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return  Semantics(
+    return Semantics(
       label: widget.menuButton.name,
-      child: ElevatedButton(
-        style:AppDecorations.menuButton,
-        onPressed: () {
-          scakey.currentState.onItemTapped(widget.index);
-          Practice.updatePool();
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            AutoSizeText(
-              widget.menuButton.name,
-              style: TextStyle(
-                fontSize: 30,
+      button: true,
+      child: ExcludeSemantics(
+        child: ElevatedButton(
+          style: AppDecorations.menuButton,
+          onPressed: () {
+            scakey.currentState.onItemTapped(widget.index);
+            Practice.updatePool();
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              ExcludeSemantics(
+                child: AutoSizeText(
+                  widget.menuButton.name,
+                  style: TextStyle(
+                    fontSize: 30,
+                  ),
+                  maxLines: 1,
+                ),
               ),
-              maxLines: 1,
-            ),
-            SizedBox(
-              height: ScreenParams.height(4, context),
-            ),
-            DecoratedIcon(
-              widget.menuButton.icon,
-              color: AppColors.second,
-              size: 100,
-              shadows: <Shadow>[
-                Styles.buildButtonShadow(),
-
-              ],
-            ),
-          ],
+              SizedBox(
+                height: ScreenParams.height(4, context),
+              ),
+              ExcludeSemantics(
+                child: DecoratedIcon(
+                  widget.menuButton.icon,
+                  color: AppColors.second,
+                  size: 100,
+                  shadows: <Shadow>[
+                    Styles.buildButtonShadow(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
-
   }
 }

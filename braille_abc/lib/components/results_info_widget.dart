@@ -105,9 +105,7 @@ class BackButtonWidget extends StatefulWidget {
 class _BackButtonWidget extends State<BackButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      label: SemanticNames.getName(SemanticsType.BackToMainMenu),
-      child: ElevatedButton(
+    return  ElevatedButton(
         style: AppDecorations.navigationButton,
         onPressed: () {
           Navigator.of(context).pushAndRemoveUntil(
@@ -125,7 +123,6 @@ class _BackButtonWidget extends State<BackButtonWidget> {
             ),
           ),
         ),
-      ),
     );
   }
 }
