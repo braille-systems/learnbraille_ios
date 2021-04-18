@@ -31,9 +31,7 @@ class ContinueButtonWidget extends StatefulWidget {
 class _ContinueButtonWidget extends State<ContinueButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      label: SemanticNames.getName(SemanticsType.Continue),
-      child: ElevatedButton(
+    return ElevatedButton(
         style: AppDecorations.navigationButton,
         onPressed: Practice.isNotEmpty.value
             ? () {
@@ -60,12 +58,14 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            AutoSizeText(
-              SemanticNames.getName(SemanticsType.Continue),
-              style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w300,
-                  color: AppColors.continueBtnTextIcon),
+            ExcludeSemantics(
+              child: AutoSizeText(
+                SemanticNames.getName(SemanticsType.Continue),
+                style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: AppColors.continueBtnTextIcon),
+              ),
             ),
             SizedBox(
               width: ScreenParams.width(25, context),
@@ -77,7 +77,6 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
             ),
           ],
         ),
-      ),
     );
   }
 }
