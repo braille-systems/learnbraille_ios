@@ -75,6 +75,9 @@ enum SemanticsType {
   Writing,
   SectionInLetterWidget,
   SymbolInLetterWidget,
+  Button,
+  Available,
+  NotAvailable
 }
 
 @immutable
@@ -98,6 +101,11 @@ class SemanticNames {
     SemanticsType.Writing: "записи",
     SemanticsType.SectionInLetterWidget: "Раздел: ",
     SemanticsType.SymbolInLetterWidget: "Символ: ",
+    SemanticsType.Button: "Кнопка.",
+    SemanticsType.Available: "Доступна",
+    SemanticsType.NotAvailable: "Не доступна"
+
+
   };
 
   static String getName(SemanticsType type) {
