@@ -142,31 +142,32 @@ class _ModeButtonState extends State<ModeButton> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: SemanticNames.getName(SemanticsType.ChangeMode),
-      hint: SemanticNames.getName(SemanticsType.ChosenMode) +
+      label: SemanticNames.getName(SemanticsType.ChangeMode) + SemanticNames.getName(SemanticsType.ChosenMode) +
           ((widget.letter._dir == TextDirection.ltr)
               ? SemanticNames.getName(SemanticsType.Reading)
               : SemanticNames.getName(SemanticsType.Writing)),
-      child: ElevatedButton(
-          style: AppDecorations.changeDirButton,
-          onPressed: () => setState(
-                () {
-                  widget.letter.setState(() {
-                    if (widget.letter._dir == TextDirection.ltr) {
-                      widget.letter._dir = TextDirection.rtl;
-                    } else {
-                      widget.letter._dir = TextDirection.ltr;
-                    }
-                  });
-                },
-              ),
-          child: ExcludeSemantics(
-            child: Icon(
-              AppIcon.getIcon(AppIcons.ChangeModeButton),
-              size: ScreenParams.width(10, context),
-              color: AppColors.sideIcon,
+      child: ExcludeSemantics(
+        child: ElevatedButton(
+            style: AppDecorations.changeDirButton,
+            onPressed: () => setState(
+                  () {
+                widget.letter.setState(() {
+                  if (widget.letter._dir == TextDirection.ltr) {
+                    widget.letter._dir = TextDirection.rtl;
+                  } else {
+                    widget.letter._dir = TextDirection.ltr;
+                  }
+                });
+              },
             ),
-          )),
+            child: ExcludeSemantics(
+              child: Icon(
+                AppIcon.getIcon(AppIcons.ChangeModeButton),
+                size: ScreenParams.width(10, context),
+                color: AppColors.sideIcon,
+              ),
+            )),
+      ),
     );
   }
 }

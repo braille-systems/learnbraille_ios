@@ -80,7 +80,7 @@ enum SemanticsType {
 @immutable
 class SemanticNames {
   static const Map<SemanticsType, String> stringOfSemanticsMap = {
-    SemanticsType.ChangeMode: "Изменить режим",
+    SemanticsType.ChangeMode: "Изменить режим. Кнопка.",
     SemanticsType.Back: "Назад",
     SemanticsType.Dot: "Точка",
     SemanticsType.Painted: "закрашена",
