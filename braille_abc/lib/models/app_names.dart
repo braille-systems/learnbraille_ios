@@ -72,13 +72,18 @@ enum SemanticsType {
   Hint,
   ChosenMode,
   Reading,
-  Writing
+  Writing,
+  SectionInLetterWidget,
+  SymbolInLetterWidget,
+  Button,
+  Available,
+  NotAvailable
 }
 
 @immutable
 class SemanticNames {
   static const Map<SemanticsType, String> stringOfSemanticsMap = {
-    SemanticsType.ChangeMode: "Изменить режим",
+    SemanticsType.ChangeMode: "Изменить режим. Кнопка.",
     SemanticsType.Back: "Назад",
     SemanticsType.Dot: "Точка",
     SemanticsType.Painted: "закрашена",
@@ -86,7 +91,7 @@ class SemanticNames {
     SemanticsType.Continue: "Продолжить",
     SemanticsType.ExpandableList: "выпадающий список.",
     SemanticsType.TapToOpen: "Нажмите, чтобы открыть.",
-    SemanticsType.BackToMainMenu: "Вернуться на главное меню",
+    SemanticsType.BackToMainMenu: "Вернуться в главное меню",
     SemanticsType.Results: "Результаты",
     SemanticsType.Selected: " выбрано",
     SemanticsType.NotSelected: " не выбрано",
@@ -94,6 +99,13 @@ class SemanticNames {
     SemanticsType.ChosenMode: "Сейчас выбран режим ",
     SemanticsType.Reading: "чтения",
     SemanticsType.Writing: "записи",
+    SemanticsType.SectionInLetterWidget: "Раздел: ",
+    SemanticsType.SymbolInLetterWidget: "Символ: ",
+    SemanticsType.Button: "Кнопка.",
+    SemanticsType.Available: "Доступна",
+    SemanticsType.NotAvailable: "Не доступна"
+
+
   };
 
   static String getName(SemanticsType type) {
