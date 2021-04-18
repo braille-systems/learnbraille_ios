@@ -118,14 +118,14 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
           leading: Icon(
             AppIcon.getIcon(widget.practiceButton.icon),
             color: AppColors.first,
-            size: 45,
+            size: Sizes.lineSectionIconSize,
           ),
           title: Align(
               alignment: Alignment.centerLeft,
               child: ExcludeSemantics(
                 child: AutoSizeText(
                   SectionNames.getName(widget.practiceButton.sectionType),
-                  style: TextStyle(fontSize: 22, color: AppColors.symbolText, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: Sizes.lineSectionFontSize, color: AppColors.symbolText, fontWeight: FontWeight.w400),
                   maxLines: 2,
                 ),
               )
