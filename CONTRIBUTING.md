@@ -8,23 +8,23 @@ There is a separate file with instructions on coding rules in this repository
 
 ## Git Workflow
 
-Overall, these rules are a simplified version of the famous [successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
+Overall, these rules are inspired by the famous [successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
 
 Tag versioning is following classis [semantic versioning](https://semver.org/) with a clause that MINOR version may be missed and in that case it's meant to be 0. In example, v1.2 == v1.2.0
 
-**Jira** integration is supported with [this project](https://braillesystem.atlassian.net/browse/BRAILLE)
+[**Jira** integration](https://braillesystem.atlassian.net/browse/BRAILLE) is also supported
 
 ### Main branch
 
-`main` branch is protected, direct pushes are restricted
+`main` branch is protected, direct pushes are restricted. This branch is meant to always have production-ready version of application
 
 Only admins are allowed to directly push to `main` (though it's not recommended anyway)
 
 ### Other branches
 
-To contribute a new feature, create a new branch from `main`
+There are 4 allowed types of branches: `develop`, `feature`, `release` and `fix`
 
-There are two allowed types of branches: `feature` and `fix`
+To contribute a new feature, create a new `feature` branch from `develop`
 
 Branch type should be separated from name by a backslash and words in branch name should be separated by `-`, for example, `feature/new-panel` or `fix/blinking-screen`
 
@@ -34,37 +34,58 @@ Without integration, branch name should follow a pattern `<branch-type>/<branch-
 
 Naming using integration will be described below in **JIRA Integration** section
 
+#### Develop
+
+`develop` is the main branch for developers. It reflects the latest changes made and doesn't have strict rules
+
+Generally, any branch (besides `main`) can be created from `develop` and any branch can be merged into `develop`
+
+There also are no limitations to what can be pushed directly, but if you intend to contribute a major feature, it's very highly recommended to create a separate branch for it, as desrcibed in the next section
+
+You can also change version directly in `develop` branch, but:
+
+- After merging `feature` or `fix` branch, **PATCH** version should be incremented, for example, v1.2.3 -> v1.2.4
+- If no `feature` or `fix` branch was merged, but version change is still required, increment build version, for example, v1.2.3+1 -> v1.2.3+2
+
 #### Feature
 
 `feature` branches are used to actually contribute new features
 
-`feature` branch could be created only from `main` and merged only into it
+`feature` branch can only be created from `develop` and merged only into it
 
 Merging `feature` branch requires creating **pull request** and at least 2 other developers to approve it
 
-It's recommended to tag new **MINOR** version after merging `feature` branch into `main`
+If you want version upgrade, increment **PATCH** version when merging `feature` branch into `develop`
+
+#### Release
+
+`release` branch should only be created from `develop` and merged simultaneously back into `develop` and `main` branches
+
+This type of branches must be used to prepare a new **MINOR** or **MAJOR** release. For example, it can be used to increment app version or put updated screeenshots into docs/ folder
+
+`release` branches have special naming convention: they always have to contain their release version in their name. For example, `release` branch for v1.3.0 release must be named `release/v1-3-0` or `release/v1-3`
 
 #### Fix
 
-`fix` branches could be created and merged from both `main` or `feature`
+`fix` branches could be created and merged from either `main`, `develop` or `feature`
 
 It's not recommended to create `fix` branch from your own `feature`, but it's likely for other people to branch their `fix` from your `feature`
 
 Merging `fix` also requires **pull request** and *(currently)* 2 other developers to approve it
 
-After merging `fix` branch into `main`, it's highly recommended to tag new **PATCH** version
+If `fix` branch was created from `main`, it must be merged simultaneously into both `develop` and `main` branches. Merging `fix` into `main` must be followed by **PATCH** version upgrade
 
 ### Tags
 
 Creating tags is only allowed in `main` branch
 
-It's highly recommended to tag every release in `main` branch (mainly for CI reasons)
+It's required to tag every release in `main` branch
 
 **MAJOR** version changes should be approved by whole development team and must contain a lot of huge incompatible changes
 
-**MINOR** version could (and should) be upgraded after every `feature` branch merge
+**MINOR** version should be upgraded after every `feature` branch merge
 
-**PATCH** version could (and should) be upgraded after every `fix` branch merge
+**PATCH** version should be upgraded after every `fix` branch merge
 
 ### Commit rules
 
