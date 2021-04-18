@@ -117,35 +117,39 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
       hint: (checkBox)
           ? SemanticNames.getName(SemanticsType.Selected)
           : SemanticNames.getName(SemanticsType.NotSelected),
-      child: Card(
-        elevation: 3,
-        margin: EdgeInsets.symmetric(vertical: 2),
-        child: ListTile(
-          minVerticalPadding: 0,
-          onTap: () => onChanged(!checkBox),
-          leading: Icon(
-            AppIcon.getIcon(widget.practiceButton.icon),
-            color: AppColors.first,
-            size: 45,
-          ),
-          title: Align(
-              alignment: Alignment.centerLeft,
-              child: ExcludeSemantics(
-                child: AutoSizeText(
-                  SectionNames.getName(widget.practiceButton.sectionType),
-                  style: TextStyle(
-                      fontSize: 22,
-                      color: AppColors.symbolText,
-                      fontWeight: FontWeight.w400),
-                  maxLines: 2,
-                ),
-              )),
-          trailing: CupertinoSwitch(
-            activeColor: AppColors.first,
-            value: checkBox,
-            onChanged: (bool val) {
-              onChanged(val);
-            },
+      child: ExcludeSemantics(
+        child: Card(
+          elevation: 3,
+          margin: EdgeInsets.symmetric(vertical: 2),
+          child: ExcludeSemantics(
+            child: ListTile(
+              minVerticalPadding: 0,
+              onTap: () => onChanged(!checkBox),
+              leading: Icon(
+                AppIcon.getIcon(widget.practiceButton.icon),
+                color: AppColors.first,
+                size: 45,
+              ),
+              title: Align(
+                  alignment: Alignment.centerLeft,
+                  child: ExcludeSemantics(
+                    child: AutoSizeText(
+                      SectionNames.getName(widget.practiceButton.sectionType),
+                      style: TextStyle(
+                          fontSize: 22,
+                          color: AppColors.symbolText,
+                          fontWeight: FontWeight.w400),
+                      maxLines: 2,
+                    ),
+                  )),
+              trailing: CupertinoSwitch(
+                activeColor: AppColors.first,
+                value: checkBox,
+                onChanged: (bool val) {
+                  onChanged(val);
+                },
+              ),
+            ),
           ),
         ),
       ),
