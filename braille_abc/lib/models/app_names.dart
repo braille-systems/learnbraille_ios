@@ -72,7 +72,9 @@ enum SemanticsType {
   Hint,
   ChosenMode,
   Reading,
-  Writing
+  Writing,
+  SectionInLetterWidget,
+  SymbolInLetterWidget,
 }
 
 @immutable
@@ -94,6 +96,8 @@ class SemanticNames {
     SemanticsType.ChosenMode: "Сейчас выбран режим ",
     SemanticsType.Reading: "чтения",
     SemanticsType.Writing: "записи",
+    SemanticsType.SectionInLetterWidget: "Раздел: ",
+    SemanticsType.SymbolInLetterWidget: "Символ: ",
   };
 
   static String getName(SemanticsType type) {

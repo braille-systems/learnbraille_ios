@@ -109,10 +109,17 @@ class _LetterViewState extends State<LetterView> {
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
               Semantics(
+                label: SemanticNames.getName(SemanticsType.SectionInLetterWidget) +
+                    SectionNames.getName(widget.sectionName) +
+                    ". " +
+                    SemanticNames.getName(SemanticsType.SymbolInLetterWidget) +
+                    widget.shortSymbol,
                 button: false,
-                child: LetterWidget(
-                  title: widget.sectionName,
-                  symbol: widget.shortSymbol,
+                child: ExcludeSemantics(
+                  child: LetterWidget(
+                    title: widget.sectionName,
+                    symbol: widget.shortSymbol,
+                  ),
                 ),
               )
             ]),
