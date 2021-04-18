@@ -145,7 +145,7 @@ jobs:
   deploy_testflight:
     name: Deploy to TestFlight
     runs-on: macos-latest
-    needs: [build_ios, build_android]
+    needs: [test]
 
     steps:
       # Git checkout wit lfs caching
