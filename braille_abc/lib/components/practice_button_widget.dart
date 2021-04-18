@@ -33,7 +33,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: SemanticNames.getName(SemanticsType.Continue) +
+      label: SemanticNames.getName(SemanticsType.Continue) + ". " +
           SemanticNames.getName(SemanticsType.Button) +
           (Practice.isNotEmpty.value
               ? SemanticNames.getName(SemanticsType.Available)
