@@ -34,17 +34,18 @@ class LetterScreen extends SectionScreen {
     return nonSwipeable(
       context,
       CupertinoPageScaffold(
-          navigationBar: NavigationBar(
-            currentPage: this,
-            title: ScreenNames.getName(screenType),
-          ),
-          child: LetterView(
-            screenType: screenType,
-            sectionName: sectionName,
-            symbol: symbol,
-            shortSymbol: shortSymbol,
-            isDotsTouchable: isDotsTouchable,
-          )),
+        navigationBar: NavigationBar(
+          currentPage: this,
+          title: ScreenNames.getName(screenType),
+        ),
+        child: LetterView(
+          screenType: screenType,
+          sectionName: sectionName,
+          symbol: symbol,
+          shortSymbol: shortSymbol,
+          isDotsTouchable: isDotsTouchable,
+        ),
+      ),
     );
   }
 }

@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
+import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
 import 'package:braille_abc/components/practice_button_widget.dart';
 import 'package:flutter/rendering.dart';
+
 
 @immutable
 class LetterButtons extends StatefulWidget {
@@ -149,17 +151,18 @@ class _ModeButtonState extends State<ModeButton> {
       child: ExcludeSemantics(
         child: ElevatedButton(
             style: AppDecorations.changeDirButton,
-            onPressed: () => setState(
-                  () {
-                widget.letter.setState(() {
-                  if (widget.letter._dir == TextDirection.ltr) {
-                    widget.letter._dir = TextDirection.rtl;
-                  } else {
-                    widget.letter._dir = TextDirection.ltr;
-                  }
-                });
-              },
-            ),
+            onPressed: () =>
+                setState(
+                      () {
+                    widget.letter.setState(() {
+                      if (widget.letter._dir == TextDirection.ltr) {
+                        widget.letter._dir = TextDirection.rtl;
+                      } else {
+                        widget.letter._dir = TextDirection.ltr;
+                      }
+                    });
+                  },
+                ),
             child: ExcludeSemantics(
               child: Icon(
                 AppIcon.getIcon(AppIcons.ChangeModeButton),
@@ -186,10 +189,11 @@ class _ContinueButtonState extends State<ContinueButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: AppDecorations.nextButton,
-      onPressed: () => setState(() {
-        widget.letter.pressed.pressContinueButton(context);
-        widget.letter.setState(() {});
-      }),
+      onPressed: () =>
+          setState(() {
+            widget.letter.pressed.pressContinueButton(context);
+            widget.letter.setState(() {});
+          }),
       child: Icon(
         AppIcon.AppIconsMap[AppIcons.ContinueButton],
         size: ScreenParams.width(10, context),
@@ -214,13 +218,16 @@ class _TipButtonState extends State<TipButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: AppDecorations.hintButton,
-      onPressed: () => setState(
-        () {
-          widget.letter.setState(() {
-            widget.letter.isTapped = !widget.letter.isTapped;
-          });
-        },
-      ),
+      onPressed: () {
+        PracticeResults.incHintCounter();
+        setState(
+              () {
+            widget.letter.setState(() {
+              widget.letter.isTapped = !widget.letter.isTapped;
+            });
+          },
+        );
+      },
       child: Icon(
         AppIcon.getIcon(AppIcons.TipButton),
         size: ScreenParams.width(10, context),

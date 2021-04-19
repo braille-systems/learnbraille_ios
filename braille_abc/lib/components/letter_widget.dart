@@ -28,22 +28,24 @@ class LetterWidget extends StatelessWidget {
             Flexible(
               flex: 1,
               child: Center(
-                  child: AutoSizeText(
-                SectionNames.getName(title),
-                style: const TextStyle(fontSize: 35.0, color: AppColors.symbolText, fontWeight: FontWeight.bold),
-                maxLines: 2,
-                textAlign: TextAlign.center,
-              )),
+                child: AutoSizeText(
+                  SectionNames.getName(title),
+                  style: const TextStyle(fontSize: 35.0, color: AppColors.symbolText, fontWeight: FontWeight.bold),
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                ),
+              ),
             ),
             Flexible(
-                flex: 2,
-                child: AutoSizeText(
-                  symbol,
-                  style: const TextStyle(fontSize: 110, color: AppColors.symbolText, fontWeight: FontWeight.bold),
-                  maxLines: 3,
-                  wrapWords: false,
-                  textAlign: TextAlign.center,
-                ))
+              flex: 2,
+              child: AutoSizeText(
+                symbol,
+                style: const TextStyle(fontSize: 110, color: AppColors.symbolText, fontWeight: FontWeight.bold),
+                maxLines: 3,
+                wrapWords: false,
+                textAlign: TextAlign.center,
+              ),
+            )
           ],
         ),
       ),
