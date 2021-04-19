@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
-import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
 import 'package:braille_abc/components/practice_button_widget.dart';
@@ -43,7 +43,6 @@ class LetterButtons extends StatefulWidget {
 abstract class _LetterButtonsState extends State<LetterButtons> {
   TextDirection _dir = TextDirection.ltr;
   OnPressButton pressed;
-  bool isTapped;
 
   @override
   Widget build(BuildContext context);
@@ -83,9 +82,9 @@ class DictionaryButtonsState extends _LetterButtonsState {
 }
 
 class PracticeButtonsState extends _LetterButtonsState {
-  PracticeButtonsState() {
-    isTapped = true;
-  }
+  PracticeButtonsState();
+
+  final isTapped = ValueNotifier(true);
 
   @override
   Widget build(BuildContext context) {
@@ -103,18 +102,22 @@ class PracticeButtonsState extends _LetterButtonsState {
           width: ScreenParams.width(15, context),
           child: ModeButton(letter: this),
         ),
-        SymbolWidget(
-            textDir: mode,
-            char: widget.symbol,
-            isTapped: isTapped,
-            width: ScreenParams.width(57, context),
-            height: ScreenParams.height(45, context),
-            dictSection: widget.sectionName),
+        ValueListenableBuilder<bool>(
+            valueListenable: isTapped,
+            builder: (context, value, child){
+              return SymbolWidget(
+                  textDir: mode,
+                  char: widget.symbol,
+                  isTapped: isTapped.value,
+                  width: ScreenParams.width(57, context),
+                  height: ScreenParams.height(45, context),
+                  dictSection: widget.sectionName);
+            }),
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           SizedBox(
             height: ScreenParams.height(12, context),
             width: ScreenParams.width(15, context),
-            child: TipButton(letter: this),
+            child: TipButton(isTapped: isTapped),
           ),
           SizedBox(
             height: ScreenParams.height(2, context),
@@ -123,7 +126,7 @@ class PracticeButtonsState extends _LetterButtonsState {
           SizedBox(
             height: ScreenParams.height(29, context),
             width: ScreenParams.width(15, context),
-            child: ContinueButton(letter: this),
+            child: ContinueButton(isTapped: isTapped, pressed: pressed),
           ),
         ]),
       ],
@@ -176,9 +179,10 @@ class _ModeButtonState extends State<ModeButton> {
 }
 
 class ContinueButton extends StatefulWidget {
-  ContinueButton({@required this.letter});
+  ContinueButton({@required this.isTapped, @required this.pressed});
 
-  final _LetterButtonsState letter;
+  final ValueNotifier isTapped;
+  final OnPressButton pressed;
 
   @override
   _ContinueButtonState createState() => _ContinueButtonState();
@@ -189,11 +193,14 @@ class _ContinueButtonState extends State<ContinueButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: AppDecorations.nextButton,
-      onPressed: () =>
-          setState(() {
-            widget.letter.pressed.pressContinueButton(context);
-            widget.letter.setState(() {});
-          }),
+      onPressed: () => setState(() {
+        if(widget.isTapped.value) {
+          widget.pressed.pressContinueButton(context);
+        }
+        else{
+          widget.isTapped.value = true;
+        }
+      }),
       child: Icon(
         AppIcon.AppIconsMap[AppIcons.ContinueButton],
         size: ScreenParams.width(10, context),
@@ -205,9 +212,9 @@ class _ContinueButtonState extends State<ContinueButton> {
 }
 
 class TipButton extends StatefulWidget {
-  TipButton({@required this.letter});
+  TipButton({@required this.isTapped});
 
-  final _LetterButtonsState letter;
+  final ValueNotifier isTapped;
 
   @override
   _TipButtonState createState() => _TipButtonState();
@@ -218,16 +225,11 @@ class _TipButtonState extends State<TipButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: AppDecorations.hintButton,
-      onPressed: () {
-        PracticeResults.incHintCounter();
-        setState(
-              () {
-            widget.letter.setState(() {
-              widget.letter.isTapped = !widget.letter.isTapped;
-            });
-          },
-        );
-      },
+      onPressed: () => setState(
+        () {
+          widget.isTapped.value = !widget.isTapped.value;
+        },
+      ),
       child: Icon(
         AppIcon.getIcon(AppIcons.TipButton),
         size: ScreenParams.width(10, context),
