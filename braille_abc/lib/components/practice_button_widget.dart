@@ -48,6 +48,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
                   PracticeSymbol.update();
                   PracticeSymbol.addAllGroup();
                   PracticeSymbol.nextSymbol();
+                  PracticeResults.updatePracticeResults();
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) => LetterScreen(
@@ -136,15 +137,16 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
               size: Sizes.lineSectionIconSize,
             ),
             title: Align(
-                alignment: Alignment.centerLeft,
-                child: ExcludeSemantics(
-                  child: AutoSizeText(
-                    SectionNames.getName(widget.practiceButton.sectionType),
-                    style: TextStyle(
-                        fontSize: Sizes.lineSectionFontSize, color: AppColors.symbolText, fontWeight: FontWeight.w400),
-                    maxLines: 2,
-                  ),
-                )),
+              alignment: Alignment.centerLeft,
+              child: ExcludeSemantics(
+                child: AutoSizeText(
+                  SectionNames.getName(widget.practiceButton.sectionType),
+                  style: TextStyle(
+                      fontSize: Sizes.lineSectionFontSize, color: AppColors.symbolText, fontWeight: FontWeight.w400),
+                  maxLines: 2,
+                ),
+              ),
+            ),
             trailing: CupertinoSwitch(
               activeColor: AppColors.first,
               value: checkBox,

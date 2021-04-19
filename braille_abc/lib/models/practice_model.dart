@@ -34,6 +34,7 @@ class PracticeResults {
   static final List<bool> _answer = [false, false, false, false, false, false];
   static int _stepCounter = 0;
   static int _correctAnswerCounter = 0;
+  static int _hintCounter = 0;
 
   static Results getResults() {
     return Results(_stepCounter, _correctAnswerCounter);
@@ -58,6 +59,7 @@ class PracticeResults {
     PracticeResults.resetAnswer();
     _stepCounter = 0;
     _correctAnswerCounter = 0;
+    _hintCounter = 0;
   }
 
   static void dotClick(int dotNum) {
