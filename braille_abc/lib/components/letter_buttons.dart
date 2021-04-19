@@ -10,6 +10,7 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 import 'package:braille_abc/components/practice_button_widget.dart';
 import 'package:flutter/rendering.dart';
 
+
 @immutable
 class LetterButtons extends StatefulWidget {
   LetterButtons({
@@ -153,17 +154,18 @@ class _ModeButtonState extends State<ModeButton> {
       child: ExcludeSemantics(
         child: ElevatedButton(
             style: AppDecorations.changeDirButton,
-            onPressed: () => setState(
-                  () {
-                widget.letter.setState(() {
-                  if (widget.letter._dir == TextDirection.ltr) {
-                    widget.letter._dir = TextDirection.rtl;
-                  } else {
-                    widget.letter._dir = TextDirection.ltr;
-                  }
-                });
-              },
-            ),
+            onPressed: () =>
+                setState(
+                      () {
+                    widget.letter.setState(() {
+                      if (widget.letter._dir == TextDirection.ltr) {
+                        widget.letter._dir = TextDirection.rtl;
+                      } else {
+                        widget.letter._dir = TextDirection.ltr;
+                      }
+                    });
+                  },
+                ),
             child: ExcludeSemantics(
               child: Icon(
                 AppIcon.getIcon(AppIcons.ChangeModeButton),
