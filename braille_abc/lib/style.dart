@@ -146,3 +146,8 @@ abstract class Styles {
     return TextStyle(fontSize: 19);
   }
 }
+
+class Sizes {
+  static double lineSectionIconSize = 45;
+  static double lineSectionFontSize = 22;
+}

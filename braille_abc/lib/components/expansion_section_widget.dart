@@ -46,12 +46,12 @@ class _ExpansionSection extends State<ExpansionSection> {
             },
             leading: Icon(
               widget.sectionIcon,
-              size: 35,
+              size: Sizes.lineSectionIconSize,
               color: myColor,
             ),
             title: Text(
               widget.sectionName,
-              style: TextStyle(fontSize: 23, color: myColor),
+              style: TextStyle(fontSize:Sizes.lineSectionFontSize, color: myColor),
             ),
             backgroundColor: AppColors.expandBackground,
             children: <Widget>[widget.child],
