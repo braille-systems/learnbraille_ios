@@ -26,31 +26,31 @@
     <text>
       <p>Буква А обозначается одной точкой, точкой номер один. Ознакомьтесь с ней в следующем шаге.</p>
     </text>
-    <reading title="">
+    <reading title=""  type = "reading">
       <p>RussianSymbols:А</p>
     </reading>
     <text>
       <p>Откройте пособие на странице 13. Вверху слева рельефно-графическое изображение буквы А. Рядом после полного шеститочия пять раз повторена буква А точечным шрифтом.</p>
     </text>
-    <practice title="">
+    <practice title="" type = "practice">
       <p>RussianSymbols:А</p>
     </practice>
-    <reading title="">
+    <reading title=""  type = "reading">
       <p>RussianSymbols:Б</p>
     </reading>
     <text>
       <p>Снова изучим страницу 13 в пособии. Под строкой с буквой А - такая же с буквой Б.</p>
     </text>
-    <practice title="">
+    <practice title="" type = "practice">
       <p>RussianSymbols:Б</p>
     </practice>
     <text>
       <p>Ознакомьтесь с буквой Ц на странице 13 пособия. Строка с буквой Ц находится под строкой с буквой Б.</p>
     </text>
-    <reading title="">
+    <reading title=""  type = "reading">
       <p>RussianSymbols:Ц</p>
     </reading>
-    <practice title="">
+    <practice title="" type = "practice">
       <p>RussianSymbols:Ц</p>
     </practice>
     <text>

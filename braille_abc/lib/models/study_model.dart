@@ -61,26 +61,36 @@ class StudyModel {
     List<LessonComponents> lessonsComponents = [];
     var sections = xml.findAllElements(sectionName);
     for (var el in sections) {
+      print("lesson name = " + el.getAttribute("name"));
       var components = el.children;
       for (var comp in components) {
-        var type = comp.getAttribute("type");
-        if (type != null) {
-          if (type == "practice") {
-            lessonsComponents.add(PracticeLesson(lessonType.practice, comp.getAttribute("title"), comp.text));
-          } else if (type == "reading") {
-            lessonsComponents.add(ReadingLesson(lessonType.practice, comp.getAttribute("title"), comp.text));
+        if (comp.children.isNotEmpty) {
+          var type = comp.getAttribute("type");
+          if (type != null) {
+            print("TYPE = " + type);
+            if (type == "practice") {
+              print("TITLE = " + comp.getAttribute("title") + "\nTEXT = " + comp.text);
+              lessonsComponents.add(PracticeLesson(lessonType.practice, comp.getAttribute("title"), comp.text));
+            } else if (type == "reading") {
+              print("TITLE = " + comp.getAttribute("title") + "\nTEXT = " + comp.text);
+              lessonsComponents.add(ReadingLesson(lessonType.reading, comp.getAttribute("title"), comp.text));
+            }
+          } else if (comp.text.isNotEmpty) {
+            print("TYPE = text");
+            print("TEXT = " + comp.text);
+            lessonsComponents.add(TextLesson(lessonType.text, comp.text));
           }
-        } else {
-          lessonsComponents.add(TextLesson(lessonType.practice, comp.text));
         }
       }
       var lesson = Lesson(number, el.getAttribute("name"), lessonsComponents);
+      number++;
       lessons.add(lesson);
+      print("\n\n");
     }
     return null;
   }
 
- /* static List<Section> _parseButtonSection(Iterable<XmlNode> buttonSection) {
+/* static List<Section> _parseButtonSection(Iterable<XmlNode> buttonSection) {
     List<Section> buttonSections = [];
     for (var el in buttonSection) {
       buttonSections.add(_getSection(el));
