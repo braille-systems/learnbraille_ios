@@ -7,6 +7,7 @@ import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/components/practice_button_widget.dart';
 import 'package:flutter/rendering.dart';
 
@@ -22,7 +23,7 @@ class LetterButtons extends StatefulWidget {
 
   final SectionType sectionName;
   final ScreenType screenType;
-  final String symbol;
+  final Symbol symbol;
   final String shortSymbol;
 
   @override
@@ -67,7 +68,7 @@ class DictionaryButtonsState extends _LetterButtonsState {
         ),
         SymbolWidget(
             textDir: mode,
-            char: widget.symbol,
+            symbol: widget.symbol,
             isTapped: false,
             width: ScreenParams.width(57, context),
             height: ScreenParams.height(45, context),
@@ -107,7 +108,7 @@ class PracticeButtonsState extends _LetterButtonsState {
             builder: (context, value, child){
               return SymbolWidget(
                   textDir: mode,
-                  char: widget.symbol,
+                  symbol: widget.symbol,
                   isTapped: isTapped.value,
                   width: ScreenParams.width(57, context),
                   height: ScreenParams.height(45, context),
@@ -245,7 +246,7 @@ abstract class OnPressButton {
   OnPressButton({@required this.screenType, @required this.symbol, @required this.sectionName});
 
   final ScreenType screenType;
-  final String symbol;
+  final Symbol symbol;
   final SectionType sectionName;
 
   void pressContinueButton(BuildContext context);
