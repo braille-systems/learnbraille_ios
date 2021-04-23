@@ -39,6 +39,13 @@ class PracticeLesson extends LessonComponents {
   final String symbol;
 
   PracticeLesson(lessonType type, String text, this.symbol, int num) : super(type, text, num);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(child: Text('Раздел в разработке...')),
+    );
+  }
 }
 
 @immutable
@@ -46,12 +53,18 @@ class ReadingLesson extends LessonComponents {
   final String symbol;
 
   ReadingLesson(lessonType type, String text, this.symbol, int num) : super(type, text, num);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(child: Text('Раздел в разработке...')),
+    );
+  }
 }
 
 @immutable
 class TextLesson extends LessonComponents {
   TextLesson(lessonType type, String text, int num) : super(type, text, num);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -69,7 +82,7 @@ class TextLesson extends LessonComponents {
               SizedBox(
                 height: ScreenParams.width(60, context),
                 width: ScreenParams.width(15, context),
-                child: BackForthButton(type: lessonButtonType.backward, screen: null),
+                child: BackForthButton(type: lessonButtonType.backward),
               ),
             ],
           ),
@@ -88,7 +101,7 @@ class TextLesson extends LessonComponents {
               SizedBox(
                 height: ScreenParams.width(60, context),
                 width: ScreenParams.width(15, context),
-                child: BackForthButton(type: lessonButtonType.forward, screen: null),
+                child: BackForthButton(type: lessonButtonType.forward),
               ),
             ],
           ),
@@ -102,6 +115,8 @@ class TextLesson extends LessonComponents {
 class StudyModel {
   static int number = 1;
   static final List<Lesson> lessons = [];
+  static int currentLessonPart = 0;
+  static int currentLesson = 0;
 
   static Future<Null> fillStudyModel(BuildContext context) async {
     String xmlString = await DefaultAssetBundle.of(context).loadString("data/studying.xml");
@@ -111,9 +126,9 @@ class StudyModel {
   }
 
   static Null _parseXmlSection(String sectionName, XmlDocument xml) {
-    List<LessonComponents> lessonsComponents = [];
     var sections = xml.findAllElements(sectionName);
     for (var el in sections) {
+      List<LessonComponents> lessonsComponents = [];
       var i = 0;
       print("lesson name = " + el.getAttribute("name"));
       var components = el.children;
@@ -137,6 +152,7 @@ class StudyModel {
           }
         }
       }
+
       var lesson = Lesson(number, el.getAttribute("name"), lessonsComponents);
       number++;
       lessons.add(lesson);

@@ -16,13 +16,15 @@ import 'package:braille_abc/style.dart';
 
 @immutable
 class LessonsScreen extends SectionScreen {
-  const LessonsScreen(this.lessonComponent, {
+  const LessonsScreen(
+    this.lessonComponent, {
     Key key,
     Widget helpPage,
     Widget previousPage,
   }) : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   final LessonComponents lessonComponent;
+
   @override
   Widget build(BuildContext context) {
     return nonSwipeable(
@@ -97,6 +99,7 @@ class LessonSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print( lesson.lessonComponents[0].text);
     return Card(
       elevation: 3,
       margin: EdgeInsets.symmetric(vertical: 2),
@@ -115,8 +118,11 @@ class LessonSectionWidget extends StatelessWidget {
               });
               Navigator.of(context).push(
                 CupertinoPageRoute(
-                  builder: (context) => LessonsScreen(lesson.lessonComponents[0], helpPage: null, previousPage:AppModel.navigationScreens[navigation.StudyScreen],)
-                ),
+                    builder: (context) => LessonsScreen(
+                          lesson.lessonComponents[0],
+                          helpPage: null,
+                          previousPage: AppModel.navigationScreens[navigation.StudyScreen],
+                        )),
               );
             },
             leading: Icon(
