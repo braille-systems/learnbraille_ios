@@ -25,6 +25,9 @@ enum AppIcons
 
   Add,
   GeneralHelpInHelpScreen,
+
+  EnableLessonSection,
+  DisableLessonSection,
 }
 
 @immutable
@@ -55,6 +58,8 @@ class AppIcon
     AppIcons.ArithmeticSymbolsSection : CupertinoIcons.plus_slash_minus,
     AppIcons.SignsSection : CupertinoIcons.square_grid_2x2,
 
+    AppIcons.EnableLessonSection : CupertinoIcons.check_mark_circled,
+    AppIcons.DisableLessonSection : CupertinoIcons.lock_fill,
   };
 
   static IconData getIcon(AppIcons type)
