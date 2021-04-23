@@ -115,3 +115,7 @@ class Sign extends Symbol{
   const Sign({List<DotImage> list, String char}) : super (dots: list, char: char);
 
 }
+
+class StudySymbol extends Symbol{
+  const StudySymbol({List<DotImage> list}) : super (dots: list, char: "No");
+}
