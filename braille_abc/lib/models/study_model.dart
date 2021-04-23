@@ -1,11 +1,8 @@
 import 'package:braille_abc/components/lesson_buttons.dart';
-import 'package:braille_abc/components/letter_buttons.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:xml/xml.dart';
-
-import 'app_names.dart';
 
 enum lessonType {
   text,
@@ -23,7 +20,7 @@ class Lesson {
 }
 
 @immutable
-class LessonComponents extends StatelessWidget{
+class LessonComponents extends StatelessWidget {
   final int number;
   final lessonType type;
   final String text;
@@ -57,23 +54,49 @@ class TextLesson extends LessonComponents {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        SizedBox(
-          width: ScreenParams.width(15, context),
-          child: BackForthButton(type: lessonButtonType.backward, screen:null),
-        ),
-        Html(data: text),
-        SizedBox(
-          width: ScreenParams.width(15, context),
-          child: BackForthButton(type: lessonButtonType.forward, screen:null),
-        ),
-      ],
+    return Container(
+      height: ScreenParams.heightIOS14(100, context),
+      padding: const EdgeInsets.symmetric(vertical: 25),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Column(
+            children: [
+              SizedBox(
+                height: ScreenParams.width(90, context),
+              ),
+              SizedBox(
+                height: ScreenParams.width(60, context),
+                width: ScreenParams.width(15, context),
+                child: BackForthButton(type: lessonButtonType.backward, screen: null),
+              ),
+            ],
+          ),
+          Expanded(
+              child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: Html(
+                    data: text,
+                    defaultTextStyle: TextStyle(fontSize: 30),
+                  ))),
+          Column(
+            children: [
+              SizedBox(
+                height: ScreenParams.width(90, context),
+              ),
+              SizedBox(
+                height: ScreenParams.width(60, context),
+                width: ScreenParams.width(15, context),
+                child: BackForthButton(type: lessonButtonType.forward, screen: null),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
-
 
 @immutable
 class StudyModel {
@@ -106,7 +129,7 @@ class StudyModel {
             } else if (type == "reading") {
               print("TITLE = " + comp.getAttribute("title") + "\nTEXT = " + comp.text);
               lessonsComponents.add(ReadingLesson(lessonType.reading, comp.getAttribute("title"), comp.text, i));
-            } else if (type == "info"){
+            } else if (type == "info") {
               print("TYPE = text");
               print("TEXT = " + comp.text);
               lessonsComponents.add(TextLesson(lessonType.text, comp.text, i));
@@ -121,5 +144,4 @@ class StudyModel {
     }
     return null;
   }
-
 }

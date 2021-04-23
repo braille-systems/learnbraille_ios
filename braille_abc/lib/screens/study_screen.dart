@@ -116,7 +116,6 @@ class LessonSectionWidget extends StatelessWidget {
               Navigator.of(context).push(
                 CupertinoPageRoute(
                   builder: (context) => LessonsScreen(lesson.lessonComponents[0], helpPage: null, previousPage:AppModel.navigationScreens[navigation.StudyScreen],)
-                      
                 ),
               );
             },
