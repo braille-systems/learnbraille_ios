@@ -1,5 +1,11 @@
+import 'package:braille_abc/components/lesson_buttons.dart';
+import 'package:braille_abc/components/letter_buttons.dart';
+import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:xml/xml.dart';
+
+import 'app_names.dart';
 
 enum lessonType {
   text,
@@ -17,12 +23,18 @@ class Lesson {
 }
 
 @immutable
-class LessonComponents {
+class LessonComponents extends StatelessWidget{
   final int number;
   final lessonType type;
   final String text;
 
   LessonComponents(this.type, this.text, this.number);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
 }
 
 @immutable
@@ -42,7 +54,26 @@ class ReadingLesson extends LessonComponents {
 @immutable
 class TextLesson extends LessonComponents {
   TextLesson(lessonType type, String text, int num) : super(type, text, num);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        SizedBox(
+          width: ScreenParams.width(15, context),
+          child: BackForthButton(type: lessonButtonType.backward, screen:null),
+        ),
+        Html(data: text),
+        SizedBox(
+          width: ScreenParams.width(15, context),
+          child: BackForthButton(type: lessonButtonType.forward, screen:null),
+        ),
+      ],
+    );
+  }
 }
+
 
 @immutable
 class StudyModel {

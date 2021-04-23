@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/models/app_icons.dart';
+import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/models/study_model.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';
@@ -12,12 +16,13 @@ import 'package:braille_abc/style.dart';
 
 @immutable
 class LessonsScreen extends SectionScreen {
-  const LessonsScreen({
+  const LessonsScreen(this.lessonComponent, {
     Key key,
     Widget helpPage,
     Widget previousPage,
   }) : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
+  final LessonComponents lessonComponent;
   @override
   Widget build(BuildContext context) {
     return nonSwipeable(
@@ -28,7 +33,7 @@ class LessonsScreen extends SectionScreen {
           title: ScreenNames.getName(ScreenType.Study),
         ),
         child: SafeArea(
-          child: Center(child: Text('Раздел в разработке...')),
+          child: lessonComponent.build(context),
         ),
       ),
     );
@@ -104,7 +109,17 @@ class LessonSectionWidget extends StatelessWidget {
         child: ExcludeSemantics(
           child: ListTile(
             minVerticalPadding: 0,
-            onTap: () => null,
+            onTap: () {
+              Timer(Duration(milliseconds: 10), () {
+                scakey.currentState.displayTapBar(false);
+              });
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => LessonsScreen(lesson.lessonComponents[0], helpPage: null, previousPage:AppModel.navigationScreens[navigation.StudyScreen],)
+                      
+                ),
+              );
+            },
             leading: Icon(
               AppIcon.getIcon(AppIcons.EnableLessonSection),
               color: AppColors.first,
