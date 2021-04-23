@@ -18,29 +18,30 @@ class Lesson {
 
 @immutable
 class LessonComponents {
+  final int number;
   final lessonType type;
   final String text;
 
-  LessonComponents(this.type, this.text);
+  LessonComponents(this.type, this.text, this.number);
 }
 
 @immutable
 class PracticeLesson extends LessonComponents {
   final String symbol;
 
-  PracticeLesson(lessonType type, String text, this.symbol) : super(type, text);
+  PracticeLesson(lessonType type, String text, this.symbol, int num) : super(type, text, num);
 }
 
 @immutable
 class ReadingLesson extends LessonComponents {
   final String symbol;
 
-  ReadingLesson(lessonType type, String text, this.symbol) : super(type, text);
+  ReadingLesson(lessonType type, String text, this.symbol, int num) : super(type, text, num);
 }
 
 @immutable
 class TextLesson extends LessonComponents {
-  TextLesson(lessonType type, String text) : super(type, text);
+  TextLesson(lessonType type, String text, int num) : super(type, text, num);
 }
 
 @immutable
@@ -61,24 +62,26 @@ class StudyModel {
     List<LessonComponents> lessonsComponents = [];
     var sections = xml.findAllElements(sectionName);
     for (var el in sections) {
+      var i = 0;
       print("lesson name = " + el.getAttribute("name"));
       var components = el.children;
       for (var comp in components) {
+        i++;
         if (comp.children.isNotEmpty) {
           var type = comp.getAttribute("type");
           if (type != null) {
             print("TYPE = " + type);
             if (type == "practice") {
               print("TITLE = " + comp.getAttribute("title") + "\nTEXT = " + comp.text);
-              lessonsComponents.add(PracticeLesson(lessonType.practice, comp.getAttribute("title"), comp.text));
+              lessonsComponents.add(PracticeLesson(lessonType.practice, comp.getAttribute("title"), comp.text, i));
             } else if (type == "reading") {
               print("TITLE = " + comp.getAttribute("title") + "\nTEXT = " + comp.text);
-              lessonsComponents.add(ReadingLesson(lessonType.reading, comp.getAttribute("title"), comp.text));
+              lessonsComponents.add(ReadingLesson(lessonType.reading, comp.getAttribute("title"), comp.text, i));
             }
           } else if (comp.text.isNotEmpty) {
             print("TYPE = text");
             print("TEXT = " + comp.text);
-            lessonsComponents.add(TextLesson(lessonType.text, comp.text));
+            lessonsComponents.add(TextLesson(lessonType.text, comp.text, i));
           }
         }
       }
