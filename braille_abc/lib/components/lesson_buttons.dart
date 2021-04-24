@@ -42,7 +42,6 @@ class BackForthButton extends StatelessWidget {
       child: ElevatedButton(
         style: AppDecorations.nextButton,
         onPressed: () {
-          StudyModel.printIndex();
           if (isForward()) {
             if (StudyModel.currentLessonType == lessonType.practice) {
               if (PracticeResults.checkAnswer(symbol.getDotsInfo())) {

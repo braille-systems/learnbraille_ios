@@ -10,10 +10,6 @@ class StudyModel {
   static int _currentLessonPartIndex = 0;
   static final int _currentLessonIndex = 0;
 
-  static printIndex(){
-    print("1 "+ _currentLessonIndex.toString()+"\n2 "+_currentLessonPartIndex.toString());
-  }
-
   static int get lessonsNum => _lessons.length;
   static Lesson getLessonByIndex(index)=> _lessons[index];
   static Lesson get curLesson => _lessons[_currentLessonIndex];
