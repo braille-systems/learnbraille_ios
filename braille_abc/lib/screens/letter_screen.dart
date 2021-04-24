@@ -103,7 +103,9 @@ class _LetterViewState extends State<LetterView> {
         sectionName: widget.sectionName,
         screenType: widget.screenType,
         symbol: widget.symbol,
-        shortSymbol: widget.shortSymbol);
+        shortSymbol: widget.shortSymbol,
+        isTouchable: widget.isDotsTouchable,
+    );
 
     return nonSwipeable(
       context,
