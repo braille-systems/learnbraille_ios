@@ -1,4 +1,5 @@
 
+import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/screens/letter_screen_study.dart';
 import 'package:braille_abc/screens/study_screen.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
@@ -61,7 +62,7 @@ class PracticeLesson extends LessonComponents {
         upperText: 'upperText',
         downText: 'downText',
         helpPage: null,
-        previousPage: LessonsScreen());
+        previousPage: AppModel.navigationScreens[navigation.StudyScreen]);
   }
 }
 
@@ -81,7 +82,7 @@ class ReadingLesson extends LessonComponents {
         upperText: 'upperText',
         downText: 'downText',
         helpPage: null,
-        previousPage: LessonsScreen());
+        previousPage: AppModel.navigationScreens[navigation.StudyScreen]);
   }
 }
 
@@ -94,7 +95,7 @@ class TextLesson extends LessonComponents {
     return TextLessonScreen(
       text,
       helpPage: null,
-      previousPage: LessonsScreen(),
+      previousPage: AppModel.navigationScreens[navigation.StudyScreen],
     );
   }
 }

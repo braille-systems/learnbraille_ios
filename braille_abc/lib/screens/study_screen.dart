@@ -58,7 +58,7 @@ class LessonsScreen extends NavigationScreen {
 }
 
 @immutable
-class TextLessonScreen extends NavigationScreen {
+class TextLessonScreen extends SectionScreen {
   const TextLessonScreen(
     this.text, {
     Key key,
