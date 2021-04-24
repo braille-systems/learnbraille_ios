@@ -7,7 +7,9 @@ import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/components/practice_button_widget.dart';
+import 'package:braille_abc/components/lesson_buttons.dart';
 import 'package:flutter/rendering.dart';
 
 
@@ -18,12 +20,14 @@ class LetterButtons extends StatefulWidget {
     @required this.screenType,
     @required this.symbol,
     @required this.shortSymbol,
+    @required this.isTouchable,
   });
 
   final SectionType sectionName;
   final ScreenType screenType;
-  final String symbol;
+  final Symbol symbol;
   final String shortSymbol;
+  final bool isTouchable;
 
   @override
   _LetterButtonsState createState() => chooseState();
@@ -34,6 +38,8 @@ class LetterButtons extends StatefulWidget {
         return PracticeButtonsState();
       case ScreenType.Dictionary:
         return DictionaryButtonsState();
+      case ScreenType.Study:
+        return StudyButtonsState(isTouchable: isTouchable);
       default:
         return DictionaryButtonsState();
     }
@@ -63,11 +69,11 @@ class DictionaryButtonsState extends _LetterButtonsState {
         SizedBox(
           height: ScreenParams.height(34, context),
           width: ScreenParams.width(15, context),
-          child: ModeButton(letter: this),
+          child: ModeButton(letter: this, style: AppDecorations.changeDirButton),
         ),
         SymbolWidget(
             textDir: mode,
-            char: widget.symbol,
+            symbol: widget.symbol,
             isTapped: false,
             width: ScreenParams.width(57, context),
             height: ScreenParams.height(45, context),
@@ -100,14 +106,14 @@ class PracticeButtonsState extends _LetterButtonsState {
         SizedBox(
           height: ScreenParams.height(34, context),
           width: ScreenParams.width(15, context),
-          child: ModeButton(letter: this),
+          child: ModeButton(letter: this, style: AppDecorations.changeDirButton),
         ),
         ValueListenableBuilder<bool>(
             valueListenable: isTapped,
             builder: (context, value, child){
               return SymbolWidget(
                   textDir: mode,
-                  char: widget.symbol,
+                  symbol: widget.symbol,
                   isTapped: isTapped.value,
                   width: ScreenParams.width(57, context),
                   height: ScreenParams.height(45, context),
@@ -134,10 +140,81 @@ class PracticeButtonsState extends _LetterButtonsState {
   }
 }
 
+class StudyButtonsState extends _LetterButtonsState{
+  StudyButtonsState({@required this.isTouchable}){
+    isTapped.value = isTouchable;
+  }
+
+  final isTapped = ValueNotifier(true);
+  final bool isTouchable;
+
+  @override
+  Widget build(BuildContext context) {
+    TextDirection mode() {
+      return _dir;
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          SizedBox(
+            height: ScreenParams.height(12, context),
+            width: ScreenParams.width(15, context),
+            child: ModeButton(letter: this, style: AppDecorations.changeDirStudyButton),
+          ),
+          SizedBox(
+            height: ScreenParams.height(2, context),
+            width: ScreenParams.width(15, context),
+          ),
+          SizedBox(
+            height: ScreenParams.height(29, context),
+            width: ScreenParams.width(15, context),
+            child: BackForthButton(type: lessonButtonType.backward, symbol: super.widget.symbol),
+          ),
+        ]),
+        ValueListenableBuilder<bool>(
+            valueListenable: isTapped,
+            builder: (context, value, child){
+              return SymbolWidget(
+                  textDir: mode,
+                  symbol: widget.symbol,
+                  isTapped: isTapped.value,
+                  width: ScreenParams.width(57, context),
+                  height: ScreenParams.height(45, context),
+                  dictSection: widget.sectionName);
+            }),
+        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          isTouchable ? SizedBox(
+            height: ScreenParams.height(12, context),
+            width: ScreenParams.width(15, context),
+            child: TipButton(isTapped: isTapped),
+          ):
+          SizedBox(
+            height: ScreenParams.height(12, context),
+            width: ScreenParams.width(15, context),
+          )
+          ,
+          SizedBox(
+            height: ScreenParams.height(2, context),
+            width: ScreenParams.width(15, context),
+          ),
+          SizedBox(
+            height: ScreenParams.height(29, context),
+            width: ScreenParams.width(15, context),
+            child: BackForthButton(type: lessonButtonType.forward, symbol: super.widget.symbol),
+          ),
+        ]),
+      ],
+    );
+  }
+}
+
 class ModeButton extends StatefulWidget {
-  ModeButton({@required this.letter});
+  ModeButton({@required this.letter, @required this.style});
 
   final _LetterButtonsState letter;
+  final ButtonStyle style;
 
   @override
   _ModeButtonState createState() => _ModeButtonState();
@@ -153,7 +230,7 @@ class _ModeButtonState extends State<ModeButton> {
               : SemanticNames.getName(SemanticsType.Writing)),
       child: ExcludeSemantics(
         child: ElevatedButton(
-            style: AppDecorations.changeDirButton,
+            style: widget.style,//AppDecorations.changeDirButton,
             onPressed: () =>
                 setState(
                       () {
@@ -182,7 +259,7 @@ class ContinueButton extends StatefulWidget {
   ContinueButton({@required this.isTapped, @required this.pressed});
 
   final ValueNotifier isTapped;
-  final OnPressButton pressed;
+  final NewPracticeState pressed;
 
   @override
   _ContinueButtonState createState() => _ContinueButtonState();
@@ -245,10 +322,6 @@ abstract class OnPressButton {
   OnPressButton({@required this.screenType, @required this.symbol, @required this.sectionName});
 
   final ScreenType screenType;
-  final String symbol;
+  final Symbol symbol;
   final SectionType sectionName;
-
-  void pressContinueButton(BuildContext context);
-
-  void pressHelpButton(BuildContext context);
 }

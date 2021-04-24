@@ -82,6 +82,13 @@ class AppDecorations {
     padding: EdgeInsets.symmetric(vertical: 30),
   );
 
+  static ButtonStyle changeDirStudyButton = ElevatedButton.styleFrom(
+    primary: AppColors.first,
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(topRight: Radius.circular(25), bottomRight: Radius.circular(25))),
+    padding: EdgeInsets.symmetric(vertical: 30),
+  );
+
   static ButtonStyle hintButton = ElevatedButton.styleFrom(
     primary: AppColors.first,
     shape: RoundedRectangleBorder(

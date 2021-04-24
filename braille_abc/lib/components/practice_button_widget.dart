@@ -15,6 +15,7 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/models/practice_button.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/screens/results_screen.dart';
 import 'package:braille_abc/components/letter_buttons.dart';
@@ -52,7 +53,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) => LetterScreen(
-                        symbol: PracticeSymbol.getSymbol(),
+                        symbolName: PracticeSymbol.getSymbol(),
                         shortSymbol: PracticeSymbol.getShortSymbol(),
                         sectionName: PracticeSymbol.getSectionType(),
                         screenType: ScreenType.Practice,
@@ -210,12 +211,11 @@ class PracticeSymbol {
 }
 
 class NewPracticeState extends OnPressButton {
-  NewPracticeState(ScreenType screenType, String symbol, SectionType sectionName)
-      : super(screenType: screenType, symbol: symbol, sectionName: sectionName);
+  NewPracticeState(ScreenType screenType, Symbol symbol, SectionType sectionName)
+      : super(screenType: screenType, sectionName: sectionName, symbol: symbol);
 
-  @override
   void pressContinueButton(BuildContext context) {
-    if (PracticeResults.checkAnswer(Search.element(super.symbol, super.sectionName).getDotsInfo())) {
+    if (PracticeResults.checkAnswer(super.symbol.getDotsInfo())) {
       PracticeResults.incCorrectAnswerCounter();
       // Vibration.vibrate(duration: 300, amplitude: 128, repeat: 3);
     } else {
@@ -230,7 +230,7 @@ class NewPracticeState extends OnPressButton {
         CupertinoPageRoute(
           builder: (context) => LetterScreen(
             screenType: super.screenType,
-            symbol: PracticeSymbol.getSymbol(),
+            symbolName: PracticeSymbol.getSymbol(),
             shortSymbol: PracticeSymbol.getShortSymbol(),
             sectionName: PracticeSymbol.getSectionType(),
             previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
@@ -258,6 +258,5 @@ class NewPracticeState extends OnPressButton {
     }
   }
 
-  @override
   void pressHelpButton(BuildContext context) {}
 }
