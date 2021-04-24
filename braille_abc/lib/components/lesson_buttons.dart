@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 import 'package:braille_abc/style.dart';
+import 'package:braille_abc/models/lesson_model.dart';
 
 enum lessonButtonType {
   backward,
@@ -21,6 +22,14 @@ class BackForthButton extends StatelessWidget {
 
   const BackForthButton({Key key, @required this.type, @required this.symbol}) : super(key: key);
 
+  bool isForward() {
+    return type == lessonButtonType.forward;
+  }
+
+  bool isBackward() {
+    return type == lessonButtonType.backward;
+  }
+
   @override
   Widget build(BuildContext context) {
     double _angle = 0;
@@ -32,25 +41,22 @@ class BackForthButton extends StatelessWidget {
       child: ElevatedButton(
         style: AppDecorations.nextButton,
         onPressed: () {
-          if (type == lessonButtonType.forward &&
-              StudyModel.lessons[StudyModel.currentLesson].lessonComponents[StudyModel.currentLessonPart].type ==
-                  lessonType.practice && PracticeResults.checkAnswer(symbol.getDotsInfo())) {
-            //TODO: добавить проверку результата
-          } else {
-            if (type == lessonButtonType.backward && StudyModel.currentLessonPart > 0) {
-              StudyModel.currentLessonPart--;
-            } else if (type == lessonButtonType.forward &&
-                StudyModel.currentLessonPart < StudyModel.lessons.length - 1) {
-              StudyModel.currentLessonPart++;
+          if (isForward()) {
+            if (StudyModel.currentLessonType == lessonType.practice) {
+              if (PracticeResults.checkAnswer(symbol.getDotsInfo())) {
+                StudyModel.incLessonPartIndex();
+              }
+            } else {
+              StudyModel.incLessonPartIndex();
             }
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => StudyModel
-                    .lessons[StudyModel.currentLesson].lessonComponents[StudyModel.currentLessonPart]
-                    .build(context),
-              ),
-            );
+          } else if (type == lessonButtonType.backward) {
+            StudyModel.decLessonPartIndex();
           }
+          Navigator.of(context).push(
+            CupertinoPageRoute(
+              builder: (context) => StudyModel.curLessonPart.build(context),
+            ),
+          );
         },
         child: Icon(
           AppIcon.getIcon(AppIcons.ContinueButton),
@@ -63,21 +69,20 @@ class BackForthButton extends StatelessWidget {
   }
 }
 
-/*
-class BackForthButton extends OnPressButton {
-  BackForthButton(ScreenType screenType, Symbol symbol, SectionType sectionName, {this.screen})
-      : super(screenType: screenType, sectionName: sectionName, symbol: null);
-
-  final Widget screen;
-
-  @override
-  void pressContinueButton(BuildContext context) {
-      Navigator.of(context).push(
-        CupertinoPageRoute(
-          builder: (context) => screen
+Column buildBackForthButton(BuildContext context) {
+  return Column(
+    children: [
+      SizedBox(
+        height: ScreenParams.width(90, context),
+      ),
+      SizedBox(
+        height: ScreenParams.width(60, context),
+        width: ScreenParams.width(15, context),
+        child: BackForthButton(
+          type: lessonButtonType.backward,
+          symbol: null,
         ),
-      );
-    }
-  @override
-  void pressHelpButton(BuildContext context) {}
-}*/
+      ),
+    ],
+  );
+}
