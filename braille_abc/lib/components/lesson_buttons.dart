@@ -18,7 +18,7 @@ enum lessonButtonType {
 class BackForthButton extends StatelessWidget {
   final lessonButtonType type;
 
-  const BackForthButton({Key key,  @required this.type}) : super(key: key);
+  const BackForthButton({Key key, @required this.type}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,20 +31,25 @@ class BackForthButton extends StatelessWidget {
       child: ElevatedButton(
         style: AppDecorations.nextButton,
         onPressed: () {
-          if (type == lessonButtonType.backward && StudyModel.currentLessonPart > 0) {
-            StudyModel.currentLessonPart--;
-          } else if (type == lessonButtonType.forward &&
-              StudyModel.currentLessonPart < StudyModel.lessons.length - 1) {
-            StudyModel.currentLessonPart++;
-          };
-          Navigator.of(context).push(
-            CupertinoPageRoute(
-                builder: (context) => LessonsScreen(
-                  StudyModel.lessons[StudyModel.currentLesson].lessonComponents[StudyModel.currentLessonPart],
-                  helpPage: null,
-                  previousPage: AppModel.navigationScreens[navigation.StudyScreen],
-                )),
-          );
+          if (type == lessonButtonType.forward &&
+              StudyModel.lessons[StudyModel.currentLesson].lessonComponents[StudyModel.currentLessonPart].type ==
+                  lessonType.practice) {
+            //TODO: добавить проверку результата
+          } else {
+            if (type == lessonButtonType.backward && StudyModel.currentLessonPart > 0) {
+              StudyModel.currentLessonPart--;
+            } else if (type == lessonButtonType.forward &&
+                StudyModel.currentLessonPart < StudyModel.lessons.length - 1) {
+              StudyModel.currentLessonPart++;
+            }
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) => StudyModel
+                    .lessons[StudyModel.currentLesson].lessonComponents[StudyModel.currentLessonPart]
+                    .build(context),
+              ),
+            );
+          }
         },
         child: Icon(
           AppIcon.getIcon(AppIcons.ContinueButton),

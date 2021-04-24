@@ -1,7 +1,9 @@
-import 'package:braille_abc/components/lesson_buttons.dart';
-import 'package:braille_abc/shared/screen_params.dart';
+import 'package:braille_abc/models/app_names.dart';
+import 'package:braille_abc/screens/letter_screen_study.dart';
+import 'package:braille_abc/screens/study_screen.dart';
+import 'package:braille_abc/symbol/list_symbols.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:xml/xml.dart';
 
 enum lessonType {
@@ -42,9 +44,7 @@ class PracticeLesson extends LessonComponents {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('Раздел в разработке...')),
-    );
+    return Center(child: Text('Раздел в разработке...'));
   }
 }
 
@@ -56,57 +56,27 @@ class ReadingLesson extends LessonComponents {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('Раздел в разработке...')),
-    );
-  }
+    return LetterScreenStudy(
+        isDotsTouchable: false,
+        symbol: StudySymbol(list: Search.imageSymbol(d: <int>[3, 4, 5, 6])),
+        screenType: ScreenType.Study,
+        sectionName: SectionType.ArithmeticSymbols,
+        text: 'Test',
+        helpPage: null,
+        previousPage: LessonsScreenSections());
+    }
 }
 
 @immutable
 class TextLesson extends LessonComponents {
   TextLesson(lessonType type, String text, int num) : super(type, text, num);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: ScreenParams.heightIOS14(100, context),
-      padding: const EdgeInsets.symmetric(vertical: 25),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Column(
-            children: [
-              SizedBox(
-                height: ScreenParams.width(90, context),
-              ),
-              SizedBox(
-                height: ScreenParams.width(60, context),
-                width: ScreenParams.width(15, context),
-                child: BackForthButton(type: lessonButtonType.backward),
-              ),
-            ],
-          ),
-          Expanded(
-              child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  child: Html(
-                    data: text,
-                    defaultTextStyle: TextStyle(fontSize: 30),
-                  ))),
-          Column(
-            children: [
-              SizedBox(
-                height: ScreenParams.width(90, context),
-              ),
-              SizedBox(
-                height: ScreenParams.width(60, context),
-                width: ScreenParams.width(15, context),
-                child: BackForthButton(type: lessonButtonType.forward),
-              ),
-            ],
-          ),
-        ],
-      ),
+    return TextInfoScreen(
+      text,
+      helpPage: null,
+      previousPage: LessonsScreenSections(),
     );
   }
 }

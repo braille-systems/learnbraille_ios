@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
+import 'package:braille_abc/components/lesson_buttons.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_model.dart';
@@ -13,7 +14,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:braille_abc/style.dart';
-
+import 'package:flutter_html/flutter_html.dart';
+/*
 @immutable
 class LessonsScreen extends SectionScreen {
   const LessonsScreen(
@@ -27,20 +29,9 @@ class LessonsScreen extends SectionScreen {
 
   @override
   Widget build(BuildContext context) {
-    return nonSwipeable(
-      context,
-      CupertinoPageScaffold(
-        navigationBar: NavigationBar(
-          currentPage: this,
-          title: ScreenNames.getName(ScreenType.Study),
-        ),
-        child: SafeArea(
-          child: lessonComponent.build(context),
-        ),
-      ),
-    );
+    return lessonComponent.build(context);
   }
-}
+}*/
 
 @immutable
 class LessonsScreenSections extends NavigationScreen {
@@ -89,6 +80,74 @@ class LessonsScreenSections extends NavigationScreen {
   }
 }
 
+
+@immutable
+class TextInfoScreen extends NavigationScreen {
+  const TextInfoScreen(this.text, {
+    Key key,
+    Widget helpPage,
+    Widget previousPage,
+  }) : super(key: key, helpPage: helpPage, previousPage: previousPage);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return nonSwipeable(
+      context,
+      CupertinoPageScaffold(
+        navigationBar: NavigationBar(
+          currentPage: this,
+          title: ScreenNames.getName(ScreenType.Study),
+        ),
+        child: SafeArea(
+          child:  Container(
+            height: ScreenParams.heightIOS14(100, context),
+            padding: const EdgeInsets.symmetric(vertical: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Column(
+                  children: [
+                    SizedBox(
+                      height: ScreenParams.width(90, context),
+                    ),
+                    SizedBox(
+                      height: ScreenParams.width(60, context),
+                      width: ScreenParams.width(15, context),
+                      child: BackForthButton(type: lessonButtonType.backward),
+                    ),
+                  ],
+                ),
+                Expanded(
+                    child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        child: Html(
+                          data: text,
+                          defaultTextStyle: TextStyle(fontSize: 30),
+                        ))),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: ScreenParams.width(90, context),
+                    ),
+                    SizedBox(
+                      height: ScreenParams.width(60, context),
+                      width: ScreenParams.width(15, context),
+                      child: BackForthButton(type: lessonButtonType.forward),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class LessonSectionWidget extends StatelessWidget {
   const LessonSectionWidget({
     Key key,
@@ -118,12 +177,9 @@ class LessonSectionWidget extends StatelessWidget {
               });
               Navigator.of(context).push(
                 CupertinoPageRoute(
-                    builder: (context) => LessonsScreen(
-                          lesson.lessonComponents[0],
-                          helpPage: null,
-                          previousPage: AppModel.navigationScreens[navigation.StudyScreen],
-                        )),
-              );
+                    builder: (context) =>
+                          lesson.lessonComponents[0].build(context),
+                ), );
             },
             leading: Icon(
               AppIcon.getIcon(AppIcons.EnableLessonSection),
