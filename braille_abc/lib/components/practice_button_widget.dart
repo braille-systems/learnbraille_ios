@@ -214,7 +214,6 @@ class NewPracticeState extends OnPressButton {
   NewPracticeState(ScreenType screenType, Symbol symbol, SectionType sectionName)
       : super(screenType: screenType, sectionName: sectionName, symbol: symbol);
 
-  @override
   void pressContinueButton(BuildContext context) {
     if (PracticeResults.checkAnswer(super.symbol.getDotsInfo())) {
       PracticeResults.incCorrectAnswerCounter();
@@ -259,6 +258,5 @@ class NewPracticeState extends OnPressButton {
     }
   }
 
-  @override
   void pressHelpButton(BuildContext context) {}
 }

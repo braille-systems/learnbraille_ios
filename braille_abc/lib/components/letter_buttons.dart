@@ -170,7 +170,7 @@ class StudyButtonsState extends _LetterButtonsState{
           SizedBox(
             height: ScreenParams.height(29, context),
             width: ScreenParams.width(15, context),
-            child: BackForthButton(type: lessonButtonType.backward),
+            child: BackForthButton(type: lessonButtonType.backward, symbol: super.widget.symbol),
           ),
         ]),
         ValueListenableBuilder<bool>(
@@ -202,7 +202,7 @@ class StudyButtonsState extends _LetterButtonsState{
           SizedBox(
             height: ScreenParams.height(29, context),
             width: ScreenParams.width(15, context),
-            child: BackForthButton(type: lessonButtonType.forward),
+            child: BackForthButton(type: lessonButtonType.forward, symbol: super.widget.symbol),
           ),
         ]),
       ],
@@ -259,7 +259,7 @@ class ContinueButton extends StatefulWidget {
   ContinueButton({@required this.isTapped, @required this.pressed});
 
   final ValueNotifier isTapped;
-  final OnPressButton pressed;
+  final NewPracticeState pressed;
 
   @override
   _ContinueButtonState createState() => _ContinueButtonState();
@@ -324,8 +324,4 @@ abstract class OnPressButton {
   final ScreenType screenType;
   final Symbol symbol;
   final SectionType sectionName;
-
-  void pressContinueButton(BuildContext context);
-
-  void pressHelpButton(BuildContext context);
 }

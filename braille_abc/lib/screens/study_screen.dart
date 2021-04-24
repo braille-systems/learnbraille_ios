@@ -5,7 +5,6 @@ import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/components/lesson_buttons.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/models/app_icons.dart';
-import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/models/study_model.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';

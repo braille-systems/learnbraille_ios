@@ -1,9 +1,9 @@
 import 'package:braille_abc/models/app_icons.dart';
-import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/study_model.dart';
-import 'package:braille_abc/screens/study_screen.dart';
 import 'package:braille_abc/shared/screen_params.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
+import 'package:braille_abc/models/practice_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -17,8 +17,9 @@ enum lessonButtonType {
 
 class BackForthButton extends StatelessWidget {
   final lessonButtonType type;
+  final Symbol symbol;
 
-  const BackForthButton({Key key, @required this.type}) : super(key: key);
+  const BackForthButton({Key key, @required this.type, @required this.symbol}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class BackForthButton extends StatelessWidget {
         onPressed: () {
           if (type == lessonButtonType.forward &&
               StudyModel.lessons[StudyModel.currentLesson].lessonComponents[StudyModel.currentLessonPart].type ==
-                  lessonType.practice) {
+                  lessonType.practice && PracticeResults.checkAnswer(symbol.getDotsInfo())) {
             //TODO: добавить проверку результата
           } else {
             if (type == lessonButtonType.backward && StudyModel.currentLessonPart > 0) {
