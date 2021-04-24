@@ -85,7 +85,7 @@ class TextLessonScreen extends NavigationScreen {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                buildBackForthButton(context),
+                buildBackForthButton(context, lessonButtonType.backward),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -95,7 +95,7 @@ class TextLessonScreen extends NavigationScreen {
                     ),
                   ),
                 ),
-                buildBackForthButton(context)
+                buildBackForthButton(context, lessonButtonType.forward)
               ],
             ),
           ),

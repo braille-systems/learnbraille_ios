@@ -49,7 +49,7 @@ class BackForthButton extends StatelessWidget {
             } else {
               StudyModel.incLessonPartIndex();
             }
-          } else if (type == lessonButtonType.backward) {
+          } else if (isBackward()) {
             StudyModel.decLessonPartIndex();
           }
           Navigator.of(context).push(
@@ -69,7 +69,7 @@ class BackForthButton extends StatelessWidget {
   }
 }
 
-Column buildBackForthButton(BuildContext context) {
+Column buildBackForthButton(BuildContext context, lessonButtonType type) {
   return Column(
     children: [
       SizedBox(
@@ -79,7 +79,7 @@ Column buildBackForthButton(BuildContext context) {
         height: ScreenParams.width(60, context),
         width: ScreenParams.width(15, context),
         child: BackForthButton(
-          type: lessonButtonType.backward,
+          type: type,
           symbol: null,
         ),
       ),
