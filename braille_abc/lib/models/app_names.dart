@@ -16,6 +16,25 @@ class SectionNames {
   static String getName(SectionType type) {
     return stringOfSectionsMap[type];
   }
+
+  static SectionType getType(String text){
+    if(text.contains("RussianSymbols")){
+      return SectionType.RussianSymbols;
+    }
+    if(text.contains("Numbers")){
+      return SectionType.Numbers;
+    }
+    if(text.contains("ArithmeticSymbols")){
+      return SectionType.ArithmeticSymbols;
+    }
+    if(text.contains("PunctuationSymbols")){
+      return SectionType.PunctuationSymbols;
+    }
+    if(text.contains("Signs")){
+      return SectionType.Signs;
+    }
+    return null;
+  }
 }
 
 enum ScreenType { Dictionary, Help, Home, Letter, Practice, Settings, Study, Results }
