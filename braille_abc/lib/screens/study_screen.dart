@@ -62,8 +62,8 @@ class TextLessonScreen extends NavigationScreen {
   const TextLessonScreen(
     this.text, {
     Key key,
-    Widget helpPage,
-    Widget previousPage,
+    Screen helpPage,
+    Screen previousPage,
   }) : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   final String text;
@@ -104,4 +104,3 @@ class TextLessonScreen extends NavigationScreen {
     );
   }
 }
-

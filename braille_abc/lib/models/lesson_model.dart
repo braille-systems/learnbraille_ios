@@ -53,7 +53,15 @@ class PracticeLesson extends LessonComponents {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Раздел в разработке...'));
+    return LetterScreenStudy(
+        isDotsTouchable: true,
+        symbol: StudySymbol(list: Search.imageSymbol(d: <int>[3, 4, 5, 6])),
+        screenType: ScreenType.Study,
+        sectionName: SectionType.ArithmeticSymbols,
+        upperText: 'upperText',
+        downText: 'downText',
+        helpPage: null,
+        previousPage: LessonsScreen());
   }
 }
 

@@ -10,6 +10,10 @@ class StudyModel {
   static int _currentLessonPartIndex = 0;
   static final int _currentLessonIndex = 0;
 
+  static printIndex(){
+    print("1 "+ _currentLessonIndex.toString()+"\n2 "+_currentLessonPartIndex.toString());
+  }
+
   static int get lessonsNum => _lessons.length;
   static Lesson getLessonByIndex(index)=> _lessons[index];
   static Lesson get curLesson => _lessons[_currentLessonIndex];
@@ -17,16 +21,20 @@ class StudyModel {
 
   static lessonType get currentLessonType => curLessonPart.type;
 
-  static void incLessonPartIndex(){
-    if(_currentLessonPartIndex<_lessons.length-1) {
+  static bool incLessonPartIndex(){
+    if(_currentLessonPartIndex<curLesson.lessonComponent.length-1) {
       _currentLessonPartIndex++;
+      return true;
     }
+    return false;
   }
 
-  static void decLessonPartIndex(){
-    if(_currentLessonPartIndex>0) {
+  static bool decLessonPartIndex(){
+    if(_currentLessonPartIndex > 0) {
       _currentLessonPartIndex--;
+      return true;
     }
+  return false;
   }
 
   static Future<Null> fillStudyModel(BuildContext context) async {

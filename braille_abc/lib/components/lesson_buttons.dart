@@ -32,6 +32,7 @@ class BackForthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool navigate = false;
     double _angle = 0;
     if (type == lessonButtonType.backward) {
       _angle = pi;
@@ -41,22 +42,26 @@ class BackForthButton extends StatelessWidget {
       child: ElevatedButton(
         style: AppDecorations.nextButton,
         onPressed: () {
+          StudyModel.printIndex();
           if (isForward()) {
             if (StudyModel.currentLessonType == lessonType.practice) {
               if (PracticeResults.checkAnswer(symbol.getDotsInfo())) {
-                StudyModel.incLessonPartIndex();
+                navigate = StudyModel.incLessonPartIndex();
+                navigate = true;
               }
             } else {
-              StudyModel.incLessonPartIndex();
+              navigate = StudyModel.incLessonPartIndex();
             }
           } else if (isBackward()) {
-            StudyModel.decLessonPartIndex();
+            navigate = StudyModel.decLessonPartIndex();
           }
-          Navigator.of(context).push(
-            CupertinoPageRoute(
-              builder: (context) => StudyModel.curLessonPart.build(context),
-            ),
-          );
+          if(navigate) {
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) => StudyModel.curLessonPart.build(context),
+              ),
+            );
+          }
         },
         child: Icon(
           AppIcon.getIcon(AppIcons.ContinueButton),
