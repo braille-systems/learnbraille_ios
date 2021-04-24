@@ -61,7 +61,8 @@ class ReadingLesson extends LessonComponents {
         symbol: StudySymbol(list: Search.imageSymbol(d: <int>[3, 4, 5, 6])),
         screenType: ScreenType.Study,
         sectionName: SectionType.ArithmeticSymbols,
-        text: 'Test',
+        upperText: 'upperText',
+        downText: 'downText',
         helpPage: null,
         previousPage: LessonsScreenSections());
     }

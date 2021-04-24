@@ -45,8 +45,10 @@ class LetterScreen extends SectionScreen {
           screenType: screenType,
           sectionName: sectionName,
           symbol: symbol,
+          symbolName: symbolName,
           shortSymbol: shortSymbol,
           isDotsTouchable: isDotsTouchable,
+          isText: false,
         ),
       ),
     );
@@ -60,16 +62,20 @@ class LetterView extends StatefulWidget {
     @required this.sectionName,
     @required this.screenType,
     @required this.symbol,
+    @required this.symbolName,
     @required this.shortSymbol,
     @required this.isDotsTouchable,
+    @required this.isText,
   }) : super(key: key);
 
   final String str = ScreenNames.getName(ScreenType.Letter);
   final SectionType sectionName;
   final ScreenType screenType;
   final Symbol symbol;
+  final String symbolName;
   final String shortSymbol;
   final bool isDotsTouchable;
+  final bool isText;
 
   @override
   _LetterViewState createState() => _LetterViewState();
@@ -128,6 +134,7 @@ class _LetterViewState extends State<LetterView> {
                   child: LetterWidget(
                     title: widget.sectionName,
                     symbol: widget.shortSymbol,
+                    titleText: widget.isText ? widget.symbolName : null,
                   ),
                 ),
               )

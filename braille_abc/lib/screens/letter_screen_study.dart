@@ -13,7 +13,8 @@ class LetterScreenStudy extends SectionScreen {
   final SectionType sectionName;
   final ScreenType screenType;
   final Symbol symbol;
-  final String text;
+  final String upperText;
+  final String downText;
   final bool isDotsTouchable;
 
   const LetterScreenStudy(
@@ -24,7 +25,8 @@ class LetterScreenStudy extends SectionScreen {
         @required this.sectionName,
         @required this.symbol,
         @required this.isDotsTouchable,
-        @required this.text})
+        @required this.upperText,
+        @required this.downText})
       : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   @override
@@ -40,8 +42,10 @@ class LetterScreenStudy extends SectionScreen {
           screenType: screenType,
           sectionName: sectionName,
           symbol: symbol,
-          shortSymbol: text,
+          symbolName: upperText,
+          shortSymbol: downText,
           isDotsTouchable: isDotsTouchable,
+          isText: true,
         ),
       ),
     );
