@@ -1,3 +1,4 @@
+import 'package:braille_abc/shared/default_params.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:braille_abc/models/app_icons.dart';
@@ -23,12 +24,14 @@ class _BottomState extends State<Bottom> {
   final CupertinoTabController _controller = CupertinoTabController();
 
   void onItemTapped(int index) {
+    DefaultParams.toDefaultParams();
     setState(() {
       _controller.index = index;
     });
   }
 
   void displayTapBar(bool isDisplayed) {
+    DefaultParams.toDefaultParams();
     setState(() {
       _disableTapBar = !isDisplayed;
     });

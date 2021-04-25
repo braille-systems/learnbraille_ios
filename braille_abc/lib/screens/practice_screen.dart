@@ -3,6 +3,7 @@ import 'package:braille_abc/components/practice_button_widget.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/models/screen_model.dart';
+import 'package:braille_abc/shared/default_params.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,8 +45,13 @@ class PracticeScreen extends NavigationScreen {
                         for (var practiceButton in AppModel.practiceButtons)
                           Container(
                             margin: EdgeInsets.symmetric(vertical: 2),
-                            child: PracticeButtonWidget(
-                              practiceButton: practiceButton,
+                            child: ValueListenableBuilder<bool>(
+                              valueListenable: DefaultParams.update,
+                              builder: (context, value, child){
+                                return PracticeButtonWidget(
+                                    practiceButton: practiceButton,
+                                );
+                              }
                             ),
                           ),
                       ],
