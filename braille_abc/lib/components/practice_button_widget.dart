@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // import 'package:vibration/vibration.dart';
 import 'dart:math';
+import 'dart:io';
 
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
@@ -213,49 +214,62 @@ class NewPracticeState extends OnPressButton {
   NewPracticeState(ScreenType screenType, String symbol, SectionType sectionName)
       : super(screenType: screenType, symbol: symbol, sectionName: sectionName);
 
-  @override
-  void pressContinueButton(BuildContext context) {
-    if (PracticeResults.checkAnswer(Search.element(super.symbol, super.sectionName).getDotsInfo())) {
+  void checkAnswer(bool isCorrect) {
+    if (isCorrect) {
       PracticeResults.incCorrectAnswerCounter();
-      // Vibration.vibrate(duration: 300, amplitude: 128, repeat: 3);
     } else {
       PracticeResults.incStepCounter();
-      // Vibration.vibrate(duration: 600, amplitude: 256);
     }
     PracticeResults.resetAnswer();
+  }
 
-    if (!PracticeSymbol.isPracticeEnd()) {
-      PracticeSymbol.nextSymbol();
-      Navigator.of(context).push(
-        CupertinoPageRoute(
-          builder: (context) => LetterScreen(
-            screenType: super.screenType,
-            symbol: PracticeSymbol.getSymbol(),
-            shortSymbol: PracticeSymbol.getShortSymbol(),
-            sectionName: PracticeSymbol.getSectionType(),
-            previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-            helpPage: Help(helpName: HelpSections.LetterPractice),
-            isDotsTouchable: true,
-          ),
-        ),
-      );
-    } else {
-      var results = PracticeResults.getResults();
-      Practice.updatePool();
-      PracticeSymbol.update();
-      Navigator.of(context).push(
-        CupertinoPageRoute(
-          builder: (context) => ResultsScreen(
-            helpPage: Help(
-              helpName: HelpSections.PracticeResult,
-            ),
-            previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-            results: results,
-          ),
-        ),
-      );
-      PracticeResults.updatePracticeResults();
+  @override
+  void pressContinueButton(BuildContext context) {
+    if (LetterInfo.of(context).color == AppColors.symbolContainer) {
+      bool isCorrect = PracticeResults.checkAnswer(Search.element(super.symbol, super.sectionName).getDotsInfo());
+      checkAnswer(isCorrect);
+      LetterInfo.of(context).setColor(isCorrect);
     }
+    else {
+      if (!PracticeSymbol.isPracticeEnd()) {
+        PracticeSymbol.nextSymbol();
+        Navigator.of(context).push(
+          CupertinoPageRoute(
+            builder: (context) =>
+                LetterScreen(
+                  screenType: super.screenType,
+                  symbol: PracticeSymbol.getSymbol(),
+                  shortSymbol: PracticeSymbol.getShortSymbol(),
+                  sectionName: PracticeSymbol.getSectionType(),
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  helpPage: Help(helpName: HelpSections.LetterPractice),
+                  isDotsTouchable: true,
+                ),
+          ),
+        );
+      } else {
+        var results = PracticeResults.getResults();
+        Practice.updatePool();
+        PracticeSymbol.update();
+        Navigator.of(context).push(
+          CupertinoPageRoute(
+            builder: (context) =>
+                ResultsScreen(
+                  helpPage: Help(
+                    helpName: HelpSections.PracticeResult,
+                  ),
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  results: results,
+                ),
+          ),
+        );
+        PracticeResults.updatePracticeResults();
+      }
+    }
+  }
+
+  void wait() {
+    sleep(Duration(seconds: 2));
   }
 
   @override
