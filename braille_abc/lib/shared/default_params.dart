@@ -7,11 +7,9 @@ class DefaultParams{
 
   static void toDefaultParams(){
     Practice.updatePool();
-    update.value = true;
+    update.value = (!update.value);
     for(var i = 0; i < AppModel.sections.length; i++){
-      if(AppModel.sections[i].expansionTile.currentState != null){
-        AppModel.sections[i].expansionTile.currentState.collapse();
-      }
+      AppModel.sections[i].expansionTile.value = GlobalKey();
     }
   }
 }

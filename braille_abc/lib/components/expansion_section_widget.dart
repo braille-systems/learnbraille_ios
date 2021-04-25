@@ -1,4 +1,4 @@
-import 'package:braille_abc/components/expansion_tile.dart';
+import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +13,14 @@ class ExpansionSection extends StatefulWidget {
     this.sectionName,
     this.child,
     this.color = AppColors.second,
-    this.expansionTile,
+    this.index,
   }) : super(key: key);
 
   final IconData sectionIcon;
   final Color color;
   final String sectionName;
   final Widget child;
-  final GlobalKey<UserExpansionTileState> expansionTile;
+  final int index;
 
   @override
   _ExpansionSection createState() => _ExpansionSection();
@@ -28,11 +28,16 @@ class ExpansionSection extends StatefulWidget {
 
 class _ExpansionSection extends State<ExpansionSection> {
   Color myColor = AppColors.second;
+  ExpansionTile expTile;
+
 
   @override
   Widget build(BuildContext context) {
-    UserExpansionTile expTile = UserExpansionTile(
-      key: widget.expansionTile,
+    if(expTile == null || expTile.key != AppModel.sections[widget.index].expansionTile.value){
+      myColor = AppColors.second;
+    }
+    expTile = ExpansionTile(
+      key: AppModel.sections[widget.index].expansionTile.value,
       onExpansionChanged: (expanded) {
         setState(() {
           if (expanded) {
@@ -52,9 +57,9 @@ class _ExpansionSection extends State<ExpansionSection> {
         style: TextStyle(fontSize:Sizes.lineSectionFontSize, color: myColor),
       ),
       backgroundColor: AppColors.expandBackground,
+      initiallyExpanded: false,
       children: <Widget>[widget.child],
     );
-    //expansionTile.currentState.collapse();
     return Semantics(
         button: false,
         hint: SemanticNames.getName(SemanticsType.ExpandableList) + SemanticNames.getName(SemanticsType.TapToOpen),

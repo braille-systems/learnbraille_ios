@@ -35,7 +35,7 @@ class _MyExpandableListState extends State<MyExpandableList> {
                   ExpansionSection(
                     sectionIcon: widget.model[i].icon,
                     sectionName: widget.model[i].name,
-                    expansionTile: widget.model[i].expansionTile,
+                    index: i,
                     child: widget.model[i].expandedList,
                   ),
               ],

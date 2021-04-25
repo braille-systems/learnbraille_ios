@@ -1,12 +1,12 @@
-import 'package:braille_abc/components/expansion_tile.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 @immutable
 class SectionModel {
   final String name;
   final IconData icon;
   final Widget expandedList;
-  final GlobalKey<UserExpansionTileState> expansionTile = GlobalKey();
+  final expansionTile = ValueNotifier(GlobalKey());
 
   SectionModel({this.name, this.icon, this.expandedList});
 }
