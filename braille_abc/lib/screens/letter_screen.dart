@@ -91,9 +91,6 @@ class _LetterViewState extends State<LetterView> {
 
   @override
   Widget build(BuildContext context) {
-
-    //Symbol symbol = Search.element(widget.symbol, widget.sectionName);
-
     switch (widget.screenType) {
       //add buttons realization
       case ScreenType.Practice:

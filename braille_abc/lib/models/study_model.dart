@@ -3,6 +3,7 @@ import 'package:xml/xml.dart';
 
 import 'package:braille_abc/models/lesson_model.dart';
 
+
 @immutable
 class StudyModel {
   static int number = 1;
@@ -33,6 +34,18 @@ class StudyModel {
   return false;
   }
 
+  static String getType(lessonType type){
+    switch(type){
+      case lessonType.practice:
+        return "practice";
+      case lessonType.reading:
+        return "reading";
+      case lessonType.text:
+        return "info";
+    }
+    return null;
+  }
+
   static Future<Null> fillStudyModel(BuildContext context) async {
     String xmlString = await DefaultAssetBundle.of(context).loadString("data/studying.xml");
     var xml = XmlDocument.parse(xmlString);
@@ -51,11 +64,11 @@ class StudyModel {
         if (comp.children.isNotEmpty) {
           var type = comp.getAttribute("type");
           if (type != null) {
-            if (type == "practice") {
+            if (type == getType(lessonType.practice)) {
               lessonsComponents.add(PracticeLesson(lessonType.practice, comp.getAttribute("title"), comp.text, lessonNumber));
-            } else if (type == "reading") {
+            } else if (type == getType(lessonType.reading)) {
               lessonsComponents.add(ReadingLesson(lessonType.reading, comp.getAttribute("title"), comp.text, lessonNumber));
-            } else if (type == "info") {
+            } else if (type == getType(lessonType.text)) {
               lessonsComponents.add(TextLesson(lessonType.text, comp.text, lessonNumber));
             }
           }
