@@ -1,5 +1,4 @@
 import 'package:braille_abc/components/expansion_tile.dart';
-import 'package:braille_abc/shared/default_params.dart';
 import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
