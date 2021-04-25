@@ -1,9 +1,12 @@
+import 'package:braille_abc/screens/letter_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/style.dart';
+
+
 
 @immutable
 class LetterWidget extends StatelessWidget {
@@ -22,7 +25,7 @@ class LetterWidget extends StatelessWidget {
       child: Container(
         width: ScreenParams.width(70, context),
         height: ScreenParams.height(30, context),
-        decoration: AppDecorations.letterWidget,
+        decoration: AppDecorations.letterWidget(LetterInfo.of(context).color),
         child: Column(
           children: [
             Flexible(

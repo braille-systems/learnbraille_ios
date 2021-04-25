@@ -61,12 +61,15 @@ class _ExpansionSection extends State<ExpansionSection> {
       children: <Widget>[widget.child],
     );
     return Semantics(
-        button: false,
-        hint: SemanticNames.getName(SemanticsType.ExpandableList) + SemanticNames.getName(SemanticsType.TapToOpen),
-        child: Container(
-          margin: EdgeInsets.symmetric(vertical: 2),
-          decoration: AppDecorations.expansionSection,
-          child: expTile,
-        ));
+      button: false,
+      label: widget.sectionName + ". " + SemanticNames.getName(SemanticsType.ExpandableList),
+      hint: SemanticNames.getName(SemanticsType.TapToOpen),
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 2),
+        decoration: AppDecorations.expansionSection,
+        child: expTile,
+      ),
+    );
+//>>>>>>> develop
   }
 }
