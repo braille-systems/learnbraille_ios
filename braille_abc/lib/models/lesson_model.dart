@@ -1,4 +1,3 @@
-
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/study_model.dart';
 import 'package:braille_abc/screens/letter_screen_study.dart';
@@ -22,8 +21,10 @@ class Lesson {
   final List<LessonComponents> lessonComponent;
 
   int get number => _number;
+
   String get name => _name;
-  LessonComponents getLessonComponent(int i)  => lessonComponent[i];
+
+  LessonComponents getLessonComponent(int i) => lessonComponent[i];
 
   Lesson(this._number, this._name, this.lessonComponent);
 }
@@ -35,7 +36,9 @@ class LessonComponents extends StatelessWidget {
   final String _text;
 
   int get number => _number;
+
   String get text => _text;
+
   lessonType get type => _type;
 
   LessonComponents(this._type, this._text, this._number);
@@ -55,13 +58,25 @@ class PracticeLesson extends LessonComponents {
 
   @override
   Widget build(BuildContext context) {
+    String up;
+    String down;
+    var lessonText = StudyModel.parseTitle(text);
+    var studySymbol = StudyModel.parseSymbol(symbol);
+    if (lessonText == null) {
+      down = studySymbol.char;
+      up = SectionNames.getName(SectionNames.getType(text));
+    } else {
+      up = lessonText[0] + ":";
+      down = lessonText[1];
+    }
+
     return LetterScreenStudy(
         isDotsTouchable: true,
-        symbol: StudySymbol(list: Search.imageSymbol(d: <int>[3, 4, 5, 6])),
+        symbol: studySymbol ?? StudySymbol(list: Search.imageSymbol(d: StudyModel.createSymbol(symbol))),
         screenType: ScreenType.Study,
         sectionName: SectionType.ArithmeticSymbols,
-        upperText: 'upperText',
-        downText: 'downText',
+        upperText: up,
+        downText: down,
         helpPage: null,
         previousPage: AppModel.navigationScreens[navigation.StudyScreen]);
   }
@@ -75,15 +90,25 @@ class ReadingLesson extends LessonComponents {
 
   @override
   Widget build(BuildContext context) {
+    String up;
+    String down;
     var lessonText = StudyModel.parseTitle(text);
     var studySymbol = StudyModel.parseSymbol(symbol);
+    if (lessonText == null) {
+      down = studySymbol.char;
+      up = SectionNames.getName(SectionNames.getType(text));
+    } else {
+      up = lessonText[0] + ":";
+      down = lessonText[1];
+    }
+
     return LetterScreenStudy(
         isDotsTouchable: false,
         symbol: studySymbol ?? StudySymbol(list: Search.imageSymbol(d: StudyModel.createSymbol(symbol))),
         screenType: ScreenType.Study,
         sectionName: SectionType.ArithmeticSymbols,
-        upperText: lessonText[0] + ":",
-        downText: lessonText[1],
+        upperText: up,
+        downText: down,
         helpPage: null,
         previousPage: AppModel.navigationScreens[navigation.StudyScreen]);
   }

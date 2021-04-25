@@ -11,7 +11,7 @@ class StudyModel {
   static int number = 1;
   static final List<Lesson> _lessons = [];
   static int _currentLessonPartIndex = 0;
-  static final int _currentLessonIndex = 0;
+  static int _currentLessonIndex = 0;
 
   static int get lessonsNum => _lessons.length;
   static Lesson getLessonByIndex(index)=> _lessons[index];
@@ -34,6 +34,15 @@ class StudyModel {
       return true;
     }
   return false;
+  }
+
+  // ignore: avoid_setters_without_getters
+  static set currentLessonIndex(int index) {
+    _currentLessonIndex = index;
+  }
+
+  static void rebootLessons(){
+    _currentLessonPartIndex =0;
   }
 
   static Future<Null> fillStudyModel(BuildContext context) async {
@@ -84,6 +93,9 @@ class StudyModel {
   }
 
   static List<String> parseTitle(String text){
+    if(text.isEmpty){
+      return null;
+    }
     var result = text.split(":");
     return result;
   }
@@ -98,4 +110,5 @@ class StudyModel {
     }
     return null;
   }
+
 }
