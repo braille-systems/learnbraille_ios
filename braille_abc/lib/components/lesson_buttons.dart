@@ -46,7 +46,6 @@ class BackForthButton extends StatelessWidget {
             if (StudyModel.currentLessonType == lessonType.practice) {
               if (PracticeResults.checkAnswer(symbol.getDotsInfo())) {
                 navigate = StudyModel.incLessonPartIndex();
-                navigate = true;
               }
             } else {
               navigate = StudyModel.incLessonPartIndex();
