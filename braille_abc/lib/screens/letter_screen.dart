@@ -1,4 +1,5 @@
 import 'package:braille_abc/shared/non_swipeable.dart';
+import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,6 @@ import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/components/letter_widget.dart';
-import 'package:braille_abc/components/practice_button_widget.dart';
 import 'package:braille_abc/components/letter_buttons.dart';
 
 @immutable
@@ -31,22 +31,71 @@ class LetterScreen extends SectionScreen {
 
   @override
   Widget build(BuildContext context) {
-    return nonSwipeable(
-      context,
-      CupertinoPageScaffold(
-        navigationBar: NavigationBar(
-          currentPage: this,
-          title: ScreenNames.getName(screenType),
-        ),
-        child: LetterView(
-          screenType: screenType,
-          sectionName: sectionName,
-          symbol: symbol,
-          shortSymbol: shortSymbol,
-          isDotsTouchable: isDotsTouchable,
+    return LetterColor(
+      child: nonSwipeable(
+        context,
+        CupertinoPageScaffold(
+          navigationBar: NavigationBar(
+            currentPage: this,
+            title: ScreenNames.getName(screenType),
+          ),
+          child: LetterView(
+            screenType: screenType,
+            sectionName: sectionName,
+            symbol: symbol,
+            shortSymbol: shortSymbol,
+            isDotsTouchable: isDotsTouchable,
+          ),
         ),
       ),
     );
+  }
+}
+
+class LetterColor extends StatefulWidget {
+  final Widget child;
+
+  const LetterColor({Key key, @required this.child}) : super(key: key);
+
+  @override
+  _LetterColor createState() => _LetterColor();
+}
+
+class _LetterColor extends State<LetterColor> {
+  Color color = AppColors.symbolContainer;
+
+  void setColor(bool isCorrect) {
+    setState(() {
+      color = isCorrect ? AppColors.correctAnswer : AppColors.wrongAnswer;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LetterInfo(
+      color: color,
+      letterColor: this,
+      child: widget.child,
+    );
+  }
+}
+
+class LetterInfo extends InheritedWidget {
+  final Color color;
+  final _LetterColor letterColor;
+
+  const LetterInfo({
+    Key key,
+    @required this.color,
+    @required this.letterColor,
+    @required Widget child,
+  }) : super(key: key, child: child);
+
+  static _LetterColor of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<LetterInfo>().letterColor;
+
+  @override
+  bool updateShouldNotify(LetterInfo oldWidget) {
+    return oldWidget.color.value != color.value;
   }
 }
 
@@ -73,8 +122,6 @@ class LetterView extends StatefulWidget {
 }
 
 class _LetterViewState extends State<LetterView> {
-  OnPressButton pressed;
-
   @override
   void initState() {
     super.initState();
@@ -82,23 +129,6 @@ class _LetterViewState extends State<LetterView> {
 
   @override
   Widget build(BuildContext context) {
-    switch (widget.screenType) {
-      //add buttons realization
-      case ScreenType.Practice:
-        pressed = NewPracticeState(widget.screenType, widget.symbol, widget.sectionName);
-        break;
-      case ScreenType.Study:
-        break;
-      default:
-        break;
-    }
-
-    LetterButtons letterButtons = LetterButtons(
-        sectionName: widget.sectionName,
-        screenType: widget.screenType,
-        symbol: widget.symbol,
-        shortSymbol: widget.shortSymbol);
-
     return nonSwipeable(
       context,
       CupertinoPageScaffold(
@@ -108,26 +138,35 @@ class _LetterViewState extends State<LetterView> {
             SizedBox(
               height: ScreenParams.height(5, context),
             ),
-            Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
-              Semantics(
-                label: SemanticNames.getName(SemanticsType.SectionInLetterWidget) +
-                    SectionNames.getName(widget.sectionName) +
-                    ". " +
-                    SemanticNames.getName(SemanticsType.SymbolInLetterWidget) +
-                    widget.shortSymbol,
-                button: false,
-                child: ExcludeSemantics(
-                  child: LetterWidget(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Semantics(
+                  label: SemanticNames.getName(SemanticsType.SectionInLetterWidget) +
+                      SectionNames.getName(widget.sectionName) +
+                      ". " +
+                      SemanticNames.getName(SemanticsType.SymbolInLetterWidget) +
+                      widget.shortSymbol,
+                  button: false,
+                  child: ExcludeSemantics(
+                    child: LetterWidget(
                     title: widget.sectionName,
                     symbol: widget.shortSymbol,
                   ),
+                  ),
                 ),
-              )
-            ]),
+              ],
+            ),
             SizedBox(
               height: ScreenParams.height(3, context),
             ),
-            letterButtons,
+            LetterButtons(
+              sectionName: widget.sectionName,
+              screenType: widget.screenType,
+              symbol: widget.symbol,
+              shortSymbol: widget.shortSymbol,
+            ),
           ],
         ),
       ),
