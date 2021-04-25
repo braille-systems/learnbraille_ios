@@ -77,10 +77,10 @@ Column buildBackForthButton(BuildContext context, lessonButtonType type) {
   return Column(
     children: [
       SizedBox(
-        height: ScreenParams.width(90, context),
+        height: ScreenParams.height(50, context),
       ),
       SizedBox(
-        height: ScreenParams.width(60, context),
+        height: ScreenParams.height(29, context),
         width: ScreenParams.width(15, context),
         child: BackForthButton(
           type: type,
