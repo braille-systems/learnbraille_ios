@@ -150,4 +150,6 @@ abstract class Styles {
 class Sizes {
   static double lineSectionIconSize = 45;
   static double lineSectionFontSize = 22;
+  static double settingNameFontSize = 21;
+  static double settingDescriptionFontSize = 17;
 }
