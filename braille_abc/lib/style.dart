@@ -178,9 +178,11 @@ class SizeT {
 class Sizes {
   static double lineSectionIconSize = 45;
   static double lineSectionFontSize = 22;
+  static double settingNameFontSize = 21;
+  static double settingDescriptionFontSize = 17;
   static SizeT getBackFortButtonSize() => SizeT(29,15);
   static SizeT getModeTipButtonSize() => SizeT(12,15);
-  static SizeT getModeButton()=>SizeT(34,15);
+  static SizeT getModeButton() =>SizeT(34,15);
   static SizeT getLetterWidgetSize() => SizeT(45, 57);
 }
 

@@ -98,7 +98,13 @@ class LetterInfo extends InheritedWidget {
     @required Widget child,
   }) : super(key: key, child: child);
 
-  static _LetterColor of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<LetterInfo>().letterColor;
+  static _LetterColor of(BuildContext context) {
+    var inheritedWidget = context.dependOnInheritedWidgetOfExactType<LetterInfo>();
+    if(inheritedWidget == null) {
+      return null;
+    }
+    return inheritedWidget.letterColor;
+  }
 
   @override
   bool updateShouldNotify(LetterInfo oldWidget) {

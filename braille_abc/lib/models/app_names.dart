@@ -57,6 +57,39 @@ class ScreenNames {
   }
 }
 
+enum SettingType { OnlyLearned, Vibration, AutoVoice }
+
+class SettingInfo {
+  final String settingName;
+  final String settingDescription;
+
+  const SettingInfo({this.settingName, this.settingDescription});
+}
+
+@immutable
+class SettingsNames {
+  static const Map<SettingType, SettingInfo> stringOfSettingsMap = {
+    SettingType.OnlyLearned: SettingInfo(
+      settingName: "Повторять только изученное",
+      settingDescription: "В разделе \"Практика\" повторять только символы, пройденные в разделе \"Обучение\"",
+    ),
+    SettingType.Vibration: SettingInfo(
+      settingName: "Вибрация",
+      settingDescription: "Результат выполнения задачи в \"Практике\" показывать с помощью вибрации",
+    ),
+    SettingType.AutoVoice: SettingInfo(
+      settingName: "Автоозвучка текстов",
+      settingDescription:
+          "Автоматически озвучивать тексты (например, задания, справку) средством экранного чтения не дожидаясь"
+              " фокусировки на текстовом поле",
+    ),
+  };
+
+  static SettingInfo getName(SettingType settingType) {
+    return stringOfSettingsMap[settingType];
+  }
+}
+
 enum XmlItemType { MainMenu, GeneralHelp, Alphabet, SymbolView, PracticeSections, PracticeResult }
 
 @immutable
@@ -123,8 +156,6 @@ class SemanticNames {
     SemanticsType.Button: "Кнопка.",
     SemanticsType.Available: "Доступна",
     SemanticsType.NotAvailable: "Не доступна"
-
-
   };
 
   static String getName(SemanticsType type) {
