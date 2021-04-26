@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// import 'package:vibration/vibration.dart';
+import 'package:vibration/vibration.dart';
 import 'dart:math';
 
 import 'package:braille_abc/components/help_widgets.dart';
@@ -221,11 +221,13 @@ class NewPracticeState extends OnPressButton {
 
   void checkAnswer(bool isCorrect) {
     if (isCorrect) {
-
-
       PracticeResults.incCorrectAnswerCounter();
+      Vibration.vibrate(duration: 125, amplitude: 100);
+      Vibration.vibrate(duration: 125, amplitude: 100);
+      Vibration.vibrate(duration: 125, amplitude: 100);
     } else {
       PracticeResults.incStepCounter();
+      Vibration.vibrate(duration: 250, amplitude: 200);
     }
     PracticeResults.resetAnswer();
   }
