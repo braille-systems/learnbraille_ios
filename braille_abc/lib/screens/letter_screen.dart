@@ -9,10 +9,6 @@ import 'package:braille_abc/shared/screen_params.dart';
 
 import 'package:braille_abc/symbol/struct_symbol.dart';
 
-import 'package:braille_abc/shared/non_swipeable.dart';
-import 'package:braille_abc/symbol/struct_symbol.dart';
-import 'package:braille_abc/symbol/list_symbols.dart';
-
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/components/letter_widget.dart';
 import 'package:braille_abc/components/letter_buttons.dart';
