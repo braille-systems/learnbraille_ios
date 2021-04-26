@@ -1,5 +1,9 @@
+import 'package:braille_abc/models/app_names.dart';
+import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:xml/xml.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
+
 
 import 'package:braille_abc/models/lesson_model.dart';
 
@@ -80,4 +84,34 @@ class StudyModel {
     }
     return null;
   }
+
+
+
+  static List<int> createSymbol(String symbol){
+    List<int> dots = [];
+    var result = symbol.replaceAll(RegExp(r'[(),) ]'), '').replaceAll("\n", "").replaceAll("\r", "");
+    for(int i = 0; i <result.length; i++){
+      if(result[i]=="T"){
+        dots.add(i+1);
+      }
+    }
+    return dots;
+  }
+
+  static List<String> parseTitle(String text){
+    var result = text.split(":");
+    return result;
+  }
+
+  static Symbol parseSymbol(String text){
+    var result;
+    if(text.contains(":")) {
+      result = text.split(":");
+      var name = result[1].replaceAll(" ", "").replaceAll("\n", "").replaceAll("\r", "");
+      var studySymbol = Search.element(name, SectionNames.getType(text));
+      return studySymbol;
+    }
+    return null;
+  }
+
 }

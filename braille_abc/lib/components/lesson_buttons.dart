@@ -53,6 +53,7 @@ class BackForthButton extends StatelessWidget {
           } else if (isBackward()) {
             navigate = StudyModel.decLessonPartIndex();
           }
+
           if (navigate) {
             Navigator.of(context).push(
               CupertinoPageRoute(
@@ -71,6 +72,7 @@ class BackForthButton extends StatelessWidget {
     );
   }
 }
+
 
 Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol symbol) {
   return Column(

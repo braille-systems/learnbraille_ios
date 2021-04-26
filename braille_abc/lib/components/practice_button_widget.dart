@@ -215,8 +215,10 @@ class NewPracticeState extends OnPressButton {
       : super(screenType: screenType, sectionName: sectionName, symbol: symbol);
 
 
+
   void checkAnswer(bool isCorrect) {
     if (isCorrect) {
+
 
       PracticeResults.incCorrectAnswerCounter();
     } else {
@@ -224,6 +226,7 @@ class NewPracticeState extends OnPressButton {
     }
     PracticeResults.resetAnswer();
   }
+
 
   void pressContinueButton(BuildContext context) {
     if (LetterInfo.of(context).color == AppColors.symbolContainer) {
@@ -246,6 +249,7 @@ class NewPracticeState extends OnPressButton {
                   helpPage: Help(helpName: HelpSections.LetterPractice),
                   isDotsTouchable: true,
                 ),
+
           ),
         );
       } else {

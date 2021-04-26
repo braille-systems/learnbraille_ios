@@ -1,5 +1,8 @@
 
 import 'package:braille_abc/models/app_model.dart';
+
+import 'package:braille_abc/models/study_model.dart';
+
 import 'package:braille_abc/screens/letter_screen_study.dart';
 import 'package:braille_abc/screens/study_screen.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
@@ -74,13 +77,17 @@ class ReadingLesson extends LessonComponents {
 
   @override
   Widget build(BuildContext context) {
+
+    var lessonText = StudyModel.parseTitle(text);
+    var studySymbol = StudyModel.parseSymbol(symbol);
     return LetterScreenStudy(
         isDotsTouchable: false,
-        symbol: StudySymbol(list: Search.imageSymbol(d: <int>[3, 4, 5, 6])),
+        symbol: studySymbol ?? StudySymbol(list: Search.imageSymbol(d: StudyModel.createSymbol(symbol))),
         screenType: ScreenType.Study,
         sectionName: SectionType.ArithmeticSymbols,
-        upperText: 'upperText',
-        downText: 'downText',
+        upperText: lessonText[0] + ":",
+        downText: lessonText[1],
+
         helpPage: null,
         previousPage: AppModel.navigationScreens[navigation.StudyScreen]);
   }
