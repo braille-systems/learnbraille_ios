@@ -38,7 +38,7 @@ class StudyItem extends StatelessWidget {
               builder: (context) => LetterScreen(
                 sectionName: sectionName,
                 screenType: ScreenType.Letter,
-                symbol: symbol.getChar(),
+                symbolName: symbol.getChar(),
                 shortSymbol: symbol.getShortChar(),
                 previousPage: AppModel.navigationScreens[navigation.DictionaryScreen],
                 helpPage: Help(helpName:HelpSections.LetterView),

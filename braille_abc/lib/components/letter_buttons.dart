@@ -7,7 +7,9 @@ import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/image_symbol.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/components/practice_button_widget.dart';
+import 'package:braille_abc/components/lesson_buttons.dart';
 import 'package:flutter/rendering.dart';
 
 @immutable
@@ -17,12 +19,14 @@ class LetterButtons extends StatefulWidget {
     @required this.screenType,
     @required this.symbol,
     @required this.shortSymbol,
+    @required this.isTouchable,
   });
 
   final SectionType sectionName;
   final ScreenType screenType;
-  final String symbol;
+  final Symbol symbol;
   final String shortSymbol;
+  final bool isTouchable;
 
   @override
   _LetterButtonsState createState() => chooseState();
@@ -33,6 +37,8 @@ class LetterButtons extends StatefulWidget {
         return PracticeButtonsState();
       case ScreenType.Dictionary:
         return DictionaryButtonsState();
+      case ScreenType.Study:
+        return StudyButtonsState(isTouchable: isTouchable);
       default:
         return DictionaryButtonsState();
     }
@@ -59,17 +65,13 @@ class DictionaryButtonsState extends _LetterButtonsState {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        SizedBox(
-          height: ScreenParams.height(34, context),
-          width: ScreenParams.width(15, context),
-          child: ModeButton(letter: this),
-        ),
+        buildModeButton(context, this),
         SymbolWidget(
             textDir: mode,
-            char: widget.symbol,
+            symbol: widget.symbol,
             isTapped: false,
-            width: ScreenParams.width(57, context),
-            height: ScreenParams.height(45, context),
+            width: ScreenParams.width(Sizes.getLetterWidgetSize().width, context),
+            height: ScreenParams.height(Sizes.getLetterWidgetSize().height, context),
             dictSection: widget.sectionName),
         SizedBox(
           height: ScreenParams.height(37, context),
@@ -94,37 +96,66 @@ class PracticeButtonsState extends _LetterButtonsState {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        SizedBox(
-          height: ScreenParams.height(34, context),
-          width: ScreenParams.width(15, context),
-          child: ModeButton(letter: this),
-        ),
+        buildModeButton(context, this),
         ValueListenableBuilder<bool>(
             valueListenable: isTapped,
             builder: (context, value, child) {
               return SymbolWidget(
                   textDir: mode,
-                  char: widget.symbol,
+                  symbol: widget.symbol,
                   isTapped: isTapped.value,
-                  width: ScreenParams.width(57, context),
-                  height: ScreenParams.height(45, context),
+                  width: ScreenParams.width(Sizes.getLetterWidgetSize().width, context),
+                  height: ScreenParams.height(Sizes.getLetterWidgetSize().height, context),
                   dictSection: widget.sectionName);
             }),
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          SizedBox(
-            height: ScreenParams.height(12, context),
-            width: ScreenParams.width(15, context),
-            child: TipButton(isTapped: isTapped),
-          ),
+          buildTipButton(context, isTapped),
           SizedBox(
             height: ScreenParams.height(2, context),
             width: ScreenParams.width(15, context),
           ),
-          SizedBox(
-            height: ScreenParams.height(29, context),
-            width: ScreenParams.width(15, context),
-            child: ContinueButton(isTapped: isTapped, pressed: pressed),
-          ),
+          buildContinueButton(context, isTapped, pressed),
+        ]),
+      ],
+    );
+  }
+}
+
+class StudyButtonsState extends _LetterButtonsState {
+  StudyButtonsState({@required this.isTouchable}) {
+    isTapped.value = isTouchable;
+  }
+
+  final isTapped = ValueNotifier(true);
+  final bool isTouchable;
+
+  @override
+  Widget build(BuildContext context) {
+    TextDirection mode() {
+      return _dir;
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          buildSmallModeButton(context, this),
+          buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol),
+        ]),
+        ValueListenableBuilder<bool>(
+            valueListenable: isTapped,
+            builder: (context, value, child) {
+              return SymbolWidget(
+                  textDir: mode,
+                  symbol: widget.symbol,
+                  isTapped: isTapped.value,
+                  width: ScreenParams.width(Sizes.getLetterWidgetSize().width, context),
+                  height: ScreenParams.height(Sizes.getLetterWidgetSize().height, context),
+                  dictSection: widget.sectionName);
+            }),
+        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          isTouchable ? buildTipButton(context, isTapped) : buildEmptyButton(context),
+          buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol),
         ]),
       ],
     );
@@ -132,9 +163,10 @@ class PracticeButtonsState extends _LetterButtonsState {
 }
 
 class ModeButton extends StatefulWidget {
-  ModeButton({@required this.letter});
+  ModeButton({@required this.letter, @required this.style});
 
   final _LetterButtonsState letter;
+  final ButtonStyle style;
 
   @override
   _ModeButtonState createState() => _ModeButtonState();
@@ -151,7 +183,7 @@ class _ModeButtonState extends State<ModeButton> {
               : SemanticNames.getName(SemanticsType.Writing)),
       child: ExcludeSemantics(
         child: ElevatedButton(
-          style: AppDecorations.changeDirButton,
+          style: widget.style, //AppDecorations.changeDirButton,
           onPressed: () => setState(
             () {
               widget.letter.setState(() {
@@ -180,7 +212,7 @@ class ContinueButton extends StatefulWidget {
   ContinueButton({@required this.isTapped, @required this.pressed});
 
   final ValueNotifier isTapped;
-  final OnPressButton pressed;
+  final NewPracticeState pressed;
 
   @override
   _ContinueButtonState createState() => _ContinueButtonState();
@@ -242,10 +274,45 @@ abstract class OnPressButton {
   OnPressButton({@required this.screenType, @required this.symbol, @required this.sectionName});
 
   final ScreenType screenType;
-  final String symbol;
+  final Symbol symbol;
   final SectionType sectionName;
+}
 
-  void pressContinueButton(BuildContext context);
+SizedBox buildSmallModeButton(BuildContext context, _LetterButtonsState letter) {
+  return SizedBox(
+    height: ScreenParams.height(Sizes.getModeTipButtonSize().height, context),
+    width: ScreenParams.width(Sizes.getModeTipButtonSize().width, context),
+    child: ModeButton(letter: letter, style: AppDecorations.changeDirButton),
+  );
+}
 
-  void pressHelpButton(BuildContext context);
+SizedBox buildModeButton(BuildContext context, _LetterButtonsState letter) {
+  return SizedBox(
+    height: ScreenParams.height(Sizes.getModeButton().height, context),
+    width: ScreenParams.width(Sizes.getModeButton().width, context),
+    child: ModeButton(letter: letter, style: AppDecorations.changeDirButton),
+  );
+}
+
+SizedBox buildTipButton(BuildContext context, ValueNotifier isTapped) {
+  return SizedBox(
+    height: ScreenParams.height(Sizes.getModeTipButtonSize().height, context),
+    width: ScreenParams.width(Sizes.getModeTipButtonSize().width, context),
+    child: TipButton(isTapped: isTapped),
+  );
+}
+
+SizedBox buildEmptyButton(BuildContext context) {
+  return SizedBox(
+    height: ScreenParams.height(Sizes.getModeTipButtonSize().height, context),
+    width: ScreenParams.width(Sizes.getModeTipButtonSize().width, context),
+  );
+}
+
+SizedBox buildContinueButton(BuildContext context, ValueNotifier isTapped, NewPracticeState pressed) {
+  return SizedBox(
+    height: ScreenParams.height(Sizes.getBackFortButtonSize().height, context),
+    width: ScreenParams.width(Sizes.getBackFortButtonSize().width, context),
+    child: ContinueButton(isTapped: isTapped, pressed: pressed),
+  );
 }
