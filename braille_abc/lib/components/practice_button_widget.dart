@@ -120,6 +120,9 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if(!Practice.isNotEmpty.value){
+      checkBox = Practice.isNotEmpty.value;
+    }
     return Card(
       elevation: 3,
       margin: EdgeInsets.symmetric(vertical: 2),
