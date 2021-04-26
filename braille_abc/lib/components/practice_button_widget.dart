@@ -3,8 +3,8 @@ import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import 'package:vibration/vibration.dart';
 import 'dart:math';
 
 import 'package:braille_abc/components/help_widgets.dart';
@@ -222,12 +222,12 @@ class NewPracticeState extends OnPressButton {
   void checkAnswer(bool isCorrect) {
     if (isCorrect) {
       PracticeResults.incCorrectAnswerCounter();
-      Vibration.vibrate(duration: 125, amplitude: 100);
-      Vibration.vibrate(duration: 125, amplitude: 100);
-      Vibration.vibrate(duration: 125, amplitude: 100);
+      HapticFeedback.lightImpact();
+      HapticFeedback.lightImpact();
+      HapticFeedback.lightImpact();
     } else {
       PracticeResults.incStepCounter();
-      Vibration.vibrate(duration: 250, amplitude: 200);
+      HapticFeedback.heavyImpact();
     }
     PracticeResults.resetAnswer();
   }
