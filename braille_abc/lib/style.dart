@@ -28,8 +28,12 @@ class AppColors {
   static const Color symbol = Colors.black;
   /// Braille symbol boarder color
   static const Color symbolBoarder = Colors.black;
-  /// Braille symbol widget background color
+  /// Braille symbol widget default background color
   static const Color symbolContainer = Colors.white;
+  /// Braille symbol widget correct answer background color
+  static const Color correctAnswer = Colors.green;
+  /// Braille symbol widget wrong answer background color
+  static const Color wrongAnswer = Colors.red;
 
   /** Braille dots  style **/
   /// Braille filled dot
@@ -109,8 +113,8 @@ class AppDecorations {
       color: AppColors.first,
       borderRadius:  BorderRadius.circular(10));
 
-  static BoxDecoration letterWidget =  BoxDecoration(
-    color: AppColors.symbolContainer,
+  static BoxDecoration letterWidget(Color color) => BoxDecoration(
+    color:color,
     border: Border.all(color: AppColors.symbolBoarder, width: 7.0),
     borderRadius: BorderRadius.circular(25.0),
   );
@@ -177,5 +181,6 @@ class Sizes {
   static SizeT getBackFortButtonSize() => SizeT(29,15);
   static SizeT getModeTipButtonSize() => SizeT(12,15);
   static SizeT getModeButton()=>SizeT(34,15);
-  static SizeT getLetterWidgetSize()=> SizeT(45, 57);
+  static SizeT getLetterWidgetSize() => SizeT(45, 57);
 }
+

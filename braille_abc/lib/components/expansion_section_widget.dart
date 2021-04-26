@@ -29,33 +29,37 @@ class _ExpansionSection extends State<ExpansionSection> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-        button: false,
-        hint: SemanticNames.getName(SemanticsType.ExpandableList) + SemanticNames.getName(SemanticsType.TapToOpen),
-        child: Container(
-          margin: EdgeInsets.symmetric(vertical: 2),
-          decoration: AppDecorations.expansionSection,
-          child: ExpansionTile(
-            onExpansionChanged: (expanded) {
-              setState(() {
-                if (expanded) {
-                  myColor = AppColors.first;
-                } else {
-                  myColor = AppColors.second;
-                }
-              });
-            },
-            leading: Icon(
-              widget.sectionIcon,
-              size: Sizes.lineSectionIconSize,
-              color: myColor,
-            ),
-            title: Text(
-              widget.sectionName,
-              style: TextStyle(fontSize:Sizes.lineSectionFontSize, color: myColor),
-            ),
-            backgroundColor: AppColors.expandBackground,
-            children: <Widget>[widget.child],
+      button: false,
+      label: widget.sectionName + ". " + SemanticNames.getName(SemanticsType.ExpandableList),
+      hint: SemanticNames.getName(SemanticsType.TapToOpen),
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 2),
+        decoration: AppDecorations.expansionSection,
+        child: ExpansionTile(
+          onExpansionChanged: (expanded) {
+            setState(() {
+              if (expanded) {
+                myColor = AppColors.first;
+              } else {
+                myColor = AppColors.second;
+              }
+            });
+          },
+          leading: Icon(
+            widget.sectionIcon,
+            size: Sizes.lineSectionIconSize,
+            color: myColor,
           ),
-        ));
+          title: ExcludeSemantics(
+            child: Text(
+              widget.sectionName,
+              style: TextStyle(fontSize: Sizes.lineSectionFontSize, color: myColor),
+            ),
+          ),
+          backgroundColor: AppColors.expandBackground,
+          children: <Widget>[widget.child],
+        ),
+      ),
+    );
   }
 }
