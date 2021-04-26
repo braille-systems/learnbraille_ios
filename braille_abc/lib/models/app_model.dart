@@ -45,7 +45,7 @@ class AppModel {
     helpPage: Help(helpName:HelpSections.MainMenu),
   );
 
-  static const Widget _studyScreen = StudyScreen(
+  static const Widget _studyScreen = LessonsScreen(
     previousPage: _menuScreen,
     helpPage: null,
   );

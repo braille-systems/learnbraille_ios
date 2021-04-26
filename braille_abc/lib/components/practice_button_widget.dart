@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 // import 'package:vibration/vibration.dart';
 import 'dart:math';
-import 'dart:io';
 
 import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
@@ -16,6 +15,7 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/models/practice_button.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/screens/results_screen.dart';
 import 'package:braille_abc/components/letter_buttons.dart';
@@ -53,7 +53,7 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) => LetterScreen(
-                        symbol: PracticeSymbol.getSymbol(),
+                        symbolName: PracticeSymbol.getSymbol(),
                         shortSymbol: PracticeSymbol.getShortSymbol(),
                         sectionName: PracticeSymbol.getSectionType(),
                         screenType: ScreenType.Practice,
@@ -211,11 +211,13 @@ class PracticeSymbol {
 }
 
 class NewPracticeState extends OnPressButton {
-  NewPracticeState(ScreenType screenType, String symbol, SectionType sectionName)
-      : super(screenType: screenType, symbol: symbol, sectionName: sectionName);
+  NewPracticeState(ScreenType screenType, Symbol symbol, SectionType sectionName)
+      : super(screenType: screenType, sectionName: sectionName, symbol: symbol);
+
 
   void checkAnswer(bool isCorrect) {
     if (isCorrect) {
+
       PracticeResults.incCorrectAnswerCounter();
     } else {
       PracticeResults.incStepCounter();
@@ -223,10 +225,9 @@ class NewPracticeState extends OnPressButton {
     PracticeResults.resetAnswer();
   }
 
-  @override
   void pressContinueButton(BuildContext context) {
     if (LetterInfo.of(context).color == AppColors.symbolContainer) {
-      bool isCorrect = PracticeResults.checkAnswer(Search.element(super.symbol, super.sectionName).getDotsInfo());
+      bool isCorrect = PracticeResults.checkAnswer(super.symbol.getDotsInfo());
       checkAnswer(isCorrect);
       LetterInfo.of(context).setColor(isCorrect);
     }
@@ -238,7 +239,7 @@ class NewPracticeState extends OnPressButton {
             builder: (context) =>
                 LetterScreen(
                   screenType: super.screenType,
-                  symbol: PracticeSymbol.getSymbol(),
+                  symbolName: PracticeSymbol.getSymbol(),
                   shortSymbol: PracticeSymbol.getShortSymbol(),
                   sectionName: PracticeSymbol.getSectionType(),
                   previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
@@ -268,10 +269,5 @@ class NewPracticeState extends OnPressButton {
     }
   }
 
-  void wait() {
-    sleep(Duration(seconds: 2));
-  }
-
-  @override
   void pressHelpButton(BuildContext context) {}
 }

@@ -10,10 +10,11 @@ import 'package:braille_abc/style.dart';
 
 @immutable
 class LetterWidget extends StatelessWidget {
-  const LetterWidget({Key key, @required this.title, @required this.symbol}) : super(key: key);
+  const LetterWidget({Key key, @required this.title, @required this.symbol, @required this.titleText}) : super(key: key);
 
   final SectionType title;
   final String symbol;
+  final String titleText;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class LetterWidget extends StatelessWidget {
               flex: 1,
               child: Center(
                 child: AutoSizeText(
-                  SectionNames.getName(title),
+                    (titleText == null) ? SectionNames.getName(title) : titleText,
                   style: const TextStyle(fontSize: 35.0, color: AppColors.symbolText, fontWeight: FontWeight.bold),
                   maxLines: 2,
                   textAlign: TextAlign.center,

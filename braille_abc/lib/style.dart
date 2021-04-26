@@ -1,3 +1,4 @@
+import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -86,6 +87,13 @@ class AppDecorations {
     padding: EdgeInsets.symmetric(vertical: 30),
   );
 
+  static ButtonStyle changeDirStudyButton = ElevatedButton.styleFrom(
+    primary: AppColors.first,
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(topRight: Radius.circular(25), bottomRight: Radius.circular(25))),
+    padding: EdgeInsets.symmetric(vertical: 30),
+  );
+
   static ButtonStyle hintButton = ElevatedButton.styleFrom(
     primary: AppColors.first,
     shape: RoundedRectangleBorder(
@@ -114,6 +122,16 @@ class AppDecorations {
   static BoxDecoration studyItem = BoxDecoration(
       border: Border(bottom: BorderSide(color: AppColors.expandItemsBoarder, width: 0.5)), shape: BoxShape.rectangle
   );
+
+  static SizedBox getBackFortButtonPaddingTextScreen(BuildContext context) =>  SizedBox(
+    height: ScreenParams.height(50, context),
+  );
+
+  static SizedBox getBackFortButtonPaddingLetterScreen(BuildContext context) => SizedBox(
+  height: ScreenParams.height(2, context),
+  width: ScreenParams.width(15, context),
+  );
+
 }
 
 abstract class Styles {
@@ -151,10 +169,20 @@ abstract class Styles {
   }
 }
 
+class SizeT {
+  final double height;
+  final double width;
+  SizeT(this.height, this.width);
+}
+
 class Sizes {
   static double lineSectionIconSize = 45;
   static double lineSectionFontSize = 22;
   static double settingNameFontSize = 21;
   static double settingDescriptionFontSize = 17;
+  static SizeT getBackFortButtonSize() => SizeT(29,15);
+  static SizeT getModeTipButtonSize() => SizeT(12,15);
+  static SizeT getModeButton() =>SizeT(34,15);
+  static SizeT getLetterWidgetSize() => SizeT(45, 57);
 }
 

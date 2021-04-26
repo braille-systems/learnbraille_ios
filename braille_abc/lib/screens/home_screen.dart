@@ -3,6 +3,7 @@ import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/help_model.dart';
 import 'package:braille_abc/models/screen_model.dart';
+import 'package:braille_abc/models/study_model.dart';
 import 'package:braille_abc/screens/help_screen.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';
@@ -24,6 +25,7 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   void initState() {
     HelpModel.fillHelpModel(context);
+    StudyModel.fillStudyModel(context);
     super.initState();
   }
 
