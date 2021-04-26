@@ -1,4 +1,4 @@
-import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/shared/default_params.dart';
 import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,15 +29,18 @@ class ExpansionSection extends StatefulWidget {
 class _ExpansionSection extends State<ExpansionSection> {
   Color myColor = AppColors.second;
   ExpansionTile expTile;
-
+  bool up;
+  GlobalKey newKey;
 
   @override
   Widget build(BuildContext context) {
-    if(expTile == null || expTile.key != AppModel.sections[widget.index].expansionTile.value){
+    if(expTile == null || up != DefaultParams.update.value){
+      up = DefaultParams.update.value;
       myColor = AppColors.second;
+      newKey = GlobalKey();
     }
     expTile = ExpansionTile(
-      key: AppModel.sections[widget.index].expansionTile.value,
+      key: newKey,
       onExpansionChanged: (expanded) {
         setState(() {
           if (expanded) {

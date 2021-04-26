@@ -31,7 +31,7 @@ class _BottomState extends State<Bottom> {
   }
 
   void displayTapBar(bool isDisplayed) {
-    DefaultParams.toDefaultNoUpdate();
+    //DefaultParams.toDefaultNoUpdate();
     setState(() {
       _disableTapBar = !isDisplayed;
     });
