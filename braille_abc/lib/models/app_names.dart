@@ -115,7 +115,7 @@ class XmlNames {
     XmlItemType.StudyScreen: "Список уроков",
     XmlItemType.PracticeLessonScreen: "Шаг с вводом",
     XmlItemType.ReadingLessonScreen: "Шаг с чтением",
-    XmlItemType.TextLessonScreen: "Шаг с вводом",
+    XmlItemType.TextLessonScreen: "Шаг с текстом",
   };
 
   static String getName(XmlItemType type) {
