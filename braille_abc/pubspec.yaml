@@ -30,7 +30,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_html: ^0.8.2
-  # vibration: ^1.7.3
   xml: ^5.0.2
 
 
