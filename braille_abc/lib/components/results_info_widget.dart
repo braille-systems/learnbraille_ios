@@ -1,10 +1,7 @@
-import 'dart:async';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/app_names.dart';
-import 'package:braille_abc/screens/practice_screen.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
