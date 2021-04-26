@@ -60,7 +60,10 @@ class MenuScreen extends NavigationScreen {
                 children: [
                   Text(
                     ScreenNames.getName(ScreenType.Home),
-                    style: TextStyle(color: AppColors.navigationBarText, fontSize: 55, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: AppColors.navigationBarText,
+                        fontSize: 55,
+                        fontWeight: FontWeight.bold),
                   ),
                   CupertinoButton(
                     onPressed: () {
@@ -93,7 +96,9 @@ class MenuScreen extends NavigationScreen {
                   children: <Widget>[
                     for (int i = 0; i < AppModel.menuButton.length; i++)
                       MenuButtonWidget(
-                        menuButton: MenuButton(name: AppModel.menuButton[i].name, icon: AppModel.menuButton[i].icon),
+                        menuButton: MenuButton(
+                            name: AppModel.menuButton[i].name,
+                            icon: AppModel.menuButton[i].icon),
                         index: i + 1,
                         homeScreen: HomeScreen(),
                       ),
