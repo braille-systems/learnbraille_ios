@@ -40,10 +40,19 @@ class LessonsScreen extends NavigationScreen {
                 child: ListView(
                   children: <Widget>[
                     for (int i = 0; i < StudyModel.lessonsNum; i++)
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 2),
-                        child: LessonSectionWidget(
-                          lesson: StudyModel.getLessonByIndex(i),
+                      Semantics(
+                        label: SemanticNames.getName(SemanticsType.NumberLessonInStudy) +
+                            StudyModel.getLessonByIndex(i).number.toString() +
+                            ". " +
+                            SemanticNames.getName(SemanticsType.ThemeOfLessonInStudy) +
+                            StudyModel.getLessonByIndex(i).name,
+                        child: ExcludeSemantics(
+                          child: Container(
+                            margin: EdgeInsets.symmetric(vertical: 2),
+                            child: LessonSectionWidget(
+                              lesson: StudyModel.getLessonByIndex(i),
+                            ),
+                          ),
                         ),
                       ),
                   ],
@@ -95,7 +104,6 @@ class TextLessonScreen extends SectionScreen {
                     ),
                   ),
                 ),
-
                 buildBackForthButton(context, lessonButtonType.forward, null)
               ],
             ),

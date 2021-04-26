@@ -99,7 +99,7 @@ class LetterInfo extends InheritedWidget {
 
   static _LetterColor of(BuildContext context) {
     var inheritedWidget = context.dependOnInheritedWidgetOfExactType<LetterInfo>();
-    if(inheritedWidget == null) {
+    if (inheritedWidget == null) {
       return null;
     }
     return inheritedWidget.letterColor;
@@ -145,7 +145,6 @@ class _LetterViewState extends State<LetterView> {
 
   @override
   Widget build(BuildContext context) {
-
     return nonSwipeable(
       context,
       CupertinoPageScaffold(
@@ -160,11 +159,13 @@ class _LetterViewState extends State<LetterView> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Semantics(
-                  label: SemanticNames.getName(SemanticsType.SectionInLetterWidget) +
-                      SectionNames.getName(widget.sectionName) +
-                      ". " +
-                      SemanticNames.getName(SemanticsType.SymbolInLetterWidget) +
-                      widget.shortSymbol,
+                  label: widget.sectionName == SectionType.Other
+                      ? widget.symbolName + " " + widget.shortSymbol
+                      : SemanticNames.getName(SemanticsType.SectionInLetterWidget) +
+                          SectionNames.getName(widget.sectionName) +
+                          ". " +
+                          SemanticNames.getName(SemanticsType.SymbolInLetterWidget) +
+                          widget.shortSymbol,
                   button: false,
                   child: ExcludeSemantics(
                     child: LetterWidget(
