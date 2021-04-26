@@ -145,7 +145,9 @@ enum SemanticsType {
   SymbolInLetterWidget,
   Button,
   Available,
-  NotAvailable
+  NotAvailable,
+  NumberLessonInStudy,
+  ThemeOfLessonInStudy,
 }
 
 @immutable
@@ -171,7 +173,10 @@ class SemanticNames {
     SemanticsType.SymbolInLetterWidget: "Символ: ",
     SemanticsType.Button: "Кнопка.",
     SemanticsType.Available: "Доступна",
-    SemanticsType.NotAvailable: "Не доступна"
+    SemanticsType.NotAvailable: "Не доступна",
+    SemanticsType.NumberLessonInStudy: "Урок номер: ",
+    SemanticsType.ThemeOfLessonInStudy: "Тема: "
+
   };
 
   static String getName(SemanticsType type) {
