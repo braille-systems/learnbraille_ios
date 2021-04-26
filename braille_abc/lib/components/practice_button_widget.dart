@@ -219,10 +219,9 @@ class NewPracticeState extends OnPressButton {
 
 
 
+
   void checkAnswer(bool isCorrect) {
     if (isCorrect) {
-
-
       PracticeResults.incCorrectAnswerCounter();
     } else {
       PracticeResults.incStepCounter();

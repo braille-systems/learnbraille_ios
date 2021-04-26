@@ -115,6 +115,8 @@ class SymbolsFactory {
           return signs;
         }
         break;
+      case SectionType.Other:
+        return null;
     }
     return null;
   }
