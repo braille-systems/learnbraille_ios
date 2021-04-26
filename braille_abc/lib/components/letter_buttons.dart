@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/practice_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -254,11 +255,12 @@ class _TipButtonState extends State<TipButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: AppDecorations.hintButton,
-      onPressed: () => setState(
-        () {
+      onPressed: () {
+        PracticeResults.incHintCounter();
+        setState(() {
           widget.isTapped.value = !widget.isTapped.value;
-        },
-      ),
+        });
+      },
       child: Icon(
         AppIcon.getIcon(AppIcons.TipButton),
         size: ScreenParams.width(10, context),
