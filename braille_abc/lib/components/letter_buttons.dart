@@ -164,7 +164,6 @@ class StudyButtonsState extends _LetterButtonsState {
 }
 
 
-
 class ModeButton extends StatefulWidget {
   ModeButton({@required this.letter, @required this.style});
 
@@ -281,6 +280,7 @@ abstract class OnPressButton {
   final Symbol symbol;
   final SectionType sectionName;
 
+
 }
 
 SizedBox buildSmallModeButton(BuildContext context, _LetterButtonsState letter) {
@@ -320,5 +320,6 @@ SizedBox buildContinueButton(BuildContext context, ValueNotifier isTapped, NewPr
     width: ScreenParams.width(Sizes.getBackFortButtonSize().width, context),
     child: ContinueButton(isTapped: isTapped, pressed: pressed),
   );
+
 
 }

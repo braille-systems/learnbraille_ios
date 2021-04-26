@@ -95,6 +95,7 @@ class TextLessonScreen extends SectionScreen {
                     ),
                   ),
                 ),
+
                 buildBackForthButton(context, lessonButtonType.forward, null)
               ],
             ),
