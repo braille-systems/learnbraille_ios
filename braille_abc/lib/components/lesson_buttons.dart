@@ -53,7 +53,8 @@ class BackForthButton extends StatelessWidget {
           } else if (isBackward()) {
             navigate = StudyModel.decLessonPartIndex();
           }
-          if(navigate) {
+
+          if (navigate) {
             Navigator.of(context).push(
               CupertinoPageRoute(
                 builder: (context) => StudyModel.curLessonPart.build(context),
@@ -72,18 +73,19 @@ class BackForthButton extends StatelessWidget {
   }
 }
 
-Column buildBackForthButton(BuildContext context, lessonButtonType type) {
+
+Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol symbol) {
   return Column(
     children: [
+      symbol == null
+          ? AppDecorations.getBackFortButtonPaddingTextScreen(context)
+          : AppDecorations.getBackFortButtonPaddingLetterScreen(context),
       SizedBox(
-        height: ScreenParams.width(90, context),
-      ),
-      SizedBox(
-        height: ScreenParams.width(60, context),
-        width: ScreenParams.width(15, context),
+        height: ScreenParams.height(Sizes.getBackFortButtonSize().height, context),
+        width: ScreenParams.width(Sizes.getBackFortButtonSize().width, context),
         child: BackForthButton(
           type: type,
-          symbol: null,
+          symbol: symbol,
         ),
       ),
     ],

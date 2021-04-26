@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:xml/xml.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 
+
 import 'package:braille_abc/models/lesson_model.dart';
 
 
@@ -85,6 +86,7 @@ class StudyModel {
   }
 
 
+
   static List<int> createSymbol(String symbol){
     List<int> dots = [];
     var result = symbol.replaceAll(RegExp(r'[(),) ]'), '').replaceAll("\n", "").replaceAll("\r", "");
@@ -111,4 +113,5 @@ class StudyModel {
     }
     return null;
   }
+
 }
