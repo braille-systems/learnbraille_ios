@@ -29,10 +29,9 @@ class _HomeScreen extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: CupertinoPageScaffold(
+    return CupertinoPageScaffold(
       child: Bottom(key: scakey),
-    ));
+    );
   }
 }
 
