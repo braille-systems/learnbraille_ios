@@ -6,12 +6,14 @@ import 'package:braille_abc/symbol/struct_symbol.dart';
 
 import 'package:braille_abc/models/lesson_model.dart';
 
+
 @immutable
 class StudyModel {
   static int number = 1;
   static final List<Lesson> _lessons = [];
   static int _currentLessonPartIndex = 0;
   static int _currentLessonIndex = 0;
+
 
   static int get lessonsNum => _lessons.length;
   static Lesson getLessonByIndex(index)=> _lessons[index];
@@ -36,13 +38,25 @@ class StudyModel {
   return false;
   }
 
+
   // ignore: avoid_setters_without_getters
   static set currentLessonIndex(int index) {
     _currentLessonIndex = index;
   }
 
-  static void rebootLessons(){
-    _currentLessonPartIndex =0;
+  static void rebootLessons() {
+    _currentLessonPartIndex = 0;
+  }
+  static String getType(lessonType type){
+    switch(type){
+      case lessonType.practice:
+        return "practice";
+      case lessonType.reading:
+        return "reading";
+      case lessonType.text:
+        return "info";
+    }
+    return null;
   }
 
   static Future<Null> fillStudyModel(BuildContext context) async {
@@ -63,11 +77,11 @@ class StudyModel {
         if (comp.children.isNotEmpty) {
           var type = comp.getAttribute("type");
           if (type != null) {
-            if (type == "practice") {
+            if (type == getType(lessonType.practice)) {
               lessonsComponents.add(PracticeLesson(lessonType.practice, comp.getAttribute("title"), comp.text, lessonNumber));
-            } else if (type == "reading") {
+            } else if (type == getType(lessonType.reading)) {
               lessonsComponents.add(ReadingLesson(lessonType.reading, comp.getAttribute("title"), comp.text, lessonNumber));
-            } else if (type == "info") {
+            } else if (type == getType(lessonType.text)) {
               lessonsComponents.add(TextLesson(lessonType.text, comp.text, lessonNumber));
             }
           }
@@ -79,6 +93,7 @@ class StudyModel {
     }
     return null;
   }
+
 
 
   static List<int> createSymbol(String symbol){

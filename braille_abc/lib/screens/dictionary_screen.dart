@@ -1,6 +1,7 @@
 import 'package:braille_abc/components/expandable_list_widget.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/models/app_model.dart';
+import 'package:braille_abc/shared/default_params.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,10 +26,16 @@ class DictionaryScreen extends NavigationScreen {
           title: ScreenNames.getName(ScreenType.Dictionary),
         ),
         child: SingleChildScrollView(
-            child: MyExpandableList(
-          model: AppModel.sections,
-        )), //Wrapped into SingleChildScrollView because when click on TextField  keyboard will open and you may get error on screen "bottom overflowed by pixels flutter"
+            child: ValueListenableBuilder(
+              valueListenable: DefaultParams.update,
+              builder: (context, value, child){
+                return MyExpandableList(
+                  model: AppModel.sections,
+                );
+              },
+            ),//Wrapped into SingleChildScrollView because when click on TextField  keyboard will open and you may get error on screen "bottom overflowed by pixels flutter"
       ),
+    ),
     );
   }
 }

@@ -120,6 +120,9 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if(!Practice.isNotEmpty.value){
+      checkBox = Practice.isNotEmpty.value;
+    }
     return Card(
       elevation: 3,
       margin: EdgeInsets.symmetric(vertical: 2),
@@ -214,47 +217,61 @@ class NewPracticeState extends OnPressButton {
   NewPracticeState(ScreenType screenType, Symbol symbol, SectionType sectionName)
       : super(screenType: screenType, sectionName: sectionName, symbol: symbol);
 
-  void pressContinueButton(BuildContext context) {
-    if (PracticeResults.checkAnswer(super.symbol.getDotsInfo())) {
+
+
+
+  void checkAnswer(bool isCorrect) {
+    if (isCorrect) {
       PracticeResults.incCorrectAnswerCounter();
-      // Vibration.vibrate(duration: 300, amplitude: 128, repeat: 3);
     } else {
       PracticeResults.incStepCounter();
-      // Vibration.vibrate(duration: 600, amplitude: 256);
     }
     PracticeResults.resetAnswer();
+  }
 
-    if (!PracticeSymbol.isPracticeEnd()) {
-      PracticeSymbol.nextSymbol();
-      Navigator.of(context).push(
-        CupertinoPageRoute(
-          builder: (context) => LetterScreen(
-            screenType: super.screenType,
-            symbolName: PracticeSymbol.getSymbol(),
-            shortSymbol: PracticeSymbol.getShortSymbol(),
-            sectionName: PracticeSymbol.getSectionType(),
-            previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-            helpPage: Help(helpName: HelpSections.LetterPractice),
-            isDotsTouchable: true,
+
+  void pressContinueButton(BuildContext context) {
+    if (LetterInfo.of(context).color == AppColors.symbolContainer) {
+      bool isCorrect = PracticeResults.checkAnswer(super.symbol.getDotsInfo());
+      checkAnswer(isCorrect);
+      LetterInfo.of(context).setColor(isCorrect);
+    }
+    else {
+      if (!PracticeSymbol.isPracticeEnd()) {
+        PracticeSymbol.nextSymbol();
+        Navigator.of(context).push(
+          CupertinoPageRoute(
+            builder: (context) =>
+                LetterScreen(
+                  screenType: super.screenType,
+                  symbolName: PracticeSymbol.getSymbol(),
+                  shortSymbol: PracticeSymbol.getShortSymbol(),
+                  sectionName: PracticeSymbol.getSectionType(),
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  helpPage: Help(helpName: HelpSections.LetterPractice),
+                  isDotsTouchable: true,
+                ),
+
           ),
-        ),
-      );
-    } else {
-      var results = PracticeResults.getResults();
-      Practice.updatePool();
-      PracticeSymbol.update();
-      Navigator.of(context).push(
-        CupertinoPageRoute(
-          builder: (context) => ResultsScreen(
-            helpPage: Help(
-              helpName: HelpSections.PracticeResult,
-            ),
-            previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-            results: results,
+        );
+      } else {
+        var results = PracticeResults.getResults();
+        Practice.updatePool();
+        PracticeSymbol.update();
+        Navigator.of(context).push(
+          CupertinoPageRoute(
+            builder: (context) =>
+                ResultsScreen(
+                  helpPage: Help(
+                    helpName: HelpSections.PracticeResult,
+                  ),
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  results: results,
+                ),
           ),
-        ),
-      );
-      PracticeResults.updatePracticeResults();
+        );
+        PracticeResults.updatePracticeResults();
+      }
     }
   }
 

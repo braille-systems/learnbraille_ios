@@ -23,8 +23,8 @@ class Lesson {
   int get number => _number;
 
   String get name => _name;
+  LessonComponents getLessonComponent(int i)  => lessonComponent[i];
 
-  LessonComponents getLessonComponent(int i) => lessonComponent[i];
 
   Lesson(this._number, this._name, this.lessonComponent);
 }
@@ -36,9 +36,7 @@ class LessonComponents extends StatelessWidget {
   final String _text;
 
   int get number => _number;
-
   String get text => _text;
-
   lessonType get type => _type;
 
   LessonComponents(this._type, this._text, this._number);
