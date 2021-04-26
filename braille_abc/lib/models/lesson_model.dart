@@ -1,3 +1,4 @@
+import 'package:braille_abc/components/help_widgets.dart';
 import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/study_model.dart';
 import 'package:braille_abc/screens/letter_screen_study.dart';
@@ -75,7 +76,7 @@ class PracticeLesson extends LessonComponents {
         sectionName: lessonText != null ? SectionType.Other:SectionNames.getType(symbol),
         upperText: up,
         downText: down,
-        helpPage: null,
+        helpPage: Help(helpName: HelpSections.PracticeLessonScreen,),
         previousPage: AppModel.navigationScreens[navigation.StudyScreen]);
   }
 }
@@ -107,7 +108,7 @@ class ReadingLesson extends LessonComponents {
         sectionName: lessonText != null ? SectionType.Other:SectionNames.getType(symbol),
         upperText: up,
         downText: down,
-        helpPage: null,
+        helpPage: Help(helpName: HelpSections.ReadingLessonScreen,),
         previousPage: AppModel.navigationScreens[navigation.StudyScreen]);
   }
 }
@@ -120,7 +121,7 @@ class TextLesson extends LessonComponents {
   Widget build(BuildContext context) {
     return TextLessonScreen(
       text,
-      helpPage: null,
+      helpPage: Help(helpName: HelpSections.TextLessonScreen,),
       previousPage: AppModel.navigationScreens[navigation.StudyScreen],
     );
   }
