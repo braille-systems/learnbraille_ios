@@ -72,8 +72,6 @@ class BackForthButton extends StatelessWidget {
   }
 }
 
-
-
 Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol symbol) {
   return Column(
     children: [
@@ -83,9 +81,14 @@ Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol 
       SizedBox(
         height: ScreenParams.height(Sizes.getBackFortButtonSize().height, context),
         width: ScreenParams.width(Sizes.getBackFortButtonSize().width, context),
-        child: BackForthButton(
-          type: type,
-          symbol: symbol,
+        child: Semantics(
+          label: SemanticNames.getName(SemanticsType.BackForthButton),
+          child: ExcludeSemantics(
+            child: BackForthButton(
+              type: type,
+              symbol: symbol,
+            ),
+          ),
         ),
       ),
     ],

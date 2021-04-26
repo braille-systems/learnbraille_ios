@@ -148,6 +148,7 @@ enum SemanticsType {
   NotAvailable,
   NumberLessonInStudy,
   ThemeOfLessonInStudy,
+  BackForthButton,
 }
 
 @immutable
@@ -175,8 +176,8 @@ class SemanticNames {
     SemanticsType.Available: "Доступна",
     SemanticsType.NotAvailable: "Не доступна",
     SemanticsType.NumberLessonInStudy: "Урок номер: ",
-    SemanticsType.ThemeOfLessonInStudy: "Тема: "
-
+    SemanticsType.ThemeOfLessonInStudy: "Тема: ",
+    SemanticsType.BackForthButton: "Вернуться назад"
   };
 
   static String getName(SemanticsType type) {
