@@ -1,3 +1,5 @@
+import 'package:braille_abc/components/letter_widget.dart';
+import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,9 +10,6 @@ import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 
 import 'package:braille_abc/symbol/struct_symbol.dart';
-
-import 'package:braille_abc/components/navigation_bar_widget.dart';
-import 'package:braille_abc/components/letter_widget.dart';
 import 'package:braille_abc/components/letter_buttons.dart';
 import 'package:braille_abc/style.dart';
 
@@ -146,6 +145,7 @@ class _LetterViewState extends State<LetterView> {
 
   @override
   Widget build(BuildContext context) {
+
     return nonSwipeable(
       context,
       CupertinoPageScaffold(

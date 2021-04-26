@@ -1,7 +1,7 @@
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:flutter/cupertino.dart';
 
-enum SectionType { RussianSymbols, Numbers, ArithmeticSymbols, PunctuationSymbols, Signs }
+enum SectionType { RussianSymbols, Numbers, ArithmeticSymbols, PunctuationSymbols, Signs, Other }
 
 @immutable
 class SectionNames {
@@ -10,7 +10,8 @@ class SectionNames {
     SectionType.Numbers: "Цифры",
     SectionType.ArithmeticSymbols: "Арифметические знаки",
     SectionType.PunctuationSymbols: "Знаки препинания",
-    SectionType.Signs: "Признаки"
+    SectionType.Signs: "Признаки",
+    SectionType.Other: "",
   };
 
   static String getName(SectionType type) {
