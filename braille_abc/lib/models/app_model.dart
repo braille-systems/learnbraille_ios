@@ -47,7 +47,7 @@ class AppModel {
 
   static const Widget _studyScreen = LessonsScreen(
     previousPage: _menuScreen,
-    helpPage: null,
+    helpPage: Help(helpName: HelpSections.StudyScreen,),
   );
 
   static const Widget _practiceScreen = PracticeScreen(

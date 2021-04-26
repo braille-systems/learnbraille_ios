@@ -17,20 +17,20 @@ class SectionNames {
     return stringOfSectionsMap[type];
   }
 
-  static SectionType getType(String text){
-    if(text.contains("RussianSymbols")){
+  static SectionType getType(String text) {
+    if (text.contains("RussianSymbols")) {
       return SectionType.RussianSymbols;
     }
-    if(text.contains("Numbers")){
+    if (text.contains("Numbers")) {
       return SectionType.Numbers;
     }
-    if(text.contains("ArithmeticSymbols")){
+    if (text.contains("ArithmeticSymbols")) {
       return SectionType.ArithmeticSymbols;
     }
-    if(text.contains("PunctuationSymbols")){
+    if (text.contains("PunctuationSymbols")) {
       return SectionType.PunctuationSymbols;
     }
-    if(text.contains("Signs")){
+    if (text.contains("Signs")) {
       return SectionType.Signs;
     }
     return null;
@@ -81,7 +81,7 @@ class SettingsNames {
       settingName: "Автоозвучка текстов",
       settingDescription:
           "Автоматически озвучивать тексты (например, задания, справку) средством экранного чтения не дожидаясь"
-              " фокусировки на текстовом поле",
+          " фокусировки на текстовом поле",
     ),
   };
 
@@ -90,7 +90,18 @@ class SettingsNames {
   }
 }
 
-enum XmlItemType { MainMenu, GeneralHelp, Alphabet, SymbolView, PracticeSections, PracticeResult }
+enum XmlItemType {
+  MainMenu,
+  GeneralHelp,
+  Alphabet,
+  SymbolView,
+  PracticeSections,
+  PracticeResult,
+  StudyScreen,
+  ReadingLessonScreen,
+  TextLessonScreen,
+  PracticeLessonScreen,
+}
 
 @immutable
 class XmlNames {
@@ -101,6 +112,10 @@ class XmlNames {
     XmlItemType.SymbolView: "Просмотр символа",
     XmlItemType.PracticeSections: "Разделы практики",
     XmlItemType.PracticeResult: "Результаты",
+    XmlItemType.StudyScreen: "Список уроков",
+    XmlItemType.PracticeLessonScreen: "Шаг с вводом",
+    XmlItemType.ReadingLessonScreen: "Шаг с чтением",
+    XmlItemType.TextLessonScreen: "Шаг с вводом",
   };
 
   static String getName(XmlItemType type) {
