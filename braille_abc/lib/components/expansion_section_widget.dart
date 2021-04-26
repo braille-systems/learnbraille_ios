@@ -73,6 +73,5 @@ class _ExpansionSection extends State<ExpansionSection> {
         child: expTile,
       ),
     );
-//>>>>>>> develop
   }
 }
