@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
+import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/app_names.dart';
-import 'package:braille_abc/screens/practice_screen.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
@@ -105,24 +105,27 @@ class BackButtonWidget extends StatefulWidget {
 class _BackButtonWidget extends State<BackButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    return  ElevatedButton(
-        style: AppDecorations.navigationButton,
-        onPressed: () {
-          Navigator.of(context).pushAndRemoveUntil(
-              CupertinoPageRoute(builder: (BuildContext context) => PracticeScreen()), (Route<dynamic> route) => false);
-          scakey.currentState.onItemTapped(0);
-        },
-        child: Align(
-          alignment: Alignment.center,
-          child: AutoSizeText(
-            SemanticNames.getName(SemanticsType.BackToMainMenu),
-            style: TextStyle(
-              fontSize: 22.0,
-              color: AppColors.second,
-              shadows: <Shadow>[Styles.buildButtonShadow(), for (var stroke in Styles.buildStroke(0.25)) stroke],
-            ),
+    return ElevatedButton(
+      style: AppDecorations.navigationButton,
+      onPressed: () {
+        Navigator.of(context).pushAndRemoveUntil(
+            CupertinoPageRoute(
+                builder: (BuildContext context) => AppModel.navigationScreens[navigation.PracticeScreen]),
+            (Route<dynamic> route) => false);
+        scakey.currentState.onItemTapped(0);
+        scakey.currentState.displayTapBar(true);
+      },
+      child: Align(
+        alignment: Alignment.center,
+        child: AutoSizeText(
+          SemanticNames.getName(SemanticsType.BackToMainMenu),
+          style: TextStyle(
+            fontSize: 22.0,
+            color: AppColors.second,
+            shadows: <Shadow>[Styles.buildButtonShadow(), for (var stroke in Styles.buildStroke(0.25)) stroke],
           ),
         ),
+      ),
     );
   }
 }

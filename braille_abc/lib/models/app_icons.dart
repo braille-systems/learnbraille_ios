@@ -12,6 +12,7 @@ enum AppIcons
 
   BackButton,
   ContinueButton,
+  GoBackButton,
   ChangeModeButton,
   HintButton,
   NextStep,
@@ -25,6 +26,10 @@ enum AppIcons
 
   Add,
   GeneralHelpInHelpScreen,
+  StepHelp,
+
+  EnableLessonSection,
+  DisableLessonSection,
 }
 
 @immutable
@@ -41,6 +46,7 @@ class AppIcon
 
     AppIcons.BackButton : CupertinoIcons.back,
     AppIcons.ContinueButton : CupertinoIcons.chevron_right_2,
+    AppIcons.GoBackButton : CupertinoIcons.chevron_left_2,
     AppIcons.ChangeModeButton : CupertinoIcons.arrow_right_arrow_left,
     AppIcons.HintButton : CupertinoIcons.quote_bubble_fill,
     AppIcons.NextStep : CupertinoIcons.arrow_right,
@@ -48,6 +54,7 @@ class AppIcon
 
     AppIcons.Add : CupertinoIcons.add,
     AppIcons.GeneralHelpInHelpScreen : CupertinoIcons.info,
+    AppIcons.StepHelp : CupertinoIcons.circle,
 
     AppIcons.RussianAlphabetSection : CupertinoIcons.textformat_size,
     AppIcons.NumbersSection : CupertinoIcons.textformat_123,
@@ -55,6 +62,8 @@ class AppIcon
     AppIcons.ArithmeticSymbolsSection : CupertinoIcons.plus_slash_minus,
     AppIcons.SignsSection : CupertinoIcons.square_grid_2x2,
 
+    AppIcons.EnableLessonSection : CupertinoIcons.check_mark_circled,
+    AppIcons.DisableLessonSection : CupertinoIcons.lock_fill,
   };
 
   static IconData getIcon(AppIcons type)

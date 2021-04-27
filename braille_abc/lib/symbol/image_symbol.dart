@@ -6,13 +6,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
-import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:braille_abc/models/practice_model.dart';
 
 class SymbolWidget extends StatefulWidget {
   final double width;
   final double height;
-  final String char;
+  final Symbol symbol;
   final SectionType dictSection;
   final bool isTapped;
   final TextDirection Function() textDir;
@@ -20,7 +19,7 @@ class SymbolWidget extends StatefulWidget {
   SymbolWidget(
       {Key key,
         @required this.textDir,
-        @required this.char,
+        @required this.symbol,
         @required this.dictSection,
         @required this.isTapped,
         @required this.width,
@@ -30,22 +29,21 @@ class SymbolWidget extends StatefulWidget {
   }
 
   @override
-  _SymbolState createState() => _SymbolState(char: char, section: dictSection);
+  _SymbolState createState() => _SymbolState(section: dictSection);
 }
 
 class _SymbolState extends State<SymbolWidget> {
   Symbol symbol;
   bool lastIsTapped;
-  final String char;
   final SectionType section;
 
-  _SymbolState({@required this.char, @required this.section});
+  _SymbolState({@required this.section});
 
   @override
   void initState(){
     super.initState();
     if(!widget.isTapped) {
-      symbol = Search.element(char, section);
+      symbol = widget.symbol;
     }
     else {
       symbol = Symbol.defaultSymbol();
@@ -57,7 +55,7 @@ class _SymbolState extends State<SymbolWidget> {
   Widget build(BuildContext context) {
     if(lastIsTapped != widget.isTapped) {
       if (!widget.isTapped) {
-        symbol = Search.element(char, section);
+        symbol = widget.symbol;
       }
       else {
         symbol = Symbol.defaultSymbol();
