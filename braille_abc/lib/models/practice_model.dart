@@ -1,5 +1,6 @@
 import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 @immutable
 class Practice {
@@ -26,20 +27,24 @@ class Practice {
 class Results {
   final int stepCounter;
   final int correctAnswerCounter;
+  final int hintCounter;
 
-  const Results(this.stepCounter, this.correctAnswerCounter);
+  const Results(this.stepCounter, this.correctAnswerCounter, this.hintCounter);
 }
 
 class PracticeResults {
   static final List<bool> _answer = [false, false, false, false, false, false];
   static int _stepCounter = 0;
   static int _correctAnswerCounter = 0;
+  static int _hintCounter = 0;
+  static bool _isHintUsed = false;
 
   static Results getResults() {
-    return Results(_stepCounter, _correctAnswerCounter);
+    return Results(_stepCounter, _correctAnswerCounter, _hintCounter);
   }
 
   static void resetAnswer() {
+    _isHintUsed = false;
     for(var i = 0; i < _answer.length; ++i) {
       _answer[i] = false;
     }
@@ -54,10 +59,19 @@ class PracticeResults {
     PracticeResults.incStepCounter();
   }
 
+  static void incHintCounter() {
+    if(!_isHintUsed) {
+      _isHintUsed = true;
+      ++_hintCounter;
+    }
+  }
+
   static void updatePracticeResults() {
     PracticeResults.resetAnswer();
     _stepCounter = 0;
     _correctAnswerCounter = 0;
+    _hintCounter = 0;
+    _isHintUsed = false;
   }
 
   static void dotClick(int dotNum) {
@@ -74,5 +88,4 @@ class PracticeResults {
     }
     return true;
   }
-
 }

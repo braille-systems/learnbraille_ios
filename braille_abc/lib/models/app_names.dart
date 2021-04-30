@@ -1,7 +1,7 @@
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:flutter/cupertino.dart';
 
-enum SectionType { RussianSymbols, Numbers, ArithmeticSymbols, PunctuationSymbols, Signs }
+enum SectionType { RussianSymbols, Numbers, ArithmeticSymbols, PunctuationSymbols, Signs, Other }
 
 @immutable
 class SectionNames {
@@ -10,11 +10,31 @@ class SectionNames {
     SectionType.Numbers: "Цифры",
     SectionType.ArithmeticSymbols: "Арифметические знаки",
     SectionType.PunctuationSymbols: "Знаки препинания",
-    SectionType.Signs: "Признаки"
+    SectionType.Signs: "Признаки",
+    SectionType.Other: "",
   };
 
   static String getName(SectionType type) {
     return stringOfSectionsMap[type];
+  }
+
+  static SectionType getType(String text) {
+    if (text.contains("RussianSymbols")) {
+      return SectionType.RussianSymbols;
+    }
+    if (text.contains("Numbers")) {
+      return SectionType.Numbers;
+    }
+    if (text.contains("ArithmeticSymbols")) {
+      return SectionType.ArithmeticSymbols;
+    }
+    if (text.contains("PunctuationSymbols")) {
+      return SectionType.PunctuationSymbols;
+    }
+    if (text.contains("Signs")) {
+      return SectionType.Signs;
+    }
+    return null;
   }
 }
 
@@ -38,7 +58,51 @@ class ScreenNames {
   }
 }
 
-enum XmlItemType { MainMenu, GeneralHelp, Alphabet, SymbolView, PracticeSections, PracticeResult }
+enum SettingType { OnlyLearned, Vibration, AutoVoice }
+
+class SettingInfo {
+  final String settingName;
+  final String settingDescription;
+
+  const SettingInfo({this.settingName, this.settingDescription});
+}
+
+@immutable
+class SettingsNames {
+  static const Map<SettingType, SettingInfo> stringOfSettingsMap = {
+    SettingType.OnlyLearned: SettingInfo(
+      settingName: "Повторять только изученное",
+      settingDescription: "В разделе \"Практика\" повторять только символы, пройденные в разделе \"Обучение\"",
+    ),
+    SettingType.Vibration: SettingInfo(
+      settingName: "Вибрация",
+      settingDescription: "Результат выполнения задачи в \"Практике\" показывать с помощью вибрации",
+    ),
+    SettingType.AutoVoice: SettingInfo(
+      settingName: "Автоозвучка текстов",
+      settingDescription:
+          "Автоматически озвучивать тексты (например, задания, справку) средством экранного чтения не дожидаясь"
+          " фокусировки на текстовом поле",
+    ),
+  };
+
+  static SettingInfo getName(SettingType settingType) {
+    return stringOfSettingsMap[settingType];
+  }
+}
+
+enum XmlItemType {
+  MainMenu,
+  GeneralHelp,
+  Alphabet,
+  SymbolView,
+  PracticeSections,
+  PracticeResult,
+  StudyScreen,
+  ReadingLessonScreen,
+  TextLessonScreen,
+  PracticeLessonScreen,
+}
 
 @immutable
 class XmlNames {
@@ -49,6 +113,10 @@ class XmlNames {
     XmlItemType.SymbolView: "Просмотр символа",
     XmlItemType.PracticeSections: "Разделы практики",
     XmlItemType.PracticeResult: "Результаты",
+    XmlItemType.StudyScreen: "Список уроков",
+    XmlItemType.PracticeLessonScreen: "Шаг с вводом",
+    XmlItemType.ReadingLessonScreen: "Шаг с чтением",
+    XmlItemType.TextLessonScreen: "Шаг с текстом",
   };
 
   static String getName(XmlItemType type) {
@@ -77,7 +145,10 @@ enum SemanticsType {
   SymbolInLetterWidget,
   Button,
   Available,
-  NotAvailable
+  NotAvailable,
+  NumberLessonInStudy,
+  ThemeOfLessonInStudy,
+  BackForthButton,
 }
 
 @immutable
@@ -103,9 +174,10 @@ class SemanticNames {
     SemanticsType.SymbolInLetterWidget: "Символ: ",
     SemanticsType.Button: "Кнопка.",
     SemanticsType.Available: "Доступна",
-    SemanticsType.NotAvailable: "Не доступна"
-
-
+    SemanticsType.NotAvailable: "Не доступна",
+    SemanticsType.NumberLessonInStudy: "Урок номер: ",
+    SemanticsType.ThemeOfLessonInStudy: "Тема: ",
+    SemanticsType.BackForthButton: "Вернуться назад"
   };
 
   static String getName(SemanticsType type) {
@@ -132,7 +204,7 @@ class ResultsInfo {
     _resultsMap = {
       ResultsPositions.StepCounter: ResultsPair("Всего пройдено:", results.stepCounter),
       ResultsPositions.CorrectAnswers: ResultsPair("Верно:", results.correctAnswerCounter),
-      ResultsPositions.HintCounter: ResultsPair("Подсказок использовано:", 0),
+      ResultsPositions.HintCounter: ResultsPair("Подсказок использовано:", results.hintCounter),
       ResultsPositions.GeneralInfo: ResultsPair("Общие результаты:", 0),
     };
   }
