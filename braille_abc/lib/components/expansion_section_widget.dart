@@ -67,10 +67,12 @@ class _ExpansionSection extends State<ExpansionSection> {
       button: false,
       label: widget.sectionName + ". " + SemanticNames.getName(SemanticsType.ExpandableList),
       hint: SemanticNames.getName(SemanticsType.TapToOpen),
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 2),
-        decoration: AppDecorations.expansionSection,
-        child: expTile,
+      child: ExcludeSemantics(
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 2),
+          decoration: AppDecorations.expansionSection,
+          child: expTile,
+        ),
       ),
     );
   }
