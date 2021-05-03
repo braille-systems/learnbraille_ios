@@ -54,6 +54,8 @@ class AppColors {
   static const Color continueBtnTextIcon = Colors.black;
   ///
   static const Color divider = Colors.black;
+
+  static const Color lockColor = CupertinoColors.inactiveGray;
 }
 
 

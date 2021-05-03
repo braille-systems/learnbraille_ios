@@ -1,3 +1,4 @@
+import 'package:braille_abc/screens/study_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -9,7 +10,8 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/style.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:braille_abc/models/app_names.dart';
 @immutable
 class MenuButtonWidget extends StatefulWidget {
   const MenuButtonWidget({
@@ -42,7 +44,10 @@ class _MenuButtonWidget extends State<MenuButtonWidget> {
       child: ExcludeSemantics(
         child: ElevatedButton(
           style: AppDecorations.menuButton,
-          onPressed: () {
+          onPressed: () async {
+            SharedPreferences prefs = await SharedPreferences.getInstance();// set value
+            LessonsNum.parentNum = prefs.getInt(LessonNums.getName(lessonNumber.parrentLessonNum)??0);
+            LessonsNum.num = prefs.getInt(LessonNums.getName(lessonNumber.lessonNum)??0);
             scakey.currentState.onItemTapped(widget.index);
             Practice.updatePool();
           },
