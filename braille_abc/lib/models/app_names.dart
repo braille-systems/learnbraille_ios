@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/lesson_model.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -38,7 +39,7 @@ class SectionNames {
   }
 }
 
-enum ScreenType { Dictionary, Help, Home, Letter, Practice, Settings, Study, Results }
+enum ScreenType { Dictionary, Help, Home, Letter, Practice, Settings, Study, Results, Lesson, StudyList }
 
 @immutable
 class ScreenNames {
@@ -50,6 +51,8 @@ class ScreenNames {
     ScreenType.Practice: "Практика",
     ScreenType.Settings: "Настройки",
     ScreenType.Study: "Обучение",
+    ScreenType.StudyList: "Список уроков",
+    ScreenType.Lesson: "Урок",
     ScreenType.Results: "Результаты",
   };
 
@@ -215,4 +218,23 @@ class ResultsInfo {
       [ResultsPositions.StepCounter, ResultsPositions.CorrectAnswers, ResultsPositions.HintCounter];
 
   Map<ResultsPositions, ResultsPair> _resultsMap;
+}
+
+
+
+@immutable
+class LessonNames {
+  static const Map<lessonType, String> stringOfLessonsMap = {
+    lessonType.text: "текст",
+    lessonType.reading: "чтение",
+    lessonType.practice: "практика"
+  };
+
+  static String getName(lessonType type) {
+    return stringOfLessonsMap[type];
+  }
+
+  static String getGeneralName(lessonType type) {
+    return "Урок";
+  }
 }
