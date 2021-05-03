@@ -16,11 +16,13 @@ class LetterScreenStudy extends SectionScreen {
   final String upperText;
   final String downText;
   final bool isDotsTouchable;
+  final String title;
 
   const LetterScreenStudy(
       {Key key,
         Screen helpPage,
         Screen previousPage,
+        @required this.title,
         @required this.screenType,
         @required this.sectionName,
         @required this.symbol,
@@ -36,7 +38,7 @@ class LetterScreenStudy extends SectionScreen {
       CupertinoPageScaffold(
         navigationBar: NavigationBar(
           currentPage: this,
-          title: ScreenNames.getName(screenType),
+          title:  ScreenNames.getName(ScreenType.Lesson) + " " + title,
         ),
         child: LetterView(
           screenType: screenType,

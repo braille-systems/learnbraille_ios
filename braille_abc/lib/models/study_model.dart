@@ -73,16 +73,16 @@ class StudyModel {
       var lessonNumber = 0;
       var components = el.children;
       for (var comp in components) {
-        lessonNumber++;
         if (comp.children.isNotEmpty) {
+          lessonNumber++;
           var type = comp.getAttribute("type");
           if (type != null) {
             if (type == getType(lessonType.practice)) {
-              lessonsComponents.add(PracticeLesson(lessonType.practice, comp.getAttribute("title"), comp.text, lessonNumber));
+              lessonsComponents.add(PracticeLesson(lessonType.practice, comp.getAttribute("title"), comp.text, lessonNumber, number));
             } else if (type == getType(lessonType.reading)) {
-              lessonsComponents.add(ReadingLesson(lessonType.reading, comp.getAttribute("title"), comp.text, lessonNumber));
+              lessonsComponents.add(ReadingLesson(lessonType.reading, comp.getAttribute("title"), comp.text, lessonNumber, number));
             } else if (type == getType(lessonType.text)) {
-              lessonsComponents.add(TextLesson(lessonType.text, comp.text, lessonNumber));
+              lessonsComponents.add(TextLesson(lessonType.text, comp.text, lessonNumber, number));
             }
           }
         }

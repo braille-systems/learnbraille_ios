@@ -18,6 +18,7 @@ class LessonsScreen extends NavigationScreen {
     Widget previousPage,
   }) : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
+
   @override
   Widget build(BuildContext context) {
     return nonSwipeable(
@@ -25,7 +26,7 @@ class LessonsScreen extends NavigationScreen {
       CupertinoPageScaffold(
         navigationBar: NavigationBar(
           currentPage: this,
-          title: ScreenNames.getName(ScreenType.Study),
+          title:  ScreenNames.getName(ScreenType.StudyList),
         ),
         child: SafeArea(
           minimum: EdgeInsets.symmetric(horizontal: 20),
@@ -71,11 +72,13 @@ class TextLessonScreen extends SectionScreen {
   const TextLessonScreen(
     this.text, {
     Key key,
+        this.title,
     Screen helpPage,
     Screen previousPage,
   }) : super(key: key, helpPage: helpPage, previousPage: previousPage);
 
   final String text;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +87,7 @@ class TextLessonScreen extends SectionScreen {
       CupertinoPageScaffold(
         navigationBar: NavigationBar(
           currentPage: this,
-          title: ScreenNames.getName(ScreenType.Study),
+          title: ScreenNames.getName(ScreenType.Lesson) + " " + title,
         ),
         child: SafeArea(
           child: Container(

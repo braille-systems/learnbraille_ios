@@ -24,8 +24,8 @@ class Lesson {
   int get number => _number;
 
   String get name => _name;
-  LessonComponents getLessonComponent(int i)  => lessonComponent[i];
 
+  LessonComponents getLessonComponent(int i) => lessonComponent[i];
 
   Lesson(this._number, this._name, this.lessonComponent);
 }
@@ -33,14 +33,19 @@ class Lesson {
 @immutable
 class LessonComponents extends StatelessWidget {
   final int _number;
+  final int _parentNumber;
   final lessonType _type;
   final String _text;
 
   int get number => _number;
+
+  int get parentNumber => _parentNumber;
+
   String get text => _text;
+
   lessonType get type => _type;
 
-  LessonComponents(this._type, this._text, this._number);
+  LessonComponents(this._type, this._text, this._parentNumber, this._number);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +58,8 @@ class LessonComponents extends StatelessWidget {
 class PracticeLesson extends LessonComponents {
   final String symbol;
 
-  PracticeLesson(lessonType type, String text, this.symbol, int num) : super(type, text, num);
+  PracticeLesson(lessonType type, String text, this.symbol, int parentNumber, int num)
+      : super(type, text, num, parentNumber);
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +79,14 @@ class PracticeLesson extends LessonComponents {
         isDotsTouchable: true,
         symbol: studySymbol ?? StudySymbol(list: Search.imageSymbol(d: StudyModel.createSymbol(symbol))),
         screenType: ScreenType.Study,
-        sectionName: lessonText != null ? SectionType.Other:SectionNames.getType(symbol),
+        sectionName: lessonText != null ? SectionType.Other : SectionNames.getType(symbol),
         upperText: up,
         downText: down,
-        helpPage: Help(helpName: HelpSections.PracticeLessonScreen,),
-        previousPage: AppModel.navigationScreens[navigation.StudyScreen]);
+        helpPage: Help(
+          helpName: HelpSections.PracticeLessonScreen,
+        ),
+        previousPage: AppModel.navigationScreens[navigation.StudyScreen],
+        title: parentNumber.toString() + "." + number.toString() + ": " + LessonNames.getName(type));
   }
 }
 
@@ -85,7 +94,8 @@ class PracticeLesson extends LessonComponents {
 class ReadingLesson extends LessonComponents {
   final String symbol;
 
-  ReadingLesson(lessonType type, String text, this.symbol, int num) : super(type, text, num);
+  ReadingLesson(lessonType type, String text, this.symbol, int parentNumber, int num)
+      : super(type, text, num, parentNumber);
 
   @override
   Widget build(BuildContext context) {
@@ -102,26 +112,33 @@ class ReadingLesson extends LessonComponents {
     }
 
     return LetterScreenStudy(
-        isDotsTouchable: false,
-        symbol: studySymbol ?? StudySymbol(list: Search.imageSymbol(d: StudyModel.createSymbol(symbol))),
-        screenType: ScreenType.Study,
-        sectionName: lessonText != null ? SectionType.Other:SectionNames.getType(symbol),
-        upperText: up,
-        downText: down,
-        helpPage: Help(helpName: HelpSections.ReadingLessonScreen,),
-        previousPage: AppModel.navigationScreens[navigation.StudyScreen]);
+      isDotsTouchable: false,
+      symbol: studySymbol ?? StudySymbol(list: Search.imageSymbol(d: StudyModel.createSymbol(symbol))),
+      screenType: ScreenType.Study,
+      sectionName: lessonText != null ? SectionType.Other : SectionNames.getType(symbol),
+      upperText: up,
+      downText: down,
+      helpPage: Help(
+        helpName: HelpSections.ReadingLessonScreen,
+      ),
+      previousPage: AppModel.navigationScreens[navigation.StudyScreen],
+      title: parentNumber.toString() + "." + number.toString() + ": " + LessonNames.getName(type),
+    );
   }
 }
 
 @immutable
 class TextLesson extends LessonComponents {
-  TextLesson(lessonType type, String text, int num) : super(type, text, num);
+  TextLesson(lessonType type, String text, int parentNumber, int num) : super(type, text,  num, parentNumber);
 
   @override
   Widget build(BuildContext context) {
     return TextLessonScreen(
       text,
-      helpPage: Help(helpName: HelpSections.TextLessonScreen,),
+      title: parentNumber.toString() + "." + number.toString() + ": " + LessonNames.getName(type),
+      helpPage: Help(
+        helpName: HelpSections.TextLessonScreen,
+      ),
       previousPage: AppModel.navigationScreens[navigation.StudyScreen],
     );
   }
