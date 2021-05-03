@@ -102,16 +102,9 @@ class LessonRoute extends CupertinoPageRoute{
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation){
-    var begin;
-    if(isForward){
-      begin = Routes.nextScreen;
-    }
-    else{
-      begin = Routes.previousScreen;
-    }
     return SlideTransition(
       position: Tween<Offset>(
-        begin: begin,
+        begin: (isForward) ? Routes.nextScreen: Routes.previousScreen,
         end: Offset.zero,
       ).animate(animation),
       child: child,
