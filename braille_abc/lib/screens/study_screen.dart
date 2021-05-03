@@ -10,6 +10,11 @@ import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
+class LessonsNum {
+  static int parentNum;
+  static int num;
+}
+
 @immutable
 class LessonsScreen extends NavigationScreen {
   const LessonsScreen({
