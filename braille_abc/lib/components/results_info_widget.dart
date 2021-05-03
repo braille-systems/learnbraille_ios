@@ -85,9 +85,14 @@ class _ResultsInfoWidget extends State<ResultsInfoWidget> {
               color: AppColors.divider,
             ),
             for (var position in widget.results.getDetailPositionsPool())
-              PositionWidget(
-                name: widget.results.getResultsInfo(position).name,
-                value: widget.results.getResultsInfo(position).value,
+              Semantics(
+                label: widget.results.getResultsInfo(position).name + " " + widget.results.getResultsInfo(position).value.toString(),
+                child: ExcludeSemantics(
+                  child: PositionWidget(
+                    name: widget.results.getResultsInfo(position).name,
+                    value: widget.results.getResultsInfo(position).value,
+                  ),
+                ),
               ),
           ],
         ),
