@@ -101,14 +101,8 @@ jobs:
       - run: git lfs pull
       - run: flutter pub get
         working-directory: ./braille_abc
-      - run: flutter build apk --release --no-tree-shake-icons
+      - run: flutter build appbundle --no-tree-shake-icons
         working-directory: ./braille_abc
-      
-      # Upload apk artifact
-      - uses: actions/upload-artifact@v1
-        with:
-          name: build-apk
-          path: braille_abc/build/app/outputs/apk/release/app-release.apk
 
 
   test:
