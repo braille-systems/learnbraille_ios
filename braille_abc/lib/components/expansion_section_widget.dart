@@ -55,9 +55,11 @@ class _ExpansionSection extends State<ExpansionSection> {
         size: Sizes.lineSectionIconSize,
         color: myColor,
       ),
-      title: Text(
-        widget.sectionName,
-        style: TextStyle(fontSize:Sizes.lineSectionFontSize, color: myColor),
+      title: ExcludeSemantics(
+        child: Text(
+          widget.sectionName,
+          style: TextStyle(fontSize:Sizes.lineSectionFontSize, color: myColor),
+        ),
       ),
       backgroundColor: AppColors.expandBackground,
       initiallyExpanded: false,
@@ -67,13 +69,11 @@ class _ExpansionSection extends State<ExpansionSection> {
       button: false,
       label: widget.sectionName + ". " + SemanticNames.getName(SemanticsType.ExpandableList),
       hint: SemanticNames.getName(SemanticsType.TapToOpen),
-      child: ExcludeSemantics(
-        child: Container(
+      child: Container(
           margin: EdgeInsets.symmetric(vertical: 2),
           decoration: AppDecorations.expansionSection,
           child: expTile,
         ),
-      ),
     );
   }
 }
