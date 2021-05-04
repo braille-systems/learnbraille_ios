@@ -14,6 +14,8 @@ class StudyModel {
   static int _currentLessonIndex = 0;
 
   static int get lessonsNum => _lessons.length;
+  // ignore: unnecessary_getters_setters
+  static int get currentLessonIndex => _currentLessonIndex;
 
   static int get curLessonLength => _lessons[_currentLessonIndex].lessonComponent.length;
 
@@ -46,8 +48,8 @@ class StudyModel {
     _currentLessonIndex = index;
   }
 
-  static void rebootLessons() {
-    _currentLessonPartIndex = 0;
+  static void rebootLessons({int index = 0}) {
+    _currentLessonPartIndex = index;
   }
 
   static String getType(lessonType type) {

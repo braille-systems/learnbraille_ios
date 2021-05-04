@@ -39,14 +39,24 @@ class LessonSectionWidget extends StatelessWidget {
             minVerticalPadding: 0,
             onTap: isOpen
                 ? () {
-                    StudyModel.rebootLessons();
+              print(Saves.lessonStepNum);
+              var index = 0;
+                    if(lesson.number < Saves.lessonNum){
+                      print("nelol");
+                      print(lesson.number.toString() + "=" +Saves.lessonNum.toString());
+                      StudyModel.rebootLessons();
+                    } else {
+                      StudyModel.rebootLessons(index: Saves.lessonStepNum);
+                      index = Saves.lessonStepNum;
+                      print("lol");
+                    }
                     StudyModel.currentLessonIndex = lesson.number - 1;
                     Timer(Duration(milliseconds: 10), () {
                       scakey.currentState.displayTapBar(false);
                     });
                     Navigator.of(context).push(
                       CupertinoPageRoute(
-                        builder: (context) => lesson.lessonComponent[Saves.lessonStepNum].build(context),
+                        builder: (context) => lesson.lessonComponent[index].build(context),
                       ),
                     );
                   }
