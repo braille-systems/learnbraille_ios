@@ -57,7 +57,7 @@ class BackForthButton extends StatelessWidget {
             navigate = StudyModel.decLessonPartIndex();
           }
           if (navigate) {
-            Navigator.of(context).push(
+            await Navigator.of(context).push(
                LessonRoute(child: StudyModel.curLessonPart.build(context), isForward: isForward()),
             );
           }
