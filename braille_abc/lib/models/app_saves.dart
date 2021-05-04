@@ -25,6 +25,7 @@ class Saves {
     if (StudyModel.curLessonPart.stepNumber == StudyModel.curLessonLength) {
       await prefs.setInt(LessonNums.getName(lessonNumber.lesson), StudyModel.curLessonPart.number + 1);
       await prefs.setInt(LessonNums.getName(lessonNumber.lessonStep), 0);
+      await loadLessonProgress();
     }
   }
 }
