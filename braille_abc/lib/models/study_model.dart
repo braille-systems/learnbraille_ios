@@ -17,6 +17,7 @@ class StudyModel {
 
   static int get lessonsNum => _lessons.length;
   static int get curLessonLength => _lessons[_currentLessonIndex].lessonComponent.length;
+
   static Lesson getLessonByIndex(index)=> _lessons[index];
   static Lesson get curLesson => _lessons[_currentLessonIndex];
   static LessonComponents get curLessonPart => _lessons[_currentLessonIndex].lessonComponent[_currentLessonPartIndex];
@@ -79,11 +80,11 @@ class StudyModel {
           var type = comp.getAttribute("type");
           if (type != null) {
             if (type == getType(lessonType.practice)) {
-              lessonsComponents.add(PracticeLesson(lessonType.practice, comp.getAttribute("title"), comp.text, lessonNumber, number));
+              lessonsComponents.add(PracticeLesson(lessonType.practice, comp.getAttribute("title"), comp.text, number, lessonNumber));
             } else if (type == getType(lessonType.reading)) {
-              lessonsComponents.add(ReadingLesson(lessonType.reading, comp.getAttribute("title"), comp.text, lessonNumber, number));
+              lessonsComponents.add(ReadingLesson(lessonType.reading, comp.getAttribute("title"), comp.text,number, lessonNumber));
             } else if (type == getType(lessonType.text)) {
-              lessonsComponents.add(TextLesson(lessonType.text, comp.text, lessonNumber, number));
+              lessonsComponents.add(TextLesson(lessonType.text, comp.text, number, lessonNumber));
             }
           }
         }
