@@ -6,7 +6,6 @@ import 'package:braille_abc/symbol/struct_symbol.dart';
 
 import 'package:braille_abc/models/lesson_model.dart';
 
-
 @immutable
 class StudyModel {
   static int number = 1;
@@ -14,32 +13,33 @@ class StudyModel {
   static int _currentLessonPartIndex = 0;
   static int _currentLessonIndex = 0;
 
-
   static int get lessonsNum => _lessons.length;
+
   static int get curLessonLength => _lessons[_currentLessonIndex].lessonComponent.length;
 
   static Lesson getLessonByIndex(index)=> _lessons[index];
+
   static Lesson get curLesson => _lessons[_currentLessonIndex];
+
   static LessonComponents get curLessonPart => _lessons[_currentLessonIndex].lessonComponent[_currentLessonPartIndex];
 
   static lessonType get currentLessonType => curLessonPart.type;
 
-  static bool incLessonPartIndex(){
-    if(_currentLessonPartIndex<curLesson.lessonComponent.length-1) {
+  static bool incLessonPartIndex() {
+    if (_currentLessonPartIndex < curLesson.lessonComponent.length - 1) {
       _currentLessonPartIndex++;
       return true;
     }
     return false;
   }
 
-  static bool decLessonPartIndex(){
-    if(_currentLessonPartIndex > 0) {
+  static bool decLessonPartIndex() {
+    if (_currentLessonPartIndex > 0) {
       _currentLessonPartIndex--;
       return true;
     }
-  return false;
+    return false;
   }
-
 
   // ignore: avoid_setters_without_getters
   static set currentLessonIndex(int index) {
@@ -49,8 +49,9 @@ class StudyModel {
   static void rebootLessons() {
     _currentLessonPartIndex = 0;
   }
-  static String getType(lessonType type){
-    switch(type){
+
+  static String getType(lessonType type) {
+    switch (type) {
       case lessonType.practice:
         return "practice";
       case lessonType.reading:
@@ -80,9 +81,11 @@ class StudyModel {
           var type = comp.getAttribute("type");
           if (type != null) {
             if (type == getType(lessonType.practice)) {
-              lessonsComponents.add(PracticeLesson(lessonType.practice, comp.getAttribute("title"), comp.text, number, lessonNumber));
+              lessonsComponents.add(
+                  PracticeLesson(lessonType.practice, comp.getAttribute("title"), comp.text, number, lessonNumber));
             } else if (type == getType(lessonType.reading)) {
-              lessonsComponents.add(ReadingLesson(lessonType.reading, comp.getAttribute("title"), comp.text,number, lessonNumber));
+              lessonsComponents
+                  .add(ReadingLesson(lessonType.reading, comp.getAttribute("title"), comp.text, number, lessonNumber));
             } else if (type == getType(lessonType.text)) {
               lessonsComponents.add(TextLesson(lessonType.text, comp.text, number, lessonNumber));
             }
@@ -96,30 +99,28 @@ class StudyModel {
     return null;
   }
 
-
-
-  static List<int> createSymbol(String symbol){
+  static List<int> createSymbol(String symbol) {
     List<int> dots = [];
     var result = symbol.replaceAll(RegExp(r'[(),) ]'), '').replaceAll("\n", "").replaceAll("\r", "");
-    for(int i = 0; i <result.length; i++){
-      if(result[i]=="T"){
-        dots.add(i+1);
+    for (int i = 0; i < result.length; i++) {
+      if (result[i] == "T") {
+        dots.add(i + 1);
       }
     }
     return dots;
   }
 
-  static List<String> parseTitle(String text){
-    if(text.isEmpty){
+  static List<String> parseTitle(String text) {
+    if (text.isEmpty) {
       return null;
     }
     var result = text.split(":");
     return result;
   }
 
-  static Symbol parseSymbol(String text){
+  static Symbol parseSymbol(String text) {
     var result;
-    if(text.contains(":")) {
+    if (text.contains(":")) {
       result = text.split(":");
       var name = result[1].replaceAll(" ", "").replaceAll("\n", "").replaceAll("\r", "");
       var studySymbol = Search.element(name, SectionNames.getType(text));
@@ -127,5 +128,4 @@ class StudyModel {
     }
     return null;
   }
-
 }

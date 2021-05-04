@@ -188,3 +188,7 @@ class Sizes {
   static SizeT getLetterWidgetSize() => SizeT(45, 57);
 }
 
+class Routes{
+  static Offset nextScreen = Offset(1.0, 0.0);
+  static Offset previousScreen = Offset(-1.0, 0.0);
+}
