@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 
-
 class LessonSectionWidget extends StatelessWidget {
   const LessonSectionWidget({
     Key key,
@@ -23,7 +22,6 @@ class LessonSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     bool isOpen = false;
     if (Saves.lessonNum != null && lesson.number != null) {
       if (Saves.lessonNum >= lesson.number) {
@@ -39,16 +37,12 @@ class LessonSectionWidget extends StatelessWidget {
             minVerticalPadding: 0,
             onTap: isOpen
                 ? () {
-              print(Saves.lessonStepNum);
-              var index = 0;
-                    if(lesson.number < Saves.lessonNum){
-                      print("nelol");
-                      print(lesson.number.toString() + "=" +Saves.lessonNum.toString());
+                    var index = 0;
+                    if (lesson.number < Saves.lessonNum) {
                       StudyModel.rebootLessons();
                     } else {
                       StudyModel.rebootLessons(index: Saves.lessonStepNum);
                       index = Saves.lessonStepNum;
-                      print("lol");
                     }
                     StudyModel.currentLessonIndex = lesson.number - 1;
                     Timer(Duration(milliseconds: 10), () {

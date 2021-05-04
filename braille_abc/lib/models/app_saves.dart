@@ -9,10 +9,8 @@ class Saves {
 
   static Future saveLessonProgress() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print(StudyModel.currentLessonIndex.toString() +"=="+ Saves.lessonNum.toString());
     if(StudyModel.currentLessonIndex == Saves.lessonNum - 1) {
       await prefs.setInt(LessonNums.getName(lessonNumber.lessonStep), StudyModel.curLessonPart.stepNumber);
-      print("save" + StudyModel.curLessonPart.stepNumber.toString() );
     }
   }
 
@@ -20,9 +18,6 @@ class Saves {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     lessonNum = prefs.getInt(LessonNums.getName(lessonNumber.lesson)) ?? 1;
     lessonStepNum = prefs.getInt(LessonNums.getName(lessonNumber.lessonStep)) ?? 0;
-
-
-    print("load" + lessonNum.toString() + lessonStepNum.toString() );
   }
 
   static Future isLessonCompleted() async {
@@ -30,7 +25,6 @@ class Saves {
     if (StudyModel.curLessonPart.stepNumber == StudyModel.curLessonLength) {
       await prefs.setInt(LessonNums.getName(lessonNumber.lesson), StudyModel.curLessonPart.number + 1);
       await prefs.setInt(LessonNums.getName(lessonNumber.lessonStep), 0);
-      print("complete");
     }
   }
 }

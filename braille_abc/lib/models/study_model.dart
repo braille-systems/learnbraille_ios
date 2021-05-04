@@ -43,7 +43,8 @@ class StudyModel {
     return false;
   }
 
-  // ignore: avoid_setters_without_getters
+  // unnecessary_getters_setters
+  // ignore: unnecessary_getters_setters
   static set currentLessonIndex(int index) {
     _currentLessonIndex = index;
   }
