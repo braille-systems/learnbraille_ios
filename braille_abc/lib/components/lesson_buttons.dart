@@ -53,6 +53,7 @@ class BackForthButton extends StatelessWidget {
               await Saves.saveLessonProgress();
               navigate = StudyModel.incLessonPartIndex();
             }
+            await Saves.loadLessonProgress();
           } else if (isBackward()) {
             navigate = StudyModel.decLessonPartIndex();
           }
