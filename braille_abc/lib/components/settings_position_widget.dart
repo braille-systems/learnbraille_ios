@@ -30,31 +30,45 @@ class _SettingsPosition extends State<SettingsPosition> {
     return Card(
       elevation: 1,
       margin: EdgeInsets.symmetric(vertical: 2),
-      child: ListTile(
-        title: AutoSizeText(
-          settingInfo.settingName,
-          style: TextStyle(
-            fontSize: Sizes.settingNameFontSize,
-            fontWeight: FontWeight.w500,
+      child: Semantics(
+        label: settingInfo.settingName +
+            " ." +
+            ((checkBox)
+                ? SemanticNames.getName(SemanticsType.Selected)
+                : SemanticNames.getName(SemanticsType.NotSelected)),
+        hint: settingInfo.settingDescription,
+        child: ExcludeSemantics(
+          child: ListTile(
+            title: ExcludeSemantics(
+              child: AutoSizeText(
+                settingInfo.settingName,
+                style: TextStyle(
+                  fontSize: Sizes.settingNameFontSize,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            subtitle: ExcludeSemantics(
+              child: AutoSizeText(
+                settingInfo.settingDescription,
+                style: TextStyle(
+                  fontSize: Sizes.settingDescriptionFontSize,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            trailing: CupertinoSwitch(
+              value: checkBox,
+              onChanged: (bool val) {
+                onChange(val);
+              },
+              activeColor: AppColors.first,
+            ),
+            onTap: () {
+              onChange(!checkBox);
+            },
           ),
         ),
-        subtitle: AutoSizeText(
-          settingInfo.settingDescription,
-          style: TextStyle(
-            fontSize: Sizes.settingDescriptionFontSize,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        trailing: CupertinoSwitch(
-          value: checkBox,
-          onChanged: (bool val) {
-            onChange(val);
-          },
-          activeColor: AppColors.first,
-        ),
-        onTap: () {
-          onChange(!checkBox);
-        },
       ),
     );
   }
