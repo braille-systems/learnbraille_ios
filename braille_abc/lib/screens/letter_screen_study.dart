@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/app_saves.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class LetterScreenStudy extends SectionScreen {
 
   @override
   Widget build(BuildContext context) {
+    Saves.isLessonCompleted();
     return nonSwipeable(
       context,
       CupertinoPageScaffold(

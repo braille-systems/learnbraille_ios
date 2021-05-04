@@ -242,14 +242,14 @@ class LessonNames {
 
 
 enum lessonNumber{
-  parrentLessonNum,
-  lessonNum,
+  lesson,
+  lessonStep,
 }
 @immutable
 class LessonNums {
   static const Map<lessonNumber, String> stringOfLessonsMap = {
-    lessonNumber.lessonNum: "lessonNumber",
-    lessonNumber.parrentLessonNum: "parentLessonNumber",
+    lessonNumber.lesson: "lessonNumber",
+    lessonNumber.lessonStep: "parentLessonNumber",
   };
 
   static String getName(lessonNumber type) {

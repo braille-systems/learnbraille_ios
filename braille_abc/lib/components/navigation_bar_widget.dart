@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:braille_abc/screens/study_screen.dart';
 import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -10,7 +8,6 @@ import 'package:braille_abc/screens/help_screen.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 @immutable
 class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeWidget {
@@ -34,9 +31,6 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
         child: ExcludeSemantics(
           child: CupertinoNavigationBarBackButton(
             onPressed: () async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();// set value
-              LessonsNum.parentNum = prefs.getInt(LessonNums.getName(lessonNumber.parrentLessonNum)??0);
-              LessonsNum.num = prefs.getInt(LessonNums.getName(lessonNumber.lessonNum)??0);
               if (currentPage.hasNavigationBar) {
                 scakey.currentState.onItemTapped(0);
               } else {
