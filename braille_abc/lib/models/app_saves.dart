@@ -9,9 +9,8 @@ class Saves {
 
   static Future saveLessonProgress() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(LessonNums.getName(lessonNumber.lessonStep), StudyModel.curLessonPart.number);
+    await prefs.setInt(LessonNums.getName(lessonNumber.lesson), StudyModel.curLessonPart.number);
     await prefs.setInt(LessonNums.getName(lessonNumber.lessonStep), StudyModel.curLessonPart.stepNumber);
-
   }
 
   static Future loadLessonProgress() async {
@@ -22,8 +21,9 @@ class Saves {
 
   static Future isLessonCompleted() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (StudyModel.curLessonPart.number == StudyModel.curLessonLength) {
-      await prefs.setInt(LessonNums.getName(lessonNumber.lesson), StudyModel.curLessonPart.stepNumber + 1);
+    if (StudyModel.curLessonPart.stepNumber == StudyModel.curLessonLength) {
+      await prefs.setInt(LessonNums.getName(lessonNumber.lesson), StudyModel.curLessonPart.number + 1);
+      await prefs.setInt(LessonNums.getName(lessonNumber.lessonStep), StudyModel.curLessonLength);
     }
   }
 }
