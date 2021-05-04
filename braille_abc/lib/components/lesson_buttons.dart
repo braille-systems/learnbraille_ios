@@ -57,7 +57,7 @@ class BackForthButton extends StatelessWidget {
             navigate = StudyModel.decLessonPartIndex();
           }
           if (navigate) {
-            Navigator.of(context).push(
+            await Navigator.of(context).push(
                LessonRoute(child: StudyModel.curLessonPart.build(context), isForward: isForward()),
             );
           }
@@ -83,7 +83,10 @@ Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol 
         height: ScreenParams.height(Sizes.getBackFortButtonSize().height, context),
         width: ScreenParams.width(Sizes.getBackFortButtonSize().width, context),
         child: Semantics(
-          label: SemanticNames.getName(SemanticsType.BackForthButton),
+          label: type == lessonButtonType.backward
+              ? SemanticNames.getName(SemanticsType.BackForthButton)
+              : SemanticNames.getName(SemanticsType.Continue),
+          button: true,
           child: ExcludeSemantics(
             child: BackForthButton(
               type: type,
