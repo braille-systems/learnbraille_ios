@@ -54,6 +54,7 @@ class LessonComponents extends StatelessWidget {
   }
 }
 
+
 @immutable
 class PracticeLesson extends LessonComponents {
   final String symbol;
@@ -86,7 +87,7 @@ class PracticeLesson extends LessonComponents {
           helpName: HelpSections.PracticeLessonScreen,
         ),
         previousPage: AppModel.navigationScreens[navigation.StudyScreen],
-        title: stepNumber.toString() + "." + number.toString() + ": " + LessonNames.getName(type));
+        title: number.toString() + "." + stepNumber.toString() + ": " + LessonNames.getName(type));
   }
 }
 
@@ -122,7 +123,7 @@ class ReadingLesson extends LessonComponents {
         helpName: HelpSections.ReadingLessonScreen,
       ),
       previousPage: AppModel.navigationScreens[navigation.StudyScreen],
-      title: stepNumber.toString() + "." + number.toString() + ": " + LessonNames.getName(type),
+      title: number.toString() + "." + stepNumber.toString() + ": " + LessonNames.getName(type),
     );
   }
 }
@@ -135,7 +136,7 @@ class TextLesson extends LessonComponents {
   Widget build(BuildContext context) {
     return TextLessonScreen(
       text,
-      title: stepNumber.toString() + "." + number.toString() + ": " + LessonNames.getName(type),
+      title: number.toString() + "." + stepNumber.toString() + ": " + LessonNames.getName(type),
       helpPage: Help(
         helpName: HelpSections.TextLessonScreen,
       ),
