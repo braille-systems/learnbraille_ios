@@ -1,5 +1,6 @@
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
+import 'package:braille_abc/models/app_saves.dart';
 import 'package:braille_abc/models/study_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
@@ -10,7 +11,6 @@ import 'dart:math';
 
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/models/lesson_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 enum lessonButtonType {
   backward,
@@ -44,21 +44,13 @@ class BackForthButton extends StatelessWidget {
         style: AppDecorations.nextButton,
         onPressed: () async {
           if (isForward()) {
-            // obtain shared preferences
-            SharedPreferences prefs = await SharedPreferences.getInstance();// set value
-            await prefs.setInt(LessonNums.getName(lessonNumber.parrentLessonNum), StudyModel.curLessonPart.parentNumber);
-            await prefs.setInt(LessonNums.getName(lessonNumber.lessonNum), StudyModel.curLessonPart.number);
-            //print(StudyModel.curLessonPart.number);
-            //print(StudyModel.curLessonLength);
-            if(StudyModel.curLessonPart.number == StudyModel.curLessonLength){
-              await prefs.setInt(LessonNums.getName(lessonNumber.parrentLessonNum), StudyModel.curLessonPart.parentNumber + 1);
-            }
-
             if (StudyModel.currentLessonType == lessonType.practice) {
               if (PracticeResults.checkAnswer(symbol.getDotsInfo())) {
+                await Saves.saveLessonProgress();
                 navigate = StudyModel.incLessonPartIndex();
               }
             } else {
+              await Saves.saveLessonProgress();
               navigate = StudyModel.incLessonPartIndex();
             }
           } else if (isBackward()) {

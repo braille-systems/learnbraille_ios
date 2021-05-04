@@ -1,6 +1,7 @@
 import 'package:braille_abc/components/lesson_buttons.dart';
 import 'package:braille_abc/components/lesson_section_widget.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
+import 'package:braille_abc/models/app_saves.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/models/study_model.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';
@@ -10,10 +11,6 @@ import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
-class LessonsNum {
-  static int parentNum;
-  static int num;
-}
 
 @immutable
 class LessonsScreen extends NavigationScreen {
@@ -87,6 +84,7 @@ class TextLessonScreen extends SectionScreen {
 
   @override
   Widget build(BuildContext context) {
+    Saves.isLessonCompleted();
     return nonSwipeable(
       context,
       CupertinoPageScaffold(
