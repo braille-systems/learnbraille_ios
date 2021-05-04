@@ -1,5 +1,6 @@
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
+import 'package:braille_abc/models/app_saves.dart';
 import 'package:braille_abc/models/study_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
@@ -41,20 +42,22 @@ class BackForthButton extends StatelessWidget {
       angle: _angle,
       child: ElevatedButton(
         style: AppDecorations.nextButton,
-        onPressed: () {
+        onPressed: () async {
           if (isForward()) {
             if (StudyModel.currentLessonType == lessonType.practice) {
               if (PracticeResults.checkAnswer(symbol.getDotsInfo())) {
+                await Saves.saveLessonProgress();
                 navigate = StudyModel.incLessonPartIndex();
               }
             } else {
+              await Saves.saveLessonProgress();
               navigate = StudyModel.incLessonPartIndex();
             }
           } else if (isBackward()) {
             navigate = StudyModel.decLessonPartIndex();
           }
           if (navigate) {
-            Navigator.of(context).push(
+            await Navigator.of(context).push(
                LessonRoute(child: StudyModel.curLessonPart.build(context), isForward: isForward()),
             );
           }
