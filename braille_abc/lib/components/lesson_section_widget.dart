@@ -46,7 +46,7 @@ class LessonSectionWidget extends StatelessWidget {
                     });
                     Navigator.of(context).push(
                       CupertinoPageRoute(
-                        builder: (context) => lesson.lessonComponent[0].build(context),
+                        builder: (context) => lesson.lessonComponent[Saves.lessonStepNum].build(context),
                       ),
                     );
                   }
