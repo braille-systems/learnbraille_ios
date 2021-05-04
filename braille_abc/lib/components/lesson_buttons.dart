@@ -85,6 +85,7 @@ Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol 
           label: type == lessonButtonType.backward
               ? SemanticNames.getName(SemanticsType.BackForthButton)
               : SemanticNames.getName(SemanticsType.Continue),
+          button: true,
           child: ExcludeSemantics(
             child: BackForthButton(
               type: type,
