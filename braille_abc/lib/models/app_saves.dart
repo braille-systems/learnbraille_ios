@@ -4,26 +4,28 @@ import 'package:braille_abc/models/app_names.dart';
 
 class Saves {
   static int lessonNum = 1;
-  static int lessonStepNum = 1;
+  static int lessonStepNum = 0;
 
 
   static Future saveLessonProgress() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(LessonNums.getName(lessonNumber.lesson), StudyModel.curLessonPart.number);
-    await prefs.setInt(LessonNums.getName(lessonNumber.lessonStep), StudyModel.curLessonPart.stepNumber);
+    if(StudyModel.currentLessonIndex == Saves.lessonNum - 1) {
+      await prefs.setInt(LessonNums.getName(lessonNumber.lessonStep), StudyModel.curLessonPart.stepNumber);
+    }
   }
 
   static Future loadLessonProgress() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     lessonNum = prefs.getInt(LessonNums.getName(lessonNumber.lesson)) ?? 1;
-    lessonStepNum = prefs.getInt(LessonNums.getName(lessonNumber.lessonStep)) ?? 1;
+    lessonStepNum = prefs.getInt(LessonNums.getName(lessonNumber.lessonStep)) ?? 0;
   }
 
   static Future isLessonCompleted() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (StudyModel.curLessonPart.stepNumber == StudyModel.curLessonLength) {
       await prefs.setInt(LessonNums.getName(lessonNumber.lesson), StudyModel.curLessonPart.number + 1);
-      await prefs.setInt(LessonNums.getName(lessonNumber.lessonStep), StudyModel.curLessonLength);
+      await prefs.setInt(LessonNums.getName(lessonNumber.lessonStep), 0);
+      await loadLessonProgress();
     }
   }
 }
