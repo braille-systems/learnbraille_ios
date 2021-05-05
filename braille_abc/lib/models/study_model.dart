@@ -15,6 +15,8 @@ class StudyModel {
 
   static int get lessonsNum => _lessons.length;
 
+  static int get lessonIndex => _currentLessonPartIndex;
+
   static int get curLessonLength => _lessons[_currentLessonIndex].lessonComponent.length;
 
   static Lesson getLessonByIndex(index)=> _lessons[index];
