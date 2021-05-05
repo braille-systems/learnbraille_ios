@@ -238,3 +238,21 @@ class LessonNames {
     return "Урок";
   }
 }
+
+
+
+enum lessonNumber{
+  lesson,
+  lessonStep,
+}
+@immutable
+class LessonNums {
+  static const Map<lessonNumber, String> stringOfLessonsMap = {
+    lessonNumber.lessonStep: "lessonNumber",
+    lessonNumber.lesson: "parentLessonNumber",
+  };
+
+  static String getName(lessonNumber type) {
+    return stringOfLessonsMap[type];
+  }
+}

@@ -1,5 +1,6 @@
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
+import 'package:braille_abc/models/app_saves.dart';
 import 'package:braille_abc/models/study_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
@@ -41,26 +42,27 @@ class BackForthButton extends StatelessWidget {
       angle: _angle,
       child: ElevatedButton(
         style: AppDecorations.nextButton,
-        onPressed: () {
+        onPressed: (StudyModel.changeLessonPartIndex(type)) ? () async {
           if (isForward()) {
             if (StudyModel.currentLessonType == lessonType.practice) {
               if (PracticeResults.checkAnswer(symbol.getDotsInfo())) {
+                await Saves.saveLessonProgress();
                 navigate = StudyModel.incLessonPartIndex();
               }
             } else {
+              await Saves.saveLessonProgress();
               navigate = StudyModel.incLessonPartIndex();
             }
+            await Saves.loadLessonProgress();
           } else if (isBackward()) {
             navigate = StudyModel.decLessonPartIndex();
           }
           if (navigate) {
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (context) => StudyModel.curLessonPart.build(context),
-              ),
+            await Navigator.of(context).push(
+               LessonRoute(child: StudyModel.curLessonPart.build(context), isForward: isForward()),
             );
           }
-        },
+        } : null,
         child: Icon(
           AppIcon.getIcon(AppIcons.ContinueButton),
           size: ScreenParams.width(10, context),
@@ -82,7 +84,10 @@ Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol 
         height: ScreenParams.height(Sizes.getBackFortButtonSize().height, context),
         width: ScreenParams.width(Sizes.getBackFortButtonSize().width, context),
         child: Semantics(
-          label: SemanticNames.getName(SemanticsType.BackForthButton),
+          label: type == lessonButtonType.backward
+              ? SemanticNames.getName(SemanticsType.BackForthButton)
+              : SemanticNames.getName(SemanticsType.Continue),
+          button: true,
           child: ExcludeSemantics(
             child: BackForthButton(
               type: type,
@@ -93,4 +98,23 @@ Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol 
       ),
     ],
   );
+}
+
+class LessonRoute extends CupertinoPageRoute{
+  LessonRoute({@required this.child, @required this.isForward}):
+    super(builder: (BuildContext context) => child);
+
+  final Widget child;
+  final bool isForward;
+
+  @override
+  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation){
+    return SlideTransition(
+      position: Tween<Offset>(
+        begin: (isForward) ? Routes.nextScreen: Routes.previousScreen,
+        end: Offset.zero,
+      ).animate(animation),
+      child: child,
+    );
+  }
 }
