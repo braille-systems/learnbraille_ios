@@ -1,3 +1,4 @@
+import 'package:braille_abc/components/lesson_buttons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,6 +32,16 @@ class StudyModel {
       return true;
     }
     return false;
+  }
+
+  static bool changeLessonPartIndex(lessonButtonType type){
+    if(type == lessonButtonType.backward && _currentLessonPartIndex == 0){
+      return false;
+    }
+    if(type == lessonButtonType.forward && _currentLessonPartIndex == _lessons.length){
+      return false;
+    }
+    return true;
   }
 
   static bool decLessonPartIndex() {
