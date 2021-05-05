@@ -11,6 +11,7 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/components/practice_button_widget.dart';
 import 'package:braille_abc/components/lesson_buttons.dart';
+import 'package:braille_abc/models/study_model.dart';
 import 'package:flutter/rendering.dart';
 
 @immutable
@@ -199,7 +200,9 @@ class StudyButtonsState extends _LetterButtonsState {
       children: <Widget>[
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           buildSmallModeButton(context, this),
-          buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol),
+          (StudyModel.changeLessonPartIndex(lessonButtonType.backward)) ?
+          buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol) :
+          buildEmptyBackForthButton(context),
         ]),
         ValueListenableBuilder<bool>(
             valueListenable: isTapped,
@@ -214,7 +217,9 @@ class StudyButtonsState extends _LetterButtonsState {
             }),
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           isTouchable ? buildTipButton(context, isTapped) : buildEmptyButton(context),
-          buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol),
+          (StudyModel.changeLessonPartIndex(lessonButtonType.forward)) ?
+          buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol) :
+          buildEmptyBackForthButton(context),
         ]),
       ],
     );
@@ -379,6 +384,13 @@ SizedBox buildEmptyButton(BuildContext context) {
   return SizedBox(
     height: ScreenParams.height(Sizes.getModeTipButtonSize().height, context),
     width: ScreenParams.width(Sizes.getModeTipButtonSize().width, context),
+  );
+}
+
+SizedBox buildEmptyBackForthButton(BuildContext context){
+  return SizedBox(
+      height: ScreenParams.height(Sizes.getBackFortButtonSize().height, context),
+      width: ScreenParams.width(Sizes.getBackFortButtonSize().width, context),
   );
 }
 
