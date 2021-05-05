@@ -23,6 +23,7 @@ class LessonsScreen extends NavigationScreen {
 
   @override
   Widget build(BuildContext context) {
+    Saves.loadLessonProgress();
     return nonSwipeable(
       context,
       CupertinoPageScaffold(
