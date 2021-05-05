@@ -27,18 +27,23 @@ class _PositionWidget extends State<PositionWidget> {
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.only(left: ScreenParams.height(2, context), right: ScreenParams.height(2, context)),
           height: ScreenParams.height(4, context),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              AutoSizeText(
-                widget.name,
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+          child: Semantics(
+            label: widget.name + " " + widget.value.toString(),
+            child: ExcludeSemantics(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AutoSizeText(
+                    widget.name,
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+                  ),
+                  AutoSizeText(
+                    widget.value.toString(),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+                  ),
+                ],
               ),
-              AutoSizeText(
-                widget.value.toString(),
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: AppColors.symbolText),
-              ),
-            ],
+            ),
           ),
         ),
         Divider(
@@ -74,9 +79,12 @@ class _ResultsInfoWidget extends State<ResultsInfoWidget> {
             Container(
               alignment: Alignment.centerLeft,
               height: ScreenParams.width(10, context),
-              child: AutoSizeText(
-                widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
-                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+              child: Semantics(
+                label: widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
+                child: AutoSizeText(
+                  widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
+                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+                ),
               ),
             ),
             Divider(
@@ -85,14 +93,9 @@ class _ResultsInfoWidget extends State<ResultsInfoWidget> {
               color: AppColors.divider,
             ),
             for (var position in widget.results.getDetailPositionsPool())
-              Semantics(
-                label: widget.results.getResultsInfo(position).name + " " + widget.results.getResultsInfo(position).value.toString(),
-                child: ExcludeSemantics(
-                  child: PositionWidget(
-                    name: widget.results.getResultsInfo(position).name,
-                    value: widget.results.getResultsInfo(position).value,
-                  ),
-                ),
+              PositionWidget(
+                name: widget.results.getResultsInfo(position).name,
+                value: widget.results.getResultsInfo(position).value,
               ),
           ],
         ),
