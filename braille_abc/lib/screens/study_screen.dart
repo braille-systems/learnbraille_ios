@@ -1,5 +1,6 @@
 import 'package:braille_abc/components/lesson_buttons.dart';
 import 'package:braille_abc/components/lesson_section_widget.dart';
+import 'package:braille_abc/components/letter_buttons.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/models/app_saves.dart';
 import 'package:braille_abc/models/screen_model.dart';
@@ -101,7 +102,9 @@ class TextLessonScreen extends SectionScreen {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                buildBackForthButton(context, lessonButtonType.backward, null),
+                (StudyModel.changeLessonPartIndex(lessonButtonType.backward)) ?
+                buildBackForthButton(context, lessonButtonType.backward, null) :
+                buildEmptyBackForthButton(context),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -111,7 +114,9 @@ class TextLessonScreen extends SectionScreen {
                     ),
                   ),
                 ),
-                buildBackForthButton(context, lessonButtonType.forward, null)
+                (StudyModel.changeLessonPartIndex(lessonButtonType.forward)) ?
+                buildBackForthButton(context, lessonButtonType.forward, null) :
+                buildEmptyBackForthButton(context),
               ],
             ),
           ),
