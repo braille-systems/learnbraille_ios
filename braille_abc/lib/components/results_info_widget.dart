@@ -21,15 +21,13 @@ class PositionWidget extends StatefulWidget {
 class _PositionWidget extends State<PositionWidget> {
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      label: widget.name + " " + widget.value.toString(),
-      child: ExcludeSemantics(
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: ScreenParams.height(2, context), right: ScreenParams.height(2, context)),
-              height: ScreenParams.height(4, context),
+    return Column(
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: ScreenParams.height(2, context), right: ScreenParams.height(2, context)),
+            height: ScreenParams.height(4, context),
+            child: MergeSemantics(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -43,16 +41,14 @@ class _PositionWidget extends State<PositionWidget> {
                   ),
                 ],
               ),
-
             ),
-            Divider(
-              height: ScreenParams.width(1, context),
-              thickness: 1.0,
-              color: AppColors.divider,
-            ),
-          ],
-        ),
-      ),
+          ),
+          Divider(
+            height: ScreenParams.width(1, context),
+            thickness: 1.0,
+            color: AppColors.divider,
+          ),
+        ],
     );
   }
 }
