@@ -207,3 +207,53 @@ jobs:
           APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
           APPLE_API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
           APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+
+
+deploy_googple_play_test:
+    name: Deploy to Google Play internal testing
+    runs-on: ubuntu-latest
+    needs: [test]
+
+    steps:
+      # Git checkout with lfs caching
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}-v1
+
+      # Setup flutter from stable and java 11
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11.x'
+
+      # Install fastlane and environment
+      - run: bundle install
+        working-directory: ./braille_abc/android
+      - run: flutter pub get
+        working-directory: ./braille_abc
+
+      # 
+      - name: Setup signing key and properties
+        run: |
+          echo "$ANDROID_UPLOAD_KEY_SERIALIZED" | base64 --decode > braille_abc/android/upload-keystore.jks
+          echo "storePassword=$ANDROID_UPLOAD_PASSWORD\nkeyPassword=$ANDROID_UPLOAD_PASSWORD\nkeyAlias=upload\nstoreFile=upload-keystore.jks" > braille_abc/android/key.properties
+        env:
+          ANDROID_UPLOAD_KEY_SERIALIZED: ${{ secrets.ANDROID_UPLOAD_KEY_SERIALIZED }}
+          ANDROID_UPLOAD_PASSWORD: ${{ secrets.ANDROID_UPLOAD_PASSWORD }}
+      
+      # Deploy using fastlane
+      - name: Deploy to Google Play internal testing
+        run: bundle exec fastlane internal
+        working-directory: ./braille_abc/android
+        env:
+          TEAM_IDANDROID_JSON_KEY_DATA: ${{ secrets.ANDROID_JSON_KEY_DATA }}
