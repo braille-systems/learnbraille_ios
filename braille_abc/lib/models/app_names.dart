@@ -39,7 +39,7 @@ class SectionNames {
   }
 }
 
-enum ScreenType { Dictionary, Help, Home, Letter, Practice, Settings, Study, Results, Lesson, StudyList }
+enum ScreenType { Dictionary, Help, Home, Letter, Practice, Settings, Study, Results, Lesson, StudyList, About }
 
 @immutable
 class ScreenNames {
@@ -54,6 +54,7 @@ class ScreenNames {
     ScreenType.StudyList: "Список уроков",
     ScreenType.Lesson: "Урок",
     ScreenType.Results: "Результаты",
+    ScreenType.About: "О нас",
   };
 
   static String getName(ScreenType type) {

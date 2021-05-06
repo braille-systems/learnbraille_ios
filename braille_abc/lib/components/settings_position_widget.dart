@@ -1,10 +1,12 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/settings_position.dart';
+import 'package:braille_abc/screens/about_screen.dart';
 import 'package:braille_abc/style.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class SettingsPosition extends StatefulWidget {
   final SettingPosition settingPosition;
@@ -89,7 +91,6 @@ class _AboutButton extends State<AboutButton> {
 
     return Card(
       elevation: 3,
-      
       margin: EdgeInsets.symmetric(vertical: 2),
       child: Semantics(
         label: aboutInfo.settingName,
@@ -117,7 +118,14 @@ class _AboutButton extends State<AboutButton> {
               size: Sizes.aboutIconSize,
             ),
             onTap: () {
-              // -> AboutScreen
+              Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (context) => AboutScreen(
+                    previousPage: AppModel.navigationScreens[navigation.SettingsScreen],
+                    helpPage: null,
+                  ),
+                )
+              );
             }
           ),
         ),
