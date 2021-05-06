@@ -66,36 +66,39 @@ class ResultsInfoWidget extends StatefulWidget {
 class _ResultsInfoWidget extends State<ResultsInfoWidget> {
   @override
   Widget build(BuildContext context) {
-    return MergeSemantics(
+    return Semantics(
+      label: SemanticNames.getName(SemanticsType.Results),
       child: Container(
         height: 40,
         width: double.infinity,
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              height: ScreenParams.width(10, context),
-              child: Semantics(
-                label: widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
-                child: ExcludeSemantics(
-                  child: AutoSizeText(
-                    widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
-                    style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+        child: MergeSemantics(
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.centerLeft,
+                height: ScreenParams.width(10, context),
+                child: Semantics(
+                  label: widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
+                  child: ExcludeSemantics(
+                    child: AutoSizeText(
+                      widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
+                      style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Divider(
-              height: ScreenParams.width(1, context),
-              thickness: 2.0,
-              color: AppColors.divider,
-            ),
-            for (var position in widget.results.getDetailPositionsPool())
-              PositionWidget(
-                name: widget.results.getResultsInfo(position).name,
-                value: widget.results.getResultsInfo(position).value,
+              Divider(
+                height: ScreenParams.width(1, context),
+                thickness: 2.0,
+                color: AppColors.divider,
               ),
-          ],
+              for (var position in widget.results.getDetailPositionsPool())
+                PositionWidget(
+                  name: widget.results.getResultsInfo(position).name,
+                  value: widget.results.getResultsInfo(position).value,
+                ),
+            ],
+          ),
         ),
       ),
     );
