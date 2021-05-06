@@ -22,33 +22,33 @@ class _PositionWidget extends State<PositionWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(left: ScreenParams.height(2, context), right: ScreenParams.height(2, context)),
-            height: ScreenParams.height(4, context),
-            child: MergeSemantics(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AutoSizeText(
-                    widget.name,
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: AppColors.symbolText),
-                  ),
-                  AutoSizeText(
-                    widget.value.toString(),
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: AppColors.symbolText),
-                  ),
-                ],
-              ),
+      children: [
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(left: ScreenParams.height(2, context), right: ScreenParams.height(2, context)),
+          height: ScreenParams.height(4, context),
+          child: MergeSemantics(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AutoSizeText(
+                  widget.name,
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+                ),
+                AutoSizeText(
+                  widget.value.toString(),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+                ),
+              ],
             ),
           ),
-          Divider(
-            height: ScreenParams.width(1, context),
-            thickness: 1.0,
-            color: AppColors.divider,
-          ),
-        ],
+        ),
+        Divider(
+          height: ScreenParams.width(1, context),
+          thickness: 1.0,
+          color: AppColors.divider,
+        ),
+      ],
     );
   }
 }
@@ -66,8 +66,7 @@ class ResultsInfoWidget extends StatefulWidget {
 class _ResultsInfoWidget extends State<ResultsInfoWidget> {
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      label: SemanticNames.getName(SemanticsType.Results),
+    return MergeSemantics(
       child: Container(
         height: 40,
         width: double.infinity,
@@ -78,9 +77,11 @@ class _ResultsInfoWidget extends State<ResultsInfoWidget> {
               height: ScreenParams.width(10, context),
               child: Semantics(
                 label: widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
-                child: AutoSizeText(
-                  widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
-                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+                child: ExcludeSemantics(
+                  child: AutoSizeText(
+                    widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
+                    style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+                  ),
                 ),
               ),
             ),
