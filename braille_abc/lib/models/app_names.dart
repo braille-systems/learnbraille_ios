@@ -61,7 +61,7 @@ class ScreenNames {
   }
 }
 
-enum SettingType { OnlyLearned, Vibration, AutoVoice }
+enum SettingType { OnlyLearned, Vibration, AutoVoice, About }
 
 class SettingInfo {
   final String settingName;
@@ -87,6 +87,10 @@ class SettingsNames {
           "Автоматически озвучивать тексты (например, задания, справку) средством экранного чтения не дожидаясь"
           " фокусировки на текстовом поле",
     ),
+    SettingType.About: SettingInfo(
+      settingName: "О нас",
+      settingDescription: "Контактная информация разработчиков данного приложения",
+    )
   };
 
   static SettingInfo getName(SettingType settingType) {

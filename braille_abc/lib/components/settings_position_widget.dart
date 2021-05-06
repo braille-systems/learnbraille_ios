@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/settings_position.dart';
 import 'package:braille_abc/style.dart';
@@ -67,6 +68,57 @@ class _SettingsPosition extends State<SettingsPosition> {
             onTap: () {
               onChange(!checkBox);
             },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AboutButton extends StatefulWidget {
+
+  @override
+  _AboutButton createState() => _AboutButton();
+}
+
+class _AboutButton extends State<AboutButton> {
+
+  @override
+  Widget build(BuildContext context) {
+    SettingInfo aboutInfo = SettingsNames.getName(SettingType.About);
+
+    return Card(
+      elevation: 3,
+      
+      margin: EdgeInsets.symmetric(vertical: 2),
+      child: Semantics(
+        label: aboutInfo.settingName,
+        hint: aboutInfo.settingDescription,
+        child: ExcludeSemantics(
+          child: ListTile(
+            title: AutoSizeText(
+              aboutInfo.settingName,
+              style: TextStyle(
+                color: AppColors.aboutColor,
+                fontSize: Sizes.settingNameFontSize,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            subtitle: AutoSizeText(
+              aboutInfo.settingDescription,
+              style: TextStyle(
+                fontSize: Sizes.settingDescriptionFontSize,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            trailing: Icon(
+              AppIcon.getIcon(AppIcons.About),
+              color: AppColors.aboutColor,
+              size: Sizes.aboutIconSize,
+            ),
+            onTap: () {
+              // -> AboutScreen
+            }
           ),
         ),
       ),
