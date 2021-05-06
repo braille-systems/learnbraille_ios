@@ -89,7 +89,7 @@ jobs:
         with:
           path: .git/lfs
           key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}-v1
-          
+      
       # Setup flutter from stable and java 11
       - uses: subosito/flutter-action@v1
         with:
@@ -102,6 +102,16 @@ jobs:
       - run: git lfs pull
       - run: flutter pub get
         working-directory: ./braille_abc
+
+      # 
+      - name: Setup signing key and properties
+        run: |
+          echo "$ANDROID_UPLOAD_KEY_SERIALIZED" | base64 --decode > braille_abc/android/upload-keystore.jks
+          echo "storePassword=$ANDROID_UPLOAD_PASSWORD\nkeyPassword=$ANDROID_UPLOAD_PASSWORD\nkeyAlias=upload\nstoreFile=$(pwd)/braille_abc/android/upload-keystore.jks" > braille_abc/android/key.properties
+        env:
+          ANDROID_UPLOAD_KEY_SERIALIZED: ${{ secrets.ANDROID_UPLOAD_KEY_SERIALIZED }}
+          ANDROID_UPLOAD_PASSWORD: ${{ secrets.ANDROID_UPLOAD_PASSWORD }}
+        
       - run: flutter build appbundle --no-tree-shake-icons
         working-directory: ./braille_abc
 
