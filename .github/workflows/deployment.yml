@@ -209,7 +209,7 @@ jobs:
           APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
 
 
-deploy_googple_play_test:
+  deploy_googple_play_test:
     name: Deploy to Google Play internal testing
     runs-on: ubuntu-latest
     needs: [test]
