@@ -217,6 +217,10 @@ jobs:
           ANDROID_UPLOAD_KEY_SERIALIZED: ${{ secrets.ANDROID_UPLOAD_KEY_SERIALIZED }}
           ANDROID_UPLOAD_PASSWORD: ${{ secrets.ANDROID_UPLOAD_PASSWORD }}
       
+      - name: Build
+        run: flutter build appbundle --no-tree-shake-icons
+        working-directory: ./braille_abc
+      
       - name: Deploy
         run: bundle exec fastlane internal
         working-directory: ./braille_abc/android

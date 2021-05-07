@@ -18,7 +18,6 @@ default_platform(:android)
 platform :android do
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :internal do
-    gradle(task: "clean bundleRelease")
     upload_to_play_store(track: 'internal',
                         release_status: 'draft',
                         aab: '../build/app/outputs/bundle/release/app-release.aab',
