@@ -118,7 +118,7 @@ jobs:
   deploy_testflight:
     name: Deploy to TestFlight
     runs-on: macos-latest
-    needs: [test]
+    #needs: [test]
 
     steps:
       - name: Git checkout
@@ -160,6 +160,9 @@ jobs:
         env:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       
+      - name: Check pod
+        run: pod --version
+
       - name: Deploy
         run: bundle exec fastlane beta
         working-directory: ./braille_abc/ios
