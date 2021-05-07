@@ -42,7 +42,7 @@ class BackForthButton extends StatelessWidget {
       angle: _angle,
       child: ElevatedButton(
         style: AppDecorations.nextButton,
-        onPressed: (StudyModel.changeLessonPartIndex(type)) ? () async {
+        onPressed: () async {
           if (isForward()) {
             if (StudyModel.currentLessonType == lessonType.practice) {
               if (PracticeResults.checkAnswer(symbol.getDotsInfo())) {
@@ -62,7 +62,7 @@ class BackForthButton extends StatelessWidget {
                LessonRoute(child: StudyModel.curLessonPart.build(context), isForward: isForward()),
             );
           }
-        } : null,
+        },
         child: Icon(
           AppIcon.getIcon(AppIcons.ContinueButton),
           size: ScreenParams.width(10, context),
