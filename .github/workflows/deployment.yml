@@ -186,7 +186,7 @@ jobs:
   deploy_googple_play_internal:
     name: Deploy to Google Play internal testing
     runs-on: ubuntu-latest
-    #needs: [test]
+    needs: [test]
 
     steps:
       - name: Git checkout
@@ -226,7 +226,7 @@ jobs:
         working-directory: ./braille_abc
       
       - name: Deploy
-        run: bundle exec fastlane --verbose internal
+        run: bundle exec fastlane internal
         working-directory: ./braille_abc/android
         env:
           ANDROID_JSON_KEY_DATA: ${{ secrets.ANDROID_JSON_KEY_DATA }}
