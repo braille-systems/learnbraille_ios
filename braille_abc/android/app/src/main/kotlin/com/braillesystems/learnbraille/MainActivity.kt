@@ -1,4 +1,4 @@
-package com.example.braille_abc
+package com.braillesystems.learnbraille
 
 import io.flutter.embedding.android.FlutterActivity
 

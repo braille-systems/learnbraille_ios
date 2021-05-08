@@ -1,0 +1,12 @@
+default_platform(:android)
+
+platform :android do
+  desc "Submit a new Beta Build to Crashlytics Beta"
+  lane :internal do
+    upload_to_play_store(track: 'internal',
+                        release_status: 'draft',
+                        aab: '../build/app/outputs/bundle/release/app-release.aab',
+                        skip_upload_changelogs: true,
+                        json_key_data: ENV['ANDROID_JSON_KEY_DATA'])
+  end
+end
