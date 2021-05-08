@@ -183,7 +183,7 @@ jobs:
           APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
 
 
-  deploy_googple_play_test:
+  deploy_googple_play_internal:
     name: Deploy to Google Play internal testing
     runs-on: ubuntu-latest
     #needs: [test]
@@ -208,7 +208,7 @@ jobs:
 
       - name: Setup fastlane
         run: bundle install
-        working-directory: ./braille_abc/ios
+        working-directory: ./braille_abc/android
 
       - name: Setup signing key and key.properties
         run: |
