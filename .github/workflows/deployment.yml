@@ -226,7 +226,7 @@ jobs:
         working-directory: ./braille_abc
       
       - name: Deploy
-        run: bundle exec fastlane internal
+        run: bundle exec fastlane --verbose internal
         working-directory: ./braille_abc/android
         env:
           TEAM_IDANDROID_JSON_KEY_DATA: ${{ secrets.ANDROID_JSON_KEY_DATA }}
