@@ -39,7 +39,7 @@ class SectionNames {
   }
 }
 
-enum ScreenType { Dictionary, Help, Home, Letter, Practice, Settings, Study, Results, Lesson, StudyList }
+enum ScreenType { Dictionary, Help, Home, Letter, Practice, Settings, Study, Results, Lesson, StudyList, About }
 
 @immutable
 class ScreenNames {
@@ -54,6 +54,7 @@ class ScreenNames {
     ScreenType.StudyList: "Список уроков",
     ScreenType.Lesson: "Урок",
     ScreenType.Results: "Результаты",
+    ScreenType.About: "О нас",
   };
 
   static String getName(ScreenType type) {
@@ -61,7 +62,7 @@ class ScreenNames {
   }
 }
 
-enum SettingType { OnlyLearned, Vibration, AutoVoice }
+enum SettingType { OnlyLearned, Vibration, AutoVoice, About }
 
 class SettingInfo {
   final String settingName;
@@ -87,6 +88,10 @@ class SettingsNames {
           "Автоматически озвучивать тексты (например, задания, справку) средством экранного чтения не дожидаясь"
           " фокусировки на текстовом поле",
     ),
+    SettingType.About: SettingInfo(
+      settingName: "О нас",
+      settingDescription: "Контактная информация разработчиков данного приложения",
+    )
   };
 
   static SettingInfo getName(SettingType settingType) {
