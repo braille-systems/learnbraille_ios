@@ -214,13 +214,21 @@ class ResultsInfo {
 
   ResultsPair getResultsInfo(ResultsPositions position) => _resultsMap[position];
 
+  String getFullResultInfo() {
+    String result = '';
+    for (var position in getDetailPositionsPool()) {
+      ResultsPair resPair = _resultsMap[position];
+      result += resPair.name + ": " + resPair.value.toString() + "\n";
+    }
+
+    return result;
+  }
+
   List<ResultsPositions> getDetailPositionsPool() =>
       [ResultsPositions.StepCounter, ResultsPositions.CorrectAnswers, ResultsPositions.HintCounter];
 
   Map<ResultsPositions, ResultsPair> _resultsMap;
 }
-
-
 
 @immutable
 class LessonNames {

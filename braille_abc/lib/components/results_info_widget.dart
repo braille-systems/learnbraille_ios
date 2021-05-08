@@ -27,20 +27,18 @@ class _PositionWidget extends State<PositionWidget> {
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.only(left: ScreenParams.height(2, context), right: ScreenParams.height(2, context)),
           height: ScreenParams.height(4, context),
-          child: MergeSemantics(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AutoSizeText(
-                  widget.name,
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: AppColors.symbolText),
-                ),
-                AutoSizeText(
-                  widget.value.toString(),
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: AppColors.symbolText),
-                ),
-              ],
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              AutoSizeText(
+                widget.name,
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+              ),
+              AutoSizeText(
+                widget.value.toString(),
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: AppColors.symbolText),
+              ),
+            ],
           ),
         ),
         Divider(
@@ -67,24 +65,19 @@ class _ResultsInfoWidget extends State<ResultsInfoWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: SemanticNames.getName(SemanticsType.Results),
-      child: Container(
-        height: 40,
-        width: double.infinity,
-        child: MergeSemantics(
+      label: SemanticNames.getName(SemanticsType.Results) + " \n" + widget.results.getFullResultInfo(),
+      child: ExcludeSemantics(
+        child: Container(
+          height: 40,
+          width: double.infinity,
           child: Column(
             children: [
               Container(
                 alignment: Alignment.centerLeft,
                 height: ScreenParams.width(10, context),
-                child: Semantics(
-                  label: widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
-                  child: ExcludeSemantics(
-                    child: AutoSizeText(
-                      widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
-                      style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w400, color: AppColors.symbolText),
-                    ),
-                  ),
+                child: AutoSizeText(
+                  widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name,
+                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w400, color: AppColors.symbolText),
                 ),
               ),
               Divider(
