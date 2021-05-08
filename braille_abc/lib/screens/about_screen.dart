@@ -1,10 +1,15 @@
+import 'package:braille_abc/models/about_model.dart';
+import 'package:braille_abc/shared/screen_params.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:braille_abc/components/navigation_bar_widget.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';
+import 'package:braille_abc/style.dart';
 
 class AboutScreen extends SectionScreen {
   const AboutScreen({
@@ -23,10 +28,18 @@ class AboutScreen extends SectionScreen {
           title: ScreenNames.getName(ScreenType.About),
         ),
         child: Align(
-          alignment: Alignment.center,
-          child: AutoSizeText(
-            "О нас!",
-          ),
+          alignment: Alignment.lerp(Alignment.topCenter, Alignment.bottomCenter, 0.15),
+          child: SizedBox(
+            width: ScreenParams.width(90, context),
+            child: Html(
+              data: AboutModel.data.toString(),
+              onLinkTap: (String url) async{
+                await launch(url);
+              },
+              renderNewlines: true,
+              defaultTextStyle: Styles.aboutTextStyle(),
+            ),
+          )
         ),
       )
     );
