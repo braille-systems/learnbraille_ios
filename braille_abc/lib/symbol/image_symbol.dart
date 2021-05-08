@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/models/practice_model.dart';
+import 'package:braille_abc/components/letter_buttons.dart';
 
 class SymbolWidget extends StatefulWidget {
   final double width;
@@ -53,7 +54,14 @@ class _SymbolState extends State<SymbolWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if(lastIsTapped != widget.isTapped) {
+    var practiceResource = PracticeResources.of(context);
+    bool shouldChangeTaped = true;
+    if(practiceResource != null) {
+      if(practiceResource.shouldToNextSymbol) {
+        shouldChangeTaped = false;
+      }
+    }
+    if(lastIsTapped != widget.isTapped && shouldChangeTaped) {
       if (!widget.isTapped) {
         symbol = widget.symbol;
       }

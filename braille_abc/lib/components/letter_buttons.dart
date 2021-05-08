@@ -84,6 +84,62 @@ class DictionaryButtonsState extends _LetterButtonsState {
   }
 }
 
+class PracticeResourcesStateful extends StatefulWidget {
+  final Widget child;
+
+  const PracticeResourcesStateful({
+    Key key,
+    @required this.child,
+  }) : super(key: key);
+
+  @override
+  _PracticeResourcesStateful createState() => _PracticeResourcesStateful();
+}
+
+class _PracticeResourcesStateful extends State<PracticeResourcesStateful> {
+  bool shouldToNextSymbol = false;
+
+  void toNextSymbol() {
+    setState(() {
+      shouldToNextSymbol = true;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return PracticeResources(
+      shouldToNextSymbol: shouldToNextSymbol,
+      practiceResourcesStateful: this,
+      child: widget.child,
+    );
+  }
+}
+
+class PracticeResources extends InheritedWidget {
+  final bool shouldToNextSymbol;
+  final _PracticeResourcesStateful practiceResourcesStateful;
+
+  const PracticeResources({
+    Key key,
+    @required this.shouldToNextSymbol,
+    @required this.practiceResourcesStateful,
+    @required child,
+  }) : super(key: key, child: child);
+
+  static _PracticeResourcesStateful of(BuildContext context) {
+    var inheritedWidget = context.dependOnInheritedWidgetOfExactType<PracticeResources>();
+    if(inheritedWidget == null) {
+      return null;
+    }
+    return inheritedWidget.practiceResourcesStateful;
+  }
+
+  @override
+  bool updateShouldNotify(PracticeResources oldWidget) {
+    return oldWidget.shouldToNextSymbol != shouldToNextSymbol;
+  }
+}
+
 class PracticeButtonsState extends _LetterButtonsState {
   final isTapped = ValueNotifier(true);
 
@@ -95,30 +151,32 @@ class PracticeButtonsState extends _LetterButtonsState {
 
     pressed = NewPracticeState(widget.screenType, widget.symbol, widget.sectionName);
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        buildModeButton(context, this),
-        ValueListenableBuilder<bool>(
-            valueListenable: isTapped,
-            builder: (context, value, child) {
-              return SymbolWidget(
-                  textDir: mode,
-                  symbol: widget.symbol,
-                  isTapped: isTapped.value,
-                  width: ScreenParams.width(Sizes.getLetterWidgetSize().width, context),
-                  height: ScreenParams.height(Sizes.getLetterWidgetSize().height, context),
-                  dictSection: widget.sectionName);
-            }),
-        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          buildTipButton(context, isTapped),
-          SizedBox(
-            height: ScreenParams.height(2, context),
-            width: ScreenParams.width(15, context),
-          ),
-          buildContinueButton(context, isTapped, pressed),
-        ]),
-      ],
+    return PracticeResourcesStateful(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          buildModeButton(context, this),
+          ValueListenableBuilder<bool>(
+              valueListenable: isTapped,
+              builder: (context, value, child) {
+                return SymbolWidget(
+                    textDir: mode,
+                    symbol: widget.symbol,
+                    isTapped: isTapped.value,
+                    width: ScreenParams.width(Sizes.getLetterWidgetSize().width, context),
+                    height: ScreenParams.height(Sizes.getLetterWidgetSize().height, context),
+                    dictSection: widget.sectionName);
+              }),
+          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            buildTipButton(context, isTapped),
+            SizedBox(
+              height: ScreenParams.height(2, context),
+              width: ScreenParams.width(15, context),
+            ),
+            buildContinueButton(context, isTapped, pressed),
+          ]),
+        ],
+      ),
     );
   }
 }
@@ -167,7 +225,6 @@ class StudyButtonsState extends _LetterButtonsState {
     );
   }
 }
-
 
 class ModeButton extends StatefulWidget {
   ModeButton({@required this.letter, @required this.style});
@@ -228,13 +285,22 @@ class ContinueButton extends StatefulWidget {
 class _ContinueButtonState extends State<ContinueButton> {
   @override
   Widget build(BuildContext context) {
+    var practiceResources = PracticeResources.of(context);
+
     return ElevatedButton(
       style: AppDecorations.nextButton,
       onPressed: () => setState(() {
-        if (widget.isTapped.value) {
+        if (practiceResources.shouldToNextSymbol) {
           widget.pressed.pressContinueButton(context);
-        } else {
-          widget.isTapped.value = true;
+        }
+        else {
+          if (widget.isTapped.value) {
+            widget.pressed.pressContinueButton(context);
+            practiceResources.toNextSymbol();
+            widget.isTapped.value = false;
+          } else {
+            widget.isTapped.value = !widget.isTapped.value;
+          }
         }
       }),
       child: Icon(
@@ -259,12 +325,16 @@ class TipButton extends StatefulWidget {
 class _TipButtonState extends State<TipButton> {
   @override
   Widget build(BuildContext context) {
+    var practiceResources = PracticeResources.of(context);
+
     return ElevatedButton(
       style: AppDecorations.hintButton,
       onPressed: () {
         PracticeResults.incHintCounter();
         setState(() {
-          widget.isTapped.value = !widget.isTapped.value;
+          if(!practiceResources.shouldToNextSymbol) {
+            widget.isTapped.value = !widget.isTapped.value;
+          }
         });
       },
       child: Icon(
@@ -284,8 +354,6 @@ abstract class OnPressButton {
   final ScreenType screenType;
   final Symbol symbol;
   final SectionType sectionName;
-
-
 }
 
 SizedBox buildSmallModeButton(BuildContext context, _LetterButtonsState letter) {

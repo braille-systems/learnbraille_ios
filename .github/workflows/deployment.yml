@@ -9,137 +9,109 @@ on:
 
 jobs:
   lint:
-    name: Analyze source code
+    name: Analyzer
     runs-on: ubuntu-latest
 
     steps:
-      # Git checkout with lfs caching
-      - uses: actions/checkout@v2
-        with:
-          lfs: true 
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-      - name: Restore LFS cache
-        uses: actions/cache@v2
-        id: lfs-cache
-        with:
-          path: .git/lfs
-          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}-v1
+      - name: Git checkout
+        uses: actions/checkout@v2
 
-      # Setup flutter from stable
-      - uses: subosito/flutter-action@v1
+      - name: Get flutter from stable
+        uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
 
-      # Setup env and run analyzer
-      - run: flutter pub get
+      - name: Setup flutter env
+        run: flutter pub get
         working-directory: ./braille_abc
-      - run: flutter analyze
+      
+      - name: Run static analyzer
+        run: flutter analyze
         working-directory: ./braille_abc
 
 
   build_ios:
-    name: Build IOS
+    name: IOS build
     runs-on: macos-latest
     needs: [lint]
 
     steps:
-      # Git checkout with lfs caching
-      - uses: actions/checkout@v2
-        with:
-          lfs: true 
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-      - name: Restore LFS cache
-        uses: actions/cache@v2
-        id: lfs-cache
-        with:
-          path: .git/lfs
-          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}-v1
+      - name: Git checkout
+        uses: actions/checkout@v2
 
-      # Setup flutter from stable
-      - uses: subosito/flutter-action@v1
+      - name: Get flutter from stable
+        uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
       
-      # Setup env and build
-      - run: git lfs pull
-      - run: flutter pub get
+      - name: Setup flutter env
+        run: flutter pub get
         working-directory: ./braille_abc
-      - run: flutter build ios --release --no-codesign --no-tree-shake-icons
+      
+      - name: Build
+        run: flutter build ios --release --no-codesign --no-tree-shake-icons
         working-directory: ./braille_abc
 
 
   build_android:
-    name: Build Android
+    name: Android build
     runs-on: ubuntu-latest
     needs: [lint]
 
     steps:
-      # Git checkout with lfs caching
-      - uses: actions/checkout@v2
-        with:
-          lfs: true
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-      - name: Restore LFS cache
-        uses: actions/cache@v2
-        id: lfs-cache
-        with:
-          path: .git/lfs
-          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}-v1
-      
-      # Setup flutter from stable and java 11
-      - uses: subosito/flutter-action@v1
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Get flutter from stable
+        uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
-      - uses: actions/setup-java@v1
+      
+      - name: Get java 11
+        uses: actions/setup-java@v1
         with:
           java-version: '11.x'
 
-      # Setup env and build
-      - run: git lfs pull
-      - run: flutter pub get
-        working-directory: ./braille_abc
-      - run: flutter build apk --release --no-tree-shake-icons
+      - name: Setup flutter env
+        run: flutter pub get
         working-directory: ./braille_abc
       
-      # Upload apk artifact
-      - uses: actions/upload-artifact@v1
-        with:
-          name: build-apk
-          path: braille_abc/build/app/outputs/apk/release/app-release.apk
+      - name: Setup signing key and key.properties
+        run: |
+          echo "$ANDROID_UPLOAD_KEY_SERIALIZED" | base64 --decode > braille_abc/android/upload-keystore.jks
+          echo "storePassword=$ANDROID_UPLOAD_PASSWORD
+          keyPassword=$ANDROID_UPLOAD_PASSWORD
+          keyAlias=upload
+          storeFile=$(pwd)/braille_abc/android/upload-keystore.jks" > braille_abc/android/key.properties
+        env:
+          ANDROID_UPLOAD_KEY_SERIALIZED: ${{ secrets.ANDROID_UPLOAD_KEY_SERIALIZED }}
+          ANDROID_UPLOAD_PASSWORD: ${{ secrets.ANDROID_UPLOAD_PASSWORD }}
+        
+      - name: Build
+        run: flutter build appbundle --no-tree-shake-icons
+        working-directory: ./braille_abc
 
 
   test:
-    name: Run tests
+    name: Test
     runs-on: ubuntu-latest
     needs: [build_android, build_ios]
 
     steps:
-      # Git checkout with lfs caching
-      - uses: actions/checkout@v2
-        with:
-          lfs: true
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-      - name: Restore LFS cache
-        uses: actions/cache@v2
-        id: lfs-cache
-        with:
-          path: .git/lfs
-          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}-v1
-          
-      # Setup flutter from stable
-      - uses: subosito/flutter-action@v1
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Get flutter from stable
+        uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
-
-      # Setup env and test
-      - run: git lfs pull
-      - run: flutter pub get
+      
+      - name: Setup flutter env
+        run: flutter pub get
         working-directory: ./braille_abc
-      - run: flutter test
+      
+      - name: Test
+        run: flutter test
         working-directory: ./braille_abc
 
 
@@ -149,35 +121,32 @@ jobs:
     needs: [test]
 
     steps:
-      # Git checkout with lfs caching
-      - uses: actions/checkout@v2
-        with:
-          lfs: true
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-      - name: Restore LFS cache
-        uses: actions/cache@v2
-        id: lfs-cache
-        with:
-          path: .git/lfs
-          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}-v1
+      - name: Git checkout
+        uses: actions/checkout@v2
 
-      # Setup flutter from stable and java 11
-      - uses: subosito/flutter-action@v1
+      - name: Get flutter from stable
+        uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
-      - uses: actions/setup-java@v1
+      
+      - name: Get java 11
+        uses: actions/setup-java@v1
         with:
           java-version: '11.x'
 
-      # Install fastlane and environment
-      - run: bundle install
-        working-directory: ./braille_abc/ios
-      - run: flutter pub get
+      - name: Setup flutter env
+        run: flutter pub get
         working-directory: ./braille_abc
 
-      # Setup ssh keys to gain access to repo with certificates
-      - name: Setup SSH Keys and known_hosts for fastlane match
+      - name: Setup fastlane
+        run: bundle install
+        working-directory: ./braille_abc/ios
+      
+      - name: Install pods
+        run: pod install
+        working-directory: ./braille_abc/ios
+        
+      - name: Setup SSH Keys and known_hosts for match
         run: |
           SSH_PATH="$HOME/.ssh"
           mkdir -p "$SSH_PATH"
@@ -194,9 +163,8 @@ jobs:
           ssh-add "$SSH_PATH/id_ed25519"
         env:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      
-      # Deploy to TestFlight using fastlane
-      - name: Deploy to TestFlight
+
+      - name: Deploy
         run: bundle exec fastlane beta
         working-directory: ./braille_abc/ios
         env:
@@ -213,3 +181,52 @@ jobs:
           APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
           APPLE_API_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
           APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+
+
+  deploy_googple_play_internal:
+    name: Deploy to Google Play internal testing
+    runs-on: ubuntu-latest
+    needs: [test]
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Get flutter from stable
+        uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      
+      - name: Get java 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11.x'
+
+      - name: Setup flutter env
+        run: flutter pub get
+        working-directory: ./braille_abc
+
+      - name: Setup fastlane
+        run: bundle install
+        working-directory: ./braille_abc/android
+
+      - name: Setup signing key and key.properties
+        run: |
+          echo "$ANDROID_UPLOAD_KEY_SERIALIZED" | base64 --decode > braille_abc/android/upload-keystore.jks
+          echo "storePassword=$ANDROID_UPLOAD_PASSWORD
+          keyPassword=$ANDROID_UPLOAD_PASSWORD
+          keyAlias=upload
+          storeFile=$(pwd)/braille_abc/android/upload-keystore.jks" > braille_abc/android/key.properties
+        env:
+          ANDROID_UPLOAD_KEY_SERIALIZED: ${{ secrets.ANDROID_UPLOAD_KEY_SERIALIZED }}
+          ANDROID_UPLOAD_PASSWORD: ${{ secrets.ANDROID_UPLOAD_PASSWORD }}
+      
+      - name: Build
+        run: flutter build appbundle --no-tree-shake-icons
+        working-directory: ./braille_abc
+      
+      - name: Deploy
+        run: bundle exec fastlane internal
+        working-directory: ./braille_abc/android
+        env:
+          ANDROID_JSON_KEY_DATA: ${{ secrets.ANDROID_JSON_KEY_DATA }}
