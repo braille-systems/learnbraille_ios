@@ -141,7 +141,11 @@ jobs:
       - name: Setup fastlane
         run: bundle install
         working-directory: ./braille_abc/ios
-
+      
+      - name: Install pods
+        run: pod install
+        working-directory: ./braille_abc/ios
+        
       - name: Setup SSH Keys and known_hosts for match
         run: |
           SSH_PATH="$HOME/.ssh"
@@ -159,10 +163,6 @@ jobs:
           ssh-add "$SSH_PATH/id_ed25519"
         env:
           PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      
-      - name: Install pods
-        run: pod install
-        working-directory: ./braille_abc/ios
 
       - name: Deploy
         run: bundle exec fastlane beta
