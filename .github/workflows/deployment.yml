@@ -229,4 +229,4 @@ jobs:
         run: bundle exec fastlane --verbose internal
         working-directory: ./braille_abc/android
         env:
-          TEAM_IDANDROID_JSON_KEY_DATA: ${{ secrets.ANDROID_JSON_KEY_DATA }}
+          ANDROID_JSON_KEY_DATA: ${{ secrets.ANDROID_JSON_KEY_DATA }}
