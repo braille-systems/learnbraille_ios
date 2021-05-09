@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/components/letter_buttons.dart';
+import 'package:braille_abc/screens/letter_screen.dart';
 
 class SymbolWidget extends StatefulWidget {
   final double width;
@@ -16,6 +17,7 @@ class SymbolWidget extends StatefulWidget {
   final SectionType dictSection;
   final bool isTapped;
   final TextDirection Function() textDir;
+  final ScreenType screenType;
 
   SymbolWidget(
       {Key key,
@@ -24,7 +26,8 @@ class SymbolWidget extends StatefulWidget {
         @required this.dictSection,
         @required this.isTapped,
         @required this.width,
-        @required this.height})
+        @required this.height,
+        @required this.screenType})
       : super(key: key) {
     createState();
   }
@@ -109,6 +112,9 @@ class _SymbolState extends State<SymbolWidget> {
                   ),
                   child: CupertinoButton(
                     onPressed: () {
+                      if(widget.screenType == ScreenType.Study) {
+                        LetterInfo.of(context).setDefaultColor();
+                      }
                       if (widget.isTapped) {
                         setState(() {
                           item.setIsPressed(!item.press);

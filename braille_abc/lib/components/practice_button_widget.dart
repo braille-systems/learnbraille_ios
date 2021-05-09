@@ -217,9 +217,6 @@ class NewPracticeState extends OnPressButton {
   NewPracticeState(ScreenType screenType, Symbol symbol, SectionType sectionName)
       : super(screenType: screenType, sectionName: sectionName, symbol: symbol);
 
-
-
-
   void checkAnswer(bool isCorrect) {
     if (isCorrect) {
       PracticeResults.incCorrectAnswerCounter();
