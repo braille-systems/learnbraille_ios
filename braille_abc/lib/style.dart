@@ -54,6 +54,10 @@ class AppColors {
   static const Color continueBtnTextIcon = Colors.black;
   ///
   static const Color divider = Colors.black;
+  /// About name text color
+  static const Color aboutColor = CupertinoColors.activeBlue;
+
+  static const Color lockColor = CupertinoColors.inactiveGray;
 }
 
 
@@ -180,9 +184,14 @@ class Sizes {
   static double lineSectionFontSize = 22;
   static double settingNameFontSize = 21;
   static double settingDescriptionFontSize = 17;
+  static double aboutIconSize = 40;
   static SizeT getBackFortButtonSize() => SizeT(29,15);
   static SizeT getModeTipButtonSize() => SizeT(12,15);
   static SizeT getModeButton() =>SizeT(34,15);
   static SizeT getLetterWidgetSize() => SizeT(45, 57);
 }
 
+class Routes{
+  static Offset nextScreen = Offset(1.0, 0.0);
+  static Offset previousScreen = Offset(-1.0, 0.0);
+}

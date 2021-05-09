@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:braille_abc/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -31,7 +30,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
         label: SemanticNames.getName(SemanticsType.Back),
         child: ExcludeSemantics(
           child: CupertinoNavigationBarBackButton(
-            onPressed: () {
+            onPressed: () async {
               if (currentPage.hasNavigationBar) {
                 scakey.currentState.onItemTapped(0);
               } else {
@@ -40,7 +39,7 @@ class NavigationBar extends StatelessWidget implements ObstructingPreferredSizeW
                     scakey.currentState.displayTapBar(true);
                   });
                 }
-                Navigator.push(context, CupertinoPageRoute(builder: (context) => currentPage.previousPage));
+                await Navigator.push(context, CupertinoPageRoute(builder: (context) => currentPage.previousPage));
               }
             },
           ),

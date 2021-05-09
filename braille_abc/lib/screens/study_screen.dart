@@ -1,6 +1,8 @@
 import 'package:braille_abc/components/lesson_buttons.dart';
 import 'package:braille_abc/components/lesson_section_widget.dart';
+import 'package:braille_abc/components/letter_buttons.dart';
 import 'package:braille_abc/components/navigation_bar_widget.dart';
+import 'package:braille_abc/models/app_saves.dart';
 import 'package:braille_abc/models/screen_model.dart';
 import 'package:braille_abc/models/study_model.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+
 
 @immutable
 class LessonsScreen extends NavigationScreen {
@@ -21,6 +24,7 @@ class LessonsScreen extends NavigationScreen {
 
   @override
   Widget build(BuildContext context) {
+    Saves.loadLessonProgress();
     return nonSwipeable(
       context,
       CupertinoPageScaffold(
@@ -82,6 +86,7 @@ class TextLessonScreen extends SectionScreen {
 
   @override
   Widget build(BuildContext context) {
+    Saves.isLessonCompleted();
     return nonSwipeable(
       context,
       CupertinoPageScaffold(
@@ -97,7 +102,9 @@ class TextLessonScreen extends SectionScreen {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                buildBackForthButton(context, lessonButtonType.backward, null),
+                (StudyModel.changeLessonPartIndex(lessonButtonType.backward)) ?
+                buildBackForthButton(context, lessonButtonType.backward, null) :
+                buildEmptyBackForthButton(context),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -107,7 +114,9 @@ class TextLessonScreen extends SectionScreen {
                     ),
                   ),
                 ),
-                buildBackForthButton(context, lessonButtonType.forward, null)
+                (StudyModel.changeLessonPartIndex(lessonButtonType.forward)) ?
+                buildBackForthButton(context, lessonButtonType.forward, null) :
+                buildEmptyBackForthButton(context),
               ],
             ),
           ),

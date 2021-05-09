@@ -46,6 +46,10 @@ class SettingsScreen extends NavigationScreen {
                               settingPosition: settingPosition,
                             ),
                           ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        AboutButton(),
                       ],
                     ),
                   )

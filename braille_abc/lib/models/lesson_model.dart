@@ -33,19 +33,19 @@ class Lesson {
 @immutable
 class LessonComponents extends StatelessWidget {
   final int _number;
-  final int _parentNumber;
+  final int _stepNumber;
   final lessonType _type;
   final String _text;
 
   int get number => _number;
 
-  int get parentNumber => _parentNumber;
+  int get stepNumber => _stepNumber;
 
   String get text => _text;
 
   lessonType get type => _type;
 
-  LessonComponents(this._type, this._text, this._parentNumber, this._number);
+  LessonComponents(this._type, this._text, this._stepNumber, this._number);
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +53,7 @@ class LessonComponents extends StatelessWidget {
     throw UnimplementedError();
   }
 }
+
 
 @immutable
 class PracticeLesson extends LessonComponents {
@@ -86,7 +87,7 @@ class PracticeLesson extends LessonComponents {
           helpName: HelpSections.PracticeLessonScreen,
         ),
         previousPage: AppModel.navigationScreens[navigation.StudyScreen],
-        title: parentNumber.toString() + "." + number.toString() + ": " + LessonNames.getName(type));
+        title: number.toString() + "." + stepNumber.toString() + ": " + LessonNames.getName(type));
   }
 }
 
@@ -122,7 +123,7 @@ class ReadingLesson extends LessonComponents {
         helpName: HelpSections.ReadingLessonScreen,
       ),
       previousPage: AppModel.navigationScreens[navigation.StudyScreen],
-      title: parentNumber.toString() + "." + number.toString() + ": " + LessonNames.getName(type),
+      title: number.toString() + "." + stepNumber.toString() + ": " + LessonNames.getName(type),
     );
   }
 }
@@ -135,7 +136,7 @@ class TextLesson extends LessonComponents {
   Widget build(BuildContext context) {
     return TextLessonScreen(
       text,
-      title: parentNumber.toString() + "." + number.toString() + ": " + LessonNames.getName(type),
+      title: number.toString() + "." + stepNumber.toString() + ": " + LessonNames.getName(type),
       helpPage: Help(
         helpName: HelpSections.TextLessonScreen,
       ),
