@@ -76,6 +76,12 @@ class _LetterColor extends State<LetterColor> {
     });
   }
 
+  void setDefaultColor(){
+    setState(() {
+      color = AppColors.symbolContainer;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return LetterInfo(

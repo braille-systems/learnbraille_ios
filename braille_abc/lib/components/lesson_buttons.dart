@@ -5,6 +5,7 @@ import 'package:braille_abc/models/study_model.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/models/practice_model.dart';
+import 'package:braille_abc/screens/letter_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -44,15 +45,25 @@ class BackForthButton extends StatelessWidget {
         style: AppDecorations.nextButton,
         onPressed: () async {
           if (isForward()) {
-            if (StudyModel.currentLessonType == lessonType.practice) {
-              if (PracticeResults.checkAnswer(symbol.getDotsInfo())) {
+              if (StudyModel.currentLessonType == lessonType.practice) {
+                if (LetterInfo.of(context).color == AppColors.symbolContainer) {
+                  bool isCorrect = PracticeResults.checkAnswer(symbol.getDotsInfo());
+                  LetterInfo.of(context).setColor(isCorrect);
+                }
+                else {
+                  if (LetterInfo.of(context).color == AppColors.correctAnswer) {
+                    await Saves.saveLessonProgress();
+                    PracticeResults.dotDefault();
+                    navigate = StudyModel.incLessonPartIndex();
+                  }
+                  else{
+                    LetterInfo.of(context).setDefaultColor();
+                  }
+                }
+              } else {
                 await Saves.saveLessonProgress();
                 navigate = StudyModel.incLessonPartIndex();
               }
-            } else {
-              await Saves.saveLessonProgress();
-              navigate = StudyModel.incLessonPartIndex();
-            }
             await Saves.loadLessonProgress();
           } else if (isBackward()) {
             navigate = StudyModel.decLessonPartIndex();

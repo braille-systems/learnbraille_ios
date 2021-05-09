@@ -35,21 +35,23 @@ class LetterScreenStudy extends SectionScreen {
   @override
   Widget build(BuildContext context) {
     Saves.isLessonCompleted();
-    return nonSwipeable(
-      context,
-      CupertinoPageScaffold(
-        navigationBar: NavigationBar(
-          currentPage: this,
-          title:  ScreenNames.getName(ScreenType.Lesson) + " " + title,
-        ),
-        child: LetterView(
-          screenType: screenType,
-          sectionName: sectionName,
-          symbol: symbol,
-          symbolName: upperText,
-          shortSymbol: downText,
-          isDotsTouchable: isDotsTouchable,
-          isText: true,
+    return LetterColor(
+      child: nonSwipeable(
+        context,
+        CupertinoPageScaffold(
+          navigationBar: NavigationBar(
+            currentPage: this,
+            title:  ScreenNames.getName(ScreenType.Lesson) + " " + title,
+          ),
+          child: LetterView(
+            screenType: screenType,
+            sectionName: sectionName,
+            symbol: symbol,
+            symbolName: upperText,
+            shortSymbol: downText,
+            isDotsTouchable: isDotsTouchable,
+            isText: true,
+          ),
         ),
       ),
     );
