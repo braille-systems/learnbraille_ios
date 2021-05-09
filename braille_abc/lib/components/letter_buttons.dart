@@ -198,14 +198,18 @@ class StudyButtonsState extends _LetterButtonsState {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        SizedBox(
-          child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            buildSmallModeButton(context, this),
-            (StudyModel.changeLessonPartIndex(lessonButtonType.backward))
+        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Semantics(
+            sortKey: OrdinalSortKey(1),
+            child: buildSmallModeButton(context, this),
+          ),
+          Semantics(
+            sortKey: OrdinalSortKey(2),
+            child: (StudyModel.changeLessonPartIndex(lessonButtonType.backward))
                 ? buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol)
                 : buildEmptyBackForthButton(context),
-          ]),
-        ),
+          ),
+        ]),
         ValueListenableBuilder<bool>(
             valueListenable: isTapped,
             builder: (context, value, child) {
@@ -217,14 +221,12 @@ class StudyButtonsState extends _LetterButtonsState {
                   height: ScreenParams.height(Sizes.getLetterWidgetSize().height, context),
                   dictSection: widget.sectionName);
             }),
-        SizedBox(
-          child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            isTouchable ? buildTipButton(context, isTapped) : buildEmptyButton(context),
-            (StudyModel.changeLessonPartIndex(lessonButtonType.forward))
-                ? buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol)
-                : buildEmptyBackForthButton(context),
-          ]),
-        ),
+        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          isTouchable ? buildTipButton(context, isTapped) : buildEmptyButton(context),
+          (StudyModel.changeLessonPartIndex(lessonButtonType.forward))
+              ? buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol)
+              : buildEmptyBackForthButton(context),
+        ]),
       ],
     );
   }
