@@ -200,9 +200,9 @@ class StudyButtonsState extends _LetterButtonsState {
       children: <Widget>[
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           buildSmallModeButton(context, this),
-          (StudyModel.changeLessonPartIndex(lessonButtonType.backward)) ?
-          buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol) :
-          buildEmptyBackForthButton(context),
+          //(StudyModel.changeLessonPartIndex(lessonButtonType.backward)) ?
+          buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol),// :
+          //buildEmptyBackForthButton(context),
         ]),
         ValueListenableBuilder<bool>(
             valueListenable: isTapped,
@@ -217,9 +217,9 @@ class StudyButtonsState extends _LetterButtonsState {
             }),
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           isTouchable ? buildTipButton(context, isTapped) : buildEmptyButton(context),
-          (StudyModel.changeLessonPartIndex(lessonButtonType.forward)) ?
-          buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol) :
-          buildEmptyBackForthButton(context),
+          //(StudyModel.changeLessonPartIndex(lessonButtonType.forward)) ?
+          buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol),// :
+          //buildEmptyBackForthButton(context),
         ]),
       ],
     );
