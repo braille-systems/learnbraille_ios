@@ -65,7 +65,7 @@ class _ResultsInfoWidget extends State<ResultsInfoWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: SemanticNames.getName(SemanticsType.Results) + " \n" + widget.results.getFullResultInfo(),
+      label: widget.results.getResultsInfo(ResultsPositions.GeneralInfo).name + " \n" + widget.results.getFullResultInfo(),
       child: ExcludeSemantics(
         child: Container(
           height: 40,
