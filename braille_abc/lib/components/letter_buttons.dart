@@ -128,7 +128,7 @@ class PracticeResources extends InheritedWidget {
 
   static _PracticeResourcesStateful of(BuildContext context) {
     var inheritedWidget = context.dependOnInheritedWidgetOfExactType<PracticeResources>();
-    if(inheritedWidget == null) {
+    if (inheritedWidget == null) {
       return null;
     }
     return inheritedWidget.practiceResourcesStateful;
@@ -198,12 +198,14 @@ class StudyButtonsState extends _LetterButtonsState {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          buildSmallModeButton(context, this),
-          (StudyModel.changeLessonPartIndex(lessonButtonType.backward)) ?
-          buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol) :
-          buildEmptyBackForthButton(context),
-        ]),
+        SizedBox(
+          child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            buildSmallModeButton(context, this),
+            (StudyModel.changeLessonPartIndex(lessonButtonType.backward))
+                ? buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol)
+                : buildEmptyBackForthButton(context),
+          ]),
+        ),
         ValueListenableBuilder<bool>(
             valueListenable: isTapped,
             builder: (context, value, child) {
@@ -215,12 +217,14 @@ class StudyButtonsState extends _LetterButtonsState {
                   height: ScreenParams.height(Sizes.getLetterWidgetSize().height, context),
                   dictSection: widget.sectionName);
             }),
-        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          isTouchable ? buildTipButton(context, isTapped) : buildEmptyButton(context),
-          (StudyModel.changeLessonPartIndex(lessonButtonType.forward)) ?
-          buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol) :
-          buildEmptyBackForthButton(context),
-        ]),
+        SizedBox(
+          child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            isTouchable ? buildTipButton(context, isTapped) : buildEmptyButton(context),
+            (StudyModel.changeLessonPartIndex(lessonButtonType.forward))
+                ? buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol)
+                : buildEmptyBackForthButton(context),
+          ]),
+        ),
       ],
     );
   }
@@ -292,8 +296,7 @@ class _ContinueButtonState extends State<ContinueButton> {
       onPressed: () => setState(() {
         if (practiceResources.shouldToNextSymbol) {
           widget.pressed.pressContinueButton(context);
-        }
-        else {
+        } else {
           if (widget.isTapped.value) {
             widget.pressed.pressContinueButton(context);
             practiceResources.toNextSymbol();
@@ -332,7 +335,7 @@ class _TipButtonState extends State<TipButton> {
       onPressed: () {
         PracticeResults.incHintCounter();
         setState(() {
-          if(!practiceResources.shouldToNextSymbol) {
+          if (!practiceResources.shouldToNextSymbol) {
             widget.isTapped.value = !widget.isTapped.value;
           }
         });
@@ -387,10 +390,10 @@ SizedBox buildEmptyButton(BuildContext context) {
   );
 }
 
-SizedBox buildEmptyBackForthButton(BuildContext context){
+SizedBox buildEmptyBackForthButton(BuildContext context) {
   return SizedBox(
-      height: ScreenParams.height(Sizes.getBackFortButtonSize().height, context),
-      width: ScreenParams.width(Sizes.getBackFortButtonSize().width, context),
+    height: ScreenParams.height(Sizes.getBackFortButtonSize().height, context),
+    width: ScreenParams.width(Sizes.getBackFortButtonSize().width, context),
   );
 }
 
