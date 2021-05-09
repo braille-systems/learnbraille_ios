@@ -40,7 +40,7 @@ class StudyModel {
     if(type == lessonButtonType.backward && _currentLessonPartIndex == 0){
       return false;
     }
-    if(type == lessonButtonType.forward && _currentLessonPartIndex == _lessons.length){
+    if(type == lessonButtonType.forward && _currentLessonPartIndex == curLesson.lessonComponent.length - 1){
       return false;
     }
     return true;

@@ -7,6 +7,7 @@ import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/settings_position.dart';
 import 'package:braille_abc/screens/about_screen.dart';
 import 'package:braille_abc/style.dart';
+import 'package:braille_abc/components/bottom_bar_widget.dart';
 
 class SettingsPosition extends StatefulWidget {
   final SettingPosition settingPosition;
@@ -118,6 +119,7 @@ class _AboutButton extends State<AboutButton> {
               size: Sizes.aboutIconSize,
             ),
             onTap: () {
+              scakey.currentState.displayTapBar(false);
               Navigator.of(context).push(
                 CupertinoPageRoute(
                   builder: (context) => AboutScreen(

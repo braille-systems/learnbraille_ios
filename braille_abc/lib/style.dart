@@ -168,6 +168,13 @@ abstract class Styles {
     ];
   }
 
+  static TextStyle aboutTextStyle(){
+    return TextStyle(
+      fontSize: 25,
+
+    );
+  }
+
   static TextStyle helpTextStyle() {
     return TextStyle(fontSize: 19);
   }

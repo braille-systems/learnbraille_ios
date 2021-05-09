@@ -11,7 +11,6 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/components/practice_button_widget.dart';
 import 'package:braille_abc/components/lesson_buttons.dart';
-import 'package:braille_abc/models/study_model.dart';
 import 'package:flutter/rendering.dart';
 
 @immutable
@@ -199,16 +198,8 @@ class StudyButtonsState extends _LetterButtonsState {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Semantics(
-            sortKey: OrdinalSortKey(1),
-            child: buildSmallModeButton(context, this),
-          ),
-          Semantics(
-            sortKey: OrdinalSortKey(2),
-            child: (StudyModel.changeLessonPartIndex(lessonButtonType.backward))
-                ? buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol)
-                : buildEmptyBackForthButton(context),
-          ),
+          buildSmallModeButton(context, this),
+          buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol),
         ]),
         ValueListenableBuilder<bool>(
             valueListenable: isTapped,
@@ -225,16 +216,8 @@ class StudyButtonsState extends _LetterButtonsState {
               );
             }),
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Semantics(
-            sortKey: OrdinalSortKey(4),
-            child: isTouchable ? buildTipButton(context, isTapped) : buildEmptyButton(context),
-          ),
-          Semantics(
-            sortKey: OrdinalSortKey(5),
-            child: (StudyModel.changeLessonPartIndex(lessonButtonType.forward))
-                ? buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol)
-                : buildEmptyBackForthButton(context),
-          ),
+          isTouchable ? buildTipButton(context, isTapped) : buildEmptyButton(context),
+          buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol),
         ]),
       ],
     );
