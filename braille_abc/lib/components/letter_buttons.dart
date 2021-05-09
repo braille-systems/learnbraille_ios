@@ -198,22 +198,25 @@ class StudyButtonsState extends _LetterButtonsState {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          buildSmallModeButton(context, this),
-          buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol),
+          Semantics(
+            sortKey: OrdinalSortKey(1),
+            child: buildSmallModeButton(context, this),
+          ),
+          Semantics(
+            sortKey: OrdinalSortKey(2),
+            child: buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol),
+          ),
         ]),
         ValueListenableBuilder<bool>(
             valueListenable: isTapped,
             builder: (context, value, child) {
-              return Semantics(
-                sortKey: OrdinalSortKey(3),
-                child: SymbolWidget(
+              return SymbolWidget(
                     textDir: mode,
                     symbol: widget.symbol,
                     isTapped: isTapped.value,
                     width: ScreenParams.width(Sizes.getLetterWidgetSize().width, context),
                     height: ScreenParams.height(Sizes.getLetterWidgetSize().height, context),
-                    dictSection: widget.sectionName),
-              );
+                    dictSection: widget.sectionName);
             }),
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           isTouchable ? buildTipButton(context, isTapped) : buildEmptyButton(context),
