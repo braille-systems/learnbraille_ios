@@ -213,19 +213,28 @@ class StudyButtonsState extends _LetterButtonsState {
         ValueListenableBuilder<bool>(
             valueListenable: isTapped,
             builder: (context, value, child) {
-              return SymbolWidget(
-                  textDir: mode,
-                  symbol: widget.symbol,
-                  isTapped: isTapped.value,
-                  width: ScreenParams.width(Sizes.getLetterWidgetSize().width, context),
-                  height: ScreenParams.height(Sizes.getLetterWidgetSize().height, context),
-                  dictSection: widget.sectionName);
+              return Semantics(
+                sortKey: OrdinalSortKey(3),
+                child: SymbolWidget(
+                    textDir: mode,
+                    symbol: widget.symbol,
+                    isTapped: isTapped.value,
+                    width: ScreenParams.width(Sizes.getLetterWidgetSize().width, context),
+                    height: ScreenParams.height(Sizes.getLetterWidgetSize().height, context),
+                    dictSection: widget.sectionName),
+              );
             }),
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          isTouchable ? buildTipButton(context, isTapped) : buildEmptyButton(context),
-          (StudyModel.changeLessonPartIndex(lessonButtonType.forward))
-              ? buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol)
-              : buildEmptyBackForthButton(context),
+          Semantics(
+            sortKey: OrdinalSortKey(4),
+            child: isTouchable ? buildTipButton(context, isTapped) : buildEmptyButton(context),
+          ),
+          Semantics(
+            sortKey: OrdinalSortKey(5),
+            child: (StudyModel.changeLessonPartIndex(lessonButtonType.forward))
+                ? buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol)
+                : buildEmptyBackForthButton(context),
+          ),
         ]),
       ],
     );
