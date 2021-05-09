@@ -218,7 +218,7 @@ class ResultsInfo {
     String result = '';
     for (var position in getDetailPositionsPool()) {
       ResultsPair resPair = _resultsMap[position];
-      result += resPair.name + ": " + resPair.value.toString() + "\n";
+      result += resPair.name + ": " + resPair.value.toString() + ".\n";
     }
 
     return result;
