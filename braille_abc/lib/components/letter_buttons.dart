@@ -11,7 +11,6 @@ import 'package:braille_abc/symbol/image_symbol.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/components/practice_button_widget.dart';
 import 'package:braille_abc/components/lesson_buttons.dart';
-import 'package:braille_abc/models/study_model.dart';
 import 'package:flutter/rendering.dart';
 
 @immutable
