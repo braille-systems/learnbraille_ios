@@ -69,9 +69,15 @@ class BackForthButton extends StatelessWidget {
             navigate = StudyModel.decLessonPartIndex();
           }
           if (navigate) {
-            await Navigator.of(context).push(
-               LessonRoute(child: StudyModel.curLessonPart.build(context), isForward: isForward()),
-            );
+            if(isForward()) {
+              await Navigator.of(context).push(
+                CupertinoPageRoute(builder: (BuildContext context) =>
+                    StudyModel.curLessonPart.build(context)),
+              );
+            }
+            else{
+              Navigator.of(context).pop();
+            }
           }
         },
         child: Icon(
@@ -109,23 +115,4 @@ Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol 
       ),
     ],
   );
-}
-
-class LessonRoute extends CupertinoPageRoute{
-  LessonRoute({@required this.child, @required this.isForward}):
-    super(builder: (BuildContext context) => child);
-
-  final Widget child;
-  final bool isForward;
-
-  @override
-  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation){
-    return SlideTransition(
-      position: Tween<Offset>(
-        begin: (isForward) ? Routes.nextScreen: Routes.previousScreen,
-        end: Offset.zero,
-      ).animate(animation),
-      child: child,
-    );
-  }
 }
