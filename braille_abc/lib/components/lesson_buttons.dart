@@ -15,7 +15,7 @@ import 'dart:math';
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/models/lesson_model.dart';
 
-import 'help_widgets.dart';
+import 'package:braille_abc/components/help_widgets.dart';
 
 enum lessonButtonType {
   backward,

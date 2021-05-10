@@ -9,7 +9,7 @@ import 'package:braille_abc/screens/about_screen.dart';
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 
-import 'help_widgets.dart';
+import 'package:braille_abc/components/help_widgets.dart';
 
 class SettingsPosition extends StatefulWidget {
   final SettingPosition settingPosition;
