@@ -343,7 +343,7 @@ class _TipButtonState extends State<TipButton> {
     return ElevatedButton(
       style: AppDecorations.hintButton,
       onPressed: () {
-        if(widget.screenType == ScreenType.Study){
+        if(widget.screenType == ScreenType.Study) {
           LetterInfo.of(context).setDefaultColor();
         }
         PracticeResults.incHintCounter();
@@ -376,7 +376,7 @@ SizedBox buildSmallModeButton(BuildContext context, _LetterButtonsState letter, 
   return SizedBox(
     height: ScreenParams.height(Sizes.getModeTipButtonSize().height, context),
     width: ScreenParams.width(Sizes.getModeTipButtonSize().width, context),
-    child: ModeButton(letter: letter, style: AppDecorations.changeDirButton, screenType: screenType),
+    child: ModeButton(letter: letter, style: AppDecorations.changeDirStudyButton, screenType: screenType),
   );
 }
 
