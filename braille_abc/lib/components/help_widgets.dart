@@ -22,6 +22,10 @@ enum HelpSections {
   TextLessonScreen,
   PracticeLessonScreen,
   StudyScreen,
+  AboutScreen,
+  SettingsScreen,
+  EndLessonsScreen,
+  EndStudyScreen,
 }
 
 @immutable
@@ -86,7 +90,7 @@ class Help extends Screen {
 
       case HelpSections.StudyScreen:
         List<IconData> subIcon = [
-          AppIcon.getIcon(AppIcons.PracticeScreen),
+          AppIcon.getIcon(AppIcons.StudyScreen),
           AppIcon.getIcon(AppIcons.BackButton),
         ];
         return buildHelp(subIcon, XmlNames.getName(XmlItemType.StudyScreen));
@@ -117,6 +121,26 @@ class Help extends Screen {
           AppIcon.getIcon(AppIcons.ContinueButton),
         ];
         return buildHelp(subIcon, XmlNames.getName(XmlItemType.ReadingLessonScreen));
+
+      case HelpSections.AboutScreen:
+        return buildHelp(null, XmlNames.getName(XmlItemType.About));
+
+      case HelpSections.SettingsScreen:
+        List<IconData> subIcon = [
+          AppIcon.getIcon(AppIcons.SettingsScreen),
+          AppIcon.getIcon(AppIcons.About),
+        ];
+        return buildHelp(subIcon, XmlNames.getName(XmlItemType.Settings));
+
+      case HelpSections.EndLessonsScreen:
+        List<IconData> subIcon = [
+          AppIcon.getIcon(AppIcons.StepHelp),
+          AppIcon.getIcon(AppIcons.GoBackButton),
+          AppIcon.getIcon(AppIcons.ContinueButton),
+          AppIcon.getIcon(AppIcons.ContinueButton),
+        ];
+        return buildHelp(subIcon, XmlNames.getName(XmlItemType.EndLesson));
+
       default:
         return null;
     }
