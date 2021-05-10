@@ -68,13 +68,19 @@ class BackForthButton extends StatelessWidget {
               }
             await Saves.loadLessonProgress();
           } else if (isBackward()) {
-            navigate = StudyModel.decLessonPartIndex();
+            if(!StudyModel.isAfterStudy) {
+              navigate = StudyModel.decLessonPartIndex();
+            } else {
+              navigate = true;
+              StudyModel.isAfterStudy = false;
+            }
           }
           if (navigate) {
             await Navigator.of(context).push(
               LessonRoute(child: StudyModel.curLessonPart.build(context), isForward: isForward()),
             );
           } else if (StudyModel.isFinalStep()) {
+            StudyModel.isAfterStudy = true;
             await Navigator.of(context).push(
               CupertinoPageRoute(
                 builder: (context) => AfterStudyScreen(

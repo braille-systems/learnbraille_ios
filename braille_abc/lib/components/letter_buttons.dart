@@ -342,7 +342,7 @@ class _TipButtonState extends State<TipButton> {
     return ElevatedButton(
       style: AppDecorations.hintButton,
       onPressed: () {
-        if(widget.screenType == ScreenType.Study){
+        if(widget.screenType == ScreenType.Study) {
           LetterInfo.of(context).setDefaultColor();
         }
         PracticeResults.incHintCounter();

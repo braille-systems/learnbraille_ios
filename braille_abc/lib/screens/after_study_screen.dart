@@ -35,7 +35,6 @@ class AfterStudyScreen extends SectionScreen {
           title: ScreenNames.getName(ScreenType.EndOfLesson) + ' ' + lessonNumber.toString(),
         ),
         child: SafeArea(
-          //minimum: EdgeInsets.symmetric(vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

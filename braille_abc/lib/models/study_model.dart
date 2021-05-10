@@ -13,6 +13,7 @@ class StudyModel {
   static final List<Lesson> _lessons = [];
   static int _currentLessonPartIndex = 0;
   static int _currentLessonIndex = 0;
+  static bool isAfterStudy = false;
 
   static int get lessonsNum => _lessons.length;
   // ignore: unnecessary_getters_setters
@@ -27,6 +28,7 @@ class StudyModel {
   static LessonComponents get curLessonPart => _lessons[_currentLessonIndex].lessonComponent[_currentLessonPartIndex];
 
   static lessonType get currentLessonType => curLessonPart.type;
+
 
   static bool incLessonPartIndex() {
     if (_currentLessonPartIndex < curLesson.lessonComponent.length - 1) {
@@ -66,6 +68,7 @@ class StudyModel {
 
   static void rebootLessons({int index = 0}) {
     _currentLessonPartIndex = index;
+    isAfterStudy = false;
   }
 
   static String getType(lessonType type) {
