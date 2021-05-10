@@ -338,6 +338,7 @@ class _TipButtonState extends State<TipButton> {
   @override
   Widget build(BuildContext context) {
     var practiceResources = PracticeResources.of(context);
+    PracticeResults.resetAnswer();
 
     return ElevatedButton(
       style: AppDecorations.hintButton,
