@@ -118,7 +118,7 @@ class AppDecorations {
       borderRadius:  BorderRadius.circular(10));
 
   static BoxDecoration letterWidget(Color color) => BoxDecoration(
-    color:color,
+    color: color,
     border: Border.all(color: AppColors.symbolBoarder, width: 7.0),
     borderRadius: BorderRadius.circular(25.0),
   );

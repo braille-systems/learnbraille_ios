@@ -1,3 +1,4 @@
+import 'package:braille_abc/components/letter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -118,13 +119,7 @@ class _MessageBox extends State<MessageBox> {
         child: Container(
           width: ScreenParams.width(80, context),
           height: ScreenParams.height(40, context),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: AppColors.dotBoarder,
-              width: 7,
-            ),
-            borderRadius: BorderRadius.circular(Sizes.borderRadiusSize),
-          ),
+          decoration: AppDecorations.letterWidget(AppColors.symbolContainer),
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 5),
             child: Center(
