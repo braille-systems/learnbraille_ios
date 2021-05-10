@@ -92,7 +92,6 @@ class PracticeResults {
         return false;
       }
     }
-    dotDefault();
     return true;
   }
 }
