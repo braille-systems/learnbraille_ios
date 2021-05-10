@@ -9,6 +9,8 @@ import 'package:braille_abc/screens/about_screen.dart';
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 
+import 'package:braille_abc/components/help_widgets.dart';
+
 class SettingsPosition extends StatefulWidget {
   final SettingPosition settingPosition;
 
@@ -124,7 +126,9 @@ class _AboutButton extends State<AboutButton> {
                 CupertinoPageRoute(
                   builder: (context) => AboutScreen(
                     previousPage: AppModel.navigationScreens[navigation.SettingsScreen],
-                    helpPage: null,
+                    helpPage: Help(
+                      helpName: HelpSections.AboutScreen,
+                    ),
                   ),
                 )
               );

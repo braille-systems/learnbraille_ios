@@ -15,6 +15,8 @@ import 'dart:math';
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/models/lesson_model.dart';
 
+import 'package:braille_abc/components/help_widgets.dart';
+
 enum lessonButtonType {
   backward,
   forward,
@@ -85,7 +87,9 @@ class BackForthButton extends StatelessWidget {
               CupertinoPageRoute(
                 builder: (context) => AfterStudyScreen(
                   previousPage: AppModel.navigationScreens[navigation.StudyScreen],
-                  helpPage: null,
+                  helpPage:  Help(
+                    helpName: HelpSections.EndLessonsScreen,
+                  ),
                   lessonNumber: StudyModel.curLesson.number,
                   lessonName: StudyModel.curLesson.name,
                 ),

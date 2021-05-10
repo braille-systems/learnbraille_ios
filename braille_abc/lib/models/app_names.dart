@@ -124,6 +124,10 @@ enum XmlItemType {
   ReadingLessonScreen,
   TextLessonScreen,
   PracticeLessonScreen,
+  About,
+  Settings,
+  EndLesson,
+  EndStudy,
 }
 
 @immutable
@@ -139,6 +143,10 @@ class XmlNames {
     XmlItemType.PracticeLessonScreen: "Шаг с вводом",
     XmlItemType.ReadingLessonScreen: "Шаг с чтением",
     XmlItemType.TextLessonScreen: "Шаг с текстом",
+    XmlItemType.About: "О нас",
+    XmlItemType.Settings: "Настройки",
+    XmlItemType.EndStudy: "Конец обучения",
+    XmlItemType.EndLesson: "Конец урока",
   };
 
   static String getName(XmlItemType type) {
