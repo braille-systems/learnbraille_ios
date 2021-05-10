@@ -196,7 +196,7 @@ class Sizes {
   static double borderRadiusSize = 25;
   static SizeT getBackFortButtonSize() => SizeT(29,15);
   static SizeT getModeTipButtonSize() => SizeT(12,15);
-  static SizeT getModeButton() =>SizeT(34,15);
+  static SizeT getModeButton() => SizeT(43,15);
   static SizeT getLetterWidgetSize() => SizeT(45, 57);
 }
 
