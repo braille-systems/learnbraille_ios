@@ -192,6 +192,8 @@ class Sizes {
   static double settingNameFontSize = 21;
   static double settingDescriptionFontSize = 17;
   static double aboutIconSize = 40;
+  static double afterStudyTextSize = 22;
+  static double borderRadiusSize = 25;
   static SizeT getBackFortButtonSize() => SizeT(29,15);
   static SizeT getModeTipButtonSize() => SizeT(12,15);
   static SizeT getModeButton() =>SizeT(34,15);

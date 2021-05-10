@@ -36,15 +36,19 @@ class StudyModel {
     return false;
   }
 
-  static bool changeLessonPartIndex(lessonButtonType type){
-    if(type == lessonButtonType.backward && _currentLessonPartIndex == 0){
+  static bool changeLessonPartIndex(lessonButtonType type) {
+    if(type == lessonButtonType.backward && _currentLessonPartIndex == 0) {
       return false;
     }
-    if(type == lessonButtonType.forward && _currentLessonPartIndex == curLesson.lessonComponent.length - 1){
+    if(type == lessonButtonType.forward && _currentLessonPartIndex == _lessons.length) {
       return false;
     }
     return true;
   }
+
+  static bool isFinalStep() => _currentLessonPartIndex == curLesson.lessonComponent.length - 1;
+
+  static bool isFinalLesson() => currentLessonIndex == lessonsNum - 1;
 
   static bool decLessonPartIndex() {
     if (_currentLessonPartIndex > 0) {
