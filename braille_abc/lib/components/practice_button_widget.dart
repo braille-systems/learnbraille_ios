@@ -3,8 +3,8 @@ import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-// import 'package:vibration/vibration.dart';
 import 'dart:math';
 
 import 'package:braille_abc/components/help_widgets.dart';
@@ -15,6 +15,7 @@ import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:braille_abc/models/practice_button.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
+import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/components/bottom_bar_widget.dart';
 import 'package:braille_abc/screens/results_screen.dart';
 import 'package:braille_abc/components/letter_buttons.dart';
@@ -33,7 +34,8 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: SemanticNames.getName(SemanticsType.Continue) + ". " +
+      label: SemanticNames.getName(SemanticsType.Continue) +
+          ". " +
           SemanticNames.getName(SemanticsType.Button) +
           (Practice.isNotEmpty.value
               ? SemanticNames.getName(SemanticsType.Available)
@@ -47,10 +49,11 @@ class _ContinueButtonWidget extends State<ContinueButtonWidget> {
                   PracticeSymbol.update();
                   PracticeSymbol.addAllGroup();
                   PracticeSymbol.nextSymbol();
+                  PracticeResults.updatePracticeResults();
                   Navigator.of(context).push(
                     CupertinoPageRoute(
                       builder: (context) => LetterScreen(
-                        symbol: PracticeSymbol.getSymbol(),
+                        symbolName: PracticeSymbol.getSymbol(),
                         shortSymbol: PracticeSymbol.getShortSymbol(),
                         sectionName: PracticeSymbol.getSectionType(),
                         screenType: ScreenType.Practice,
@@ -117,6 +120,9 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if(!Practice.isNotEmpty.value){
+      checkBox = Practice.isNotEmpty.value;
+    }
     return Card(
       elevation: 3,
       margin: EdgeInsets.symmetric(vertical: 2),
@@ -132,17 +138,19 @@ class _PracticeButtonWidget extends State<PracticeButtonWidget> {
             leading: Icon(
               AppIcon.getIcon(widget.practiceButton.icon),
               color: AppColors.first,
-              size: 45,
+              size: Sizes.lineSectionIconSize,
             ),
             title: Align(
-                alignment: Alignment.centerLeft,
-                child: ExcludeSemantics(
-                  child: AutoSizeText(
-                    SectionNames.getName(widget.practiceButton.sectionType),
-                    style: TextStyle(fontSize: 22, color: AppColors.symbolText, fontWeight: FontWeight.w400),
-                    maxLines: 2,
-                  ),
-                )),
+              alignment: Alignment.centerLeft,
+              child: ExcludeSemantics(
+                child: AutoSizeText(
+                  SectionNames.getName(widget.practiceButton.sectionType),
+                  style: TextStyle(
+                      fontSize: Sizes.lineSectionFontSize, color: AppColors.symbolText, fontWeight: FontWeight.w400),
+                  maxLines: 2,
+                ),
+              ),
+            ),
             trailing: CupertinoSwitch(
               activeColor: AppColors.first,
               value: checkBox,
@@ -206,54 +214,70 @@ class PracticeSymbol {
 }
 
 class NewPracticeState extends OnPressButton {
-  NewPracticeState(ScreenType screenType, String symbol, SectionType sectionName)
-      : super(screenType: screenType, symbol: symbol, sectionName: sectionName);
+  NewPracticeState(ScreenType screenType, Symbol symbol, SectionType sectionName)
+      : super(screenType: screenType, sectionName: sectionName, symbol: symbol);
 
-  @override
-  void pressContinueButton(BuildContext context) {
-    if (PracticeResults.checkAnswer(Search.element(super.symbol, super.sectionName).getDotsInfo())) {
+
+
+
+  void checkAnswer(bool isCorrect) {
+    if (isCorrect) {
       PracticeResults.incCorrectAnswerCounter();
-      // Vibration.vibrate(duration: 300, amplitude: 128, repeat: 3);
+      HapticFeedback.lightImpact();
+      HapticFeedback.lightImpact();
+      HapticFeedback.lightImpact();
     } else {
       PracticeResults.incStepCounter();
-      // Vibration.vibrate(duration: 600, amplitude: 256);
+      HapticFeedback.heavyImpact();
     }
     PracticeResults.resetAnswer();
+  }
 
-    if (!PracticeSymbol.isPracticeEnd()) {
-      PracticeSymbol.nextSymbol();
-      Navigator.of(context).push(
-        CupertinoPageRoute(
-          builder: (context) => LetterScreen(
-            screenType: super.screenType,
-            symbol: PracticeSymbol.getSymbol(),
-            shortSymbol: PracticeSymbol.getShortSymbol(),
-            sectionName: PracticeSymbol.getSectionType(),
-            previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-            helpPage: Help(helpName: HelpSections.LetterPractice),
-            isDotsTouchable: true,
+
+  void pressContinueButton(BuildContext context) {
+    if (LetterInfo.of(context).color == AppColors.symbolContainer) {
+      bool isCorrect = PracticeResults.checkAnswer(super.symbol.getDotsInfo());
+      checkAnswer(isCorrect);
+      LetterInfo.of(context).setColor(isCorrect);
+    }
+    else {
+      if (!PracticeSymbol.isPracticeEnd()) {
+        PracticeSymbol.nextSymbol();
+        Navigator.of(context).push(
+          CupertinoPageRoute(
+            builder: (context) =>
+                LetterScreen(
+                  screenType: super.screenType,
+                  symbolName: PracticeSymbol.getSymbol(),
+                  shortSymbol: PracticeSymbol.getShortSymbol(),
+                  sectionName: PracticeSymbol.getSectionType(),
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  helpPage: Help(helpName: HelpSections.LetterPractice),
+                  isDotsTouchable: true,
+                ),
+
           ),
-        ),
-      );
-    } else {
-      var results = PracticeResults.getResults();
-      Practice.updatePool();
-      PracticeSymbol.update();
-      Navigator.of(context).push(
-        CupertinoPageRoute(
-          builder: (context) => ResultsScreen(
-            helpPage: Help(
-              helpName: HelpSections.PracticeResult,
-            ),
-            previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
-            results: results,
+        );
+      } else {
+        var results = PracticeResults.getResults();
+        Practice.updatePool();
+        PracticeSymbol.update();
+        Navigator.of(context).push(
+          CupertinoPageRoute(
+            builder: (context) =>
+                ResultsScreen(
+                  helpPage: Help(
+                    helpName: HelpSections.PracticeResult,
+                  ),
+                  previousPage: AppModel.navigationScreens[navigation.PracticeScreen],
+                  results: results,
+                ),
           ),
-        ),
-      );
-      PracticeResults.updatePracticeResults();
+        );
+        PracticeResults.updatePracticeResults();
+      }
     }
   }
 
-  @override
   void pressHelpButton(BuildContext context) {}
 }

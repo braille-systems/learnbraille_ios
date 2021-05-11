@@ -11,6 +11,7 @@ import 'package:braille_abc/screens/study_screen.dart';
 import 'package:braille_abc/symbol/list_symbols.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/models/menu_button.dart';
+import 'package:braille_abc/models/settings_position.dart';
 
 enum navigation { MainMenu, StudyScreen, PracticeScreen, DictionaryScreen, SettingsScreen }
 
@@ -33,14 +34,20 @@ class AppModel {
     PracticeButton(sectionType: SectionType.Signs, icon: AppIcons.SignsSection),
   ];
 
+  static final List<SettingPosition> settingsPositions = [
+    SettingPosition(settingType: SettingType.OnlyLearned),
+    SettingPosition(settingType: SettingType.Vibration),
+    SettingPosition(settingType: SettingType.AutoVoice),
+  ];
+
   static const Widget _menuScreen = MenuScreen(
     previousPage: null,
     helpPage: Help(helpName:HelpSections.MainMenu),
   );
 
-  static const Widget _studyScreen = StudyScreen(
+  static const Widget _studyScreen = LessonsScreen(
     previousPage: _menuScreen,
-    helpPage: null,
+    helpPage: Help(helpName: HelpSections.StudyScreen,),
   );
 
   static const Widget _practiceScreen = PracticeScreen(
