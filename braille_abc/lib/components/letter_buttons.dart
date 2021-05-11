@@ -207,7 +207,7 @@ class StudyButtonsState extends _LetterButtonsState {
           ),
           Semantics(
             sortKey: OrdinalSortKey(2),
-            child: buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol),
+            child: buildBackForthButton(context, lessonButtonType.backward, super.widget.symbol, (isTouchable) ? isTapped : null),
           ),
         ]),
         ValueListenableBuilder<bool>(
@@ -224,7 +224,7 @@ class StudyButtonsState extends _LetterButtonsState {
             }),
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           isTouchable ? buildTipButton(context, isTapped, ScreenType.Study) : buildEmptyButton(context),
-          buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol),
+          buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol, (isTouchable) ? isTapped : null),
         ]),
       ],
     );
@@ -346,9 +346,14 @@ class _TipButtonState extends State<TipButton> {
         if(widget.screenType == ScreenType.Study) {
           LetterInfo.of(context).setDefaultColor();
         }
-        PracticeResults.incHintCounter();
+        if(widget.screenType == ScreenType.Practice) {
+          PracticeResults.incHintCounter();
+        }
         setState(() {
-          if (!practiceResources.shouldToNextSymbol) {
+          if ((widget.screenType == ScreenType.Practice) && (!practiceResources.shouldToNextSymbol)) {
+            widget.isTapped.value = !widget.isTapped.value;
+          }
+          else{
             widget.isTapped.value = !widget.isTapped.value;
           }
         });
