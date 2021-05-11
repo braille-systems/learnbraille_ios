@@ -201,6 +201,6 @@ class Sizes {
 }
 
 class Routes{
-  static Offset nextScreen = Offset(1.0, 0.0);
-  static Offset previousScreen = Offset(-1.0, 0.0);
+  static Offset nextScreen = Offset(3.0, 0.0);
+  static Offset previousScreen = Offset(-3.0, 0.0);
 }
