@@ -69,6 +69,7 @@ class AfterStudyScreen extends SectionScreen {
                           child: BackForthButton(
                             type: lessonButtonType.backward,
                             symbol: null,
+                            isTapped: null,
                           ),
                         ),
                       ),

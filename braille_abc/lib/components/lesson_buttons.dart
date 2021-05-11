@@ -25,8 +25,9 @@ enum lessonButtonType {
 class BackForthButton extends StatelessWidget {
   final lessonButtonType type;
   final Symbol symbol;
+  final ValueNotifier isTapped;
 
-  const BackForthButton({Key key, @required this.type, @required this.symbol}) : super(key: key);
+  const BackForthButton({Key key, @required this.type, @required this.symbol, @required this.isTapped}) : super(key: key);
 
   bool isForward() {
     return type == lessonButtonType.forward;
@@ -49,6 +50,12 @@ class BackForthButton extends StatelessWidget {
         style: AppDecorations.nextButton,
         onPressed: () async {
           if (isForward()) {
+            if(isTapped != null) {
+              if (!isTapped.value) {
+                isTapped.value = !isTapped.value;
+                return;
+              }
+            }
               if (StudyModel.currentLessonType == lessonType.practice) {
                 if (LetterInfo.of(context).color == AppColors.symbolContainer) {
                   bool isCorrect = PracticeResults.checkAnswer(symbol.getDotsInfo());
@@ -108,7 +115,7 @@ class BackForthButton extends StatelessWidget {
   }
 }
 
-Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol symbol) {
+Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol symbol, ValueNotifier isTapped) {
   return Column(
     children: [
       symbol == null
@@ -126,6 +133,7 @@ Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol 
             child: BackForthButton(
               type: type,
               symbol: symbol,
+              isTapped: isTapped,
             ),
           ),
         ),

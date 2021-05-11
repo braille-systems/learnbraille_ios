@@ -103,7 +103,7 @@ class TextLessonScreen extends SectionScreen {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 (StudyModel.changeLessonPartIndex(lessonButtonType.backward)) ?
-                buildBackForthButton(context, lessonButtonType.backward, null) :
+                buildBackForthButton(context, lessonButtonType.backward, null, null) :
                 buildEmptyBackForthButton(context),
                 Expanded(
                   child: Padding(
@@ -115,7 +115,7 @@ class TextLessonScreen extends SectionScreen {
                   ),
                 ),
                 (StudyModel.changeLessonPartIndex(lessonButtonType.forward)) ?
-                buildBackForthButton(context, lessonButtonType.forward, null) :
+                buildBackForthButton(context, lessonButtonType.forward, null, null) :
                 buildEmptyBackForthButton(context),
               ],
             ),
