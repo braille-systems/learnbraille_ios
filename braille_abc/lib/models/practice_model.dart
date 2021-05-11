@@ -79,6 +79,19 @@ class PracticeResults {
     _answer[dotNum - 1] = !_answer[dotNum - 1];
   }
 
+  static void dotDefault(){
+    for(var i = 0; i < _answer.length; i++){
+      _answer[i] = false;
+    }
+  }
+
+  static void dotCorrect(List<bool> correctAnswer){
+    assert(_answer.length == correctAnswer.length);
+    for(var i = 0; i < _answer.length; ++i) {
+      _answer[i] = correctAnswer[i];
+    }
+  }
+
   static bool checkAnswer(List<bool> correctAnswer) {
     assert(_answer.length == correctAnswer.length);
     for(var i = 0; i < _answer.length; ++i) {

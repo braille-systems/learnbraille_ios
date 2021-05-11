@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:braille_abc/models/about_model.dart';
 import 'package:braille_abc/models/app_icons.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/help_model.dart';
@@ -26,6 +27,7 @@ class _HomeScreen extends State<HomeScreen> {
   void initState() {
     HelpModel.fillHelpModel(context);
     StudyModel.fillStudyModel(context);
+    AboutModel.fillAboutModel(context);
     super.initState();
   }
 

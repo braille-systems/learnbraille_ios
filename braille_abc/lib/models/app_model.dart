@@ -62,7 +62,7 @@ class AppModel {
 
   static const Widget _settingsScreen = SettingsScreen(
       previousPage: _menuScreen,
-      helpPage: null
+      helpPage: Help(helpName: HelpSections.SettingsScreen,)
   );
 
   static const Map<navigation, Widget> navigationScreens = {

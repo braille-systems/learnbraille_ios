@@ -30,6 +30,8 @@ enum AppIcons
 
   EnableLessonSection,
   DisableLessonSection,
+
+  About,
 }
 
 @immutable
@@ -64,6 +66,8 @@ class AppIcon
 
     AppIcons.EnableLessonSection : CupertinoIcons.check_mark_circled,
     AppIcons.DisableLessonSection : CupertinoIcons.lock_fill,
+
+    AppIcons.About : CupertinoIcons.info,
   };
 
   static IconData getIcon(AppIcons type)

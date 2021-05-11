@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/lesson_model.dart';
 import 'package:braille_abc/models/practice_model.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -38,7 +39,20 @@ class SectionNames {
   }
 }
 
-enum ScreenType { Dictionary, Help, Home, Letter, Practice, Settings, Study, Results }
+enum ScreenType {
+  Dictionary,
+  Help,
+  Home,
+  Letter,
+  Practice,
+  Settings,
+  Study,
+  Results,
+  Lesson,
+  StudyList,
+  About,
+  EndOfLesson,
+}
 
 @immutable
 class ScreenNames {
@@ -50,7 +64,11 @@ class ScreenNames {
     ScreenType.Practice: "Практика",
     ScreenType.Settings: "Настройки",
     ScreenType.Study: "Обучение",
+    ScreenType.StudyList: "Список уроков",
+    ScreenType.Lesson: "Урок",
     ScreenType.Results: "Результаты",
+    ScreenType.About: "О нас",
+    ScreenType.EndOfLesson: "Конец урока",
   };
 
   static String getName(ScreenType type) {
@@ -58,7 +76,7 @@ class ScreenNames {
   }
 }
 
-enum SettingType { OnlyLearned, Vibration, AutoVoice }
+enum SettingType { OnlyLearned, Vibration, AutoVoice, About }
 
 class SettingInfo {
   final String settingName;
@@ -84,6 +102,10 @@ class SettingsNames {
           "Автоматически озвучивать тексты (например, задания, справку) средством экранного чтения не дожидаясь"
           " фокусировки на текстовом поле",
     ),
+    SettingType.About: SettingInfo(
+      settingName: "О нас",
+      settingDescription: "Контактная информация разработчиков данного приложения",
+    )
   };
 
   static SettingInfo getName(SettingType settingType) {
@@ -102,6 +124,10 @@ enum XmlItemType {
   ReadingLessonScreen,
   TextLessonScreen,
   PracticeLessonScreen,
+  About,
+  Settings,
+  EndLesson,
+  EndStudy,
 }
 
 @immutable
@@ -117,6 +143,10 @@ class XmlNames {
     XmlItemType.PracticeLessonScreen: "Шаг с вводом",
     XmlItemType.ReadingLessonScreen: "Шаг с чтением",
     XmlItemType.TextLessonScreen: "Шаг с текстом",
+    XmlItemType.About: "О нас",
+    XmlItemType.Settings: "Настройки",
+    XmlItemType.EndStudy: "Конец обучения",
+    XmlItemType.EndLesson: "Конец урока",
   };
 
   static String getName(XmlItemType type) {
@@ -211,8 +241,73 @@ class ResultsInfo {
 
   ResultsPair getResultsInfo(ResultsPositions position) => _resultsMap[position];
 
+  String getFullResultInfo() {
+    String result = '';
+    for (var position in getDetailPositionsPool()) {
+      ResultsPair resPair = _resultsMap[position];
+      result += resPair.name + ": " + resPair.value.toString() + ".\n";
+    }
+
+    return result;
+  }
+
   List<ResultsPositions> getDetailPositionsPool() =>
       [ResultsPositions.StepCounter, ResultsPositions.CorrectAnswers, ResultsPositions.HintCounter];
 
   Map<ResultsPositions, ResultsPair> _resultsMap;
+}
+
+@immutable
+class LessonNames {
+  static const Map<lessonType, String> stringOfLessonsMap = {
+    lessonType.text: "текст",
+    lessonType.reading: "чтение",
+    lessonType.practice: "практика"
+  };
+
+  static String getName(lessonType type) {
+    return stringOfLessonsMap[type];
+  }
+
+  static String getGeneralName(lessonType type) {
+    return "Урок";
+  }
+}
+
+enum lessonNumber {
+  lesson,
+  lessonStep,
+}
+
+@immutable
+class LessonNums {
+  static const Map<lessonNumber, String> stringOfLessonsMap = {
+    lessonNumber.lessonStep: "lessonNumber",
+    lessonNumber.lesson: "parentLessonNumber",
+  };
+
+  static String getName(lessonNumber type) {
+    return stringOfLessonsMap[type];
+  }
+}
+
+enum AfterStudy {
+  AfterLesson,
+  AfterCourse,
+}
+
+@immutable
+class AfterStudyText {
+  static const Map<AfterStudy, String> _map = {
+    AfterStudy.AfterLesson: "К следующему уроку",
+    AfterStudy.AfterCourse: "Вернуться в главное меню",
+  };
+
+  static String textAfterLesson(int lessonNumber, String lessonName) =>
+      "Поздравляем! Вы закончили прохождение урока $lessonNumber: \" $lessonName \".";
+
+  static String textAfterCourse(int lessonNumber, String lessonName) =>
+      textAfterLesson(lessonNumber, lessonName) + " На этом обучение шрифту Брайля завершается.";
+
+  static String getButtonName(AfterStudy afterStudy) => _map[afterStudy];
 }

@@ -1,3 +1,4 @@
+import 'package:braille_abc/models/app_saves.dart';
 import 'package:braille_abc/shared/non_swipeable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +17,13 @@ class LetterScreenStudy extends SectionScreen {
   final String upperText;
   final String downText;
   final bool isDotsTouchable;
+  final String title;
 
   const LetterScreenStudy(
       {Key key,
         Screen helpPage,
         Screen previousPage,
+        @required this.title,
         @required this.screenType,
         @required this.sectionName,
         @required this.symbol,
@@ -31,21 +34,24 @@ class LetterScreenStudy extends SectionScreen {
 
   @override
   Widget build(BuildContext context) {
-    return nonSwipeable(
-      context,
-      CupertinoPageScaffold(
-        navigationBar: NavigationBar(
-          currentPage: this,
-          title: ScreenNames.getName(screenType),
-        ),
-        child: LetterView(
-          screenType: screenType,
-          sectionName: sectionName,
-          symbol: symbol,
-          symbolName: upperText,
-          shortSymbol: downText,
-          isDotsTouchable: isDotsTouchable,
-          isText: true,
+    Saves.isLessonCompleted();
+    return LetterColor(
+      child: nonSwipeable(
+        context,
+        CupertinoPageScaffold(
+          navigationBar: NavigationBar(
+            currentPage: this,
+            title:  ScreenNames.getName(ScreenType.Lesson) + " " + title,
+          ),
+          child: LetterView(
+            screenType: screenType,
+            sectionName: sectionName,
+            symbol: symbol,
+            symbolName: upperText,
+            shortSymbol: downText,
+            isDotsTouchable: isDotsTouchable,
+            isText: true,
+          ),
         ),
       ),
     );

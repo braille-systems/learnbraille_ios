@@ -54,6 +54,10 @@ class AppColors {
   static const Color continueBtnTextIcon = Colors.black;
   ///
   static const Color divider = Colors.black;
+  /// About name text color
+  static const Color aboutColor = CupertinoColors.activeBlue;
+
+  static const Color lockColor = CupertinoColors.inactiveGray;
 }
 
 
@@ -114,7 +118,7 @@ class AppDecorations {
       borderRadius:  BorderRadius.circular(10));
 
   static BoxDecoration letterWidget(Color color) => BoxDecoration(
-    color:color,
+    color: color,
     border: Border.all(color: AppColors.symbolBoarder, width: 7.0),
     borderRadius: BorderRadius.circular(25.0),
   );
@@ -164,6 +168,13 @@ abstract class Styles {
     ];
   }
 
+  static TextStyle aboutTextStyle(){
+    return TextStyle(
+      fontSize: 25,
+
+    );
+  }
+
   static TextStyle helpTextStyle() {
     return TextStyle(fontSize: 19);
   }
@@ -180,9 +191,16 @@ class Sizes {
   static double lineSectionFontSize = 22;
   static double settingNameFontSize = 21;
   static double settingDescriptionFontSize = 17;
+  static double aboutIconSize = 40;
+  static double afterStudyTextSize = 22;
+  static double borderRadiusSize = 25;
   static SizeT getBackFortButtonSize() => SizeT(29,15);
   static SizeT getModeTipButtonSize() => SizeT(12,15);
-  static SizeT getModeButton() =>SizeT(34,15);
+  static SizeT getModeButton() => SizeT(43,15);
   static SizeT getLetterWidgetSize() => SizeT(45, 57);
 }
 
+class Routes{
+  static Offset nextScreen = Offset(3.0, 0.0);
+  static Offset previousScreen = Offset(-3.0, 0.0);
+}
