@@ -118,7 +118,7 @@ class AppDecorations {
       borderRadius:  BorderRadius.circular(10));
 
   static BoxDecoration letterWidget(Color color) => BoxDecoration(
-    color:color,
+    color: color,
     border: Border.all(color: AppColors.symbolBoarder, width: 7.0),
     borderRadius: BorderRadius.circular(25.0),
   );
@@ -192,6 +192,8 @@ class Sizes {
   static double settingNameFontSize = 21;
   static double settingDescriptionFontSize = 17;
   static double aboutIconSize = 40;
+  static double afterStudyTextSize = 22;
+  static double borderRadiusSize = 25;
   static SizeT getBackFortButtonSize() => SizeT(29,15);
   static SizeT getModeTipButtonSize() => SizeT(12,15);
   static SizeT getModeButton() => SizeT(43,15);

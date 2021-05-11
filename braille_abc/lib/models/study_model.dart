@@ -13,6 +13,7 @@ class StudyModel {
   static final List<Lesson> _lessons = [];
   static int _currentLessonPartIndex = 0;
   static int _currentLessonIndex = 0;
+  static bool isAfterStudy = false;
 
   static int get lessonsNum => _lessons.length;
   // ignore: unnecessary_getters_setters
@@ -28,6 +29,7 @@ class StudyModel {
 
   static lessonType get currentLessonType => curLessonPart.type;
 
+
   static bool incLessonPartIndex() {
     if (_currentLessonPartIndex < curLesson.lessonComponent.length - 1) {
       _currentLessonPartIndex++;
@@ -36,15 +38,19 @@ class StudyModel {
     return false;
   }
 
-  static bool changeLessonPartIndex(lessonButtonType type){
-    if(type == lessonButtonType.backward && _currentLessonPartIndex == 0){
+  static bool changeLessonPartIndex(lessonButtonType type) {
+    if(type == lessonButtonType.backward && _currentLessonPartIndex == 0) {
       return false;
     }
-    if(type == lessonButtonType.forward && _currentLessonPartIndex == curLesson.lessonComponent.length - 1){
+    if(type == lessonButtonType.forward && _currentLessonPartIndex == _lessons.length) {
       return false;
     }
     return true;
   }
+
+  static bool isFinalStep() => _currentLessonPartIndex == curLesson.lessonComponent.length - 1;
+
+  static bool isFinalLesson() => currentLessonIndex == lessonsNum - 1;
 
   static bool decLessonPartIndex() {
     if (_currentLessonPartIndex > 0) {
@@ -62,6 +68,7 @@ class StudyModel {
 
   static void rebootLessons({int index = 0}) {
     _currentLessonPartIndex = index;
+    isAfterStudy = false;
   }
 
   static String getType(lessonType type) {

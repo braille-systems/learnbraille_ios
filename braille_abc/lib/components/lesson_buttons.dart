@@ -1,7 +1,9 @@
 import 'package:braille_abc/models/app_icons.dart';
+import 'package:braille_abc/models/app_model.dart';
 import 'package:braille_abc/models/app_names.dart';
 import 'package:braille_abc/models/app_saves.dart';
 import 'package:braille_abc/models/study_model.dart';
+import 'package:braille_abc/screens/after_study_screen.dart';
 import 'package:braille_abc/shared/screen_params.dart';
 import 'package:braille_abc/symbol/struct_symbol.dart';
 import 'package:braille_abc/models/practice_model.dart';
@@ -12,6 +14,8 @@ import 'dart:math';
 
 import 'package:braille_abc/style.dart';
 import 'package:braille_abc/models/lesson_model.dart';
+
+import 'package:braille_abc/components/help_widgets.dart';
 
 enum lessonButtonType {
   backward,
@@ -66,13 +70,31 @@ class BackForthButton extends StatelessWidget {
               }
             await Saves.loadLessonProgress();
           } else if (isBackward()) {
-            navigate = StudyModel.decLessonPartIndex();
+            if(!StudyModel.isAfterStudy) {
+              navigate = StudyModel.decLessonPartIndex();
+            } else {
+              navigate = true;
+              StudyModel.isAfterStudy = false;
+            }
           }
           if (navigate) {
-              await Navigator.of(context).push(
-                LessonRoute(child: StudyModel.curLessonPart.build(context),
-                    isForward: isForward()),
-              );
+            await Navigator.of(context).push(
+              LessonRoute(child: StudyModel.curLessonPart.build(context), isForward: isForward()),
+            );
+          } else if (StudyModel.isFinalStep()) {
+            StudyModel.isAfterStudy = true;
+            await Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (context) => AfterStudyScreen(
+                  previousPage: AppModel.navigationScreens[navigation.StudyScreen],
+                  helpPage:  Help(
+                    helpName: HelpSections.EndLessonsScreen,
+                  ),
+                  lessonNumber: StudyModel.curLesson.number,
+                  lessonName: StudyModel.curLesson.name,
+                ),
+              ),
+            );
           }
         },
         child: Icon(
@@ -112,22 +134,19 @@ Column buildBackForthButton(BuildContext context, lessonButtonType type, Symbol 
   );
 }
 
-class LessonRoute extends CupertinoPageRoute{
-  LessonRoute({@required this.child, @required this.isForward}):
-    super(builder: (BuildContext context) => child);
+class LessonRoute extends CupertinoPageRoute {
+  LessonRoute({@required this.child, @required this.isForward}) : super(builder: (BuildContext context) => child);
 
   final Widget child;
   final bool isForward;
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation){
-    var begin = (isForward) ? Routes.nextScreen : Routes.previousScreen;
-    var end = Offset.zero;
-    var tween = Tween(begin: begin, end: end);
-    var anim = animation.drive(tween);
+  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
     return SlideTransition(
-      position: anim,
-      transformHitTests: true,
+      position: Tween<Offset>(
+        begin: (isForward) ? Routes.nextScreen : Routes.previousScreen,
+        end: Offset.zero,
+      ).animate(animation),
       child: child,
     );
   }

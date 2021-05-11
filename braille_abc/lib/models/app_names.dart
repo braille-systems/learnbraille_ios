@@ -39,7 +39,20 @@ class SectionNames {
   }
 }
 
-enum ScreenType { Dictionary, Help, Home, Letter, Practice, Settings, Study, Results, Lesson, StudyList, About }
+enum ScreenType {
+  Dictionary,
+  Help,
+  Home,
+  Letter,
+  Practice,
+  Settings,
+  Study,
+  Results,
+  Lesson,
+  StudyList,
+  About,
+  EndOfLesson,
+}
 
 @immutable
 class ScreenNames {
@@ -55,6 +68,7 @@ class ScreenNames {
     ScreenType.Lesson: "Урок",
     ScreenType.Results: "Результаты",
     ScreenType.About: "О нас",
+    ScreenType.EndOfLesson: "Конец урока",
   };
 
   static String getName(ScreenType type) {
@@ -110,6 +124,10 @@ enum XmlItemType {
   ReadingLessonScreen,
   TextLessonScreen,
   PracticeLessonScreen,
+  About,
+  Settings,
+  EndLesson,
+  EndStudy,
 }
 
 @immutable
@@ -125,6 +143,10 @@ class XmlNames {
     XmlItemType.PracticeLessonScreen: "Шаг с вводом",
     XmlItemType.ReadingLessonScreen: "Шаг с чтением",
     XmlItemType.TextLessonScreen: "Шаг с текстом",
+    XmlItemType.About: "О нас",
+    XmlItemType.Settings: "Настройки",
+    XmlItemType.EndStudy: "Конец обучения",
+    XmlItemType.EndLesson: "Конец урока",
   };
 
   static String getName(XmlItemType type) {
@@ -252,12 +274,11 @@ class LessonNames {
   }
 }
 
-
-
-enum lessonNumber{
+enum lessonNumber {
   lesson,
   lessonStep,
 }
+
 @immutable
 class LessonNums {
   static const Map<lessonNumber, String> stringOfLessonsMap = {
@@ -268,4 +289,25 @@ class LessonNums {
   static String getName(lessonNumber type) {
     return stringOfLessonsMap[type];
   }
+}
+
+enum AfterStudy {
+  AfterLesson,
+  AfterCourse,
+}
+
+@immutable
+class AfterStudyText {
+  static const Map<AfterStudy, String> _map = {
+    AfterStudy.AfterLesson: "К следующему уроку",
+    AfterStudy.AfterCourse: "Вернуться в главное меню",
+  };
+
+  static String textAfterLesson(int lessonNumber, String lessonName) =>
+      "Поздравляем! Вы закончили прохождение урока $lessonNumber: \" $lessonName \".";
+
+  static String textAfterCourse(int lessonNumber, String lessonName) =>
+      textAfterLesson(lessonNumber, lessonName) + " На этом обучение шрифту Брайля завершается.";
+
+  static String getButtonName(AfterStudy afterStudy) => _map[afterStudy];
 }
