@@ -223,7 +223,8 @@ class StudyButtonsState extends _LetterButtonsState {
                     screenType: ScreenType.Study);
             }),
         Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          isTouchable ? buildTipButton(context, isTapped, ScreenType.Study) : buildEmptyButton(context),
+          //isTouchable ? buildTipButton(context, isTapped, ScreenType.Study) :
+          buildEmptyButton(context),
           buildBackForthButton(context, lessonButtonType.forward, super.widget.symbol, (isTouchable) ? isTapped : null),
         ]),
       ],
