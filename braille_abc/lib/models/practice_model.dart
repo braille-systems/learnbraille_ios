@@ -44,13 +44,13 @@ class PracticeResults {
   }
 
   static void resetAnswer() {
-    _isHintUsed = false;
     for(var i = 0; i < _answer.length; ++i) {
       _answer[i] = false;
     }
   }
 
   static void incStepCounter() {
+    _isHintUsed = false;
     ++_stepCounter;
   }
 
