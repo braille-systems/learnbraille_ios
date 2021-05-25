@@ -139,9 +139,7 @@ jobs:
         working-directory: ./braille_abc
 
       - name: Setup fastlane
-        run: |
-          gem install bundler
-          bundle install
+        run: bundle install
         working-directory: ./braille_abc/ios
       
       - name: Install pods
@@ -209,9 +207,7 @@ jobs:
         working-directory: ./braille_abc
 
       - name: Setup fastlane
-        run: |
-          gem install bundler
-          bundle install
+        run: bundle install
         working-directory: ./braille_abc/android
 
       - name: Setup signing key and key.properties
