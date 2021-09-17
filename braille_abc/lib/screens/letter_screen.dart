@@ -171,7 +171,7 @@ class _LetterViewState extends State<LetterView> {
                           SectionNames.getName(widget.sectionName) +
                           ". " +
                           SemanticNames.getName(SemanticsType.SymbolInLetterWidget) +
-                          widget.shortSymbol,
+                          widget.symbolName,
                   button: false,
                   child: ExcludeSemantics(
                     child: LetterWidget(

@@ -79,7 +79,7 @@ class SymbolsFactory {
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 6]), char: "Знак умножения крестом", shortChar: "х"),
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[3, 5, 6]), char: "Знак деления (углом)", shortChar: "/"),
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 5, 6]), char: "Знак деления (двумя точками)", shortChar: ":"),
-            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5, 6]), char: "Знак равества", shortChar: "="),
+            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5, 6]), char: "Знак равенства", shortChar: "="),
           ];
           return arithmeticSigns;
         }
