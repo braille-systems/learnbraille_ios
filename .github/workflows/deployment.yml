@@ -20,7 +20,7 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           flutter-version: '1.x'
-          channel: 'stable'
+          channel: 'any'
 
       - name: Setup flutter env
         run: flutter pub get
