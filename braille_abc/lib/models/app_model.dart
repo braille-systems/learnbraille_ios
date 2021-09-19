@@ -13,17 +13,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/models/menu_button.dart';
 import 'package:braille_abc/models/settings_position.dart';
 
-enum navigation { MainMenu, StudyScreen, PracticeScreen, DictionaryScreen, SettingsScreen }
+enum navigation {
+  MainMenu,
+  DictionaryScreen,
+  PracticeScreen,
+  StudyScreen,
+  SettingsScreen }
 
 @immutable
 class AppModel {
   static final Alphabet _alphabet = Alphabet();
 
   static final List<MenuButton> menuButton = [
-    MenuButton(name: ScreenNames.getName(ScreenType.Study), icon: AppIcon.getIcon(AppIcons.StudyScreen)),
-    MenuButton(name: ScreenNames.getName(ScreenType.Practice), icon: AppIcon.getIcon(AppIcons.PracticeScreen)),
     MenuButton(name: ScreenNames.getName(ScreenType.Dictionary), icon: AppIcon.getIcon(AppIcons.DictionaryScreen)),
-    MenuButton(name: ScreenNames.getName(ScreenType.Settings), icon: AppIcon.getIcon(AppIcons.SettingsScreen)),
+    // MenuButton(name: ScreenNames.getName(ScreenType.Study), icon: AppIcon.getIcon(AppIcons.StudyScreen)), // TODO return
+    // MenuButton(name: ScreenNames.getName(ScreenType.Practice), icon: AppIcon.getIcon(AppIcons.PracticeScreen)), // TODO return
+    // MenuButton(name: ScreenNames.getName(ScreenType.Settings), icon: AppIcon.getIcon(AppIcons.SettingsScreen)), // TODO return
   ];
 
   static final List<PracticeButton> practiceButtons = [
