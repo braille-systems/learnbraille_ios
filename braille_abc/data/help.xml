@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <general_button name="Общая справка">
+<!--
+This is a shortened version of the help content for the beta version of the app (with some sections omitted). Full text available in `fullHelp.xml`
+-->
+	<general_button name="Общая справка">
     <text>
       <p>В данном разделе содержится информация по общим для приложения функциям.</p>
       <p>Нажатие на кнопку, содержащую название соответствующего раздела списка справки или алфавита, позволяет показать содержимое данного раздела или скрыть его, если оно было предварительно открыто.</p>
