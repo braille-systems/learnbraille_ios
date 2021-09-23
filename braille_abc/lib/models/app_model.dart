@@ -13,12 +13,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:braille_abc/models/menu_button.dart';
 import 'package:braille_abc/models/settings_position.dart';
 
-enum navigation {
-  MainMenu,
-  DictionaryScreen,
-  PracticeScreen,
-  StudyScreen,
-  SettingsScreen }
+enum navigation { MainMenu, DictionaryScreen, PracticeScreen, StudyScreen, SettingsScreen }
 
 @immutable
 class AppModel {
@@ -47,27 +42,27 @@ class AppModel {
 
   static const Widget _menuScreen = MenuScreen(
     previousPage: null,
-    helpPage: Help(helpName:HelpSections.MainMenu),
+    helpPage: Help(helpName: HelpSections.MainMenu),
   );
 
   static const Widget _studyScreen = LessonsScreen(
     previousPage: _menuScreen,
-    helpPage: Help(helpName: HelpSections.StudyScreen,),
+    helpPage: Help(helpName: HelpSections.StudyScreen),
   );
 
   static const Widget _practiceScreen = PracticeScreen(
-      previousPage: _menuScreen,
-      helpPage: Help(helpName:HelpSections.Practice),
+    previousPage: _menuScreen,
+    helpPage: Help(helpName: HelpSections.Practice),
   );
 
   static const Widget _dictionaryScreen = DictionaryScreen(
     previousPage: _menuScreen,
-    helpPage: Help(helpName:HelpSections.Dictionary),
+    helpPage: Help(helpName: HelpSections.Dictionary),
   );
 
   static const Widget _settingsScreen = SettingsScreen(
       previousPage: _menuScreen,
-      helpPage: Help(helpName: HelpSections.SettingsScreen,)
+      helpPage: Help(helpName: HelpSections.SettingsScreen),
   );
 
   static const Map<navigation, Widget> navigationScreens = {
