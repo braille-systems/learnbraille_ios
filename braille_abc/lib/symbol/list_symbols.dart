@@ -54,13 +54,13 @@ class SymbolsFactory {
           List<Symbol> punctuationMarks = <Symbol>[
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[2]), char: "Запятая", shortChar: ","),
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 6]), char: "Дефис", shortChar: "-"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 5, 6]), char: "Точка", shortChar: "."),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 5, 6]), char: "Литературная точка", shortChar: "."),
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5]), char: "Восклицательный знак", shortChar: "!"),
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 6]), char: "Вопросительный знак", shortChar: "?"),
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 3, 6]), char: "Открывающая кавычка", shortChar: "«"),
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 5, 6]), char: "Закрывающая кавычка", shortChar: "»"),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[1, 2, 6]), char: "Левая литеральная скобка", shortChar: "("),
-            PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 4, 5]), char: "Правая литеральная скобка", shortChar: ")"),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[1, 2, 6]), char: "Левая литературная скобка", shortChar: "("),
+            PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 4, 5]), char: "Правая литературная скобка", shortChar: ")"),
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[3, 5]), char: "Звёздочка", shortChar: "*"),
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 5]), char: "Двоеточие", shortChar: ":"),
             PunctuationSymbol(list: Search.imageSymbol(d: <int>[2, 3]), char: "Точка с запятой", shortChar: ";"),
@@ -79,7 +79,7 @@ class SymbolsFactory {
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 6]), char: "Знак умножения крестом", shortChar: "х"),
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[3, 5, 6]), char: "Знак деления (углом)", shortChar: "/"),
             ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 5, 6]), char: "Знак деления (двумя точками)", shortChar: ":"),
-            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5, 6]), char: "Знак равества", shortChar: "="),
+            ArithmeticSymbol(list: Search.imageSymbol(d: <int>[2, 3, 5, 6]), char: "Знак равенства", shortChar: "="),
           ];
           return arithmeticSigns;
         }

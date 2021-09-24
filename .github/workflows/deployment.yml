@@ -19,7 +19,8 @@ jobs:
       - name: Get flutter from stable
         uses: subosito/flutter-action@v1
         with:
-          channel: 'stable'
+          flutter-version: '1.x'
+          channel: 'any'
 
       - name: Setup flutter env
         run: flutter pub get
@@ -134,6 +135,11 @@ jobs:
         with:
           java-version: '11.x'
 
+      - name: Get Ruby 2.7
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+
       - name: Setup flutter env
         run: flutter pub get
         working-directory: ./braille_abc
@@ -201,6 +207,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '11.x'
+
+      - name: Get Ruby 2.7
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
 
       - name: Setup flutter env
         run: flutter pub get
