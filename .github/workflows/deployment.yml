@@ -7,12 +7,14 @@ on:
   workflow_dispatch:
 
 
+env:
+  FLUTTER_VERSION: '2.5.1'
+
+
 jobs:
   lint:
     name: Analyzer
     runs-on: ubuntu-latest
-    env:
-      FLUTTER_VERSION: '2.5.1'
 
     steps:
       - name: Git checkout
@@ -45,7 +47,7 @@ jobs:
       - name: Get flutter from stable
         uses: subosito/flutter-action@v1
         with:
-          flutter-version: ${{ jobs.lint.env.FLUTTER_VERSION }}
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
 
       - name: Setup flutter env
@@ -69,7 +71,7 @@ jobs:
       - name: Get flutter from stable
         uses: subosito/flutter-action@v1
         with:
-          flutter-version: ${{ jobs.lint.env.FLUTTER_VERSION }}
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
 
       - name: Get java 11
@@ -109,7 +111,7 @@ jobs:
       - name: Get flutter from stable
         uses: subosito/flutter-action@v1
         with:
-          flutter-version: ${{ jobs.lint.env.FLUTTER_VERSION }}
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
 
       - name: Setup flutter env
@@ -133,7 +135,7 @@ jobs:
       - name: Get flutter from stable
         uses: subosito/flutter-action@v1
         with:
-          flutter-version: ${{ jobs.lint.env.FLUTTER_VERSION }}
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
 
       - name: Get java 11
@@ -207,7 +209,7 @@ jobs:
       - name: Get flutter from stable
         uses: subosito/flutter-action@v1
         with:
-          flutter-version: ${{ jobs.lint.env.FLUTTER_VERSION }}
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
 
       - name: Get java 11
