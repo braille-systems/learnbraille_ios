@@ -8,6 +8,10 @@ on:
   workflow_dispatch:
 
 
+env:
+  FLUTTER_VERSION: '2.5.1'
+
+
 jobs:
   lint:
     name: Analyzer
@@ -20,7 +24,7 @@ jobs:
       - name: Get flutter from stable
         uses: subosito/flutter-action@v1
         with:
-          flutter-version: '1.x'
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'any'
 
       - name: Setup flutter env
@@ -44,6 +48,7 @@ jobs:
       - name: Get flutter from stable
         uses: subosito/flutter-action@v1
         with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
       
       - name: Setup flutter env
@@ -67,6 +72,7 @@ jobs:
       - name: Get flutter from stable
         uses: subosito/flutter-action@v1
         with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
       
       - name: Get java 11
@@ -106,6 +112,7 @@ jobs:
       - name: Get flutter from stable
         uses: subosito/flutter-action@v1
         with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
       
       - name: Setup flutter env
