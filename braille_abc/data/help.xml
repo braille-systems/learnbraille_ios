@@ -29,6 +29,11 @@ This is a shortened version of the help content for the beta version of the app 
         <p>Главное меню содержит раздел "Алфавит", в кототором имеется список символов, входящих в курс обучения, с указанием их точечного состава. Переход между разделом и меню возможен при помощи нажатия на соответствующий раздел в панели навигации внизу экрана.</p>
       </text>
     </button>
+    <button name="Политика конфиденциальности">
+      <text>
+        <p> <a href="http://braille-systems.ru/app/ios-privacy/">Политика конфиденциальности на сайте braille-systems.ru</a> </p>
+      </text>
+    </button>
   </section>
   <section name="Алфавит">
     <text>
