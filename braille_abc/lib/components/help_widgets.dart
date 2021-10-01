@@ -10,7 +10,6 @@ import 'package:braille_abc/components/expansion_section_widget.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:io' show Platform;
 
 enum HelpSections {
   General,
@@ -55,9 +54,6 @@ class Help extends Screen {
           AppIcon.getIcon(AppIcons.MenuScreen),
           AppIcon.getIcon(AppIcons.Privacy),
         ];
-        if (!Platform.isIOS) {
-          subIcon.removeLast(); // hide privacy link for other platforms
-        }
         return buildHelp(subIcon, XmlNames.getName(XmlItemType.MainMenu));
 
       case HelpSections.Practice:
