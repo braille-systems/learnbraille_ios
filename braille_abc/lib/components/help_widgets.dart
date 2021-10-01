@@ -43,24 +43,19 @@ class Help extends Screen {
   Widget build(BuildContext context) {
     switch (helpName) {
       case HelpSections.General:
-        List<IconData> subIcon = [
-          AppIcon.getIcon(AppIcons.BackButton),
-          AppIcon.getIcon(AppIcons.HelpScreen)
-        ];
+        List<IconData> subIcon = [AppIcon.getIcon(AppIcons.BackButton), AppIcon.getIcon(AppIcons.HelpScreen)];
         return ExpansionSection(
             color: AppColors.first,
             sectionIcon: AppIcon.getIcon(AppIcons.GeneralHelpInHelpScreen),
-            sectionName: HelpModel
-                .helpSection[XmlNames.getName(XmlItemType.GeneralHelp)].name,
-            child:
-                buildHelp(subIcon, XmlNames.getName(XmlItemType.GeneralHelp)));
+            sectionName: HelpModel.helpSection[XmlNames.getName(XmlItemType.GeneralHelp)].name,
+            child: buildHelp(subIcon, XmlNames.getName(XmlItemType.GeneralHelp)));
 
       case HelpSections.MainMenu:
         List<IconData> subIcon = [
           AppIcon.getIcon(AppIcons.MenuScreen),
           AppIcon.getIcon(AppIcons.Privacy),
         ];
-        if(!Platform.isIOS) {
+        if (!Platform.isIOS) {
           subIcon.removeLast(); // hide privacy link for other platforms
         }
         return buildHelp(subIcon, XmlNames.getName(XmlItemType.MainMenu));
@@ -70,8 +65,7 @@ class Help extends Screen {
           AppIcon.getIcon(AppIcons.PracticeScreen),
           AppIcon.getIcon(AppIcons.ContinueButton),
         ];
-        return buildHelp(
-            subIcon, XmlNames.getName(XmlItemType.PracticeSections));
+        return buildHelp(subIcon, XmlNames.getName(XmlItemType.PracticeSections));
 
       case HelpSections.LetterPractice:
         List<IconData> subIcon = [
@@ -115,8 +109,7 @@ class Help extends Screen {
           AppIcon.getIcon(AppIcons.GoBackButton),
           AppIcon.getIcon(AppIcons.ContinueButton),
         ];
-        return buildHelp(
-            subIcon, XmlNames.getName(XmlItemType.TextLessonScreen));
+        return buildHelp(subIcon, XmlNames.getName(XmlItemType.TextLessonScreen));
 
       case HelpSections.PracticeLessonScreen:
         List<IconData> subIcon = [
@@ -126,8 +119,7 @@ class Help extends Screen {
           AppIcon.getIcon(AppIcons.TipButton),
           AppIcon.getIcon(AppIcons.ContinueButton),
         ];
-        return buildHelp(
-            subIcon, XmlNames.getName(XmlItemType.PracticeLessonScreen));
+        return buildHelp(subIcon, XmlNames.getName(XmlItemType.PracticeLessonScreen));
 
       case HelpSections.ReadingLessonScreen:
         List<IconData> subIcon = [
@@ -136,8 +128,7 @@ class Help extends Screen {
           AppIcon.getIcon(AppIcons.GoBackButton),
           AppIcon.getIcon(AppIcons.ContinueButton),
         ];
-        return buildHelp(
-            subIcon, XmlNames.getName(XmlItemType.ReadingLessonScreen));
+        return buildHelp(subIcon, XmlNames.getName(XmlItemType.ReadingLessonScreen));
 
       case HelpSections.AboutScreen:
         return buildHelp(null, XmlNames.getName(XmlItemType.About));
@@ -163,8 +154,7 @@ class Help extends Screen {
     }
   }
 
-  Column buildHelp(List<IconData> subIcon, String helpPage,
-      {bool general = false}) {
+  Column buildHelp(List<IconData> subIcon, String helpPage, {bool general = false}) {
     return Column(
       children: [
         Html(
@@ -190,18 +180,12 @@ class Help extends Screen {
                   },
                 ),
                 if (HelpModel.helpSection[helpPage].content[i].content != null)
-                  for (int j = 0;
-                      j <
-                          HelpModel
-                              .helpSection[helpPage].content[i].content.length;
-                      j++)
+                  for (int j = 0; j < HelpModel.helpSection[helpPage].content[i].content.length; j++)
                     ExpansionSection(
                       sectionIcon: subIcon[i + j + 1],
-                      sectionName: HelpModel
-                          .helpSection[helpPage].content[i].content[j].name,
+                      sectionName: HelpModel.helpSection[helpPage].content[i].content[j].name,
                       child: Html(
-                          data: HelpModel.helpSection[helpPage].content[i]
-                              .content[j].description,
+                          data: HelpModel.helpSection[helpPage].content[i].content[j].description,
                           defaultTextStyle: Styles.helpTextStyle()),
                     )
               ],
