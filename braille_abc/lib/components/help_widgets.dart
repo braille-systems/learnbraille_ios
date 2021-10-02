@@ -9,6 +9,7 @@ import 'package:braille_abc/style.dart';
 import 'package:braille_abc/components/expansion_section_widget.dart';
 import 'package:braille_abc/models/screen_model.dart';
 
+import 'package:url_launcher/url_launcher.dart';
 
 enum HelpSections {
   General,
@@ -49,7 +50,10 @@ class Help extends Screen {
             child: buildHelp(subIcon, XmlNames.getName(XmlItemType.GeneralHelp)));
 
       case HelpSections.MainMenu:
-        List<IconData> subIcon = [AppIcon.getIcon(AppIcons.MenuScreen)];
+        List<IconData> subIcon = [
+          AppIcon.getIcon(AppIcons.MenuScreen),
+          AppIcon.getIcon(AppIcons.Privacy),
+        ];
         return buildHelp(subIcon, XmlNames.getName(XmlItemType.MainMenu));
 
       case HelpSections.Practice:
@@ -81,7 +85,7 @@ class Help extends Screen {
         ];
         return buildHelp(subIcon, XmlNames.getName(XmlItemType.SymbolView));
 
-      case  HelpSections.PracticeResult:
+      case HelpSections.PracticeResult:
         List<IconData> subIcon = [
           AppIcon.getIcon(AppIcons.PracticeScreen),
           AppIcon.getIcon(AppIcons.BackButton),
@@ -146,7 +150,6 @@ class Help extends Screen {
     }
   }
 
-
   Column buildHelp(List<IconData> subIcon, String helpPage, {bool general = false}) {
     return Column(
       children: [
@@ -154,7 +157,7 @@ class Help extends Screen {
           data: HelpModel.helpSection[helpPage].description,
           defaultTextStyle: Styles.helpTextStyle(),
         ),
-        for (int i = 0; i < HelpModel.helpSection[helpPage].content.length; i++)
+        for (int i = 0; i < subIcon.length; i++)
           ExpansionSection(
             color: AppColors.first,
             sectionIcon: subIcon[i],
@@ -164,11 +167,18 @@ class Help extends Screen {
                 Html(
                   data: HelpModel.helpSection[helpPage].content[i].description,
                   defaultTextStyle: Styles.helpTextStyle(),
+                  onLinkTap: (url) async {
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
                 ),
                 if (HelpModel.helpSection[helpPage].content[i].content != null)
                   for (int j = 0; j < HelpModel.helpSection[helpPage].content[i].content.length; j++)
                     ExpansionSection(
-                      sectionIcon: subIcon[i+j+1],
+                      sectionIcon: subIcon[i + j + 1],
                       sectionName: HelpModel.helpSection[helpPage].content[i].content[j].name,
                       child: Html(
                           data: HelpModel.helpSection[helpPage].content[i].content[j].description,
