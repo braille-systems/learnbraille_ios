@@ -157,7 +157,7 @@ class Help extends Screen {
           data: HelpModel.helpSection[helpPage].description,
           defaultTextStyle: Styles.helpTextStyle(),
         ),
-        for (int i = 0; i < subIcon.length; i++)
+        for (int i = 0; i < HelpModel.helpSection[helpPage].content.length; i++)
           ExpansionSection(
             color: AppColors.first,
             sectionIcon: subIcon[i],
